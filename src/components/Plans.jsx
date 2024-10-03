@@ -5,7 +5,7 @@ import { IoIosWifi } from "react-icons/io";
 
 function Plans() {
   return (
-    <div className="px-[12%] pt-10 pb-14 font-sans bg-white text-[#231f20]">
+    <div className="px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#231f20]">
         <h1 className="text-3xl font-semibold mb-1">Predialnet é muito mais velocidade e estabilidade</h1>
         <h2 className="text-[#808080] text-xl font-light">Agora sua internet vai decolar com os novos planos Wi-Fi 6</h2>
         <h2 className="text-[#808080] text-xl -mt-1 font-light">+ Conexão | + Velocidade | + Estabilidade | + Alcance</h2>
