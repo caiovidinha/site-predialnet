@@ -51,13 +51,13 @@ const CarouselComponent = () => {
       {/* Botões de navegação */}
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-5 transform -translate-y-1/ bg-opacity-50 text-gray-400 rounded-full"
+        className="absolute top-1/2 left-5 transform -translate-y-1/ bg-opacity-50 text-gray-300 opacity-50 rounded-full"
       >
         &#10094;
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-5 transform -translate-y-1/2 bg-opacity-50 text-gray-400 rounded-full"
+        className="absolute top-1/2 right-5 transform -translate-y-1/2 bg-opacity-50 text-gray-300 opacity-50 rounded-full"
       >
         &#10095;
       </button>
@@ -68,8 +68,8 @@ const CarouselComponent = () => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full ${
-              currentIndex === index ? 'bg-[#f7adaf]' : 'bg-gray-400'
+            className={`w-4 h-1 rounded-full ${
+              currentIndex === index ? 'bg-[#f7adaf] opacity-50' : 'bg-gray-300 opacity-50'
             }`}
           ></button>
         ))}

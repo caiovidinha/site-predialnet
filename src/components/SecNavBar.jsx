@@ -12,7 +12,7 @@ const SecNav = () => {
         <button className="text-[#9c0004] font-semibold">Planos</button>
         <button className="text-[#808080] font-semibold">Wi-Fi 6</button>
         <button className="text-[#808080] font-semibold">Telefonia Fixa</button>
-        <button className="text-black font-semibold bg-[#f7adaf] text-sm px-8 py-2.5 rounded-full">SOS Petrópolis</button>
+        <button className="text-black font-semibold bg-[#f7adaf] text-sm px-8 py-2.5 rounded-full">APP Minha Predialnet</button>
       </div>
       <div className="w-full flex items-center justify-end gap-3">
         <div className="font-semibold">Assine também pelo telefone 21 3515-0555</div>
