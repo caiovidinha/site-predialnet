@@ -1,53 +1,55 @@
 "use client"
 
 
-import { FaWhatsapp } from "react-icons/fa";
+import { IoPersonCircleOutline } from "react-icons/io5";
 import Link from 'next/link';
 import Image from 'next/image';
+import { RiFacebookCircleLine } from "react-icons/ri";
+import { FaInstagram } from "react-icons/fa";
+
+
 
 const Nav = () => {
   return (
     <nav 
-    className="p-4 pb-8 font-sans font-thin duration-300 transition-all bg-[#9c0004]"
+    className="pb-2 mt-2 px-[12%] font-sans font-thin duration-300 transition-all border-b-[2.5px] border-solid border-[#e3e3e3] items-center justify-between flex flex-row"
     >
-      <div className="container mx-auto flex justify-between gap-8 items-center mt-6">
+      <div className="container flex justify-between gap-8 items-center">
         <a href="/">
         <Image
-        src="/img/logo_branca.png"
-        width="330"
+        src="/img/logo.png"
+        width="200"
         height="0"
         className="hover:scale-105 duration-300 ease-in hover:cursor-pointer"
         />
         </a>
-        <ul className="flex space-x-4 justify-start w-full mt-5 gap-4 tracking-widest">
+        <ul className="flex space-x-4 justify-start items-center w-full mt-4 gap-4 tracking-normal h-full">
           <li>
-            <Link href="/about">
-              <p className="text-[#f5f5f5] hover:text-red-400 hover:font-medium duration-150 ease-in-out">Sobre</p>
+            <Link href="/">
+              <p className="text-[#9c0004] text-sm font-semibold duration-150 ease-in-out border-b-[#9c0004] border-solid border-b-2 h-full ">Para sua casa</p>
             </Link>
           </li>
           <li>
-            <Link href="/services">
-              <p className="text-[#f5f5f5] hover:text-red-400 hover:font-medium duration-150 ease-in-out">Serviços</p>
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact">
-              <p className="text-[#f5f5f5] hover:text-red-400 hover:font-medium duration-150 ease-in-out">Contato</p>
+            <Link href="/">
+              <p className="text-[#808080] text-sm font-semibold duration-150 ease-in-out">Para sua empresa</p>
             </Link>
           </li>
         </ul>
-        <div id="buttons" className="flex flex-row gap-3">
-          <button onClick={()=> window.location.href ="https://minhaconta.predialnet.com.br/"} className="shadow-lg w-48 bg-yellow-400 hover:bg-yellow-600 hover:scale-105 duration-200 ease-in-out p-3 rounded-lg text-black font-bold font-sans uppercase">
-            Assine agora
+        </div>
+        <div id="buttons" className="flex w-80 items-center justify-between "><div className="flex items-center justify-start gap-3">
+        <button className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-norma shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg">
+          <FaInstagram className="relative" color={"white"} size={20}/>
           </button>
-          <button onClick={()=> window.location.href ="https://minhaconta.predialnet.com.br/"} className="shadow-lg w-48 bg-white hover:bg-red-400 hover:scale-105 duration-200 ease-in-out p-3 rounded-lg text-[#9c0004] hover:text-white font-bold font-sans uppercase">
-            Área do cliente
+        <button className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-norma shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg">
+          <RiFacebookCircleLine className="relative" color={"white"} size={20}/>
           </button>
-          <button onClick={()=> window.location.href ="https://minhaconta.predialnet.com.br/"} className="shadow-lg bg-white hover:bg-red-400 hover:scale-105 duration-200 ease-in-out px-4 rounded-lg text-[#9c0004] hover:text-white font-bold font-sans uppercase">
-          <FaWhatsapp size={25}/>
+      </div>
+          <div className="max-w-0.5 min-h-8 mx-4 bg-[#e3e3e3] p-[0.8px]"></div>
+          <button onClick={()=> window.location.href ="https://minhaconta.predialnet.com.br/"} className= "flex text-right items-center justify-end gap-2 flex-row text-sm rounded-lg text-black font-bold font-sans mt-4">
+          <img src="/img/icone_profile.png" className="max-w-5 object-contain justify-end" alt="" /> <p className="">Já sou cliente</p>
           </button>
         </div>
-      </div>
+      
     </nav>
   );
 };

@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Nav from "@/components/Navbar";
+import SecNav from "@/components/SecNavBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,8 +23,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR"
     className={`${Bahn.variable} antialiased`}>
-      <body>
-      <Navbar />
+      <body className="bg-[#f2f2f2]">
+      <Nav />
+      <SecNav />
         {children}
       </body>
     </html>

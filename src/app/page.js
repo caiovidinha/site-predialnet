@@ -1,8 +1,12 @@
+import CarouselComponent from "@/components/Carousel";
+import Plans from "@/components/Plans";
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
-
 export default function Home() {
   return (
-    <div className=" font-serif">oi</div>
+    <>
+    <CarouselComponent />
+    <Plans />
+
+    </>
   );
 }
