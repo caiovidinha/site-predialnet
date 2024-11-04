@@ -10,7 +10,7 @@ function App() {
     <div className="px-[12%] py-10 font-sans bg-white flex flex-row justify-between">
        <div className='w-[21%]  flex flex-col justify-end mb-14'>
             <h3 className='text-[#9c0004] text-lg'>App Minha Predialnet</h3>
-            <h1 className='text-4xl my-7 w-[100%]'>Acesse o Minha Predialnet e gerencie seu plano na palma da mão</h1>
+            <h1 className='text-3xl my-7 w-[100%]'>Acesse o<br />Minha Predialnet e gerencie seu plano na palma da mão</h1>
             <img src="img/qrcode.png" alt="" className='border-black border-2 rounded-lg border-solid w-52'/>
        </div>
 

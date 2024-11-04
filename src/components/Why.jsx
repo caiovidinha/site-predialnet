@@ -3,7 +3,7 @@ import React from 'react';
 function Why() {
   return (
     <div className="px-[12%] pt-10 pb-14 font-sans bg-gray-200 text-[#231f20]">
-      <h1 className="text-4xl font-semibold mb-6">
+      <h1 className="text-3xl mb-6">
         Veja porque contratar os planos
         <br />
         de internet da Predialnet

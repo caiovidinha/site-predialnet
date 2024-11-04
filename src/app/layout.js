@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR"
     className={`${Bahn.variable} antialiased`}>
-      <body className="bg-[#f2f2f2]">
+      <body className="bg-[#f2f2f2] tracking-tight">
       <Nav />
       <SecNav />
         {children}

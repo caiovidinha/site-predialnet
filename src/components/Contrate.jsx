@@ -14,7 +14,7 @@ function Contrate() {
         <div className='mt-4 flex flex-row justify-between'>
           <div className='w-[33%]'>
             <h3 className='text-white text-xl mb-3'>Contrate já!</h3>
-            <h2 className='text-[#ffbd17] text-3xl mb-3'>Assine do seu jeito e venha para Predialnet agora!</h2>
+            <h2 className='text-[#ffbd17] text-3xl mb-3 font-medium'>Assine do seu jeito e venha para Predialnet agora!</h2>
             <p className='text-white text-lg mb-3 '>A melhor internet fibra que vai transformar sua casa</p>
           </div>
 

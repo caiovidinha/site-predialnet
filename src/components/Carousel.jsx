@@ -21,14 +21,14 @@ const CarouselComponent = () => {
     setCurrentIndex(isLastSlide ? 0 : currentIndex + 1);
   };
 
-  // Auto-play
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     nextSlide();
-  //   }, 5000); // Altera a cada 5 segundos
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000); // Altera a cada 5 segundos
 
-  //   return () => clearInterval(interval);
-  // }, [currentIndex]);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
   return (
     <div className="relative w-full overflow-hidden mt-3">

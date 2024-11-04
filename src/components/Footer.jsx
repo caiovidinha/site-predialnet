@@ -11,7 +11,7 @@ function Footer() {
         
         {/* Texto de direitos reservados */}
         <p className="text-sm text-[#6d6e70]">
-          Predialnet – Provedor de Internet @ 2024 – Todos os direitos reservados.
+          Predialnet - Provedor de Internet @ 2024 - Todos os direitos reservados.
         </p>
 
         {/* Texto de desenvolvimento */}

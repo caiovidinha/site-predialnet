@@ -3,7 +3,7 @@ import React from 'react'
 function Cards() {
   return (
     <div className="px-[12%] py-10 font-sans bg-gray-200 text-[#231f20]">
-        <h1 className="text-3xl font-semibold mb-1">É muita internet para você navegar, jogar e maratonar suas séries</h1>
+        <h1 className="text-3xl mb-1">É muita internet para você navegar, jogar e maratonar suas séries</h1>
         <h2 className="text-[#808080] text-xl font-light">Com Predialnet sua casa navega com você</h2>
         <h2 className="text-[#808080] text-xl font-light -mt-1">Venha para uma internet rápida de verdade.</h2>
         <div className="mt-10 flex flex-row justify-between flex-wrap gap-4">
