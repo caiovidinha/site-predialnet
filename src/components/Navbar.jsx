@@ -37,10 +37,10 @@ const Nav = () => {
         </ul>
         </div>
         <div id="buttons" className="flex w-80 items-center justify-between "><div className="flex items-center justify-start gap-3">
-        <button className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-norma shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg">
+        <button className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-normal shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg hover:scale-105">
           <FaInstagram className="relative" color={"white"} size={20}/>
           </button>
-        <button className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-norma shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg">
+        <button className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-normal shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg hover:scale-105">
           <RiFacebookCircleLine className="relative" color={"white"} size={20}/>
           </button>
       </div>

@@ -12,13 +12,13 @@ const SecNav = () => {
         <button className="text-[#9c0004] font-semibold">Planos</button>
         <button className="text-[#808080] font-semibold">Wi-Fi 6</button>
         <button className="text-[#808080] font-semibold">Telefonia Fixa</button>
-        <button className="text-black font-semibold bg-[#f7adaf] text-sm px-8 py-2.5 rounded-full">APP Minha Predialnet</button>
+        <button className="text-black font-semibold bg-[#f7adaf] text-sm px-8 py-2.5 rounded-full hover:scale-105 transition-transform">APP Minha Predialnet</button>
       </div>
       <div className="w-full flex items-center justify-end gap-3">
         <div className="font-semibold">Assine também pelo telefone 21 3515-0555</div>
-        <button className="p-2 bg-[#00a300] inline-block rounded-full text-xs font-medium uppercase leading-norma shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg">
+        <button className="hover:scale-105 p-2 bg-[#00a300] inline-block rounded-full text-xs font-medium uppercase leading-norma shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg">
           <FaWhatsapp className="relative" color={"white"} size={25}/></button>
-        <button className="text-black font-semibold bg-[#f7adaf] text-sm px-8 py-2.5 rounded-full">Assinar Agora!</button>
+        <button className="text-black font-semibold bg-[#f7adaf] text-sm px-8 py-2.5 rounded-full hover:scale-105 transition-transform">Assinar Agora!</button>
       </div>
     </nav>
   );

@@ -6,6 +6,7 @@ const CarouselComponent = () => {
     '/img/bannerA.jpg',
     '/img/bannerB.jpg',
     '/img/bannerC.jpg',
+    '/img/bannerD.jpg'
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,16 +33,17 @@ const CarouselComponent = () => {
   return (
     <div className="relative w-full overflow-hidden mt-3">
       <div
-        className="flex transition-transform duration-500"
+        className="flex transition-transform duration-500 cursor-pointer"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
           <div key={index} className="w-full flex-shrink-0">
-            <div className="relative w-full aspect-[1920/542]">
+            <div className="relative w-full aspect-[1920/542]" >
               <img
                 src={image}
                 alt={`Slide ${index}`}
                 className="absolute top-0 left-0 w-full h-full object-contain"
+                onClick={() => alert('Adicionar link condicional.')}
               />
             </div>
           </div>
