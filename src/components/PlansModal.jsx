@@ -11,7 +11,7 @@ const PlansModal = () => {
   return (
     <>
       <button 
-        onClick={openModal}
+        // onClick={openModal}
         className="py-3 bg-[#9c0004] text-white w-full rounded-full text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform"
       >
         Aproveitar oferta
