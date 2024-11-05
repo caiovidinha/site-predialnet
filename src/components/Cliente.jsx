@@ -20,28 +20,34 @@ function Cliente() {
             {
               iconSrc: 'img/iconeMedidor.png',
               title: 'Medidor de velocidade',
+              link: 'https://speedtest.predialnet.com.br'
             },
             {
               iconSrc: 'img/iconeConta.png',
               title: `2ª via
               <br />de conta`,
+              link: 'https://minhaconta.predialnet.com.br'
             },
             {
               iconSrc: 'img/iconeSuporte.png',
               title: 'Suporte<br />técnico',
+              link: 'https://speedtest.predialnet.com.br'
             },
             {
               iconSrc: 'img/iconeCelular.png',
               title: 'Gerenciar plano<br />pelo App',
+              link: '#href'
             },
           ].map((card, index) => (
-            <div
+            <a
               key={index}
               className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-6 w-40 h-40 text-center"
+              href={card.link}
+              target={card.link == '#href' ? '_self': '_blank'}
             >
               <img src={card.iconSrc}  className="w-8 h-8 mb-2" />
               <h4 className="text-md text-left leading-5" dangerouslySetInnerHTML={{ __html: card.title }} />
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -55,8 +61,8 @@ function Cliente() {
           </p>
         </div>
         
-        <img src="img/600prov.png" alt="" className="w-[40%] h-full object-cover -mr-8" />
-        <img src="img/700prov.png" alt="" className="w-[40%] h-full object-cover -mr-7" />
+        <img src="img/600prov.png" alt="" className="w-[40%] h-full object-cover -mr-8 hover:cursor-pointer hover:scale-105 transition-transform" />
+        <img src="img/700prov.png" alt="" className="w-[40%] h-full object-cover -mr-7 hover:cursor-pointer hover:scale-105 transition-transform" />
         </div>
     </div>
   );

@@ -4,8 +4,8 @@ function Cards() {
   return (
     <div className="px-[12%] py-10 font-sans bg-gray-200 text-[#231f20]">
         <h1 className="text-3xl mb-1">É muita internet para você navegar, jogar e maratonar suas séries</h1>
-        <h2 className="text-[#808080] text-xl font-light">Com Predialnet sua casa navega com você</h2>
-        <h2 className="text-[#808080] text-xl font-light -mt-1">Venha para uma internet rápida de verdade.</h2>
+        <h2 className="text-[#9e9e9e] text-xl">Com Predialnet sua casa navega com você</h2>
+        <h2 className="text-[#9e9e9e] text-xl -mt-1">Venha para uma internet rápida de verdade</h2>
         <div className="mt-10 flex flex-row justify-between flex-wrap gap-4">
   <div id="jogos" className="w-[23.6%] rounded-2xl">
     <div
@@ -40,10 +40,10 @@ function Cards() {
     >
       <div className="absolute inset-0 p-9 flex flex-col justify-end">
         <p className="text-lg text-white mb-3 leading-6">
-          Vídeo chamadas com alta qualidade e estabilidade
+          Vídeo chamadas com alta qualidade e muita estabilidade
         </p>
         <p className="text-sm font-light text-white">
-          Faça chamadas de vídeo sem travar com uma conexão estável e de qualidade, sem perder nada!
+          Faça chamadas de vídeo sem travar, com uma conexão estável e de qualidade, sem perder nenhum momento!
         </p>
       </div>
     </div>

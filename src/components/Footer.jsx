@@ -10,12 +10,12 @@ function Footer() {
         </div>
         
         {/* Texto de direitos reservados */}
-        <p className="text-sm text-[#6d6e70]">
+        <p className="text-sm text-[#9e9e9e]">
           Predialnet - Provedor de Internet @ 2024 - Todos os direitos reservados.
         </p>
 
         {/* Texto de desenvolvimento */}
-        <p className="text-sm text-[#6d6e70]">
+        <p className="text-sm text-[#9e9e9e]">
           Site desenvolvido por Jump IMKT
         </p>
       </div>

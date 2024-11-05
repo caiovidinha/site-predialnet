@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react';
 
 const CarouselComponent = () => {
   const images = [
-    '/img/bannerA.jpg',
-    '/img/bannerB.jpg',
-    '/img/bannerC.jpg',
-    '/img/bannerD.jpg'
+    { src: '/img/bannerA.jpg', link: 'https://www.predialnet.com.br/assineja' },
+    { src: '/img/bannerB.jpg', link: '#WiFi6' },
+    { src: '/img/bannerC.jpg', link: '#App' },
+    { src: '/img/bannerD.jpg', link: 'https://www.predialnet.com.br/assineja' }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
@@ -21,39 +22,43 @@ const CarouselComponent = () => {
     setCurrentIndex(isLastSlide ? 0 : currentIndex + 1);
   };
 
-  
   useEffect(() => {
+    if (isHovered) return; // Pausa o carrossel se o mouse estiver em cima
+
     const interval = setInterval(() => {
       nextSlide();
     }, 5000); // Altera a cada 5 segundos
 
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [currentIndex, isHovered]);
 
   return (
-    <div className="relative w-full overflow-hidden mt-3">
+    <div 
+      className="relative w-full overflow-hidden mt-3"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div
         className="flex transition-transform duration-500 cursor-pointer"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
-          <div key={index} className="w-full flex-shrink-0">
+          <a key={index} className="w-full flex-shrink-0" href={image.link} target={image.link === 'https://www.predialnet.com.br/assineja' ? '_blank' : '_self'}>
             <div className="relative w-full aspect-[1920/542]" >
               <img
-                src={image}
+                src={image.src}
                 alt={`Slide ${index}`}
                 className="absolute top-0 left-0 w-full h-full object-contain"
-                onClick={() => alert('Adicionar link condicional.')}
               />
             </div>
-          </div>
+          </a>
         ))}
       </div>
 
       {/* Botões de navegação */}
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-5 transform -translate-y-1/ bg-opacity-50 text-gray-300 opacity-50 rounded-full"
+        className="absolute top-1/2 left-5 transform -translate-y-1/2 bg-opacity-50 text-gray-300 opacity-50 rounded-full"
       >
         &#10094;
       </button>

@@ -45,7 +45,7 @@ function Why() {
                 <img src={card.imgSrc} alt="" className="w-12 h-12" />
                 <h1 className="text-lg font-semibold tracking-tight">{card.title}</h1>
               </div>
-              <p className="text-[#6d6e70] mt-3 text-sm" dangerouslySetInnerHTML={{ __html: card.description }} />
+              <p className="text-[#9e9e9e] mt-3 text-sm" dangerouslySetInnerHTML={{ __html: card.description }} />
             </div>
           </div>
         ))}

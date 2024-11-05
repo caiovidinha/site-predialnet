@@ -31,23 +31,23 @@ const Nav = () => {
           </li>
           <li>
             <Link href="/">
-              <p className="text-[#808080] text-sm font-semibold duration-150 ease-in-out">Para sua empresa</p>
+              <p className="text-[#9e9e9e] text-sm font-semibold duration-150 ease-in-out">Para sua empresa</p>
             </Link>
           </li>
         </ul>
         </div>
-        <div id="buttons" className="flex w-80 items-center justify-between "><div className="flex items-center justify-start gap-3">
-        <button className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-normal shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg hover:scale-105">
+        <div id="buttons" className="flex w-80 items-center justify-end "><div className="flex items-center justify-start gap-3">
+        <a target="_blank" className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-normal shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg hover:scale-105" href="https://instagram.com/predialnet">
           <FaInstagram className="relative" color={"white"} size={20}/>
-          </button>
-        <button className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-normal shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg hover:scale-105">
+        </a>
+        {/* <button className="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-normal shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg hover:scale-105">
           <RiFacebookCircleLine className="relative" color={"white"} size={20}/>
-          </button>
+          </button> */}
       </div>
           <div className="max-w-0.5 min-h-8 mx-4 bg-[#e3e3e3] p-[0.8px]"></div>
-          <button onClick={()=> window.location.href ="https://minhaconta.predialnet.com.br/"} className= "flex text-right items-center justify-end gap-2 flex-row text-sm rounded-lg text-black font-bold font-sans mt-4">
-          <img src="/img/icone_profile.png" className="max-w-5 object-contain justify-end" alt="" /> <p className="">Já sou cliente</p>
-          </button>
+          <a href="https://minhaconta.predialnet.com.br" target="_blank" className= "flex text-right items-center justify-end gap-2 flex-row text-sm rounded-lg text-black font-bold font-sans mt-4">
+          <img src="/img/icone_profile.png" className="max-w-5 object-contain justify-end" alt="" /> <p className="hover:border-b-2 border-[#9c0004] transition-all ease-in-out duration-100">Já sou cliente</p>
+          </a>
         </div>
       
     </nav>
