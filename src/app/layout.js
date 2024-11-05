@@ -16,7 +16,7 @@ const Bahn = localFont({
 
 export const metadata = {
   title: "Predialnet",
-  description: "Brilhe com a sua nova internet",
+  description: "Sua nova internet",
 };
 
 export default function RootLayout({ children }) {
