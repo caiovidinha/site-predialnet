@@ -2,15 +2,39 @@
 import React, { useState, useEffect } from 'react';
 
 const CarouselComponent = () => {
-  const images = [
+  const desktopImages = [
     { src: '/img/bannerA.jpg', link: 'https://www.predialnet.com.br/assineja' },
     { src: '/img/bannerB.jpg', link: '#WiFi6' },
     { src: '/img/bannerC.jpg', link: '#App' },
     { src: '/img/bannerD.jpg', link: 'https://www.predialnet.com.br/assineja' }
   ];
 
+  const mobileImages = [
+    { src: '/img/bannerAmobile.jpg', link: 'https://www.predialnet.com.br/assineja' },
+    { src: '/img/bannerBmobile.jpg', link: '#WiFi6' },
+    { src: '/img/bannerCmobile.jpg', link: '#App2' },
+    { src: '/img/bannerDmobile.jpg', link: 'https://www.predialnet.com.br/assineja' }
+  ];
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  // Detect if it is mobile screen
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const images = isMobile ? mobileImages : desktopImages;
 
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
@@ -23,7 +47,7 @@ const CarouselComponent = () => {
   };
 
   useEffect(() => {
-    if (isHovered) return; // Pausa o carrossel se o mouse estiver em cima
+    if (isHovered) return; // Pausa o carrossel se o mouse estiver em cima (somente desktop)
 
     const interval = setInterval(() => {
       nextSlide();
@@ -32,19 +56,49 @@ const CarouselComponent = () => {
     return () => clearInterval(interval);
   }, [currentIndex, isHovered]);
 
+  // Handle touch events for mobile swiping
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+    e.preventDefault(); // Evita que a página role enquanto o carrossel está sendo arrastado
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      // Swipe left to move to the next slide
+      nextSlide();
+    }
+
+    if (touchStart - touchEnd < -75) {
+      // Swipe right to move to the previous slide
+      prevSlide();
+    }
+  };
+
   return (
-    <div 
-      className="relative w-full overflow-hidden mt-3"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <div
+      className="relative w-full overflow-hidden"
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <div
         className="flex transition-transform duration-500 cursor-pointer"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
-          <a key={index} className="w-full flex-shrink-0" href={image.link} target={image.link === 'https://www.predialnet.com.br/assineja' ? '_blank' : '_self'}>
-            <div className="relative w-full aspect-[1920/542]" >
+          <a
+            key={index}
+            className="w-full flex-shrink-0"
+            href={image.link}
+            target={image.link === 'https://www.predialnet.com.br/assineja' ? '_blank' : '_self'}
+          >
+            <div className={`relative w-full ${isMobile ? 'aspect-[650/720]' : 'aspect-[1920/542]'}`}>
               <img
                 src={image.src}
                 alt={`Slide ${index}`}
@@ -55,19 +109,23 @@ const CarouselComponent = () => {
         ))}
       </div>
 
-      {/* Botões de navegação */}
-      <button
-        onClick={prevSlide}
-        className="absolute top-1/2 left-5 transform -translate-y-1/2 bg-opacity-50 text-gray-300 opacity-50 rounded-full"
-      >
-        &#10094;
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute top-1/2 right-5 transform -translate-y-1/2 bg-opacity-50 text-gray-300 opacity-50 rounded-full"
-      >
-        &#10095;
-      </button>
+      {/* Botões de navegação (somente desktop) */}
+      {!isMobile && (
+        <>
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-5 transform -translate-y-1/2 bg-opacity-50 text-gray-300 opacity-50 rounded-full"
+          >
+            &#10094;
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-5 transform -translate-y-1/2 bg-opacity-50 text-gray-300 opacity-50 rounded-full"
+          >
+            &#10095;
+          </button>
+        </>
+      )}
 
       {/* Indicadores */}
       <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
