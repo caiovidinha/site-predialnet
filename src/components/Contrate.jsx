@@ -11,12 +11,12 @@ function Contrate() {
       <div className="hidden md:block">
         <div className="flex flex-row justify-between">
           <img
-            src="img/carda.png"
+            src="img/cardA.png"
             className="w-[51.5%] -ml-[1.5%] h-full cursor-pointer md:hover:scale-105 transition-transform"
             alt=""
           />
           <img
-            src="img/cardb.png"
+            src="img/cardB.png"
             className="w-[51.5%] h-full cursor-pointer md:hover:scale-105 transition-transform"
             alt=""
           />
