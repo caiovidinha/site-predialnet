@@ -20,19 +20,19 @@ function Atendimento() {
               iconSrc: 'img/iconeSuporte.png',
               title: 'Suporte',
               phone: '21 3515-0500',
-              link: 'tel:2135150500',
+              link: 'tel:02135150500',
             },
             {
               iconSrc: 'img/iconeFinanceiro.png',
               title: 'Financeiro',
               phone: '21 3515-0555',
-              link: 'tel:2135150555',
+              link: 'tel:02135150555',
             },
             {
               iconSrc: 'img/iconeCancelamento.png',
               title: 'Cancelamento',
               phone: '21 3515-0555',
-              link: 'tel:213510555',
+              link: 'tel:02135150555',
             },
             {
               iconSrc: 'img/iconeSAC.png',
@@ -43,7 +43,7 @@ function Atendimento() {
           ].map((card, index) => (
             <a
               key={index}
-              className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(100,100,100,0.07)] border-gray-200 border-[1.5px] p-6 w-full text-left hover:scale-105 transition-transform"
+              className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(100,100,100,0.07)] border-gray-200 border-[1.5px] p-5 w-full md:w-40 md:h-40 text-left md:hover:scale-105 transition-transform active:scale-95"
               href={card.link}
             >
               <img src={card.iconSrc} alt={card.title} className="w-10 h-10 mb-3" />

@@ -9,7 +9,7 @@ function Others() {
           className="shadow-[0px_0px_8px_8px_rgba(100,100,100,0.07)] w-full md:w-[42%] rounded-3xl py-6 px-8 flex flex-col justify-around"
         >
           <h1 className="text-xl md:text-2xl mb-1 text-center ">Opções de planos de internet<br /><strong className='text-2xl'>Via rádio</strong></h1>
-          <button className="py-3 bg-[#9c0004] text-white w-full rounded-full text-xl mt-2 font-light mb-1 active:scale-95 transition-transform">
+          <button className="py-3 bg-[#9c0004] text-white w-full rounded-full text-xl mt-2 font-light mb-1 active:scale-95 transition-transform md:hover:scale-105">
             Conhecer ofertas
           </button>
         </div>
@@ -19,7 +19,7 @@ function Others() {
           className="shadow-[0px_0px_8px_8px_rgba(100,100,100,0.07)] w-full md:w-[42%] rounded-3xl py-6 px-8 flex flex-col justify-around"
         >
           <h1 className="text-xl md:text-2xl mb-1 text-center ">Opções de planos de internet para a região do <strong className='text-2xl'>Porto Maravilha</strong></h1>
-          <button className="py-3 bg-[#9c0004] text-white w-full rounded-full text-xl mt-2 font-light mb-1 active:scale-95 transition-transform">
+          <button className="py-3 bg-[#9c0004] text-white w-full rounded-full text-xl mt-2 font-light mb-1 active:scale-95 transition-transform md:hover:scale-105">
             Conhecer ofertas
           </button>
         </div>

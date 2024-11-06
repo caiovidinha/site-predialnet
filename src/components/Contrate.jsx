@@ -12,12 +12,12 @@ function Contrate() {
         <div className="flex flex-row justify-between">
           <img
             src="img/cardA.png"
-            className="w-[51.5%] -ml-[1.5%] h-full cursor-pointer md:hover:scale-105 transition-transform"
+            className="w-[51.5%] -ml-[1.5%] h-full cursor-pointer md:hover:scale-105 transition-transform "
             alt=""
           />
           <img
             src="img/cardB.png"
-            className="w-[51.5%] h-full cursor-pointer md:hover:scale-105 transition-transform"
+            className="w-[51.5%]  -ml-[1.5%] h-full cursor-pointer md:hover:scale-105 transition-transform "
             alt=""
           />
         </div>
@@ -61,7 +61,7 @@ function Contrate() {
             <p className="text-white text-xl my-2 leading-6">Assine<br /> pelo telefone</p>
             <a
               className="flex items-center gap-2 py-2 px-4 rounded-full bg-[#ffbd17] md:hover:scale-105 transition-transform"
-              href="tel:2135150555"
+              href="tel:02135150555"
             >
               21 3515-0555 <FaArrowRight />
             </a>
@@ -122,7 +122,7 @@ function Contrate() {
 
           {/* Assine pelo telefone */}
           <a
-            href="tel:2135150555"
+            href="tel:02135150555"
             className="w-full flex items-center border-[1px] border-white rounded-lg py-4 px-6 cursor-pointer transition-transform active:scale-95 text-left"
           >
             <img src="img/iconeTel.png" alt="" className="w-9 h-9 mr-4 self-start" />

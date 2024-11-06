@@ -67,7 +67,7 @@ const SecNav = () => {
             Assinar pelo site
           </a>
           <a
-            href="tel:2135150555"
+            href="tel:02135150555"
             className="border border-black px-4 py-1.5 rounded-full font-semibold text-xs whitespace-nowrap"
           >
             ou pelo telefone 3515-0555

@@ -27,12 +27,14 @@ function Cliente() {
               },
               {
                 iconSrc: 'img/iconeConta.png',
-                title: `2ª via de conta`,
+                title: `2ª via
+                <br />de conta`,
                 link: 'https://minhaconta.predialnet.com.br',
               },
               {
                 iconSrc: 'img/iconeSuporte.png',
-                title: 'Suporte técnico',
+                title: `Suporte
+                <br />técnico`,
                 link: 'https://speedtest.predialnet.com.br',
               },
               {
@@ -43,7 +45,7 @@ function Cliente() {
             ].map((card, index) => (
               <a
                 key={index}
-                className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-6 w-40 h-40 text-left"
+                className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-6 w-40 h-40 text-left hover:scale-105 transition-transform"
                 href={card.link}
                 target={card.link === '#href' ? '_self' : '_blank'}
               >
@@ -117,7 +119,7 @@ function Cliente() {
             ].map((card, index) => (
               <a
                 key={index}
-                className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-4 w-full h-40 text-left"
+                className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-4 w-full h-40 text-left active:scale-95 transition-transform "
                 href={card.link}
                 target={card.link === '#href' ? '_self' : '_blank'}
               >
