@@ -3,6 +3,7 @@ import "./globals.css";
 import Nav from "@/components/Navbar";
 import SecNav from "@/components/SecNavBar";
 
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -21,6 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    
     <html lang="pt-BR"
     className={`${Bahn.variable} antialiased scroll-smooth`}>
       <body className="bg-[#fff] tracking-tight">
