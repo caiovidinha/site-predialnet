@@ -13,27 +13,28 @@ function Footer() {
         {/* Ícones das redes sociais */}
         <div className="flex space-x-4">
           <a
-            href="https://www.instagram.com"
+            href="https://www.instagram.com/predialnet"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#231f20] hover:text-[#9c0004]"
           >
             <FaInstagram size={24} />
           </a>
-          <a
+          {/* <a
             href="https://www.facebook.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#231f20] hover:text-[#9c0004]"
           >
             <FaFacebook size={24} />
-          </a>
+          </a> */}
         </div>
 
         {/* Links de política de privacidade */}
         <div className="flex space-x-8">
           <a
-            href="#"
+            href="https://www.predialnet.com.br/assineja/images/politica_de_privacidade_geral.pdf"
+            target='_blank'
             className="text-sm text-[#231f20] hover:text-[#9c0004] underline-offset-2 underline"
           >
             Política de Privacidade

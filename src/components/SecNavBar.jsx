@@ -10,7 +10,7 @@ const SecNav = () => {
         <div className="w-full flex gap-8 items-center justify-start">
           <a
             className="text-[#9e9e9e] hover:text-[#9c0004] hover:border-b-2 transition-all border-[#9c0004] font-semibold"
-            href="#Planos"
+            href="#Plans"
           >
             Planos
           </a>

@@ -1,6 +1,41 @@
-import React from 'react';
+"use client"
+import React, {useState} from 'react';
+import PlansModal from "@/components/PlansModal"
 
 function Cliente() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  const openModal = (plan) => {
+    setSelectedPlan(plan);
+    setIsModalOpen(true);
+
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPlan(null);
+  };
+  const plans = [
+    {
+      id: '500mega',
+      title: '500 mega',
+      valor: 'R$ 99,90',
+      wifi: 'Com Super Wi-Fi Gigabit',
+    },
+    {
+      id: '600mega',
+      title: '600 mega',
+      valor: 'R$ 124,90',
+      wifi: 'Com Super Wi-Fi 6',
+    },
+    {
+      id: '700mega',
+      title: '700 mega',
+      valor: 'R$ 139,90',
+      wifi: 'Com Super Wi-Fi 6',
+    },
+  ];
   return (
     <>
       {/* Versão para Desktop */}
@@ -40,14 +75,14 @@ function Cliente() {
               {
                 iconSrc: 'img/iconeCelular.png',
                 title: 'Gerenciar plano pelo App',
-                link: '#href',
+                link: '#App',
               },
             ].map((card, index) => (
               <a
                 key={index}
                 className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-6 w-40 h-40 text-left hover:scale-105 transition-transform"
                 href={card.link}
-                target={card.link === '#href' ? '_self' : '_blank'}
+                target={card.link === '#App' ? '_self' : '_blank'}
               >
                 <img src={card.iconSrc} className="w-8 h-8 mb-2" alt={card.title} />
                 <h4 className="text-md leading-5" dangerouslySetInnerHTML={{ __html: card.title }} />
@@ -65,16 +100,21 @@ function Cliente() {
           </div>
 
           <img
+            onClick={() => openModal(plans[1])}
             src="img/600prov.png"
             alt=""
             className="w-[40%] h-full object-cover -mr-8 hover:cursor-pointer hover:scale-105 transition-transform"
           />
           <img
+          onClick={() => openModal(plans[2])}
             src="img/700prov.png"
             alt=""
             className="w-[40%] h-full object-cover -mr-7 hover:cursor-pointer hover:scale-105 transition-transform"
           />
         </div>
+        {selectedPlan && (
+        <PlansModal isOpen={isModalOpen} onClose={closeModal} plan={selectedPlan} />
+      )}
       </div>
 
       {/* Versão para Mobile */}
@@ -121,7 +161,7 @@ function Cliente() {
                 key={index}
                 className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-4 w-full h-40 text-left active:scale-95 transition-transform "
                 href={card.link}
-                target={card.link === '#href' ? '_self' : '_blank'}
+                target={card.link === '#App' ? '_self' : '_blank'}
               >
                 <img src={card.iconSrc} className="w-10 h-10 mb-2" alt={card.title} />
                 <h4 className="text-md leading-5 mt-1" dangerouslySetInnerHTML={{__html: card.title}} />
@@ -142,15 +182,22 @@ function Cliente() {
 
           <div className="w-full flex flex-col gap-1 mt-3">
             <img
+              onClick={() => openModal(plans[1])}
               src="img/600prov.png"
               alt="600 mega Wi-Fi 6"
               className="w-full h-auto object-cover hover:cursor-pointer active:scale-105 transition-transform scale-110"
             />
-            <img
+            
+              <img
+              onClick={() => openModal(plans[2])}
               src="img/700prov.png"
               alt="700 mega Wi-Fi 6"
               className="w-full h-auto object-cover hover:cursor-pointer active:scale-105 transition-transform scale-110"
             />
+
+            {selectedPlan && (
+            <PlansModal isOpen={isModalOpen} onClose={closeModal} plan={selectedPlan} />
+          )}
           </div>
         </div>
       </div>

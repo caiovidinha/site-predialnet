@@ -1,85 +1,112 @@
-"use client"
-import React, { useState } from 'react';
+import React from 'react';
+import { FaArrowRight } from "react-icons/fa";
 import Image from 'next/image';
 
-const PlansModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+const PlansModal = ({ isOpen, onClose, plan }) => {
+  if (!isOpen) return null;
 
   return (
-    <>
-      <button 
-        // onClick={openModal}
-        className="py-3 bg-[#9c0004] text-white w-full rounded-full text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform"
-      >
-        Aproveitar oferta
-      </button>
+    <div className="fixed inset-0 bg-opacity-50 bg-black flex items-center justify-center z-50">
+      <div className="bg-[#f2f2f2] rounded-lg py-20 px-10 max-w-5xl w-full mx-4 relative overflow-y-auto max-h-[70%] md:max-h-screen">
+        {/* Botão de Fechar */}
+        <button className="absolute top-4 right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
+          &times;
+        </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="relative w-11/12 max-w-3xl bg-white rounded-lg overflow-hidden shadow-lg">
-            {/* Botão de Fechar */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
-            >
-              ✕
-            </button>
-
-            <div className="flex flex-wrap md:flex-nowrap p-8 bg-[#f4f5f5]">
-              {/* Coluna do Plano */}
-              <div className="flex flex-col w-full md:w-[40%] border-r-[3px] border-solid border-[#a7a7a7] pr-4">
-                <h3 className="text-3xl font-semibold mb-2">Plano até</h3>
-                <h1 className="text-5xl font-bold text-[#9c0004] mb-2">500 mega</h1>
-                <p className="text-3xl text-[#9c0004] mb-2">R$ 99,90/mês</p>
-                <p className="text-md mb-4">Instalação grátis</p>
-                <p className="text-md mb-4">Sem fidelidade</p>
-                <p className="text-center font-bold text-lg text-[#9c0004]">OU</p>
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Seção 1: Colunas do Plano */}
+          <div className="flex-1 flex flex-col md:flex-row gap-6 relative w-full md:max-w-[41%] md:mr-10">
+            {/* Coluna 1 */}
+            <div className="bg-[#9c0004] text-white p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
+              <div className='flex flex-col gap-2'>
+                <p className="text-md text-center">Plano até</p>
+                <h1 className="text-3xl md:my-2 font-normal">{plan.title}</h1>
+                <p className="text-2xl">{plan.valor}<span className="text-sm">/mês</span></p>
+                <p className="md:mt-2 md:mb-2 text-xs">Instalação grátis</p>
+                <p className="text-xs">Sem fidelidade</p>
               </div>
+              <a
+                href='https://www.predialnet.com.br/assineja/?services=false'
+                target='_blank'
+                className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+              >
+                Assinar
+              </a>
+            </div>
 
-              {/* Coluna da Oferta */}
-              <div className="flex flex-col w-full md:w-[40%] pl-4 pr-4">
-                <h3 className="text-3xl font-semibold mb-2">Oferta até</h3>
-                <h1 className="text-5xl font-bold text-[#9c0004] mb-2">500 mega</h1>
-                <p className="text-3xl text-[#9c0004] mb-2">R$ 99,90/mês</p>
-                <p className="text-md mb-4">Instalação grátis</p>
-                <p className="text-md mb-4">Sem fidelidade</p>
-                <p className="text-md font-bold text-[#ffbd17] mb-4">Com Super Wi-Fi Gigabit</p>
-                <p className="text-md font-bold text-[#ffbd17]">Serviços inteligentes</p>
-              </div>
+            {/* Circulo de "OU" */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#9c0004] text-white w-14 h-14 rounded-full hidden md:flex items-center justify-center border-2 border-white text-2xl">
+              ou
+            </div>
 
-              {/* Coluna da Descrição */}
-              <div className="flex flex-col w-full md:w-[20%] pl-4">
-                <h3 className="font-semibold text-[#9c0004] mb-2">SEM FIDELIDADE. CANCELE A QUALQUER HORA</h3>
-                <p className="text-sm mb-4 text-[#5c595b]">
-                  Oferta com velocidade de até 500 mega. Condições para contratação por pessoa física, sem franquia de consumo. 
-                  Instalação sujeita à viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região 
-                  do Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
-                </p>
-                <p className="font-bold text-md mb-2">*Serviços Inteligentes:</p>
-                <ul className="text-sm mb-2 text-[#5c595b] list-disc pl-4">
-                  <li>Controle Parental (1 licença)</li>
-                  <li>Navegação mais segura</li>
-                  <li>Predial Protect (1 licença)</li>
-                </ul>
-                <p className="text-sm text-[#5c595b]">
-                  Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.
-                </p>
-                {/* Logotipo Predialnet */}
-                <div className="mt-6 flex justify-between items-center">
-                  <Image src="/img/logo.png" alt="Logo Predialnet" width={150} height={40} />
-                  <p className="text-md font-semibold text-[#9c0004] cursor-pointer">
-                    <a href="/regulamento" target="_blank">Regulamento</a>
-                  </p>
+            {/* Coluna 2 */}
+            <div className="bg-[#fff] text-[#9c0004] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
+              <div className='flex flex-col gap-2'>
+                <p className="text-md text-center">Oferta até</p>
+                <h1 className="text-3xl md:my-2 font-normal">{plan.title}</h1>
+                <p className="text-2xl">{plan.valor}<span className="text-sm">/mês</span></p>
+                <p className="md:mt-2 md:mb-2 text-xs hidden md:flex">Instalação grátis</p>
+                <p className="text-xs hidden md:flex">Sem fidelidade</p>
+                <div className="border-t-[1.5px] border-[#9c0004] my-3 hidden md:block"/>
+                <p className='text-xs md:mb-2 hidden md:flex'>{plan.wifi}</p>
+                <p className='text-xs hidden md:flex'>+ Serviços inteligentes</p>
+
+
+                <div className='md:hidden flex flex-row w-full justify-around'>
+                  <div className='flex flex-col items-start '>
+                  <p className="md:mt-6 md:mb-2 text-xs">- Instalação grátis</p>
+                  <p className="text-xs">- Sem fidelidade</p>
+                  </div>
+                
+                  <div className='flex flex-col items-start '>
+                  <p className='text-xs md:mb-2'>- {plan.wifi}</p>
+                  <p className='text-xs'>- Serviços inteligentes</p>
+                  </div>
                 </div>
+
               </div>
+              <a
+                href='https://www.predialnet.com.br/assineja'
+                target='_blank'
+                className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+              >
+                Assinar
+              </a>
+            </div>
+          </div>
+
+          {/* Seção 2: Descrição */}
+          <div className="flex-1 ">
+            <h1 className="text-[#9c0004] text-xl mb-4">SEM FIDELIDADE . CANCELE A QUALQUER HORA</h1>
+            <h2 className="font-bold text-sm">Oferta com velocidade de até {plan.title}</h2>
+            <p className=" mb-4 leading-tight text-sm">
+              Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com
+              cobertura fibra óptica, exceto: Região do Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+            </p>
+            <h2 className="font-bold text-sm">*Serviços Inteligentes:</h2>
+            <ul className="list-inside mb-2 text-sm">
+              <li className="leading-tight">
+                Controle Parental (1 licença):<br />Permite ao titular da conta controlar o horário de utilização da sua Internet.
+              </li>
+              <li className="leading-tight">
+                Navegação mais segura:<br />Oferece tentativa de proteção contra conexões entrantes indesejadas.
+              </li>
+              <li className="leading-tight">
+                Predial Protect (1 Licença):<br />Auxilia o usuário na tentativa de identificar e bloquear sites fraudulentos.
+              </li>
+            </ul>
+            <p className="text-sm md:mb-6 leading-tight">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.</p>
+            <div className="border-t-2 border-black my-4"></div>
+            <div className="flex items-end justify-between">
+              <Image src="/img/logo.png" alt="Predialnet Logo" width={140} height={22} />
+              <a href="https://www.predialnet.com.br/download/contrato-padrao-adesao-servico-internet.pdf" target="_blank" className="flex items-center gap-2 font-bold text-black text-md">
+                <img src="/img/regulamento.png" alt="Regulamento" className="w-5 h-5" /> Regulamento
+              </a>
             </div>
           </div>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 };
 

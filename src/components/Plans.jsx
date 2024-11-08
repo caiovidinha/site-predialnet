@@ -1,9 +1,42 @@
 "use client"
-import React from 'react';
+import React, {useState} from 'react';
 import { IoIosWifi } from "react-icons/io";
 import PlansModal from './PlansModal';
 
 function Plans() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  const openModal = (plan) => {
+    setSelectedPlan(plan);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPlan(null);
+  };
+  const plans = [
+    {
+      id: '500mega',
+      title: '500 mega',
+      valor: 'R$ 99,90',
+      wifi: 'Com Super Wi-Fi Gigabit',
+    },
+    {
+      id: '600mega',
+      title: '600 mega',
+      valor: 'R$ 124,90',
+      wifi: 'Com Super Wi-Fi 6',
+    },
+    {
+      id: '700mega',
+      title: '700 mega',
+      valor: 'R$ 139,90',
+      wifi: 'Com Super Wi-Fi 6',
+    },
+  ];
   return (
     <div id='Plans' className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#231f20]">
       <h1 className="text-3xl sm:text-3xl mb-1 tracking-tight">Predialnet é muito mais velocidade e estabilidade</h1>
@@ -17,10 +50,12 @@ function Plans() {
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 99,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
             </p>
-            {/* <button className="py-3 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
+            <button 
+            onClick={() => openModal(plans[0])}
+            className="py-3 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
               Aproveitar oferta
-            </button> */}
-            <PlansModal />
+            </button>
+            
             <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Super Wi-Fi Gigabit</p>
             <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis | Sem fidelidade</p>
           </div>
@@ -38,10 +73,11 @@ function Plans() {
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 124,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
             </p>
-            {/* <button className="py-3 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
+            <button 
+            onClick={() => openModal(plans[1])}
+            className="py-3 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
               Aproveitar oferta
-            </button> */}
-            <PlansModal />
+            </button>
             <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Wi-Fi 6 - Mais conectividade</p>
             <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis | Sem fidelidade</p>
           </div>
@@ -59,10 +95,11 @@ function Plans() {
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 139,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
             </p>
-            {/* <button className="py-3 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
+            <button 
+            onClick={() => openModal(plans[2])}
+            className="py-3 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
               Aproveitar oferta
-            </button> */}
-            <PlansModal />
+            </button>
             <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Wi-Fi 6 - Mais conectividade</p>
             <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis | Sem fidelidade</p>
           </div>
@@ -73,6 +110,9 @@ function Plans() {
           </div>
         </div>
       </div>
+      {selectedPlan && (
+        <PlansModal isOpen={isModalOpen} onClose={closeModal} plan={selectedPlan} />
+      )}
     </div>
   );
 }

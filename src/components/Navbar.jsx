@@ -27,13 +27,13 @@ const Nav = () => {
                 </p>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/">
                 <p className="text-[#9e9e9e] text-sm font-semibold duration-150 ease-in-out">
                   Para sua empresa
                 </p>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div id="buttons" className="flex w-80 items-center justify-end">
@@ -83,8 +83,8 @@ const Nav = () => {
             </p>
           </Link>
           <Link href="/">
-            <p className="text-[#9e9e9e] text-sm font-semibold whitespace-nowrap">
-              Para sua empresa
+            <p className="text-[#9e9e9e] text-sm font-semibold whitespace-nowrap opacity-0">
+              ____________________
             </p>
           </Link>
         </div>

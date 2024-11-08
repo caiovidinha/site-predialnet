@@ -74,12 +74,12 @@ function Contrate() {
         <div className="flex flex-col justify-between">
           <img
             src="img/cardAmobile.png"
-            className="w-full h-full cursor-pointer transition-transform scale-110"
+            className="w-full h-full cursor-pointer transition-transform scale-110 active:scale-105"
             alt=""
           />
           <img
             src="img/cardBmobile.png"
-            className="w-full h-full cursor-pointer transition-transform scale-110"
+            className="w-full h-full cursor-pointer transition-transform scale-110 active:scale-105"
             alt=""
           />
         </div>
