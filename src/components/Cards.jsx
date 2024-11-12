@@ -8,9 +8,9 @@ function Cards() {
   const cards = [
     {
       id: 'jogos',
-      title: 'Jogue online com máxima performance e seja um campeão',
+      title: 'Jogue com máxima performance com uma internet feita para jogos',
       description:
-        'Experimente uma conexão ideal para jogos competitivos, sem interrupções, com ping baixo e alta velocidade.',
+        'Experimente a velocidade e estabilidade de uma internet feita para jogos, sem interrupções e com ping baixo.',
       imgSrc: '/img/cardA.jpg',
     },
     {

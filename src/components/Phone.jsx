@@ -32,6 +32,7 @@ function Phone() {
             </a>
             <p className="text-lg text-[#9e9e9e] mt-2">2000 minutos fixo/fixo local</p>
             <p className="text-lg text-[#9e9e9e]">100 minutos para qualquer móvel local</p>
+            <p className="text-lg text-[#9e9e9e]">Com serviço de siga-me</p>
           </div>
 
           <div
@@ -39,7 +40,7 @@ function Phone() {
             className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-[31%] rounded-3xl p-5 flex flex-col justify-around"
           >
             <h1 className="text-4xl">Ideal Master</h1>
-            <h2 className="text-lg">Com serviço de siga-me</h2>
+            <h2 className="text-lg">Com suporte para portabilidade</h2>
             <p className="text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 89,90<span className="text-2xl font-semibold">/mês</span>
             </p>
@@ -56,6 +57,7 @@ function Phone() {
             </a>
             <p className="text-lg text-[#9e9e9e] mt-2">Ilimitado fixo/fixo local</p>
             <p className="text-lg text-[#9e9e9e]">200 minutos para qualquer móvel local</p>
+            <p className="text-lg text-[#9e9e9e]">Com serviço de siga-me</p>
           </div>
 
           <img
@@ -78,7 +80,7 @@ function Phone() {
             className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] rounded-3xl p-5 flex flex-col justify-start"
           >
             <h1 className="text-4xl">Ideal Plus</h1>
-            <h2 className="text-lg">Com serviço de siga-me</h2>
+            <h2 className="text-lg">Com suporte para portabilidade</h2>
             <p className="text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 59,90<span className="text-2xl font-semibold">/mês</span>
             </p>
@@ -94,7 +96,7 @@ function Phone() {
             className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] rounded-3xl p-5 flex flex-col justify-start"
           >
             <h1 className="text-4xl">Ideal Master</h1>
-            <h2 className="text-lg">Com serviço de siga-me</h2>
+            <h2 className="text-lg">Com suporte para portabilidade</h2>
             <p className="text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 89,90<span className="text-2xl font-semibold">/mês</span>
             </p>
