@@ -7,7 +7,7 @@ const CarouselComponentEA = () => {
   ];
 
   const mobileImages = [
-    { src: '/img/bannerAmobile.jpg', link: 'https://www.predialnet.com.br/assineja' },
+    { src: '/img/EAMobile.jpg', link: 'https://www.predialnet.com.br/assineja' },
 
   ];
 

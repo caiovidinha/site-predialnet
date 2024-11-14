@@ -65,15 +65,15 @@ const Nav = () => {
       </nav>
 
       {/* Versão Mobile */}
-      {/* <nav className=" px-6 py-3 font-sans bg-[#f3f3f3] border-b-2 border-gray-200 flex items-center justify-between">
+      <nav className="md:hidden px-6 py-3 font-sans bg-[#f3f3f3] border-b-2 border-gray-200 flex items-center justify-between">
         {/* Logotipo */}
-        {/* <a href="/">
+        <a href="/">
           <img
             src="/img/logo.png"
             alt="Predialnet Logo"
             className="h-8 object-contain"
           />
-        </a> */}
+        </a>
 
         {/* Links para "Para sua casa" e "Para sua empresa" */}
         {/* <div className="flex items-end mt-3 space-x-3">
@@ -89,9 +89,8 @@ const Nav = () => {
           </Link>
         </div> */}
 
-        {/* Botão Flutuante de WhatsApp 
         
-      </nav> */}
+      </nav> 
       <a
   href="https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
   target="_blank"

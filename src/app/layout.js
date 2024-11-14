@@ -20,6 +20,8 @@ export default function RootLayout({ children }) {
     <html lang="pt-BR"
     className={`${Bahn.variable} antialiased scroll-smooth`}>
       <body className="bg-[#fff] tracking-tight">
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P64P89"
+height="0" width="0"></iframe>
       <Nav />
         {children}
       </body>
