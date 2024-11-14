@@ -63,7 +63,7 @@ function Cards() {
       <div className="mt-8">
         <div
           ref={cardsRef}
-          className="flex sm:w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4"
+          className="flex md:justify-between sm:w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4"
           onScroll={handleScroll}
         >
           {cards.map((card, index) => (

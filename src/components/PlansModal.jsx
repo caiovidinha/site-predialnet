@@ -3,8 +3,8 @@ import { FaArrowRight } from "react-icons/fa";
 import Image from 'next/image';
 
 const PlansModal = ({ isOpen, onClose, plan }) => {
-  // if (!isOpen) return null;
-  return null;
+  if (!isOpen) return null;
+
 
   useEffect(() => {
     // Disable scrolling on the body when the modal is open

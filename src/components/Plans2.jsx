@@ -4,7 +4,7 @@ import { IoIosWifi } from "react-icons/io";
 import PlansModal from './PlansModal';
 import { FaWhatsapp } from 'react-icons/fa6';
 
-function Plans() {
+function Plans2() {
   
   const [selectedPlan, setSelectedPlan] = useState(null)
   const [isModalOpen, setModalOpen] = useState(false)
@@ -40,8 +40,9 @@ function Plans() {
   ];
   return (
     <div id='Plans' className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#231f20]">
-      <h1 className="text-3xl sm:text-3xl mb-1 tracking-tight">Predialnet é muito mais velocidade e estabilidade</h1>
-      <h2 className="text-[#9e9e9e] text-lg sm:text-xl leading-6">Agora sua internet vai decolar com os novos planos Wi-Fi 6. + Conexão | + Velocidade |<br />+ Estabilidade | + Alcance</h2>
+      <h1 className="text-3xl sm:text-3xl mb-1 tracking-tight">Venha para Predialnet e descubra o que é velocidade de verdade</h1>
+      <h2 className="text-[#9e9e9e] text-lg sm:text-xl leading-6">A maior internet regional de Niterói agora é sua nova internet.<br />Escolha seu plano e venha para a maior!
+      </h2>
       
       <div className="mt-8 flex flex-col md:flex-row justify-between gap-6">
         
@@ -135,5 +136,5 @@ function Plans() {
   );
 }
 
-export default Plans;
+export default Plans2;
 

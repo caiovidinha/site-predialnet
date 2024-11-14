@@ -1,9 +1,9 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 
-const CarouselComponent = () => {
+const CarouselComponentMaiores = () => {
   const desktopImages = [
-    { src: '/img/bannerA.jpg', link: 'https://www.predialnet.com.br/assineja' },
+    { src: '/img/banner maiores provedores.jpg', link: 'https://www.predialnet.com.br/assineja' },
   ];
 
   const mobileImages = [
@@ -138,4 +138,4 @@ const CarouselComponent = () => {
   );
 };
 
-export default CarouselComponent;
+export default CarouselComponentMaiores;

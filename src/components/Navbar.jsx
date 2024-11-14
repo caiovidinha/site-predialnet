@@ -19,7 +19,7 @@ const Nav = () => {
               alt="Predialnet Logo"
             />
           </a>
-          <ul className="flex space-x-4 justify-start items-center w-full mt-4 gap-4 tracking-normal h-full">
+          {/* <ul className="flex space-x-4 justify-start items-center w-full mt-4 gap-4 tracking-normal h-full">
             <li>
               <Link href="/">
                 <p className="text-[#9c0004] text-sm font-semibold duration-150 ease-in-out border-b-[#9c0004] border-solid border-b-2 h-full">
@@ -33,10 +33,10 @@ const Nav = () => {
                   Para sua empresa
                 </p>
               </Link>
-            </li> */}
-          </ul>
+            </li>
+          </ul> */}
         </div>
-        <div id="buttons" className="flex w-80 items-center justify-end">
+        {/* <div id="buttons" className="flex w-80 items-center justify-end">
           <div className="flex items-center justify-start gap-3">
             <a
               target="_blank"
@@ -61,22 +61,22 @@ const Nav = () => {
               Já sou cliente
             </p>
           </a>
-        </div>
+        </div> */}
       </nav>
 
       {/* Versão Mobile */}
-      <nav className="sm:hidden px-6 py-3 font-sans bg-[#f3f3f3] border-b-2 border-gray-200 flex items-center justify-between">
+      {/* <nav className=" px-6 py-3 font-sans bg-[#f3f3f3] border-b-2 border-gray-200 flex items-center justify-between">
         {/* Logotipo */}
-        <a href="/">
+        {/* <a href="/">
           <img
             src="/img/logo.png"
             alt="Predialnet Logo"
             className="h-8 object-contain"
           />
-        </a>
+        </a> */}
 
         {/* Links para "Para sua casa" e "Para sua empresa" */}
-        <div className="flex items-end mt-3 space-x-3">
+        {/* <div className="flex items-end mt-3 space-x-3">
           <Link href="/">
             <p className="text-[#9c0004] text-sm font-semibold whitespace-nowrap">
               Para sua casa
@@ -87,10 +87,12 @@ const Nav = () => {
               ____________________
             </p>
           </Link>
-        </div>
+        </div> */}
 
-        {/* Botão Flutuante de WhatsApp */}
-        <a
+        {/* Botão Flutuante de WhatsApp 
+        
+      </nav> */}
+      <a
   href="https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
   target="_blank"
   className="fixed bottom-4 right-4 p-3 bg-[#00a300] rounded-full shadow-lg hover:scale-105 transition-transform z-50"
@@ -98,7 +100,6 @@ const Nav = () => {
 >
   <FaWhatsapp size={25} color="white" />
 </a>
-      </nav>
     </>
   );
 };
