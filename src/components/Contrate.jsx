@@ -1,9 +1,19 @@
-import React from 'react';
-import { HiOutlineDesktopComputer } from "react-icons/hi";
+import React, { useState } from 'react';
 import { FaArrowRight, FaChevronRight } from "react-icons/fa6";
-import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
+import InfoModal from './InfoModal';
 
 function Contrate() {
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+
+  // Função para abrir o modal do Super Wi-Fi 6
+  const handleOpenInfoModal = () => {
+    setIsInfoModalOpen(true);
+  };
+
+  // Função para fechar o modal do Super Wi-Fi 6
+  const handleCloseInfoModal = () => {
+    setIsInfoModalOpen(false);
+  };
   return (
     <div id="WiFi6" className="bg-[#670c0c] px-6 sm:px-[8%] md:px-[12%] py-8 font-sans">
 
@@ -11,11 +21,14 @@ function Contrate() {
       <div className="hidden md:block">
         <div className="flex flex-row justify-between">
           <img
+            onClick={() => handleOpenInfoModal()}
             src="img/cardA.png"
             className="w-[51.5%] -ml-[1.5%] h-full cursor-pointer md:hover:scale-105 transition-transform "
             alt=""
           />
+          
           <img
+            onClick={() => handleOpenInfoModal()}
             src="img/cardB.png"
             className="w-[51.5%]  -ml-[1.5%] h-full cursor-pointer md:hover:scale-105 transition-transform "
             alt=""
@@ -73,11 +86,13 @@ function Contrate() {
       <div className="block md:hidden">
         <div className="flex flex-col justify-between">
           <img
+          onClick={() => handleOpenInfoModal()}
             src="img/cardAmobile.png"
             className="w-full h-full cursor-pointer transition-transform scale-110 active:scale-105"
             alt=""
           />
           <img
+          onClick={() => handleOpenInfoModal()}
             src="img/cardBmobile.png"
             className="w-full h-full cursor-pointer transition-transform scale-110 active:scale-105"
             alt=""
@@ -133,7 +148,9 @@ function Contrate() {
           </a>
         </div>
       </div>
-
+      {isInfoModalOpen && (
+        <InfoModal isOpen={isInfoModalOpen} onClose={handleCloseInfoModal} />
+      )}
     </div>
   );
 }

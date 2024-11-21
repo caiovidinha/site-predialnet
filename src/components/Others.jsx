@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa6';
+import SpecialPlansModal from './SpecialPlansModal';
+import FormModal from './FormModal';
 
 function Others() {
+  const [isSpecialModalOpen, setIsSpecialModalOpen] = useState(false);
+  const [selectedPlanType, setSelectedPlanType] = useState("");
+
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("");
+
+  // Função para abrir o modal do formulário
+  const handleOpenFormModal = (plan) => {
+    console.log(plan)
+    setSelectedPlan(plan);
+    setIsSpecialModalOpen(false);
+    setIsFormModalOpen(true);
+  };
+
+  // Função para fechar o modal do formulário
+  const handleCloseFormModal = () => {
+    setIsFormModalOpen(false);
+  };
+
+  const handleOpenModal = (planType) => {
+    setSelectedPlanType(planType);
+    setIsSpecialModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsSpecialModalOpen(false);
+  };
   return (
     <div className="px-6 sm:px-[8%] md:px-[12%] py-8 md:pt-14 md:pb-14 font-sans bg-[#fff] text-[#231f20]">
       <div className="flex flex-col md:flex-row md:justify-around gap-6">
@@ -11,16 +40,10 @@ function Others() {
         >
           <h1 className="text-xl md:text-2xl mb-1 text-center ">Opções de planos de internet<br /><strong className='text-2xl'>Via rádio</strong></h1>
           <button 
-            // onClick={() => openModal(plans[1])}
+            onClick={() => handleOpenModal("viaRadio")}
             className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
               Assinar pelo site
             </button>
-            {/* <a 
-            href="https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20600%20mega!https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20!%20Quero%20conhecer%20as%20ofertas%20Via%20R%C3%A1dio!"
-            target="_blank"
-            className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
-              <FaWhatsapp size={25}/> Assinar pelo WhatsApp
-            </a> */}
         </div>
         
         <div
@@ -29,18 +52,26 @@ function Others() {
         >
           <h1 className="text-xl md:text-2xl mb-1 text-center ">Opções de planos de internet para a região do <strong className='text-2xl'>Porto Maravilha</strong></h1>
           <button 
-            // onClick={() => openModal(plans[1])}
+            onClick={() => handleOpenModal("portoMaravilha")}
             className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
               Assinar pelo site
             </button>
-            {/* <a 
-            href="https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20600%20mega!https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Plus!"
-            target="_blank"
-            className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
-              <FaWhatsapp size={25}/> Assinar pelo WhatsApp
-            </a> */}
         </div>
       </div>
+      {isSpecialModalOpen && <SpecialPlansModal
+        isOpen={isSpecialModalOpen}
+        onClose={handleCloseModal}
+        type={selectedPlanType}
+        onSelectPlan={handleOpenFormModal}
+      />}
+      {isFormModalOpen && (
+        <FormModal
+          isOpen={isFormModalOpen}
+          onClose={handleCloseFormModal}
+          type={selectedPlanType}
+          plan={selectedPlan}
+        />
+      )}
     </div>
   );
 }
