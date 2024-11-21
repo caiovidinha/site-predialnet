@@ -62,6 +62,7 @@ const SecNav = () => {
         <div className="py-3 flex items-center space-x-2 w-full bg-[#f3f3f3] justify-between px-6">
           <a
             href="https://www.predialnet.com.br/assineja"
+            target="_blank"
             className="bg-[#f7adaf] text-xs px-4 py-1.5 rounded-full font-semibold whitespace-nowrap hover:scale-105 transition-transform"
           >
             Assinar pelo site
