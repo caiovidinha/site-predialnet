@@ -1,9 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FaWhatsapp } from "react-icons/fa";
 
 const SpecialPlansModal = ({ isOpen, onClose, type, onSelectPlan  } ) => {
   if (!isOpen) return null;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const cardsRef = useRef(null);
+  const handleScroll = (event) => {
+    const scrollPosition = event.target.scrollLeft;
+    const cardWidth = event.target.offsetWidth;
+    const newIndex = Math.round(scrollPosition / cardWidth);
+    setActiveIndex(newIndex);
+  };
 
+  const handleChipClick = (index) => {
+    setActiveIndex(index);
+    const cardWidth = cardsRef.current.offsetWidth;
+    cardsRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+  };
 
 
 // Texto das informações adicionais
@@ -80,43 +93,96 @@ return (
         </button>
 
         {/* Título do Modal */}
-        <h2 className="text-2xl md:text-3xl text-[#505050] mb-4 text-left font-normal">
+        <h2 className="block md:hidden text-2xl md:text-3xl text-[#505050] text-left font-normal">
+          Planos Residenciais
+        </h2>
+        <h2 className="block md:hidden text-2xl md:text-3xl text-[#505050] mb-4 text-left font-normal">
+          {type === "viaRadio" ? "VIA RÁDIO" : "PORTO MARAVILHA"}
+        </h2>
+        <h2 className="hidden md:block text-2xl md:text-3xl text-[#505050] mb-4 text-left font-normal">
           {type === "viaRadio" ? "Planos residenciais - VIA RÁDIO" : "Planos residenciais - PORTO MARAVILHA"}
         </h2>
 
         {/* Layout dos Planos e Informações Adicionais */}
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex-col md:flex-row gap-8 ">
           {/* Cards dos planos */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 ">
+          <div className=" grid-cols-1 md:grid-cols-4 gap-4 hidden md:grid">
             {selectedPlans.map((plan, index) => (
               <div key={index} className="bg-[#9c0004] text-white p-4 flex flex-col justify-between items-center w-full md:flex-shrink-0 ">
                 <h3 className="text-md mb-1 font-thin">Navegue com até</h3>
-                <h2 className="text-2xl mb-5 font-normal">{plan.plan}</h2>
-                <div className='h-[0.1px] w-full bg-white'/>
-                <p className="text-base mt-5 mb-1 font-normal">Por apenas</p>
+                <h2 className="text-2xl md:mb-5 font-normal">{plan.plan}</h2>
+                <div className='h-[0.1px] w-full bg-white hidden md:block'/>
+                <p className="text-base md:mt-5 mb-1 font-normal">Por apenas</p>
                 <p className="text-xl mb-4 font-normal">{plan.price}</p>
 
                 <div className="w-full flex flex-col items-center gap-2">
-                    <p className='text-xs font-thin'>Contrate</p>
+                    <p className='text-sm font-thin'>Contrate</p>
                     <button
                     onClick={() => onSelectPlan(plan.plan)}
-                    className="bg-[#ffbd17] text-black py-2 px-4 rounded-full text-xs  w-full font-normal hover:bg-[#e6a30f] transition"
+                    className="bg-[#ffbd17] text-black py-2 px-4 rounded-full text-sm  w-full font-normal hover:bg-[#e6a30f] transition"
                   >
                         pelo site
                   </button>
                   <a 
                   href={plan.whatsapp}
                   target='_blank'
-                  className="bg-[#2db640] text-white py-2 px-4 rounded-full text-xs w-full font-normal flex items-center justify-center gap-2 hover:bg-[#249c33] transition">
+                  className="bg-[#2db640] text-white py-2 px-4 rounded-full text-sm w-full font-normal flex items-center justify-center gap-2 hover:bg-[#249c33] transition">
                     <FaWhatsapp size={18} />pelo WhatsApp
                   </a>
                 </div>
               </div>
             ))}
           </div>
+          {/* Carrossel Mobile */}
+<div
+          ref={cardsRef}
+          className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 scrollbar-hide"
+          onScroll={handleScroll}
+        >
+          {selectedPlans.map((plan, index) => (
+            <div
+              key={index}
+              className="w-[80%] snap-center flex-shrink-0 bg-[#9c0004] text-white p-4"
+            >
+              <h3 className="text-md mb-1 font-thin">Navegue com até</h3>
+              <h2 className="text-2xl mb-5 font-normal">{plan.plan}</h2>
+              <p className="text-base mb-1 font-normal">Por apenas</p>
+              <p className="text-xl mb-4 font-normal">{plan.price}</p>
+              <div className="w-full flex flex-col items-center gap-2">
+                <p className="text-sm font-thin">Contrate</p>
+                <button
+                  onClick={() => onSelectPlan(plan.plan)}
+                  className="bg-[#ffbd17] text-black py-2 px-4 rounded-full text-sm w-full font-normal hover:bg-[#e6a30f] transition"
+                >
+                  Pelo site
+                </button>
+                <a
+                  href={plan.whatsapp}
+                  target="_blank"
+                  className="bg-[#2db640] text-white py-2 px-4 rounded-full text-sm w-full flex items-center justify-center gap-2 hover:bg-[#249c33] transition"
+                >
+                  <FaWhatsapp size={18} /> Pelo WhatsApp
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Chips de Navegação Mobile */}
+        <div className="md:hidden flex justify-center mt-4">
+          {selectedPlans.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handleChipClick(index)}
+              className={`w-6 h-2 rounded-md mx-1 transition-all duration-300 ${
+                activeIndex === index ? 'bg-black' : 'bg-gray-400'
+              }`}
+            ></button>
+          ))}
+        </div> 
 
           {/* Informações adicionais */}
-          <div className="text-black md:w-1/5 md:flex-shrink-0 md:self-start">
+          <div className="text-black md:pr-96 md:flex-shrink-0 md:self-start mt-10">
             <p className="text-xs mb-4 font-normal">{additionalInfo}</p>
             {type !== "viaRadio" && (
               <>
