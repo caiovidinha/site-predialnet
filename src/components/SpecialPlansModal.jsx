@@ -8,7 +8,7 @@ const SpecialPlansModal = ({ isOpen, onClose, type, onSelectPlan  } ) => {
   const handleScroll = (event) => {
     const scrollPosition = event.target.scrollLeft;
     const cardWidth = event.target.offsetWidth;
-    const newIndex = Math.round(scrollPosition / cardWidth);
+    const newIndex = Math.ceil(scrollPosition / cardWidth);
     setActiveIndex(newIndex);
   };
 
@@ -142,7 +142,7 @@ return (
           {selectedPlans.map((plan, index) => (
             <div
               key={index}
-              className="w-[80%] snap-center flex-shrink-0 bg-[#9c0004] text-white p-4"
+              className="w-[80%] snap-center flex-shrink-0 text-center bg-[#9c0004] text-white p-4"
             >
               <h3 className="text-md mb-1 font-thin">Navegue com até</h3>
               <h2 className="text-2xl mb-5 font-normal">{plan.plan}</h2>
@@ -174,7 +174,7 @@ return (
             <button
               key={index}
               onClick={() => handleChipClick(index)}
-              className={`w-6 h-2 rounded-md mx-1 transition-all duration-300 ${
+              className={`w-4 h-1 rounded-md mx-1 transition-all duration-300 opacity-70 ${
                 activeIndex === index ? 'bg-black' : 'bg-gray-400'
               }`}
             ></button>

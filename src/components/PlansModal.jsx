@@ -69,7 +69,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
                 <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
                 <p className='text-xs    px-1 md:px-0 text-left '>{plan.wifi}</p>
-                <p className='text-xs   px-1 md:px-0 text-left '>+ Serviços inteligentes</p>
+                <p className='text-xs   px-1 md:px-0 text-left '>Serviços inteligentes</p>
               </div>
               <a
                 href={urlSA}
@@ -88,7 +88,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
               <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
               <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
               <p className='text-xs    px-1 md:px-0 text-left '>{plan.wifi}</p>
-              <p className='text-xs   px-1 md:px-0 text-left '>+ Serviços inteligentes</p>
+              <p className='text-xs   px-1 md:px-0 text-left '>Serviços inteligentes</p>
             </div>
             <a
               href={urlSA}
