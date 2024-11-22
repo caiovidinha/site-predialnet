@@ -14,9 +14,9 @@ const CarouselComponent = () => {
   const mobileImages = [
     { src: '/img/bannerAmobile.jpg', link: 'https://www.predialnet.com.br/assineja' },
     { src: '/img/bannerBmobile.jpg', link: '#WiFi6' },
-    { src: '/img/bannerEmobile.jpg', link: '#' },
+    { src: '/img/bannerEMobile.jpg', link: '#' },
     { src: '/img/bannerCmobile.jpg', link: '#App2' },
-    { src: '/img/bannerFmobile.jpg', link: '#' }
+    { src: '/img/bannerFMobile.jpg', link: '#' }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
