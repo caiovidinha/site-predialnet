@@ -37,22 +37,22 @@ const portoMaravilhaPlans = [
     {
         "plan": "60 mega",
         "price": "R$ 189,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2060%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
+        "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2060%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     },
     {
         "plan": "40 mega",
       "price": "R$ 129,90/mês",
-      "whatsapp": "https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2040%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
+      "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2040%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     },
     {
         "plan": "30 mega",
         "price": "R$ 99,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2030%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
+        "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2030%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     },
     {
         "plan": "25 mega",
         "price": "R$ 89,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2025%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
+        "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2025%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     }
 ]
 
@@ -60,22 +60,22 @@ const viaRadioPlans = [
     {
         "plan": "10 mega",
         "price": "R$ 89,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%2010%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
+        "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%2010%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     },
     {
         "plan": "8 mega",
         "price": "R$ 79,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%208%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
+        "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%208%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     },
     {
         "plan": "6 mega",
         "price": "R$ 64,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%206%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
+        "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%206%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     },
     {
         "plan": "5 mega",
         "price": "R$ 59,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%205%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
+        "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%205%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     }
 ]
 // Seleciona os planos com base no tipo

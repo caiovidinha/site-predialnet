@@ -39,7 +39,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 <p className="text-sm md:text-md text-center ">Oferta até</p>
                 <h1 className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
                 
-                <p className="text-2xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
+                <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
                 <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
                 <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
               </div>
@@ -65,7 +65,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 <p className="text-sm md:text-md text-center bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">Oferta até</p>
                 <h1 className="text-2xl md:text-3xl md:my-2 font-normal bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">{plan.title}</h1>
                 <h1 className="text-xs md:text-xs -mt-3 font-normal bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">+100 mega de bônus nos doze primeiros meses</h1>
-                <p className="text-2xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
+                <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
                 <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
                 <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
                 <p className='text-xs    px-1 md:px-0 text-left '>{plan.wifi}</p>
@@ -84,7 +84,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
               <p className="text-sm md:text-md text-center ">Oferta até</p>
               <h1 className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
               
-              <p className="text-2xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
+              <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
               <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
               <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
               <p className='text-xs    px-1 md:px-0 text-left '>{plan.wifi}</p>

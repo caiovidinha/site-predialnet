@@ -63,7 +63,7 @@ function Contrate() {
             <a
               className="flex items-center gap-2 py-2 px-4 rounded-full bg-[#ffbd17] md:hover:scale-105 transition-transform"
               target="_blank"
-              href="https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
+              href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
             >
               Iniciar conversa <FaArrowRight />
             </a>
@@ -124,7 +124,7 @@ function Contrate() {
 
           {/* Assine pelo WhatsApp */}
           <a
-            href="https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
+            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
             target="_blank"
             className="w-full flex items-center border-[1px] border-white rounded-lg py-4 px-6 cursor-pointer transition-transform active:scale-95 text-left"
           >

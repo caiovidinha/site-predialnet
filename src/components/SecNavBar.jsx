@@ -40,7 +40,7 @@ const SecNav = () => {
           <a
             target="_blank"
             className="p-2 bg-[#00a300] inline-block rounded-full text-xs font-medium uppercase leading-normal shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg hover:scale-105"
-            href="https://api.whatsapp.com/send?phone=5521964905308&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
+            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
             rel="noopener noreferrer"
           >
             <FaWhatsapp size={25} color="white" />
