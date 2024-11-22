@@ -128,8 +128,8 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
             <div className="border-t-2 border-black my-4"></div>
             <div className="flex items-end justify-between">
               <Image src="/img/logo.png" alt="Predialnet Logo" width={140} height={22} />
-              <a href="https://www.predialnet.com.br/download/contrato-padrao-adesao-servico-internet.pdf" target="_blank" className="flex items-center gap-2 font-bold text-black text-md">
-                <img src="/img/regulamento.png" alt="Regulamento" className="w-5 h-5" /> Regulamento
+              <a href="https://www.predialnet.com.br/download/contrato-padrao-adesao-servico-internet.pdf" target="_blank" className="flex items-center gap-1 font-bold text-black text-md">
+                <img src="/img/regulamento.png" alt="Regulamento" className="w-4 h-4 mb-1" /> Regulamento
               </a>
             </div>
           </div>

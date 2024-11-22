@@ -3,11 +3,14 @@ import React, {useState} from 'react';
 import { IoIosWifi } from "react-icons/io";
 import PlansModal from './PlansModal';
 import { FaWhatsapp } from 'react-icons/fa6';
+import Image from 'next/image';
+import Link from 'next/link';
 
 function Plans() {
   
   const [selectedPlan, setSelectedPlan] = useState(null)
   const [isModalOpen, setModalOpen] = useState(false)
+
   
   const openModal = (plan) => {
     setSelectedPlan(plan)
@@ -130,8 +133,10 @@ function Plans() {
             </p>
           </div>
         </div>
-        
       </div>
+        <div className='mt-14 w-full flex items-center justify-center'>
+          <a href='/documentos' className='flex flex-row gap-1 items-start justify-center border-[#9c0004] hover:border-b-2 transition-all duration-75'> <Image src="/img/regulamento.png" alt="Documento" width={15} height={15} className='mt-0.5'/> Documentos</a>
+        </div>
       {selectedPlan && <PlansModal isOpen={isModalOpen} onClose={closeModal} plan={selectedPlan} />  }
     </div>
   );

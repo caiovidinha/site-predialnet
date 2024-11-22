@@ -10,25 +10,25 @@ const SecNav = () => {
         <div className="w-full flex gap-8 items-center justify-start">
           <a
             className="text-[#9e9e9e] hover:text-[#9c0004] hover:border-b-2 transition-all border-[#9c0004] font-semibold"
-            href="#Plans"
+            href="/#Plans"
           >
             Planos
           </a>
           <a
             className="text-[#9e9e9e] hover:text-[#9c0004] hover:border-b-2 transition-all border-[#9c0004] font-semibold"
-            href="#WiFi6"
+            href="/#WiFi6"
           >
             Wi-Fi 6
           </a>
           <a
             className="text-[#9e9e9e] hover:text-[#9c0004] hover:border-b-2 transition-all border-[#9c0004] font-semibold"
-            href="#Telefone"
+            href="/#Telefone"
           >
             Telefonia Fixa
           </a>
           <a
             className="text-black font-semibold bg-[#f7adaf] text-sm px-8 py-2.5 rounded-full hover:scale-105 transition-transform"
-            href="#App"
+            href="/#App"
           >
             APP Minha Predialnet
           </a>
@@ -88,11 +88,11 @@ const SecNav = () => {
             {
               icon: "/img/iconeRoteador.png",
               title: `600 mega +<br />Wi-Fi 6`,
-              link: "#600mega",
+              link: "/#600mega",
             },
-            { icon: "/img/iconePlanos.png", title: "Planos<br />Internet", link: "#Plans" },
-            { icon: "/img/iconeTelefonia.png", title: "Telefonia<br />Fixa", link: "#Telefone2" },
-            { icon: "/img/iconeAcesso.png", title: "Acesso<br />rápido", link: "#Cliente2" },
+            { icon: "/img/iconePlanos.png", title: "Planos<br />Internet", link: "/#Plans" },
+            { icon: "/img/iconeTelefonia.png", title: "Telefonia<br />Fixa", link: "/#Telefone2" },
+            { icon: "/img/iconeAcesso.png", title: "Acesso<br />rápido", link: "/#Cliente2" },
           ].map((item, index) => (
             <a
               key={index}
