@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+const axios = require("axios");
+const https = require("https");
 
 const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
-  console.log(plan)
+  const [formData, setFormData] = useState({});
   const [phone, setPhone] = useState("");
   // Verifica se o modal está aberto
   if (!isOpen) {
@@ -16,6 +18,39 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     };
   }, [isOpen]);
 
+
+  const instance = axios.create({
+    httpsAgent: new https.Agent({
+        rejectUnauthorized: false,
+    }),
+});
+
+const loginAPI = async() => {
+    const data = {   
+        "email": "caiomdavidinha@gmail.com", 
+        "password": "101299@Cc"
+    }
+    const JWT = await instance.post('https://uaipi.predialnet.com.br/v1/auth/login',data)
+    return JWT.data.data.access_token
+}
+
+const sendEmail = async(to,subject,body) => {
+    const data = {
+        "to": to,
+        "subject": subject,
+        "htmlContent": body
+    }
+    const token = await loginAPI()
+    console.log(token)
+    const email = await instance.post('https://uaipi.predialnet.com.br/v1/enviar-email',data,{
+        headers: {
+            'Authorization': `Bearer ${token}`
+            }
+        })
+    if(!email) return {error: "Erro ao enviar o e-mail"}
+    return email
+}
+
   const formatPhoneNumber = (value) => {
     if (!value) return value;
     const phoneNumber = value.replace(/\D/g, "");
@@ -23,11 +58,11 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     if (phoneNumber.length <= 7) return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`;
     return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}`;
   };
-
   // Configuração do formulário com base no "type"
   const formConfig = {
     telefonia: {
       title: "TELEFONIA",
+      email: "comercial@predialnet.com.br",
       subtitle: "Preencha o formulário e um de nossos consultores entrará em contato com você.",
       fields: [
         { id: "plan", label: "Confirme o plano escolhido", type: "select", options: ["Ideal Plus", "Ideal Master"] },
@@ -42,6 +77,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     },
     portoMaravilha: {
       title: "Planos Resienciais - PORTO MARAVILHA",
+      email: "comercial@predialnet.com.br",
       subtitle: "Preencha o formulário e um de nossos consultores entrará em contato com você.",
       fields: [
         { id: "plan", label: "Confirme o plano escolhido", type: "select", options: ["60 mega", "40 mega", "30 mega", "25 mega"] },
@@ -56,6 +92,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     },
     viaRadio: {
       title: "Planos residenciais - VIA RÁDIO",
+      email: "comercial@predialnet.com.br",
       subtitle: "Preencha o formulário e um de nossos consultores entrará em contato com você.",
       fields: [
         { id: "plan", label: "Confirme o plano escolhido", type: "select", options: ["10 mega", "8 mega", "6 mega", "5 mega"] },
@@ -70,6 +107,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     },
     cancelamento: {
       title: "CANCELAMENTO",
+      email: "cancelamento@predialnet.com.br",
       subtitle: "Se você deseja cancelar algum serviço, preencha as informações abaixo.",
       fields: [
         { id: "fullName", label: "Nome completo", type: "text" },
@@ -91,6 +129,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     },
     contato: {
       title: "FALE CONOSCO",
+      email: "sac@predialnet.com.br",
       subtitle: "Utilize este canal para informações, dúvidas ou solicitar serviços.",
       fields: [
         { id: "clientCode", label: "Código do Cliente", type: "text" },
@@ -114,6 +153,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     },
     financeiro: {
       title: "FINANCEIRO",
+      email: "financeiro@predialnet.com.br",
       subtitle: "Resolva problemas com a sua fatura ou outras questões sobre pagamento.",
       fields: [
         { id: "fullName", label: "Nome completo", type: "text" },
@@ -134,6 +174,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     },
     suporte: {
       title: "SUPORTE",
+      email: "suporte@predialnet.com.br",
       subtitle: "Informe o seu problema e nossa equipe retornará o mais breve possível",
       fields: [
         { id: "clientCode", label: "Código do cliente", type: "text" },
@@ -155,6 +196,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     },
     empresa: {
       title: "EMPRESA",
+      email: "comercial@predialnet.com.br",
       subtitle: "Preencha os detalhes da sua empresa no formulário abaixo.",
       fields: [
         { id: "address", label: "Endereço", type: "text" },
@@ -170,8 +212,56 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     },
   };
 
+  
+
   const { title, subtitle, fields } = formConfig[type] || formConfig["telefonia"];
 
+  
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({
+      ...formData,
+      [id]: value,
+    });
+    console.log(formData)
+    }
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData)
+    
+    // Definir o assunto do e-mail com base no tipo
+    const subject = type === "telefonia" || type === "viaRadio" || type === "portoMaravilha"
+      ? `Solicitação de ${type}`
+      : formData.subject || title;
+
+    // Corpo do e-mail formatado
+    const body = `
+      <h3>${title}</h3>
+      ${fields.map(field => {
+        const fieldValue = formData[field.id] || "";
+        return `<p><strong>${field.label}:</strong> ${fieldValue}</p>`;
+      }).join("")}
+    `;
+
+    // Enviar e-mail
+    try {
+      const response = await sendEmail(
+        "caiomdavidinha@gmail.com",
+        subject,
+        body
+      );
+      if (response.error) {
+        console.error("Erro ao enviar o e-mail:", response.error);
+      } else {
+        alert("Formulário enviado com sucesso!");
+        onClose(); // Fechar o modal após o envio
+      }
+    } catch (error) {
+      console.error("Erro ao enviar o e-mail:", error);
+    }
+  };
   return (
     
     <div className="font-sans fixed inset-0 bg-[#9c0004] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]">
@@ -213,6 +303,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
               <input
                 id="address"
                 type="text"
+                onChange={handleInputChange}
                 className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
               />
             </div>
@@ -221,6 +312,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
               <input
                 id="number"
                 type="text"
+                onChange={handleInputChange}
                 className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
               />
             </div>
@@ -230,6 +322,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
               <input
                 id="complement"
                 type="text"
+                onChange={handleInputChange}
                 className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
               />
             </div>
@@ -242,6 +335,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
               <input
                 id="neighborhood"
                 type="text"
+                onChange={handleInputChange}
                 className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
               />
             </div>
@@ -250,6 +344,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
               <input
                 id="cep"
                 type="text"
+                onChange={handleInputChange}
                 className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
               />
             </div>
@@ -262,6 +357,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
               <input
                 id="email"
                 type="email"
+                onChange={handleInputChange}
                 className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
               />
             </div>
@@ -282,7 +378,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
 
           {/* Botão de Enviar */}
           <button
-            type="submit"
+            onClick={e => handleSubmit(e)}
             className="w-full bg-[#9c0004] text-white py-3 rounded mt-6 hover:bg-[#7b0003] transition"
           >
             Enviar
@@ -356,7 +452,7 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
 
         {/* Botão de Enviar */}
         <button
-          type="submit"
+          onClick={e => handleSubmit(e)}
           className="w-full bg-[#9c0004] text-white py-3 rounded mt-6 hover:bg-[#7b0003] transition"
         >
           Enviar

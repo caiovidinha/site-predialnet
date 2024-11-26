@@ -64,7 +64,7 @@ const viaRadioPlans = [
     },
     {
         "plan": "8 mega",
-        "price": "R$ 79,90/mês",
+        "price": "R$ 79,00/mês",
         "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%208%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     },
     {
@@ -74,7 +74,7 @@ const viaRadioPlans = [
     },
     {
         "plan": "5 mega",
-        "price": "R$ 59,90/mês",
+        "price": "R$ 59,80/mês",
         "whatsapp": "https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%205%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     }
 ]
@@ -83,7 +83,7 @@ const selectedPlans = type === "viaRadio" ? viaRadioPlans : portoMaravilhaPlans;
 const additionalInfo =
   type === "viaRadio"
     ? "Condições para contratação por pessoa física, sem franquia de consumo, instalação sujeito à viabilidade técnica. Oferta válida para locais com cobertura via rádio."
-    : "Condições para contratação por pessoa física, sem franquia de consumo. Para pessoa jurídica, consulte agente de vendas. Instalação sujeita a viabilidade técnica. Ofertas válidas para locais com cobertura via fibra.";
+    : "Condições para contratação por pessoa física, sem franquia de consumo. Para pessoa jurídica, consulte agente de vendas. Instalação sujeita a viabilidade técnica. Ofertas válidas para locais com cobertura via radio.";
 return (
     <div className="fixed inset-0 bg-[#9c0004] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-5xl p-8 relative overflow-y-auto mx-4 max-h-[90%]">
@@ -192,7 +192,6 @@ return (
                   <li>Navegação mais segura: Oferece tentativa de proteção contra conexões entrantes indesejadas.</li>
                   <li>Predial Protect (1 Licença): Auxilia o usuário na tentativa de identificar e bloquear sites fraudulentos.</li>
                 </ul>
-                <p className="text-xs font-normal">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.</p>
               </>
             )}
           </div>

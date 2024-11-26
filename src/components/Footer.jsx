@@ -4,12 +4,16 @@ import { FaInstagram, FaFacebook } from 'react-icons/fa';
 function Footer() {
   return (
     <div className="bg-[#dedede] py-8 font-sans text-[#231f20] px-6 md:px-[12%]">
+
+     
       <div className="flex flex-col md:flex-row items-center justify-between  gap-3">
         {/* Logotipo da Predialnet */}
         <div className="flex items-center">
           <img src="img/logo.png" alt="Predialnet Logo" className="h-10" />
         </div>
-
+        <div className='md:hidden'><p className='text-xs text-center w-full md:hidden block'>Rua da Conceição, 188 – sala 3108,
+          Centro, Niterói – Rio de Janeiro
+          <br />CEP: 24020-080</p></div>
         {/* Ícones das redes sociais */}
         <div className="flex space-x-4">
           <a
@@ -51,6 +55,9 @@ function Footer() {
           Site desenvolvido por Jump IMKT
         </p>
       </div>
+      <div><p className='mt-5 text-xs text-center w-full hidden md:block'>Rua da Conceição, 188 – sala 3108,
+          Centro, Niterói – Rio de Janeiro
+          CEP: 24020-080</p></div>
     </div>
   );
 }

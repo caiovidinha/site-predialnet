@@ -134,7 +134,13 @@ function Plans() {
           </div>
         </div>
       </div>
-        <div className='mt-14 w-full flex items-center justify-center'>
+        <div className='mt-8 w-full flex items-center justify-left text-gray-400 flex-col'>
+          <p className='text-xs w-full '>Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.</p>
+          <p className='text-xs '>OBS: Condições para contratação por pessoa física, sem franquia de consumo. 
+            Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: s
+            Região do Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.</p>
+        </div>
+        <div className='mt-6 w-full flex items-center justify-center'>
           <a href='/documentos' className='flex flex-row gap-1 items-start justify-center border-[#9c0004] hover:border-b-2 transition-all duration-75'> <Image src="/img/regulamento.png" alt="Documento" width={15} height={15} className='mt-0.5'/> Documentos</a>
         </div>
       {selectedPlan && <PlansModal isOpen={isModalOpen} onClose={closeModal} plan={selectedPlan} />  }

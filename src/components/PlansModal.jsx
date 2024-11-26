@@ -36,7 +36,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
             {/* Coluna 1 */}
             <div className="bg-[#9c0004] text-white p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
             <div className='flex flex-col gap-2 '>
-                <p className="text-sm md:text-md text-center ">Oferta até</p>
+                <p className="text-sm md:text-md text-center ">Plano até</p>
                 <h1 className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
                 
                 <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>

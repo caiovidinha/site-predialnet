@@ -42,7 +42,7 @@ function Others() {
           <button 
             onClick={() => handleOpenModal("viaRadio")}
             className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
-              Assinar pelo site
+              Ver planos
             </button>
         </div>
         
@@ -54,7 +54,7 @@ function Others() {
           <button 
             onClick={() => handleOpenModal("portoMaravilha")}
             className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
-              Assinar pelo site
+              Ver planos
             </button>
         </div>
       </div>

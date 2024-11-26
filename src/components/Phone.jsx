@@ -81,6 +81,10 @@ function Phone() {
             className="shadow-[0px_0px_10px_10px_rgba(80,80,80,0.1)] w-[31%] rounded-3xl object-cover"
           />
         </div>
+        <div className='mt-8 w-full flex items-center justify-left text-gray-400 flex-col'>
+          <p className='text-xs w-full'> Consulte sobre as tarifas excedentes Predialfone. Exceto para ligações Nextel SME (rádio).
+            Os valores acima são promocionais e estão sujeitos a alteração.</p>
+        </div>
       </div>
 
       {/* Versão para Mobile */}
@@ -104,6 +108,12 @@ function Phone() {
             className="py-3 bg-[#9c0004] text-white w-full rounded-full text-xl mt-2 font-light mb-1 active:scale-95 transition-transform">
               Aproveitar oferta
             </button>
+            <a 
+            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Plus!"
+            target="_blank"
+            className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
+              <FaWhatsapp size={25}/> Assinar pelo WhatsApp
+            </a>
             <p className="text-lg text-[#9e9e9e] mt-2">2000 minutos fixo/fixo local</p>
             <p className="text-lg text-[#9e9e9e]">100 minutos para qualquer móvel local</p>
           </div>
@@ -122,9 +132,19 @@ function Phone() {
             className="py-3 bg-[#9c0004] text-white w-full rounded-full text-xl mt-2 font-light mb-1 active:scale-95 transition-transform">
               Aproveitar oferta
             </button>
+            <a 
+            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Master!"
+            target="_blank"
+            className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
+              <FaWhatsapp size={25}/> Assinar pelo WhatsApp
+            </a>
             <p className="text-lg text-[#9e9e9e] mt-2">Ilimitado fixo/fixo local</p>
             <p className="text-lg text-[#9e9e9e]">200 minutos para qualquer móvel local</p>
           </div>
+        </div>
+        <div className='mt-8 w-full flex items-center justify-left text-gray-400 flex-col'>
+          <p className='text-xs w-full'> Consulte sobre as tarifas excedentes Predialfone. Exceto para ligações Nextel SME (rádio).
+            Os valores acima são promocionais e estão sujeitos a alteração.</p>
         </div>
       </div>
         {isModalFormOpen && <FormModal isOpen={isModalFormOpen} onClose={handleCloseModalForm} type="telefonia" plan={selectedPlan} />  }

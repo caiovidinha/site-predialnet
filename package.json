@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
+    "axios": "^1.7.8",
+    "https": "^1.0.0",
     "next": "^15.0.0-canary.193",
     "react": "^18.3.1",
     "react-dom": "^18",
