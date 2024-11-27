@@ -46,10 +46,10 @@ function Cliente() {
             <h2 className="text-3xl font-medium text-white">
               Acesso fácil às principais funções de atendimento
             </h2>
-            <p className="text-[#f8abad] mt-0.5 text-lg">
+            {/* <p className="text-[#f8abad] mt-0.5 text-lg">
               Resolva também pelo App Minha Predialnet
             </p>
-            <p className="text-[#fff] -mt-2 text-lg">Baixe o App e gerencie seu plano</p>
+            <p className="text-[#fff] -mt-2 text-lg">Baixe o App e gerencie seu plano</p> */}
           </div>
 
           {/* Cards de Contato */}
@@ -70,19 +70,19 @@ function Cliente() {
                 iconSrc: 'img/iconeSuporte.png',
                 title: `Suporte
                 <br />técnico`,
-                link: 'https://speedtest.predialnet.com.br',
+                link: '/#Atendimento',
               },
               {
-                iconSrc: 'img/iconeCelular.png',
-                title: 'Gerenciar plano pelo App',
-                link: '#App',
+                iconSrc: 'img/iconeProfile.png',
+                title: 'Área do<br />cliente',
+                link: 'https://minhaconta.predialnet.com.br',
               },
             ].map((card, index) => (
               <a
                 key={index}
                 className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-6 w-40 h-40 text-left hover:scale-105 transition-transform"
                 href={card.link}
-                target={card.link === '#App' ? '_self' : '_blank'}
+                target={card.link === '/#App' || card.link === '/#Atendimento' ? '_self' : '_blank'}
               >
                 <img src={card.iconSrc} className="w-8 h-8 mb-2" alt={card.title} />
                 <h4 className="text-md leading-5" dangerouslySetInnerHTML={{ __html: card.title }} />
@@ -125,10 +125,10 @@ function Cliente() {
             <h2 className="text-3xl font-medium text-white mt-2">
               Acesso fácil às principais funções de atendimento
             </h2>
-            <p className="text-[#f8abad] mt-0.5 text-lg">
+            {/* <p className="text-[#f8abad] mt-0.5 text-lg">
               Resolva também pelo App Minha Predialnet
             </p>
-            <p className="text-[#fff] -mt-1 text-lg">Baixe o App e gerencie seu plano</p>
+            <p className="text-[#fff] -mt-1 text-lg">Baixe o App e gerencie seu plano</p> */}
           </div>
 
           {/* Cards de Contato */}
@@ -149,19 +149,19 @@ function Cliente() {
                 iconSrc: 'img/iconeSuporte.png',
                 title: `Suporte
                 <br />técnico`,
-                link: 'https://speedtest.predialnet.com.br',
+                link: '/#Atendimento',
               },
               {
-                iconSrc: 'img/iconeCelular.png',
-                title: 'Gerenciar plano pelo App',
-                link: '#href',
+                iconSrc: 'img/iconeProfile.png',
+                title: 'Área do<br />cliente',
+                link: 'https://minhaconta.predialnet.com.br',
               },
             ].map((card, index) => (
               <a
                 key={index}
                 className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-4 w-full h-40 text-left active:scale-95 transition-transform "
                 href={card.link}
-                target={card.link === '#App' ? '_self' : '_blank'}
+                target={card.link === '/#App' || card.link === '/#Atendimento' ? '_self' : '_blank'}
               >
                 <img src={card.iconSrc} className="w-10 h-10 mb-2" alt={card.title} />
                 <h4 className="text-md leading-5 mt-1" dangerouslySetInnerHTML={{__html: card.title}} />

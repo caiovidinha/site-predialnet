@@ -7,7 +7,7 @@ function App() {
       <div id="App" className="hidden md:flex px-[12%] py-10 font-sans bg-white flex-row justify-between">
         <div className="w-[21%] flex flex-col justify-end mb-14">
           <h3 className="text-[#9c0004] text-lg">App Minha Predialnet</h3>
-          <h1 className="text-3xl my-7 w-full">Acesse o<br />Minha Predialnet e gerencie seu plano na palma da mão</h1>
+          <h1 className="text-3xl my-7 w-full">Acesse o App<br />Minha Predialnet e gerencie seu plano na palma da mão</h1>
           <img src="img/qrcode.png" alt="QR Code" className="border-[#dbdbdb] border-2 rounded-lg border-solid w-52" />
         </div>
 
@@ -48,7 +48,7 @@ function App() {
         <div className="flex flex-col items-start">
           <h3 className="text-[#9c0004] text-lg text-left">App Minha Predialnet</h3>
           <h1 className="text-3xl my-4 text-left">
-            Acesse o Minha Predialnet e gerencie seu plano na palma da mão
+            Acesse o App Minha Predialnet e gerencie seu plano na palma da mão
           </h1>
           <p className="text-[#9e9e9e] text-lg text-left mb-6 leading-6">
             Tudo que você precisa para gerenciar sua conta. 2ª via de fatura, mudança de plano,

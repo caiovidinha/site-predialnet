@@ -28,11 +28,17 @@ function Why() {
             description: `A Predialnet está entre os maiores provedores regionais do Rio de Janeiro, sendo a maior da cidade de Niterói. 
                           Venha para a maior!<br />Fonte: informacoes.anatel.gov.br | Nov 2024.`,
           },
+          // {
+          //   imgSrc: 'img/iconeD.png',
+          //   title: 'Resolva tudo no App com um toque',
+          //   description: `Na Predialnet você tem um App completo para você resolver tudo com um toque. 
+          //                 Faturas, suporte, mudança de plano, comunicados e muito mais. Com o Minha Predialnet tudo fica mais fácil e mais prático.`,
+          // },
           {
             imgSrc: 'img/iconeD.png',
-            title: 'Resolva tudo no App com um toque',
-            description: `Na Predialnet você tem um App completo para você resolver tudo com um toque. 
-                          Faturas, suporte, mudança de plano, comunicados e muito mais. Com o Minha Predialnet tudo fica mais fácil e mais prático.`,
+            title: 'Maior velocidade contratada',
+            description: `Na Predialnet você navega com a maior velocidade média contratada entre os provedores regionais.
+            Mais conexão, estabilidade e desempenho para sua internet. Tenha sempre o melhor.`,
           },
         ].map((card, index) => (
           <div

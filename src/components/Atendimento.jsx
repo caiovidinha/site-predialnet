@@ -17,7 +17,7 @@ function Atendimento() {
       setIsModalFormOpen(false);
     };
   return (
-    <div className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#f4f5f5] text-[#231f20] tracking-tight">
+    <div id="Atendimento" className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#f4f5f5] text-[#231f20] tracking-tight">
       <div className="flex flex-col md:flex-row md:justify-between gap-10">
         {/* Horários de Atendimento e Suporte */}
         <div className="w-full md:w-[32%]">

@@ -27,11 +27,18 @@ const SecNav = () => {
             Telefonia Fixa
           </a>
           <a
+            className="text-[#9e9e9e] hover:text-[#9c0004] hover:border-b-2 transition-all border-[#9c0004] font-semibold"
+            href="https://webmail.predialnet.com.br/index.php"
+            target="_blank"
+          >
+            Webmail
+          </a>
+          {/* <a
             className="text-black font-semibold bg-[#f7adaf] text-sm px-8 py-2.5 rounded-full hover:scale-105 transition-transform"
             href="/#App"
           >
             APP Minha Predialnet
-          </a>
+          </a> */}
         </div>
         <div className="w-full flex items-center justify-end gap-3">
           <div className="font-semibold">
@@ -85,22 +92,19 @@ const SecNav = () => {
         {/* Ícones em uma linha, com fundo branco e espaçamento uniforme */}
         <div className="w-full bg-white pt-1 pb-2 flex justify-between px-6">
           {[
-            {
-              icon: "/img/iconeRoteador.png",
-              title: `600 mega +<br />Wi-Fi 6`,
-              link: "/#600mega",
-            },
             { icon: "/img/iconePlanos.png", title: "Planos<br />Internet", link: "/#Plans" },
             { icon: "/img/iconeTelefonia.png", title: "Telefonia<br />Fixa", link: "/#Telefone2" },
-            { icon: "/img/iconeAcesso.png", title: "Acesso<br />rápido", link: "/#Cliente2" },
+            { icon: "/img/iconeAcesso.png", title: "Suporte<br />rápido", link: "/#Cliente2" },
+            { icon: "/img/iconeWebmail.png", title: "Acessar Webmail", link: "https://webmail.predialnet.com.br/index.php" },
           ].map((item, index) => (
             <a
               key={index}
               href={item.link}
+              target={item.link == "https://webmail.predialnet.com.br/index.php" ? '_blank' : "_self"}
               className="flex flex-col items-center hover:scale-105 transition-transform w-1/4"
             >
-              <img src={item.icon} alt={item.title} className="w-10 h-10 mb-0" />
-              <p className="text-xs text-center whitespace-pre-wrap leading-tight" dangerouslySetInnerHTML={{__html:item.title}}/>
+              <img src={item.icon} alt={item.title} className="w-10 h-10 mb-0 " />
+              <p className="text-xs text-center whitespace-pre-wrap leading-tight px-2" dangerouslySetInnerHTML={{__html:item.title}}/>
             </a>
           ))}
         </div>

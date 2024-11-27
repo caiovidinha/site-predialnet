@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 const axios = require("axios");
 const https = require("https");
 
-const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
+const FormModal = ({ isOpen, onClose, type, plan }) => {
   const [formData, setFormData] = useState({});
   const [phone, setPhone] = useState("");
+  const [plan1, setPlan1] = useState(null);
+  const [missingField, setMissingField] = useState("none");
+  const [loading, setLoading] = useState(false)
+  const [response, setResponse] = useState("")
   // Verifica se o modal está aberto
   if (!isOpen) {
     return null;
@@ -25,28 +29,13 @@ const FormModal = ({ isOpen, onClose, type = "telefonia", plan }) => {
     }),
 });
 
-const loginAPI = async() => {
-    const data = {   
-        "email": "caiomdavidinha@gmail.com", 
-        "password": "101299@Cc"
-    }
-    const JWT = await instance.post('https://uaipi.predialnet.com.br/v1/auth/login',data)
-    return JWT.data.data.access_token
-}
-
 const sendEmail = async(to,subject,body) => {
     const data = {
         "to": to,
         "subject": subject,
-        "htmlContent": body
+        "content": body
     }
-    const token = await loginAPI()
-    console.log(token)
-    const email = await instance.post('https://uaipi.predialnet.com.br/v1/enviar-email',data,{
-        headers: {
-            'Authorization': `Bearer ${token}`
-            }
-        })
+    const email = await instance.post('http://189.1.128.92:3333/emails',data)
     if(!email) return {error: "Erro ao enviar o e-mail"}
     return email
 }
@@ -65,6 +54,7 @@ const sendEmail = async(to,subject,body) => {
       email: "comercial@predialnet.com.br",
       subtitle: "Preencha o formulário e um de nossos consultores entrará em contato com você.",
       fields: [
+        { id: "nome", label: "Nome", type: "text" },
         { id: "plan", label: "Confirme o plano escolhido", type: "select", options: ["Ideal Plus", "Ideal Master"] },
         { id: "address", label: "Endereço", type: "text" },
         { id: "number", label: "Número", type: "text" },
@@ -80,6 +70,7 @@ const sendEmail = async(to,subject,body) => {
       email: "comercial@predialnet.com.br",
       subtitle: "Preencha o formulário e um de nossos consultores entrará em contato com você.",
       fields: [
+        { id: "nome", label: "Nome", type: "text" },
         { id: "plan", label: "Confirme o plano escolhido", type: "select", options: ["60 mega", "40 mega", "30 mega", "25 mega"] },
         { id: "address", label: "Endereço", type: "text" },
         { id: "number", label: "Número", type: "text" },
@@ -95,6 +86,7 @@ const sendEmail = async(to,subject,body) => {
       email: "comercial@predialnet.com.br",
       subtitle: "Preencha o formulário e um de nossos consultores entrará em contato com você.",
       fields: [
+        { id: "nome", label: "Nome", type: "text" },
         { id: "plan", label: "Confirme o plano escolhido", type: "select", options: ["10 mega", "8 mega", "6 mega", "5 mega"] },
         { id: "address", label: "Endereço", type: "text" },
         { id: "number", label: "Número", type: "text" },
@@ -223,14 +215,22 @@ const sendEmail = async(to,subject,body) => {
       ...formData,
       [id]: value,
     });
-    console.log(formData)
     }
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
-    
+    formData["phone"] = phone
+    formData["plan"] = plan1 ? plan1 : plan
+        // Verificar se todos os campos estão preenchidos
+    for (let field of fields) {
+      const fieldValue = formData[field.id] || '';
+      if (!fieldValue.trim()) {
+        setMissingField(field.label)
+        return; 
+      }
+    }
+    setMissingField("none")
     // Definir o assunto do e-mail com base no tipo
     const subject = type === "telefonia" || type === "viaRadio" || type === "portoMaravilha"
       ? `Solicitação de ${type}`
@@ -246,26 +246,52 @@ const sendEmail = async(to,subject,body) => {
     `;
 
     // Enviar e-mail
+    setLoading(true)
     try {
       const response = await sendEmail(
-        "caiomdavidinha@gmail.com",
+        formConfig[type].email,
         subject,
         body
       );
       if (response.error) {
-        console.error("Erro ao enviar o e-mail:", response.error);
+        setResponse("error")
       } else {
-        alert("Formulário enviado com sucesso!");
-        onClose(); // Fechar o modal após o envio
+        setResponse("success")
       }
     } catch (error) {
-      console.error("Erro ao enviar o e-mail:", error);
+      setResponse("error")
+    }finally{
+      setLoading(false)
     }
   };
   return (
     
     <div className="font-sans fixed inset-0 bg-[#9c0004] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-3xl p-6 relative overflow-y-auto mx-4 max-h-[90%]">
+      {loading? 
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-3xl p-6 relative overflow-y-auto mx-4 max-h-[90%] flex items-center justify-center">
+      {/* Botão de Fechar */}
+      <button className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
+        &times;
+      </button>
+      <div className="w-12 h-12 border-4 border-t-[#9c0004] border-gray-200 rounded-full animate-spin"></div>
+
+
+
+    </div>
+      : response === "success" ?
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-3xl p-6 relative overflow-y-auto mx-4 max-h-[90%] flex flex-col items-center justify-center">
+      {/* Botão de Fechar */}
+      <button className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
+        &times;
+      </button>
+      <h2 className="text-3xl md:text-3xl  text-[#9c0004] mb-4">Oba!</h2>
+      <p className="text-xl text-center">Sua solicitação foi enviada com sucesso.</p>
+      <button className='bg-[#9c0004] rounded-lg w-full h-10 text-white text-md mt-4'
+      onClick={onClose}>Fechar</button>
+
+    </div>
+      
+      :<div className="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-3xl p-6 relative overflow-y-auto mx-4 max-h-[90%]">
         {/* Botão de Fechar */}
         <button className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
           &times;
@@ -274,18 +300,29 @@ const sendEmail = async(to,subject,body) => {
         {/* Título do Modal */}
         {/* <h1 className="text-lg text-black mb-2">Predialnet</h1> */}
         <h2 className="text-2xl md:text-3xl  text-[#9c0004] mb-4">{title}</h2>
-        <p className="text-sm mb-4">{subtitle}</p>
-        <hr className="border-gray-300 mb-6" />
+        <p className="text-sm">{subtitle}</p>
+        <p className={missingField == "none" ? "hidden" : 'text-xs text-red-700 mt-2'}>Por favor, preencha o campo a seguir corretamente: {missingField}</p>
+        <hr className="border-gray-300 mt-4 mb-6" />
 
         {/* Formulário */}
         {type=="telefonia" || type=="viaRadio" || type=="portoMaravilha"  ? <form className="space-y-4">
+          {/* Campo Seleção de Plano */}
+          <div>
+            <label htmlFor="nome" className="block mb-1 text-sm font-normal">Nome</label>
+            <input
+                id="nome"
+                type="text"
+                onChange={handleInputChange}
+                className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+              />
+          </div>
           {/* Campo Seleção de Plano */}
           <div>
             <label htmlFor="plan" className="block mb-1 text-sm font-normal">Confirme o plano escolhido</label>
             <select
               id="plan"
               defaultValue={plan}
-              onChange={(e) => console.log('Plano alterado:', e.target.value)}
+              onChange={(e) => setPlan1(e.target.value)}
               className="w-full border border-gray-300 p-2 h-11 rounded focus:outline-none focus:border-[#9c0004]"
             >
               <option value="">Selecione</option>
@@ -401,12 +438,14 @@ const sendEmail = async(to,subject,body) => {
                     id={formConfig[type].fields[0].id}
                     type={formConfig[type].fields[0].type}
                     className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className=" ">
                   <label htmlFor={formConfig[type].fields[1].htmlFor} className="block mb-1 text-sm font-normal">{formConfig[type].fields[1].label}</label>
                   <input
                     id={formConfig[type].fields[1].id}
+                    onChange={handleInputChange}
                     type={formConfig[type].fields[0].type}
                     className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
                   />
@@ -416,6 +455,7 @@ const sendEmail = async(to,subject,body) => {
           <label htmlFor={formConfig[type].fields[2].htmlFor} className="block mb-1 text-sm font-normal">{formConfig[type].fields[2].label}</label>
             <input
               id={formConfig[type].fields[2].id}
+              onChange={handleInputChange}
               type={formConfig[type].fields[0].type}
               className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
             />
@@ -427,6 +467,7 @@ const sendEmail = async(to,subject,body) => {
             <label htmlFor={formConfig[type].fields[3].htmlFor} className="block mb-1 text-sm font-normal">{formConfig[type].fields[3].label}</label>
             <select
               id={formConfig[type].fields[3].id}
+              onChange={handleInputChange}
               className="w-full border border-gray-300 p-2 h-11 rounded focus:outline-none focus:border-[#9c0004]"
             >
               <option value="">Selecione</option>
@@ -442,6 +483,7 @@ const sendEmail = async(to,subject,body) => {
         <label htmlFor={formConfig[type].fields[4].htmlFor} className="block mb-1 text-sm font-normal">{formConfig[type].fields[4].label}</label>
         <textarea
           id={formConfig[type].fields[4].id}
+          onChange={handleInputChange}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
         ></textarea>
         </div>
@@ -459,7 +501,7 @@ const sendEmail = async(to,subject,body) => {
         </button>
       </form>}
 
-      </div>
+      </div>}
     </div>
   );
 };
