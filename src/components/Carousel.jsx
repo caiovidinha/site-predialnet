@@ -2,42 +2,59 @@
 import React, { useState, useEffect } from 'react';
 
 const CarouselComponent = () => {
-  const desktopImages = [
-    { src: '/img/bannerA.jpg', link: 'https://www.predialnet.com.br/assineja' },
-    { src: '/img/bannerB.jpg', link: '#WiFi6' },
-    { src: '/img/bannerE.jpg', link: '#' },
-    { src: '/img/bannerC.jpg', link: '#App' },
-    { src: '/img/bannerF.jpg', link: '#' },
-
-  ];
-
-  const mobileImages = [
-    { src: '/img/bannerAmobile.jpg', link: 'https://www.predialnet.com.br/assineja' },
-    { src: '/img/bannerBmobile.jpg', link: '#WiFi6' },
-    { src: '/img/bannerEMobile.jpg', link: '#' },
-    { src: '/img/bannerCmobile.jpg', link: '#App2' },
-    { src: '/img/bannerFMobile.jpg', link: '#' }
+  const images = [
+    {
+      desktopSrc: '/img/bannerA.jpg',
+      mobileSrc: '/img/bannerAmobile.jpg',
+      link: 'https://www.predialnet.com.br/assineja',
+      linkMobile: 'https://www.predialnet.com.br/assineja'
+    },
+    {
+      desktopSrc: '/img/bannerB.jpg',
+      mobileSrc: '/img/bannerBmobile.jpg',
+      link: '#WiFi6',
+      linkMobile: '#WiFi6'
+    },
+    {
+      desktopSrc: '/img/bannerE.jpg',
+      mobileSrc: '/img/bannerEMobile.jpg',
+      link: '#',
+      linkMobile: '#'
+    },
+    {
+      desktopSrc: '/img/bannerC.jpg',
+      mobileSrc: '/img/bannerCmobile.jpg',
+      link: '#App',
+      linkMobile: '#App2'
+    },
+    {
+      desktopSrc: '/img/bannerF.jpg',
+      mobileSrc: '/img/bannerFMobile.jpg',
+      link: '#',
+      linkMobile: '#'
+    }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+      // Remova as linhas relacionadas ao `isMobile`
+    const [isMobile, setIsMobile] = useState(false);
 
-  // Detect if it is mobile screen
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+    // Também remova o `useEffect` que detecta se é mobile:
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 900);
+      };
 
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
+      handleResize();
+      window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
-  const images = isMobile ? mobileImages : desktopImages;
+
 
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
@@ -91,25 +108,60 @@ const CarouselComponent = () => {
       onTouchEnd={handleTouchEnd}
     >
       <div
-        className="flex transition-transform duration-500 cursor-pointer"
+        className="md:hidden flex transition-transform duration-500 cursor-pointer"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
-          <a
-            key={index}
-            className="w-full flex-shrink-0"
-            href={image.link}
-            target={image.link === 'https://www.predialnet.com.br/assineja' ? '_blank' : '_self'}
-          >
-            <div className={`relative w-full ${isMobile ? 'aspect-[650/720]' : 'aspect-[1920/542]'}`}>
-              <img
-                src={image.src}
-                alt={`Slide ${index}`}
-                className="absolute top-0 left-0 w-full h-full object-contain"
-              />
-            </div>
-          </a>
-        ))}
+  <a
+    key={index}
+    className="w-full flex-shrink-0"
+    href={image.linkMobile}
+    target={image.link === 'https://www.predialnet.com.br/assineja' ? '_blank' : '_self'}
+  >
+    <div className="relative w-full">
+      {/* Imagem para Mobile */}
+      <img
+        src={image.mobileSrc}
+        alt={`Slide ${index} Mobile`}
+        className="md:hidden block w-full h-full object-cover"
+      />
+      {/* Imagem para Desktop */}
+      <img
+        src={image.desktopSrc}
+        alt={`Slide ${index} Desktop`}
+        className="hidden md:block w-full h-full object-cover"
+      />
+    </div>
+  </a>
+))}
+      </div>
+      <div
+        className="hidden md:flex transition-transform duration-500 cursor-pointer"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {images.map((image, index) => (
+  <a
+    key={index}
+    className="w-full flex-shrink-0"
+    href={image.link}
+    target={image.link === 'https://www.predialnet.com.br/assineja' ? '_blank' : '_self'}
+  >
+    <div className="relative w-full">
+      {/* Imagem para Mobile */}
+      <img
+        src={image.mobileSrc}
+        alt={`Slide ${index} Mobile`}
+        className="md:hidden block w-full h-full object-cover"
+      />
+      {/* Imagem para Desktop */}
+      <img
+        src={image.desktopSrc}
+        alt={`Slide ${index} Desktop`}
+        className="hidden md:block w-full h-full object-cover"
+      />
+    </div>
+  </a>
+))}
       </div>
 
       {/* Botões de navegação (somente desktop) */}

@@ -136,7 +136,7 @@ return (
           {/* Carrossel Mobile */}
 <div
           ref={cardsRef}
-          className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 scrollbar-hide"
+          className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 scrollbar-x-hide"
           onScroll={handleScroll}
         >
           {selectedPlans.map((plan, index) => (
