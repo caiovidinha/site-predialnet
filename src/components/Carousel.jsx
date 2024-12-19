@@ -21,12 +21,12 @@ const CarouselComponent = () => {
       link: '#',
       linkMobile: '#'
     },
-    {
-      desktopSrc: '/img/bannerC.jpg',
-      mobileSrc: '/img/bannerCmobile.jpg',
-      link: '#App',
-      linkMobile: '#App2'
-    },
+    // {
+    //   desktopSrc: '/img/bannerC.jpg',
+    //   mobileSrc: '/img/bannerCmobile.jpg',
+    //   link: '#App',
+    //   linkMobile: '#App2'
+    // },
     {
       desktopSrc: '/img/bannerF.jpg',
       mobileSrc: '/img/bannerFMobile.jpg',
