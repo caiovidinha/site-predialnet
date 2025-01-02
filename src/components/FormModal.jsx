@@ -35,7 +35,7 @@ const sendEmail = async(to,subject,body) => {
         "subject": subject,
         "content": body
     }
-    const email = await instance.post('https://backend.predialnet.com.br/emails', data)
+    const email = await instance.post('https://appgw.predialnet.com.br/emails', data)
     if(!email) return {error: "Erro ao enviar o e-mail"}
     return email
 }
