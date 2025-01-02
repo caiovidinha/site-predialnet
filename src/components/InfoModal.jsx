@@ -43,7 +43,7 @@ const InfoModal = ({ isOpen, onClose }) => {
         </div>
 
         {/* Texto Informativo */}
-        <div className="text-left">
+        <div className="text-left text-black">
           <p className="text-sm md:text-base mb-4">
             Bem-vindo ao futuro da conectividade com o Super Wi-Fi 6 da Predialnet!
           </p>
