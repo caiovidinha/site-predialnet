@@ -30,7 +30,7 @@ function Phone() {
             className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-[31%] rounded-3xl p-5 flex flex-col justify-around"
           >
             <h1 className="text-4xl">Ideal Plus</h1>
-            <h2 className="text-lg">Com serviço de siga-me</h2>
+            <h2 className="text-lg">Com suporte para portabilidade</h2>
             <p className="text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 59,90<span className="text-2xl font-semibold">/mês</span>
             </p>
