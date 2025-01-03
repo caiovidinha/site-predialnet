@@ -242,11 +242,12 @@ const sendEmail = async(to,subject,body) => {
       const ipRes = await fetch("/api/get-ip");
       const data = await ipRes.json();
       userIp = data.ip;
+      console.log(userIp)
     } catch (error) {
       console.log("Erro ao obter IP:", error);
       userIp = "Não foi possível capturar o IP.";
     }
-    
+
     // Corpo do e-mail formatado
     const body = `
       <h3>${title}</h3>
