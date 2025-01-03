@@ -23,6 +23,8 @@ function Atendimento() {
         <div className="w-full md:w-[32%]">
           <h2 className="text-3xl text-[#9c0004] tracking-tight">Horário de Atendimento</h2>
           <p className="text-[#9e9e9e] text-lg">Segunda a sexta das 9h às 18h</p>
+          <h2 className="text-3xl text-[#9c0004] mt-4 tracking-tight">Setor Comercial</h2>
+          <p className="text-[#9e9e9e] text-lg">Segunda a sexta das 9h às 18h</p>
           <p className="text-[#9e9e9e] text-lg">Sábado de 9h às 14h</p>
           <h3 className="text-3xl text-[#9c0004] mt-4 tracking-tight">Suporte</h3>
           <p className="text-[#9e9e9e] text-lg mt-1">Todos os dias das 6h às 24h</p>
