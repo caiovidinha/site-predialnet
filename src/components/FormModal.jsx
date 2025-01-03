@@ -236,6 +236,17 @@ const sendEmail = async(to,subject,body) => {
       ? `Solicitação de ${type}`
       : formData.subject || title;
 
+
+    let userIp = "";
+    try {
+      const ipRes = await fetch("/api/get-ip");
+      const data = await ipRes.json();
+      userIp = data.ip;
+    } catch (error) {
+      console.log("Erro ao obter IP:", error);
+      userIp = "Não foi possível capturar o IP.";
+    }
+    
     // Corpo do e-mail formatado
     const body = `
       <h3>${title}</h3>
@@ -243,6 +254,8 @@ const sendEmail = async(to,subject,body) => {
         const fieldValue = formData[field.id] || "";
         return `<p><strong>${field.label}:</strong> ${fieldValue}</p>`;
       }).join("")}
+      <hr />
+      <p><strong>IP do solicitante:</strong> ${userIp}</p>
     `;
 
     // Enviar e-mail
