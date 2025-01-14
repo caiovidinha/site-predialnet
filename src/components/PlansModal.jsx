@@ -34,7 +34,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
           {/* Seção 1: Colunas do Plano */}
           <div className="flex-1 flex flex-row gap-6 relative w-full md:max-w-[41%] md:mr-10">
             {/* Coluna 1 */}
-            <div className="bg-[#9c0004] text-white p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
+            <div className="bg-white text-[#9c0004] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
             <div className='flex flex-col gap-2 '>
                 <p className="text-sm md:text-md text-center ">Plano até</p>
                 <h1 className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
@@ -68,8 +68,8 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
                 <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
                 <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
-                <p className='text-xs    px-1 md:px-0 text-left '>{plan.wifi}</p>
-                <p className='text-xs   px-1 md:px-0 text-left '>Serviços inteligentes</p>
+                <p className='text-xs    px-1 md:px-0 text-left font-bold'>{plan.wifi}</p>
+                <p className='text-xs   px-1 md:px-0 text-left'>Serviços inteligentes*</p>
               </div>
               <a
                 href={urlSA}
@@ -79,16 +79,16 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 Assinar
               </a>
             </div> :
-            <div className="bg-[#fff] text-[#9c0004] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left ">
+            <div className="bg-[#9c0004] text-[#fff] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left ">
             <div className='flex flex-col gap-2 '>
               <p className="text-sm md:text-md text-center ">Oferta até</p>
               <h1 className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
               
               <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
-              <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
+              <p className="text-sm md:text-md mt-2    px-1 md:px-0 text-left font-bold">{plan.wifi}</p>
+              <p className="text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
               <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
-              <p className='text-xs    px-1 md:px-0 text-left '>{plan.wifi}</p>
-              <p className='text-xs   px-1 md:px-0 text-left '>Serviços inteligentes</p>
+              <p className='text-xs   px-1 md:px-0 text-left'>Serviços inteligentes*</p>
             </div>
             <a
               href={urlSA}
