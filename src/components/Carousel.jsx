@@ -5,13 +5,13 @@ const CarouselComponent = () => {
   const images = [
     {
       desktopSrc: '/img/banner5.jpg',
-      mobileSrc: '/img/banner5mobile.jpg',
+      mobileSrc: '/img/banner5Mobile.jpg',
       link: 'https://www.predialnet.com.br/assineja',
       linkMobile: 'https://www.predialnet.com.br/assineja'
     },
     {
       desktopSrc: '/img/banner4.jpg',
-      mobileSrc: '/img/banner4mobile.jpg',
+      mobileSrc: '/img/banner4Mobile.jpg',
       link: 'https://www.predialnet.com.br/assineja',
       linkMobile: 'https://www.predialnet.com.br/assineja'
     },
@@ -23,7 +23,7 @@ const CarouselComponent = () => {
     },
     {
       desktopSrc: '/img/banner2.jpg',
-      mobileSrc: '/img/banner2mobile.jpg',
+      mobileSrc: '/img/banner2Mobile.jpg',
       link: 'https://www.predialnet.com.br/assineja',
       linkMobile: 'https://www.predialnet.com.br/assineja'
     },
