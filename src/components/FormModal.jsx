@@ -197,6 +197,7 @@ const sendEmail = async(to,subject,body) => {
         { id: "neighborhood", label: "Bairro", type: "text" },
         { id: "cep", label: "CEP", type: "text" },
         { id: "companyName", label: "Nome da empresa", type: "text" },
+        { id: "cnpj", label: "CNPJ", type: "text" },
         { id: "yourName", label: "Seu nome", type: "text" },
         { id: "phone", label: "Telefone", type: "text" },
         { id: "email", label: "E-mail", type: "email" }
@@ -437,7 +438,122 @@ const sendEmail = async(to,subject,body) => {
         </form>
 
 
-        :
+        : type === "empresa" ? 
+        <form className="space-y-4">
+        {/* Título e Subtítulo */}
+        <h2 className="text-xl font-bold">{empresa.title}</h2>
+        <p className="text-sm text-gray-600">{empresa.subtitle}</p>
+
+        {/* Grupo: Nome da Empresa e Seu Nome */}
+        <div className="flex flex-col md:flex-row md:gap-6 gap-4">
+          <div className="w-full md:flex-1">
+            <label htmlFor="companyName" className="block mb-1 text-sm font-normal">Nome da empresa</label>
+            <input
+              id="companyName"
+              type="text"
+              onChange={handleInputChange}
+              className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+            />
+          </div>
+          <div className="w-full md:flex-1">
+            <label htmlFor="cnpj" className="block mb-1 text-sm font-normal">CNPJ</label>
+            <input
+              id="cnpj"
+              type="text"
+              onChange={handleInputChange}
+              className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+            />
+          </div>
+        </div>
+    
+        {/* Grupo: Endereço, Número e Complemento */}
+        <div className="flex flex-col md:flex-row md:gap-6 gap-4">
+          <div className="flex flex-row gap-4">
+            <div className="w-full md:flex-1">
+              <label htmlFor="address" className="block mb-1 text-sm font-normal">Endereço</label>
+              <input
+                id="address"
+                type="text"
+                onChange={handleInputChange}
+                className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+              />
+            </div>
+            <div className="w-2/5 md:w-1/4">
+              <label htmlFor="number" className="block mb-1 text-sm font-normal">Número</label>
+              <input
+                id="number"
+                type="text"
+                onChange={handleInputChange}
+                className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+              />
+            </div>
+          </div>
+          <div className="md:flex-1">
+            <label htmlFor="complement" className="block mb-1 text-sm font-normal">Complemento</label>
+            <input
+              id="complement"
+              type="text"
+              onChange={handleInputChange}
+              className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+            />
+          </div>
+        </div>
+    
+        {/* Grupo: Bairro e CEP */}
+        <div className="flex flex-row md:gap-6 gap-4">
+          <div className="w-full md:flex-1">
+            <label htmlFor="neighborhood" className="block mb-1 text-sm font-normal">Bairro</label>
+            <input
+              id="neighborhood"
+              type="text"
+              onChange={handleInputChange}
+              className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+            />
+          </div>
+          <div className="w-2/3 md:w-1/4">
+            <label htmlFor="cep" className="block mb-1 text-sm font-normal">CEP</label>
+            <input
+              id="cep"
+              type="text"
+              onChange={handleInputChange}
+              className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+            />
+          </div>
+        </div>
+    
+        
+    
+        {/* Grupo: Telefone e E-mail */}
+        <div className="flex flex-row md:flex-row md:gap-6 gap-4">
+          <div className="w-4/7 md:flex-1">
+            <label htmlFor="email" className="block mb-1 text-sm font-normal">E-mail</label>
+            <input
+              id="email"
+              type="email"
+              onChange={handleInputChange}
+              className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+            />
+          </div>
+          <div className="w-3/7 md:w-1/4">
+            <label htmlFor="phone" className="block mb-1 text-sm font-normal">Telefone</label>
+            <input
+              id="phone"
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
+              className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+            />
+          </div>
+        </div>
+    
+        {/* Botão de Enviar */}
+        <button
+          onClick={handleSubmit}
+          className="w-full bg-[#9c0004] text-white py-3 rounded mt-6 hover:bg-[#7b0003] transition"
+        >
+          Enviar
+        </button>
+      </form> :
         
         
         <form className="space-y-4">

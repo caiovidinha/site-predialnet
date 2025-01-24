@@ -4,34 +4,34 @@ import React, { useState, useEffect } from 'react';
 const CarouselComponent = () => {
   const images = [
     {
-      desktopSrc: '/img/bannerA.jpg',
-      mobileSrc: '/img/bannerAmobile.jpg',
+      desktopSrc: '/img/banner5.jpg',
+      mobileSrc: '/img/banner5mobile.jpg',
       link: 'https://www.predialnet.com.br/assineja',
       linkMobile: 'https://www.predialnet.com.br/assineja'
     },
     {
-      desktopSrc: '/img/bannerB.jpg',
-      mobileSrc: '/img/bannerBmobile.jpg',
-      link: '#WiFi6',
-      linkMobile: '#WiFi6'
+      desktopSrc: '/img/banner4.jpg',
+      mobileSrc: '/img/banner4mobile.jpg',
+      link: 'https://www.predialnet.com.br/assineja',
+      linkMobile: 'https://www.predialnet.com.br/assineja'
     },
     {
-      desktopSrc: '/img/bannerE.jpg',
-      mobileSrc: '/img/bannerEMobile.jpg',
-      link: '#',
-      linkMobile: '#'
+      desktopSrc: '/img/banner3.jpg',
+      mobileSrc: '/img/banner3Mobile.jpg',
+      link: 'https://www.predialnet.com.br/assineja',
+      linkMobile: 'https://www.predialnet.com.br/assineja'
     },
-    // {
-    //   desktopSrc: '/img/bannerC.jpg',
-    //   mobileSrc: '/img/bannerCmobile.jpg',
-    //   link: '#App',
-    //   linkMobile: '#App2'
-    // },
     {
-      desktopSrc: '/img/bannerF.jpg',
-      mobileSrc: '/img/bannerFMobile.jpg',
-      link: '#',
-      linkMobile: '#'
+      desktopSrc: '/img/banner2.jpg',
+      mobileSrc: '/img/banner2mobile.jpg',
+      link: 'https://www.predialnet.com.br/assineja',
+      linkMobile: 'https://www.predialnet.com.br/assineja'
+    },
+    {
+      desktopSrc: '/img/banner1.jpg',
+      mobileSrc: '/img/banner1Mobile.jpg',
+      link: 'https://www.predialnet.com.br/assineja',
+      linkMobile: 'https://www.predialnet.com.br/assineja'
     }
   ];
 
