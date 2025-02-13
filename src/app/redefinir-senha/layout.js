@@ -1,15 +1,10 @@
-export const metadata = {
-    title: "Redefinir senha - Predialnet",
-    description: "Sua nova internet",
-  };
-  
+import { Suspense } from "react";
+import ResetPassword from "./page";
 
-export default function Layout({ children }) {
+export default function PageWrapper() {
   return (
-
-      <>
-        {children}
-      </>
-
+    <Suspense fallback={<div>Carregando...</div>}>
+      <ResetPassword />
+    </Suspense>
   );
 }
