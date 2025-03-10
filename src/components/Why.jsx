@@ -24,9 +24,9 @@ function Why() {
           },
           {
             imgSrc: 'img/iconeC.png',
-            title: 'O maior provedor regional',
-            description: `A Predialnet está entre os maiores provedores regionais do Rio de Janeiro, sendo a maior da cidade de Niterói. 
-                          Venha para a maior!<br />Fonte: informacoes.anatel.gov.br | Nov 2024.`,
+            title: 'O maior provedor regional do RJ',
+            description: `A Predialnet é o maior provedor regional do estado do Rio de Janeiro. 
+                          Venha para a maior! Fonte: informacoes.anatel.gov.br | <br />Jan 2025.`,
           },
           // {
           //   imgSrc: 'img/iconeD.png',

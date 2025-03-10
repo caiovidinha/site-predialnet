@@ -24,14 +24,14 @@ function Cliente() {
       wifi: 'Com Super Wi-Fi Gigabit',
     },
     {
-      id: '600mega',
-      title: '600 mega',
+      id: '800mega',
+      title: '800 mega',
       valor: 'R$ 124,90',
       wifi: 'Com Super Wi-Fi 6',
     },
     {
-      id: '700mega',
-      title: '700 mega',
+      id: '1giga',
+      title: '1 giga',
       valor: 'R$ 139,90',
       wifi: 'Com Super Wi-Fi 6',
     },
