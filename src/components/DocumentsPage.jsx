@@ -7,6 +7,22 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/contrato-padrao-adesao-servico-internet.pdf',
     },
     {
+      title: 'Regulamento "Plano Fibra 1 Giga"',
+      link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-1giga.pdf',
+    },
+    {
+      title: 'Regulamento Oferta Promocional "Plano Fibra 1 Giga"',
+      link: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
+    },
+    {
+      title: 'Regulamento "Plano Fibra 800"',
+      link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-800.pdf',
+    },
+    {
+      title: 'Regulamento Oferta Promocional "Plano Fibra 800"',
+      link: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf',
+    },
+    {
       title: 'Regulamento "Plano Fibra 700"',
       link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-700.pdf',
     },
