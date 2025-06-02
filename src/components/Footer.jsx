@@ -37,7 +37,7 @@ function Footer() {
         {/* Links de política de privacidade */}
         <div className="flex space-x-8">
           <a
-            href="https://www.predialnet.com.br/assineja/images/politica_de_privacidade_geral.pdf"
+            href="/politica-de-privacidade"
             target='_blank'
             className="text-sm text-[#231f20] hover:text-[#9c0004] underline-offset-2 underline"
           >

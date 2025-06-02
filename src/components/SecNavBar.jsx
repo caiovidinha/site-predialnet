@@ -41,7 +41,7 @@ const SecNav = () => {
           </a> */}
         </div>
         <div className="w-full flex items-center justify-end gap-3">
-          <div className="font-semibold">
+          <div className="font-semibold text-black">
             Assine também pelo telefone 21 3515-0555
           </div>
           <a
