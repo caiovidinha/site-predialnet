@@ -21,7 +21,7 @@ export default function Home() {
     <Cards />
     <Contrate />
     <Why />
-    {/* <App /> */}
+    <App />
     <Phone />
     <Cliente />
     <Others />

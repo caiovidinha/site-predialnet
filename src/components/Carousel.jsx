@@ -4,6 +4,12 @@ import React, { useState, useEffect } from 'react';
 const CarouselComponent = () => {
   const images = [
     {
+      desktopSrc: '/img/banner4.jpg',
+      mobileSrc: '/img/banner4Mobile.jpg',
+      link: '#App',
+      linkMobile: '/#App2'
+    },
+    {
       desktopSrc: '/img/banner1.jpg',
       mobileSrc: '/img/banner1Mobile.jpg',
       link: 'https://www.predialnet.com.br/assineja',

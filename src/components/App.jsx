@@ -7,7 +7,7 @@ function App() {
       <div id="App" className="hidden md:flex px-[12%] py-10 font-sans bg-white flex-row justify-between">
         <div className="w-[21%] flex flex-col justify-end mb-14">
           <h3 className="text-[#9c0004] text-lg">App Minha Predialnet</h3>
-          <h1 className="text-3xl my-7 w-full">Acesse o App<br />Minha Predialnet e gerencie seu plano na palma da mão</h1>
+          <h1 className="text-3xl my-7 w-full text-black">Acesse o App<br />Minha Predialnet e gerencie seu plano na palma da mão</h1>
           <img src="img/qrcode.png" alt="QR Code" className="border-[#dbdbdb] border-2 rounded-lg border-solid w-52" />
         </div>
 
@@ -37,8 +37,12 @@ function App() {
           <div className="w-full border-t-2 border-gray-400" />
 
           <div className="flex flex-row justify-between mt-5">
-            <img src="img/logoappstore.png" alt="App Store" className="w-[46%] h-full cursor-pointer" />
-            <img src="img/logogoogleplay.png" alt="Google Play" className="w-[46%] h-full cursor-pointer" />
+            <a href="https://apps.apple.com/br/app/minha-predialnet/id6743764762" target="_blank" rel="noopener noreferrer">
+              <img src="img/logoappstore.png" alt="App Store" className=" h-full cursor-pointer" />
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.predialnet.app" target="_blank" rel="noopener noreferrer">
+              <img src="img/logogoogleplay.png" alt="Google Play" className=" h-full cursor-pointer" />
+            </a>
           </div>
         </div>
       </div>
@@ -47,7 +51,7 @@ function App() {
       <div id="App2" className="md:hidden px-6 py-10 font-sans bg-white">
         <div className="flex flex-col items-start">
           <h3 className="text-[#9c0004] text-lg text-left">App Minha Predialnet</h3>
-          <h1 className="text-3xl my-4 text-left">
+          <h1 className="text-3xl my-4 text-left text-black">
             Acesse o App Minha Predialnet e gerencie seu plano na palma da mão
           </h1>
           <p className="text-[#9e9e9e] text-lg text-left mb-6 leading-6">
@@ -74,16 +78,20 @@ function App() {
             </div>
           </div>
           <div className="flex flex-row justify-center gap-3 w-full mt-2">
-            <img
-              src="img/logoappstore.png"
-              alt="App Store"
-              className="w-[40%] h-auto cursor-pointer transition-transform active:scale-95"
-            />
-            <img
-              src="img/logogoogleplay.png"
-              alt="Google Play"
-              className="w-[40%] h-auto cursor-pointer transition-transform active:scale-95"
-            />
+            <a href="https://apps.apple.com/br/app/minha-predialnet/id6743764762" target="_blank" rel="noopener noreferrer">
+              <img
+                src="img/logoappstore.png"
+                alt="App Store"
+                className=" h-auto cursor-pointer transition-transform active:scale-95"
+              />
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.predialnet.app" target="_blank" rel="noopener noreferrer">
+              <img
+                src="img/logogoogleplay.png"
+                alt="Google Play"
+                className=" h-auto cursor-pointer transition-transform active:scale-95"
+              />
+            </a>
           </div>
         </div>
       </div>
