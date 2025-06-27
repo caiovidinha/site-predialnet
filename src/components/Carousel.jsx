@@ -169,13 +169,13 @@ const CarouselComponent = () => {
         <>
           <button
             onClick={prevSlide}
-            className="absolute top-1/2 left-5 transform -translate-y-1/2 bg-opacity-50 text-gray-300 opacity-50 rounded-full p-8 "
+            className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-opacity-0 bg-black h-full text-black opacity-100 px-10 "
           >
             &#10094;
           </button>
           <button
             onClick={nextSlide}
-            className="absolute top-1/2 right-5 transform -translate-y-1/2 bg-opacity-50 text-gray-300 opacity-50 rounded-full p-8 "
+            className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-opacity-0 bg-black h-full text-black opacity-100 px-10"
           >
             &#10095;
           </button>
