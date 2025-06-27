@@ -10,6 +10,12 @@ const CarouselComponent = () => {
       linkMobile: '/#App2'
     },
     {
+      desktopSrc: '/img/banner5.jpg',
+      mobileSrc: '/img/banner5Mobile.jpg',
+      link: '/',
+      linkMobile: '/'
+    },
+    {
       desktopSrc: '/img/banner1.jpg',
       mobileSrc: '/img/banner1Mobile.jpg',
       link: 'https://www.predialnet.com.br/assineja',
@@ -65,7 +71,7 @@ const CarouselComponent = () => {
 
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Altera a cada 5 segundos
+    }, 3000); // Altera a cada 3 segundos
 
     return () => clearInterval(interval);
   }, [currentIndex, isHovered]);
