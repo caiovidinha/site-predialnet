@@ -10,12 +10,6 @@ const CarouselComponent = () => {
       linkMobile: '/#App2'
     },
     {
-      desktopSrc: '/img/banner5.jpg',
-      mobileSrc: '/img/banner5Mobile.jpg',
-      link: '/',
-      linkMobile: '/'
-    },
-    {
       desktopSrc: '/img/banner1.jpg',
       mobileSrc: '/img/banner1Mobile.jpg',
       link: 'https://www.predialnet.com.br/assineja',
