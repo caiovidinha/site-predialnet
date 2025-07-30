@@ -18,8 +18,8 @@ function Cliente() {
   };
   const plans = [
     {
-      id: '500mega',
-      title: '500 mega',
+      id: '600mega',
+      title: '600 mega',
       valor: 'R$ 99,90',
       wifi: 'Com Super Wi-Fi Gigabit',
     },
