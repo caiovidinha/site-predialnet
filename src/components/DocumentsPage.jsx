@@ -7,6 +7,38 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/contrato-padrao-adesao-servico-internet.pdf',
     },
     {
+      title: 'Regulamento Plano "Fibra 1 Giga – Preço Fixo até 2029"',
+      link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Plano_1GB.pdf',
+    },
+    {
+      title: 'Regulamento Oferta Promocional "Plano Fibra 1 Giga – Preço Fixo até 2029"',
+      link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_1_GB.pdf',
+    },
+    {
+      title: 'Regulamento Plano "Fibra 800 – Preço Fixo até 2029"',
+      link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Plano_800.pdf',
+    },
+    {
+      title: 'Regulamento Oferta Promocional "Plano Fibra 800 – Preço Fixo até 2029"',
+      link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_800.pdf',
+    },
+    {
+      title: 'Regulamento Plano "Fibra 600 – Preço Fixo até 2029"',
+      link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Plano_600.pdf',
+    },
+    {
+      title: 'Regulamento Oferta Promocional "Plano Fibra 600 – Preço Fixo até 2029"',
+      link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_600.pdf',
+    },
+    {
+      title: 'Regulamento Plano "Fibra 400 – Preço Fixo até 2029"',
+      link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Plano_400.pdf',
+    },
+    {
+      title: 'Regulamento Oferta Promocional "Plano Fibra 400 – Preço Fixo até 2029"',
+      link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_400.pdf',
+    },
+    {
       title: 'Regulamento "Plano Fibra 1 Giga"',
       link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-1giga.pdf',
     },
@@ -116,7 +148,7 @@ const documents = {
 };
 const DocumentsPage = () => {
   return (
-    <div className="font-sans container mx-auto p-8">
+    <div className="font-sans container mx-auto p-8 text-black">
       {/* Conteúdo da Página */}
       <div className="text-center">
         <h2 className="text-lg md:text-xl text-black font-normal">DOCUMENTOS</h2>

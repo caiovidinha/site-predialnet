@@ -14,7 +14,7 @@ function Why() {
             title: 'A preferida entre os jogadores de EA FC',
             description: `A Predialnet é a internet número 1 entre os jogadores de EA FC de Niterói. 
                           E você sabe, se é melhor para quem joga é melhor para todo mundo. 
-                          Fonte: relatório de qualidade de conexão da EA | Nov 2024`,
+                          Fonte: relatório de qualidade de conexão da EA | Jul 2025`,
           },
           {
             imgSrc: 'img/iconeB.png',
@@ -26,7 +26,7 @@ function Why() {
             imgSrc: 'img/iconeC.png',
             title: 'O maior provedor regional do RJ',
             description: `A Predialnet é o maior provedor regional do estado do Rio de Janeiro. 
-                          Venha para a maior! Fonte: informacoes.anatel.gov.br | <br />Jan 2025.`,
+                          Venha para a maior! Fonte: informacoes.anatel.gov.br | <br />Jul 2025.`,
           },
           // {
           //   imgSrc: 'img/iconeD.png',

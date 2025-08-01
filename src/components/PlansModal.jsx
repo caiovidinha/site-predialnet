@@ -6,6 +6,11 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
   if (!isOpen) return null;
   const url = 'https://www.predialnet.com.br/assineja?services=false'
   const urlSA = 'https://www.predialnet.com.br/assineja'
+  const regulamentoURL = plan.title == "600 mega" 
+  ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_600.pdf" 
+  : plan.title == "800 mega"
+  ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_800.pdf"
+  : "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_1_GB.pdf"
 
 
 
@@ -106,7 +111,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
 
           {/* Seção 2: Descrição */}
           <div className="flex-1 ">
-            <h1 className="text-[#9c0004] text-xl mb-4 hidden md:block">SEM FIDELIDADE . CANCELE A QUALQUER HORA</h1>
+            <h1 className="text-[#9c0004] text-xl mb-4 hidden md:block">SEM FIDELIDADE . PREÇO FIXO ATÉ 2029</h1>
             <h2 className="font-bold text-sm">Oferta com velocidade de até {plan.title}</h2>
             <p className=" mb-4 leading-tight text-sm">
               Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com
@@ -128,7 +133,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
             <div className="border-t-2 border-black my-4"></div>
             <div className="flex items-end justify-between">
               <Image src="/img/logo.png" alt="Predialnet Logo" width={140} height={22} />
-              <a href="https://www.predialnet.com.br/download/contrato-padrao-adesao-servico-internet.pdf" target="_blank" className="flex items-center gap-1 font-bold text-black text-md">
+              <a href={regulamentoURL} target="_blank" className="flex items-center gap-1 font-bold text-black text-md">
                 <img src="/img/regulamento.png" alt="Regulamento" className="w-4 h-4 mb-1" /> Regulamento
               </a>
             </div>

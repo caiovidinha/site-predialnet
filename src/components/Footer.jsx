@@ -47,7 +47,7 @@ function Footer() {
 
         {/* Texto de direitos reservados */}
         <p className="text-center md:text-left text-xs text-[#231f20] w-full md:w-auto">
-          Predialnet - Provedor de Internet &copy; 2024  Todos os direitos reservados.
+          Predialnet - Provedor de Internet &copy; 2025  Todos os direitos reservados.
         </p>
 
         {/* Texto de desenvolvimento */}
