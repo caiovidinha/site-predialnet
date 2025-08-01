@@ -11,7 +11,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Plano_1GB.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 1 Giga – Preço Fixo até 2029"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 1 Giga – Preço Fixo até 2029"',
       link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_1_GB.pdf',
     },
     {
@@ -19,7 +19,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Plano_800.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 800 – Preço Fixo até 2029"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 800 – Preço Fixo até 2029"',
       link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_800.pdf',
     },
     {
@@ -27,7 +27,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Plano_600.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 600 – Preço Fixo até 2029"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 600 – Preço Fixo até 2029"',
       link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_600.pdf',
     },
     {
@@ -35,7 +35,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Plano_400.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 400 – Preço Fixo até 2029"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 400 – Preço Fixo até 2029"',
       link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_400.pdf',
     },
     {
@@ -43,7 +43,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-1giga.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 1 Giga"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 1 Giga"',
       link: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
     },
     {
@@ -51,7 +51,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-800.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 800"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 800"',
       link: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf',
     },
     {
@@ -59,7 +59,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-700.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 700"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 700"',
       link: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-700.pdf',
     },
     {
@@ -67,7 +67,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-600.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 600"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 600"',
       link: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf',
     },
     {
@@ -75,7 +75,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-500.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 500"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 500"',
       link: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-500.pdf',
     },
     {
@@ -83,7 +83,7 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/regulamento-plano-fibra-400.pdf',
     },
     {
-      title: 'Regulamento Oferta Promocional "Plano Fibra 400"',
+      title: 'Regulamento Oferta Promocional "Predial Fibra 400"',
       link: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-400.pdf',
     },
     {
