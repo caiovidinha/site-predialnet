@@ -6,6 +6,11 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
   if (!isOpen) return null;
   const url = 'https://www.predialnet.com.br/assineja?services=false'
   const urlSA = 'https://www.predialnet.com.br/assineja'
+  const regulamentoURL = plan.title == "600 mega" 
+  ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_600.pdf" 
+  : plan.title == "800 mega"
+  ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_800.pdf"
+  : "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_1_GB.pdf"
 
 
 
@@ -23,8 +28,8 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
 
   return (
     <div
-    className="font-sans fixed inset-0 bg-[#9c0004] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]">
-      <div className="bg-[#f2f2f2] rounded-lg pt-10 pb-8 md:py-20 px-6 md:px-10 max-w-5xl w-full mx-4 relative overflow-y-auto max-h-[70%] md:max-h-screen">
+    className="font-sans fixed inset-0 bg-[#f2f2f2] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]">
+      <div className="bg-[#f2f2f2] rounded-lg pt-10 pb-8 md:py-20 px-6 md:px-10 max-w-5xl w-full mx-4 relative overflow-y-auto max-h-[85%] md:max-h-screen">
         {/* Botão de Fechar */}
         <button className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
           &times;
@@ -67,9 +72,9 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 <h1 className="text-xs md:text-xs -mt-3 font-normal bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">+100 mega de bônus nos doze primeiros meses</h1>
                 <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
                 <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
-                <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
-                <p className='text-xs    px-1 md:px-0 text-left font-bold'>{plan.wifi}</p>
-                <p className='text-xs   px-1 md:px-0 text-left'>Serviços inteligentes*</p>
+                <p className="px-1 md:px-0 text-left ">Sem fidelidade</p>
+                <p className=' px-1 md:px-0 text-left font-bold'>{plan.wifi}</p>
+                <p className=' px-1 md:px-0 text-left'>Serviços inteligentes*</p>
               </div>
               <a
                 href={urlSA}
@@ -85,7 +90,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
               <h1 className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
               
               <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
-              <p className="text-sm md:text-md mt-2    px-1 md:px-0 text-left font-bold">{plan.wifi}</p>
+              <p className="text-xs md:text-md mt-2 px-1 md:px-0 text-left font-bold">{plan.wifi}</p>
               <p className="text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
               <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
               <p className='text-xs   px-1 md:px-0 text-left'>Serviços inteligentes*</p>
@@ -106,7 +111,12 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
 
           {/* Seção 2: Descrição */}
           <div className="flex-1 ">
-            <h1 className="text-[#9c0004] text-xl mb-4 hidden md:block">SEM FIDELIDADE . CANCELE A QUALQUER HORA</h1>
+            <div className="md:hidden flex items-end justify-center -mt-5 mb-4 w-full">
+              <a href={regulamentoURL} target="_blank" className="flex items-center gap-1 font-bold text-black text-md">
+                <img src="/img/regulamento.png" alt="Regulamento" className="w-4 h-4 mb-1" /> Regulamento
+              </a>
+            </div>
+            <h1 className="text-[#9c0004] text-[13pt] font-bold md:font-normal md:text-xl md:mb-4">SEM FIDELIDADE . PREÇO FIXO ATÉ 2029</h1>
             <h2 className="font-bold text-sm">Oferta com velocidade de até {plan.title}</h2>
             <p className=" mb-4 leading-tight text-sm">
               Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com
@@ -125,10 +135,10 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
               </li>
             </ul>
             <p className="text-sm md:mb-6 leading-tight">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.</p>
-            <div className="border-t-2 border-black my-4"></div>
-            <div className="flex items-end justify-between">
+            <div className="hidden md:flex border-t-2 border-black my-4"></div>
+            <div className="hidden md:flex items-end justify-between ">
               <Image src="/img/logo.png" alt="Predialnet Logo" width={140} height={22} />
-              <a href="https://www.predialnet.com.br/download/contrato-padrao-adesao-servico-internet.pdf" target="_blank" className="flex items-center gap-1 font-bold text-black text-md">
+              <a href={regulamentoURL} target="_blank" className="flex items-center gap-1 font-bold text-black text-md">
                 <img src="/img/regulamento.png" alt="Regulamento" className="w-4 h-4 mb-1" /> Regulamento
               </a>
             </div>
