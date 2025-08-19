@@ -67,12 +67,12 @@ function Plans() {
             className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
               <FaWhatsapp size={25}/> Assinar pelo WhatsApp
             </a>
-            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Wi-Fi 6 grátis - Mais conectividade</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis | Sem fidelidade</p>
+            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
+            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
           </div>
           <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
             <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
-              <IoIosWifi /> 1 Ponto <span className="text-[#008c4b]">Wi-Fi 6</span> incluído
+              <IoIosWifi /> Plano com Super <span className="text-[#008c4b]">Wi-Fi 6</span>
             </p>
           </div>
         </div>
@@ -96,12 +96,12 @@ function Plans() {
             className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
               <FaWhatsapp size={25}/> Assinar pelo WhatsApp
             </a>
-            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Wi-Fi 6 grátis - Mais conectividade</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis | Sem fidelidade</p>
+            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
+            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
           </div>
           <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
             <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
-              <IoIosWifi /> 1 Ponto <span className="text-[#008c4b]">Wi-Fi 6</span> incluído
+              <IoIosWifi /> Plano com Super <span className="text-[#008c4b]">Wi-Fi 6</span>
             </p>
           </div>
         </div>
@@ -127,12 +127,12 @@ function Plans() {
             </a>
           
             
-            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Super Wi-Fi Gigabit grátis</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis | Sem fidelidade</p>
+            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
+            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
           </div>
           <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
             <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
-              <IoIosWifi /> 1 Ponto Wi-Fi Gigabit incluído
+              <IoIosWifi /> Plano com Super Wi-Fi Gigabit
             </p>
           </div>
         </div>
