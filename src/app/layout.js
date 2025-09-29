@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     
     <html lang="pt-BR"
     className={`${Bahn.variable} antialiased scroll-smooth`}>
-      <body className="bg-[#fff] tracking-tight">
+      <body className="bg-[#fff] tracking-tigh text-black">
       <Nav />
       <SecNav />
         {children}

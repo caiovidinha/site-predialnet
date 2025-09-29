@@ -3,7 +3,7 @@ import { FaInstagram, FaFacebook } from 'react-icons/fa';
 
 function Footer() {
   return (
-    <div className="bg-[#dedede] py-8 font-sans text-[#231f20] px-6 md:px-[12%]">
+    <div className="bg-[#dedede] py-8 font-sans text-[#231f20] px-6 md:px-[8%]">
 
      
       <div className="flex flex-col md:flex-row items-center justify-between  gap-3">
@@ -34,16 +34,21 @@ function Footer() {
           </a> */}
         </div>
 
-        {/* Links de política de privacidade */}
-        <div className="flex space-x-8">
+        {/* Links de política de privacidade e relatórios */}
           <a
             href="/politica-de-privacidade"
             target='_blank'
-            className="text-sm text-[#231f20] hover:text-[#9c0004] underline-offset-2 underline"
+            className="text-xs text-[#231f20] hover:text-[#9c0004] underline-offset-2 underline"
           >
             Política de Privacidade
           </a>
-        </div>
+        <a
+            href="/relatorios"
+            target='_blank'
+            className="text-xs text-[#231f20] hover:text-[#9c0004] underline-offset-2 underline"
+          >
+            Relatórios de Transparência e Igualdade Salarial
+          </a>
 
         {/* Texto de direitos reservados */}
         <p className="text-center md:text-left text-xs text-[#231f20] w-full md:w-auto">
