@@ -4,6 +4,18 @@ import React, { useState, useEffect } from 'react';
 const CarouselComponent = () => {
   const images = [
     {
+      desktopSrc: '/img/bannerOutubroRosa.svg',
+      mobileSrc: '/img/bannerOutubroRosaMobile.svg',
+      link: '/outubro-rosa',
+      linkMobile: '/outubro-rosa'
+    },
+    {
+      desktopSrc: '/img/bannerGuerreiro.svg',
+      mobileSrc: '/img/bannerGuerreiroMobile.svg',
+      link: '/guerreiro-bom-de-bola',
+      linkMobile: '/guerreiro-bom-de-bola'
+    },
+    {
       desktopSrc: '/img/banner1.jpg',
       mobileSrc: '/img/banner1Mobile.jpg',
       link: 'https://www.predialnet.com.br/assineja',
