@@ -27,6 +27,20 @@ const Nav = () => {
                 </p>
               </Link>
             </li>
+            <li>
+              <Link href="/outubro-rosa">
+                <p className="text-[#9e9e9e] hover:text-[#9c0004] text-sm font-semibold duration-150 ease-in-out hover:border-b-[#9c0004] hover:border-solid hover:border-b-2">
+                  Outubro Rosa
+                </p>
+              </Link>
+            </li>
+            {/* <li>
+              <Link href="/guerreiro-bom-de-bola">
+                <p className="text-[#9e9e9e] hover:text-[#9c0004] text-sm font-semibold duration-150 ease-in-out hover:border-b-[#9c0004] hover:border-solid hover:border-b-2">
+                  Guerreiro Bom de Bola
+                </p>
+              </Link>
+            </li> */}
             {/* <li>
               <Link href="/">
                 <p className="text-[#9e9e9e] text-sm font-semibold duration-150 ease-in-out">
@@ -75,18 +89,23 @@ const Nav = () => {
           />
         </a>
 
-        {/* Links para "Para sua casa" e "Para sua empresa" */}
-        <div className="flex items-end mt-3 space-x-3">
+        {/* Links de navegação */}
+        <div className="flex items-end mt-3 space-x-2">
           <Link href="/">
-            <p className="text-[#9c0004] text-sm font-semibold whitespace-nowrap">
+            <p className="text-[#9c0004] text-xs font-semibold whitespace-nowrap">
               Para sua casa
             </p>
           </Link>
-          <Link href="/">
-            <p className="text-[#9e9e9e] text-sm font-semibold whitespace-nowrap opacity-0">
-              ____________________
+          <Link href="/outubro-rosa">
+            <p className="text-[#9e9e9e] hover:text-[#9c0004] text-xs font-semibold whitespace-nowrap">
+              Outubro Rosa
             </p>
           </Link>
+          {/* <Link href="/guerreiro-bom-de-bola">
+            <p className="text-[#9e9e9e] hover:text-[#9c0004] text-xs font-semibold whitespace-nowrap">
+              Guerreiro
+            </p>
+          </Link> */}
         </div>
 
         {/* Botão Flutuante de WhatsApp */}
