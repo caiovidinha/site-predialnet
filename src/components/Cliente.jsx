@@ -18,8 +18,8 @@ function Cliente() {
   };
   const plans = [
     {
-      id: '600mega',
-      title: '600 mega',
+      id: '500mega',
+      title: '500 mega',
       valor: 'R$ 99,90',
       wifi: 'Com Super Wi-Fi Gigabit',
     },
@@ -184,7 +184,7 @@ function Cliente() {
             <img
               onClick={() => openModal(plans[1])}
               src="img/600prov.png"
-              alt="600 mega Wi-Fi 6"
+              alt="500 mega Wi-Fi 6"
               className="w-full h-auto object-cover hover:cursor-pointer active:scale-105 transition-transform scale-110"
             />
             
