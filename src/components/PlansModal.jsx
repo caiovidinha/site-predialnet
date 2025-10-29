@@ -7,11 +7,10 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
   const url = 'https://www.predialnet.com.br/assineja?services=false'
   const urlSA = 'https://www.predialnet.com.br/assineja'
   const regulamentoURL = plan.title == "500 mega" 
-  ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_500.pdf" 
+  ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-500.pdf" 
   : plan.title == "800 mega"
-  ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_800.pdf"
-  : "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_1_GB.pdf"
-
+  ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf"
+  : "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf"
 
 
   useEffect(() => {
