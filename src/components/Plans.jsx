@@ -52,7 +52,6 @@ function Plans() {
           <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
             <h1 className="text-4xl dsm:text-4xl">1 giga</h1>
             <h2 className="text-lg">Mais alcance com <span className="text-[#008c4b]">Wi-Fi 6</span></h2>
-            <h2 className="text-lg text-[#9c0004] font-semibold ">Preço fixo até 2029</h2>
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 139,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
             </p>
@@ -81,7 +80,6 @@ function Plans() {
           <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
             <h1 className="text-4xl sm:text-4xl">800 mega</h1>
             <h2 className="text-lg">Mais alcance com <span className="text-[#008c4b]">Wi-Fi 6</span></h2>
-            <h2 className="text-lg text-[#9c0004] font-semibold">Preço fixo até 2029</h2>            
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 124,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
             </p>
@@ -110,7 +108,6 @@ function Plans() {
           <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
             <h1 className="text-4xl sm:text-4xl tracking-tight">500 mega</h1>
             <h2 className="text-lg">Com Super Wi-Fi Gigabit</h2>
-            <h2 className="text-lg text-[#9c0004] font-semibold">Preço fixo até 2029</h2>
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 99,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
             </p>

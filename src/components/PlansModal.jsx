@@ -116,7 +116,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 <img src="/img/regulamento.png" alt="Regulamento" className="w-4 h-4 mb-1" /> Regulamento
               </a>
             </div>
-            <h1 className="text-[#9c0004] text-[13pt] font-bold md:font-normal md:text-xl md:mb-4">SEM FIDELIDADE . PREÇO FIXO ATÉ 2029</h1>
+            <h1 className="text-[#9c0004] text-[13pt] font-bold md:font-normal md:text-xl md:mb-4">SEM FIDELIDADE . SEM TAXA DE INSTALAÇÃO</h1>
             <h2 className="font-bold text-sm">Oferta com velocidade de até {plan.title}</h2>
             <p className=" mb-4 leading-tight text-sm">
               Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com
