@@ -10,18 +10,18 @@ const CarouselComponent = () => {
       link: 'https://www.predialnet.com.br/assineja',
       linkMobile: 'https://www.predialnet.com.br/assineja'
     },
-    {
-      desktopSrc: '/img/banner2.jpg',
-      mobileSrc: '/img/banner2Mobile.jpg',
-      link: 'https://www.predialnet.com.br/assineja',
-      linkMobile: 'https://www.predialnet.com.br/assineja'
-    },
-    {
-      desktopSrc: '/img/banner3.jpg',
-      mobileSrc: '/img/banner3Mobile.jpg',
-      link: 'https://www.predialnet.com.br/assineja',
-      linkMobile: 'https://www.predialnet.com.br/assineja'
-    },
+    // {
+    //   desktopSrc: '/img/banner2.jpg',
+    //   mobileSrc: '/img/banner2Mobile.jpg',
+    //   link: 'https://www.predialnet.com.br/assineja',
+    //   linkMobile: 'https://www.predialnet.com.br/assineja'
+    // },
+    // {
+    //   desktopSrc: '/img/banner3.jpg',
+    //   mobileSrc: '/img/banner3Mobile.jpg',
+    //   link: 'https://www.predialnet.com.br/assineja',
+    //   linkMobile: 'https://www.predialnet.com.br/assineja'
+    // },
     {
       desktopSrc: '/img/banner4.jpg',
       mobileSrc: '/img/banner4Mobile.jpg',
