@@ -6,8 +6,8 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
   if (!isOpen) return null;
   const url = 'https://www.predialnet.com.br/assineja?services=false'
   const urlSA = 'https://www.predialnet.com.br/assineja'
-  const regulamentoURL = plan.title == "500 mega" 
-  ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-500.pdf" 
+  const regulamentoURL = plan.title == "600 mega" 
+  ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf" 
   : plan.title == "800 mega"
   ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf"
   : "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf"

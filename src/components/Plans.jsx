@@ -23,8 +23,8 @@ function Plans() {
   
   const plans = [
     {
-      id: '500mega',
-      title: '500 mega',
+      id: '600mega',
+      title: '600 mega',
       valor: 'R$ 99,90',
       wifi: 'Com Super Wi-Fi Gigabit',
     },
@@ -76,7 +76,7 @@ function Plans() {
           </div>
         </div>
         
-        <div id="500mega" className="shadow-[0px_0px_7px_7px_rgba(8240,5,11,0.3)] w-full md:w-[31%] rounded-3xl">
+  <div id="600mega" className="shadow-[0px_0px_7px_7px_rgba(8240,5,11,0.3)] w-full md:w-[31%] rounded-3xl">
           <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
             <h1 className="text-4xl sm:text-4xl">800 mega</h1>
             <h2 className="text-lg">Mais alcance com <span className="text-[#008c4b]">Wi-Fi 6</span></h2>
@@ -104,9 +104,9 @@ function Plans() {
           </div>
         </div>
 
-        <div id="500mega" className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-full md:w-[31%] rounded-3xl">
+  <div id="600mega" className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-full md:w-[31%] rounded-3xl">
           <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
-            <h1 className="text-4xl sm:text-4xl tracking-tight">500 mega</h1>
+            <h1 className="text-4xl sm:text-4xl tracking-tight">600 mega</h1>
             <h2 className="text-lg">Com Super Wi-Fi Gigabit</h2>
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 99,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
@@ -117,7 +117,7 @@ function Plans() {
               Assinar pelo site
             </button>
             <a 
-            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20500%20mega!"
+            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20600%20mega!"
             target="_blank"
             className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
               <FaWhatsapp size={25}/> Assinar pelo WhatsApp
