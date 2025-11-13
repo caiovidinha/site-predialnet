@@ -66,11 +66,11 @@ function Plans() {
             className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
               <FaWhatsapp size={25}/> Assinar pelo WhatsApp
             </a>
-            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
+            <p className="text-base sm:text-md text-[#9e9e9e] mt-2">Sem fidelidade</p>
+            <p className="text-base sm:text-md text-[#9e9e9e]">Instalação grátis</p>
           </div>
           <div className="rounded-b-3xl border-t-0 border-gray-200 px-6 py-6 bg-black min-h-[90px] flex items-center">
-            <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-white">
+            <p className="flex flex-row items-center gap-2 text-base sm:text-md text-white">
               <Image src="/img/black-friday.png" alt="Black Friday" width={90} height={90} className=''/> Comece a pagar só em 2026
             </p>
           </div>
@@ -94,11 +94,11 @@ function Plans() {
             className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
               <FaWhatsapp size={25}/> Assinar pelo WhatsApp
             </a>
-            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
+            <p className="text-base sm:text-md text-[#9e9e9e] mt-2">Sem fidelidade</p>
+            <p className="text-base sm:text-md text-[#9e9e9e]">Instalação grátis</p>
           </div>
           <div className="rounded-b-3xl border-t-0 border-gray-200 px-6 py-6 bg-black min-h-[90px] flex items-center">
-            <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-white">
+            <p className="flex flex-row items-center gap-2 text-base sm:text-md text-white">
               <Image src="/img/black-friday.png" alt="Black Friday" width={90} height={90} className=''/> Comece a pagar só em 2026
             </p>
           </div>
@@ -124,11 +124,11 @@ function Plans() {
             </a>
           
             
-            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
+            <p className="text-base sm:text-md text-[#9e9e9e] mt-2">Sem fidelidade</p>
+            <p className="text-base sm:text-md text-[#9e9e9e]">Instalação grátis</p>
           </div>
           <div className="rounded-b-3xl border-t-0 border-gray-200 px-6 py-6 bg-[#e9e9e9b6] min-h-[90px] flex items-center">
-            <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
+            <p className="flex flex-row items-center gap-2 text-base sm:text-md text-[#5c595b]">
               <IoIosWifi /> Plano com Super Wi-Fi Gigabit
             </p>
           </div>
