@@ -68,7 +68,7 @@ function Plans() {
             </a>
             <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
             <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>
+            <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>            
           </div>
           <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
             <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
@@ -97,6 +97,7 @@ function Plans() {
             </a>
             <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
             <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
+            <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>
           </div>
           <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
             <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
@@ -127,6 +128,7 @@ function Plans() {
             
             <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
             <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
+            <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>
           </div>
           <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
             <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
