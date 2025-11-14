@@ -48,7 +48,7 @@ function Plans() {
       
       <div className="mt-8 flex flex-col md:flex-row md:items-stretch justify-between gap-6">
         
-      <div id="1giga" className="shadow-[0px_0px_7px_7px_rgba(0,0,0,0.3)] w-full md:w-[31%] rounded-3xl flex flex-col relative">
+      <div id="1giga" className="shadow-[0px_0px_7px_7px_rgba(0,0,0,0.3)] w-full md:w-[31%] rounded-3xl flex flex-col relative mb-10 md:mb-0">
           {/* Selinho Black Friday */}
           <div className="absolute -top-10 -left-0 z-10 bg-black rounded-lg px-3 py-2 flex items-center gap-2 shadow-lg w-full">
             {/* <Image src="/img/black-friday.png" alt="Black Friday" width={70} height={70} className=''/> */}
@@ -83,7 +83,7 @@ function Plans() {
           </div>
         </div>
         
-  <div id="800mega" className="shadow-[0px_0px_7px_7px_rgba(0,0,0,0.3)] w-full md:w-[31%] rounded-3xl flex flex-col relative">
+  <div id="800mega" className="shadow-[0px_0px_7px_7px_rgba(0,0,0,0.3)] w-full md:w-[31%] rounded-3xl flex flex-col relative mb-2 md:mb-0">
           {/* Selinho Black Friday */}
           <div className="absolute -top-10 -left-0  z-10 bg-black rounded-lg px-3 py-2 flex items-center gap-2 shadow-lg w-full">
             {/* <Image src="/img/black-friday.png" alt="Black Friday" width={70} height={70} className=''/> */}
