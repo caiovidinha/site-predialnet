@@ -9,8 +9,8 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
   const regulamentoURL = plan.title == "600 mega" 
   ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf" 
   : plan.title == "800 mega"
-  ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf"
-  : "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf"
+  ? "https://www.predialnet.com.br/download/2025.11_Oferta_Conjunta_800-Black_Friday.pdf"
+  : "https://www.predialnet.com.br/download/2025.11_Oferta_Conjunta_1_GB-Black_Friday.pdf"
 
 
   useEffect(() => {
