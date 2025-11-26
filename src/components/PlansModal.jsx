@@ -9,8 +9,8 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
   const regulamentoURL = plan.title == "600 mega" 
   ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf" 
   : plan.title == "800 mega"
-  ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf"
-  : "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf"
+  ? "https://www.predialnet.com.br/download/2025.11_Oferta_Conjunta_800-Black_Friday.pdf"
+  : "https://www.predialnet.com.br/download/2025.11_Oferta_Conjunta_1_GB-Black_Friday.pdf"
 
 
   useEffect(() => {
@@ -63,22 +63,27 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
 
             {/* Coluna 2 */}
             {
-              plan.title=="jasndjsa"?
+              plan.title=="800 mega" || plan.title=="1 giga" ?
               <div className="bg-black text-white p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left ">
               <div className='flex flex-col gap-2 '>
-                <p className="text-sm md:text-md text-center bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">Oferta até</p>
-                <h1 className="text-2xl md:text-3xl md:my-2 font-normal bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">{plan.title}</h1>
-                <h1 className="text-xs md:text-xs -mt-3 font-normal bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">+100 mega de bônus nos doze primeiros meses</h1>
-                <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
-                <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
-                <p className="px-1 md:px-0 text-left ">Sem fidelidade</p>
-                <p className=' px-1 md:px-0 text-left font-bold'>{plan.wifi}</p>
-                <p className=' px-1 md:px-0 text-left'>Serviços inteligentes*</p>
-              </div>
+              <p className="text-sm md:text-md text-center ">Oferta até</p>
+              <h1 className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
+              
+              <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
+              <p className="text-xs md:text-md mt-2 px-1 md:px-0 text-left font-bold">{plan.wifi}</p>
+              <p className="text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
+              <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
+              <p className='text-xs   px-1 md:px-0 text-left'>Serviços inteligentes*</p>
+              {(plan.title === "800 mega" || plan.title === "1 giga") && (
+                <div className="flex items-center gap-2">
+                  <Image src="/img/black-friday.png" alt="Black Friday" width={120} height={120} />                
+                </div>
+              )}
+            </div>
               <a
                 href={urlSA}
                 target='_blank'
-                className="mt-4 md:mt-0 bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621]  text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+                className="mt-4 md:mt-0 bg-[#9c0004]  text-white py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
               >
                 Assinar
               </a>
@@ -115,7 +120,11 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 <img src="/img/regulamento.png" alt="Regulamento" className="w-4 h-4 mb-1" /> Regulamento
               </a>
             </div>
+            { plan.title=="600 mega" ?
             <h1 className="text-[#9c0004] text-[13pt] font-bold md:font-normal md:text-xl md:mb-4">SEM FIDELIDADE . SEM TAXA DE INSTALAÇÃO</h1>
+            :
+            <h1 className="text-[#9c0004] text-[13pt] font-bold md:font-normal md:text-xl md:mb-4">ASSINE AGORA. COMECE A PAGAR SÓ EM 2026</h1>
+            }
             <h2 className="font-bold text-sm">Oferta com velocidade de até {plan.title}</h2>
             <p className=" mb-4 leading-tight text-sm">
               Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com
