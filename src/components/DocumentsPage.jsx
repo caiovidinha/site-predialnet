@@ -3,6 +3,14 @@ import Image from 'next/image';
 const documents = {
   'Banda Larga': [
     {
+      title: 'Regulamento Oferta Promocional "Fibra 800 - Black Friday"',
+      link: 'https://www.predialnet.com.br/download/2025.11_Oferta_Conjunta_800-Black_Friday.pdf',
+    },
+    {
+      title: 'Regulamento Oferta Promocional "Fibra 1 Giga - Black Friday"',
+      link: 'https://www.predialnet.com.br/download/2025.11_Oferta_Conjunta_1_GB-Black_Friday.pdf',
+    },
+    {
       title: 'Contrato padrão de Adesão à Internet',
       link: 'https://www.predialnet.com.br/download/contrato-padrao-adesao-servico-internet.pdf',
     },
