@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Switch } from "@headlessui/react";
-import { CalendarIcon, UploadIcon, CheckCircleIcon } from "@heroicons/react/solid";
+import { CalendarIcon, ArrowUpTrayIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 
 export default function RegistrarAgendamentos() {
   const [date, setDate] = useState(""); // Sempre uma string
@@ -130,7 +130,7 @@ export default function RegistrarAgendamentos() {
                 ${bulkMode ? "translate-x-6" : "translate-x-1"}`}
             >
               {bulkMode ? (
-                <UploadIcon className="h-3 w-3 text-[#9c0004]" />
+                <ArrowUpTrayIcon className="h-3 w-3 text-[#9c0004]" />
               ) : (
                 <CalendarIcon className="h-3 w-3 text-gray-700" />
               )}
