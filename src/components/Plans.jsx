@@ -44,13 +44,19 @@ function Plans() {
   return (
     <div id='Plans' className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#231f20]">
       <h1 className="text-3xl sm:text-3xl mb-1 tracking-tight">Predialnet é muito mais velocidade e estabilidade</h1>
-      <h2 className="text-[#9e9e9e] text-lg sm:text-xl leading-6">Agora sua internet vai decolar com os novos planos Wi-Fi 6. + Conexão | + Velocidade |<br />+ Estabilidade | + Alcance</h2>
+      <h2 className="text-[#9e9e9e] text-lg sm:text-xl leading-6 mb-16">Agora sua internet vai decolar com os novos planos Wi-Fi 6. + Conexão | + Velocidade |<br />+ Estabilidade | + Alcance</h2>
       
-      <div className="mt-8 flex flex-col md:flex-row justify-between gap-6">
+      <div className="mt-8 flex flex-col md:flex-row md:items-stretch justify-between gap-6">
         
-      <div id="1giga" className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-full md:w-[31%] rounded-3xl">
-          <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
-            <h1 className="text-4xl dsm:text-4xl">1 giga</h1>
+      <div id="1giga" className="shadow-[0px_0px_7px_7px_rgba(0,0,0,0.3)] w-full md:w-[31%] rounded-3xl flex flex-col relative mb-10 md:mb-0">
+          {/* Selinho Black Friday */}
+          <div className="absolute -top-10 -left-0 z-10 bg-black rounded-lg px-3 py-2 flex items-center gap-2 shadow-lg w-full">
+            {/* <Image src="/img/black-friday.png" alt="Black Friday" width={70} height={70} className=''/> */}
+            <p className="text-white text-[10px] font-thin uppercase leading-tight">OFERTA PREDIALNET FRIDAY - Comece a pagar só em 2026</p>
+          </div>
+          
+          <div className="rounded-t-3xl border-b-0 border-gray-200 px-6 pt-8 pb-3 flex-1">
+            <h1 className="text-4xl dsm:text-4xl uppercase">1 GIGA</h1>
             <h2 className="text-lg">Mais alcance com <span className="text-[#008c4b]">Wi-Fi 6</span></h2>
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 139,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
@@ -70,16 +76,22 @@ function Plans() {
             <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
             <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>            
           </div>
-          <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
-            <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
-              <IoIosWifi /> Plano com Super <span className="text-[#008c4b]">Wi-Fi 6</span>
+          <div className="rounded-b-3xl border-t-0 border-gray-200 px-6 py-6 bg-[#e9e9e9b6] min-h-[90px] flex items-center">
+            <p className="flex flex-row items-center gap-2 text-base sm:text-md text-[#5c595b]">
+              <IoIosWifi /> Plano com Super<span className='-ml-1 text-green-600'>Wi-Fi 6</span>
             </p>
           </div>
         </div>
         
-  <div id="600mega" className="shadow-[0px_0px_7px_7px_rgba(8240,5,11,0.3)] w-full md:w-[31%] rounded-3xl">
-          <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
-            <h1 className="text-4xl sm:text-4xl">800 mega</h1>
+  <div id="800mega" className="shadow-[0px_0px_7px_7px_rgba(0,0,0,0.3)] w-full md:w-[31%] rounded-3xl flex flex-col relative mb-2 md:mb-0">
+          {/* Selinho Black Friday */}
+          <div className="absolute -top-10 -left-0  z-10 bg-black rounded-lg px-3 py-2 flex items-center gap-2 shadow-lg w-full">
+            {/* <Image src="/img/black-friday.png" alt="Black Friday" width={70} height={70} className=''/> */}
+            <p className="text-white text-[10px] font-thin uppercase leading-tight">OFERTA PREDIALNET FRIDAY - Comece a pagar só em 2026</p>
+          </div>
+          
+          <div className="rounded-t-3xl border-b-0 border-gray-200 px-6 pt-8 pb-3 flex-1">
+            <h1 className="text-4xl sm:text-4xl uppercase">800 MEGA</h1>
             <h2 className="text-lg">Mais alcance com <span className="text-[#008c4b]">Wi-Fi 6</span></h2>
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 124,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
@@ -99,16 +111,16 @@ function Plans() {
             <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
             <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>
           </div>
-          <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
-            <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
+          <div className="rounded-b-3xl border-t-0 border-gray-200 px-6 py-6 bg-[#e9e9e9b6] min-h-[90px] flex items-center">
+            <p className="flex flex-row items-center gap-2 text-base sm:text-md text-[#5c595b]">
               <IoIosWifi /> Plano com Super <span className="text-[#008c4b]">Wi-Fi 6</span>
             </p>
           </div>
         </div>
 
-  <div id="600mega" className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-full md:w-[31%] rounded-3xl">
-          <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
-            <h1 className="text-4xl sm:text-4xl tracking-tight">600 mega</h1>
+  <div id="600mega" className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-full md:w-[31%] rounded-3xl flex flex-col">
+          <div className="rounded-t-3xl border-b-0 border-gray-200 px-6 pt-8 pb-3 flex-1">
+            <h1 className="text-4xl sm:text-4xl tracking-tight uppercase">600 MEGA</h1>
             <h2 className="text-lg">Com Super Wi-Fi Gigabit</h2>
             <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 99,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
@@ -130,8 +142,8 @@ function Plans() {
             <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
             <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>
           </div>
-          <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
-            <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
+          <div className="rounded-b-3xl border-t-0 border-gray-200 px-6 py-6 bg-[#e9e9e9b6] min-h-[90px] flex items-center">
+            <p className="flex flex-row items-center gap-2 text-base sm:text-md text-[#5c595b]">
               <IoIosWifi /> Plano com Super Wi-Fi Gigabit
             </p>
           </div>
