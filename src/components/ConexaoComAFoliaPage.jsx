@@ -537,6 +537,85 @@ const ConexaoComAFoliaPage = () => {
         />
       </header>
 
+      {/* Mapa dos Blocos */}
+      <section className="bg-[#f4f5f5] py-8 px-[6%] border-t border-gray-200">
+        <div className="max-w-[1200px] mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#9c0004] text-center mb-6">
+            Mapa dos Blocos de Carnaval 2026
+          </h2>
+          <p className="text-center text-gray-600 text-sm mb-6">
+            Clique nos marcadores vermelhos para ver informações sobre cada bloco
+          </p>
+
+          {/* Filtros do Mapa */}
+          <div className="bg-white p-4 mb-6 border border-gray-200">
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Filtro por Data */}
+              <div>
+                <label className="block text-sm font-semibold text-[#231f20] mb-2">
+                  Filtrar por Data:
+                </label>
+                <select
+                  value={selectedMapDate}
+                  onChange={(e) => setSelectedMapDate(e.target.value)}
+                  className="w-full px-4 py-2.5 text-base border border-gray-300 focus:outline-none focus:border-[#9c0004]"
+                  style={{ fontFamily: 'Bahnschrift, sans-serif' }}
+                >
+                  <option value="todas">Todas as Datas</option>
+                  {Object.keys(blocos).map((data, idx) => (
+                    <option key={idx} value={data}>
+                      {data.split(' - ')[0]}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Filtro por Região */}
+              <div>
+                <label className="block text-sm font-semibold text-[#231f20] mb-2">
+                  Filtrar por Região:
+                </label>
+                <select
+                  value={selectedMapRegion}
+                  onChange={(e) => setSelectedMapRegion(e.target.value)}
+                  className="w-full px-4 py-2.5 text-base border border-gray-300 focus:outline-none focus:border-[#9c0004]"
+                  style={{ fontFamily: 'Bahnschrift, sans-serif' }}
+                >
+                  <option value="todas">Todas as Regiões</option>
+                  {getAllRegions().map((regiao, idx) => (
+                    <option key={idx} value={regiao}>
+                      {regiao}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Botão Limpar Filtros */}
+            {(selectedMapDate !== 'todas' || selectedMapRegion !== 'todas') && (
+              <div className="mt-4 text-center">
+                <button
+                  onClick={() => {
+                    setSelectedMapDate('todas');
+                    setSelectedMapRegion('todas');
+                  }}
+                  className="text-sm text-[#9c0004] hover:underline font-medium"
+                  style={{ fontFamily: 'Bahnschrift, sans-serif' }}
+                >
+                  Limpar Filtros
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div 
+            ref={mapRef} 
+            className="w-full border-2 border-gray-300 bg-gray-100"
+            style={{ height: '600px' }}
+          />
+        </div>
+      </section>
+
       {/* Search Section */}
       <div className="max-w-[1200px] mx-auto my-6 px-[6%]">
         <div className="bg-[#f4f5f5] p-4">
@@ -626,85 +705,6 @@ const ConexaoComAFoliaPage = () => {
           ))
         )}
       </main>
-
-      {/* Mapa dos Blocos */}
-      <section className="bg-[#f4f5f5] py-8 px-[6%] border-t border-gray-200">
-        <div className="max-w-[1200px] mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#9c0004] text-center mb-6">
-            Mapa dos Blocos de Carnaval 2026
-          </h2>
-          <p className="text-center text-gray-600 text-sm mb-6">
-            Clique nos marcadores vermelhos para ver informações sobre cada bloco
-          </p>
-
-          {/* Filtros do Mapa */}
-          <div className="bg-white p-4 mb-6 border border-gray-200">
-            <div className="grid md:grid-cols-2 gap-4">
-              {/* Filtro por Data */}
-              <div>
-                <label className="block text-sm font-semibold text-[#231f20] mb-2">
-                  Filtrar por Data:
-                </label>
-                <select
-                  value={selectedMapDate}
-                  onChange={(e) => setSelectedMapDate(e.target.value)}
-                  className="w-full px-4 py-2.5 text-base border border-gray-300 focus:outline-none focus:border-[#9c0004]"
-                  style={{ fontFamily: 'Bahnschrift, sans-serif' }}
-                >
-                  <option value="todas">Todas as Datas</option>
-                  {Object.keys(blocos).map((data, idx) => (
-                    <option key={idx} value={data}>
-                      {data.split(' - ')[0]}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Filtro por Região */}
-              <div>
-                <label className="block text-sm font-semibold text-[#231f20] mb-2">
-                  Filtrar por Região:
-                </label>
-                <select
-                  value={selectedMapRegion}
-                  onChange={(e) => setSelectedMapRegion(e.target.value)}
-                  className="w-full px-4 py-2.5 text-base border border-gray-300 focus:outline-none focus:border-[#9c0004]"
-                  style={{ fontFamily: 'Bahnschrift, sans-serif' }}
-                >
-                  <option value="todas">Todas as Regiões</option>
-                  {getAllRegions().map((regiao, idx) => (
-                    <option key={idx} value={regiao}>
-                      {regiao}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Botão Limpar Filtros */}
-            {(selectedMapDate !== 'todas' || selectedMapRegion !== 'todas') && (
-              <div className="mt-4 text-center">
-                <button
-                  onClick={() => {
-                    setSelectedMapDate('todas');
-                    setSelectedMapRegion('todas');
-                  }}
-                  className="text-sm text-[#9c0004] hover:underline font-medium"
-                  style={{ fontFamily: 'Bahnschrift, sans-serif' }}
-                >
-                  Limpar Filtros
-                </button>
-              </div>
-            )}
-          </div>
-
-          <div 
-            ref={mapRef} 
-            className="w-full border-2 border-gray-300 bg-gray-100"
-            style={{ height: '600px' }}
-          />
-        </div>
-      </section>
 
       {/* Aviso Final */}
       <section className="bg-[#f4f5f5] py-8 px-[6%] mt-8 border-t border-gray-200">
