@@ -688,7 +688,7 @@ const ConexaoComAFoliaPage = () => {
               {/* Banner depois de cada data - Apenas Mobile */}
               <div className="my-6 md:hidden">
                 <img
-                  src={`/img/bannerData1Mobile.jpg`}
+                  src={`/img/bannerData${(dataIndex % 3) + 1}Mobile.jpg`}
                   alt="Banner depois da data"
                   className="w-full h-auto object-cover"
                 />
@@ -697,10 +697,10 @@ const ConexaoComAFoliaPage = () => {
               {/* Banner depois de cada data - Apenas Desktop */}
               <div className="hidden md:block my-6">
                 <img
-                  src={`/img/bannerData1.jpg`}
+                  src={`/img/bannerData${(dataIndex % 3) + 1}.jpg`}
                   alt="Banner depois da data"
                   className="w-full h-auto object-cover"
-                  style={{ maxHeight: '100px' }}
+                  
                 />
               </div>
             </section>
