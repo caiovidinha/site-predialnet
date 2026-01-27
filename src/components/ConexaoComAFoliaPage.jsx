@@ -538,8 +538,8 @@ const ConexaoComAFoliaPage = () => {
       </header>
 
       {/* Mapa dos Blocos */}
-      <section className="bg-[#f4f5f5] py-8 px-[6%] border-t border-gray-200">
-        <div className="max-w-[1200px] mx-auto">
+      <section className="bg-[#f4f5f5] py-8 border-t border-gray-200">
+        <div className="max-w-[1200px] mx-auto px-[6%]">
           {/* Filtros do Mapa */}
           <div className="bg-white p-4 mb-6 border border-gray-200">
             <div className="grid grid-cols-2 gap-4">
@@ -685,15 +685,24 @@ const ConexaoComAFoliaPage = () => {
                 </div>
               ))}
 
-              {/* Banner fino depois de cada data */}
-              {/* <div className="my-6">
+              {/* Banner depois de cada data - Apenas Mobile */}
+              <div className="my-6 md:hidden">
                 <img
-                  src={`/img/bannerData${dataIndex + 1}.jpg`}
+                  src={`/img/bannerData1Mobile.jpg`}
                   alt="Banner depois da data"
                   className="w-full h-auto object-cover"
-                  style={{ maxHeight: '120px' }}
                 />
-              </div> */}
+              </div>
+
+              {/* Banner depois de cada data - Apenas Desktop */}
+              <div className="hidden md:block my-6">
+                <img
+                  src={`/img/bannerData1.jpg`}
+                  alt="Banner depois da data"
+                  className="w-full h-auto object-cover"
+                  style={{ maxHeight: '100px' }}
+                />
+              </div>
             </section>
           ))
         )}
