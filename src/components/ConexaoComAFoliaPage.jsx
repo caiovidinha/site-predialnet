@@ -687,21 +687,25 @@ const ConexaoComAFoliaPage = () => {
 
               {/* Banner depois de cada data - Apenas Mobile */}
               <div className="my-6 md:hidden">
-                <img
-                  src={`/img/bannerData${(dataIndex % 3) + 1}Mobile.jpg`}
-                  alt="Banner depois da data"
-                  className="w-full h-auto object-cover"
-                />
+                <a href="https://predialnet.com.br/assineja" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={`/img/bannerData${(dataIndex % 3) + 1}Mobile.jpg`}
+                    alt="Banner depois da data"
+                    className="w-full h-auto object-cover cursor-pointer"
+                  />
+                </a>
               </div>
 
               {/* Banner depois de cada data - Apenas Desktop */}
               <div className="hidden md:block my-6">
-                <img
-                  src={`/img/bannerData${(dataIndex % 3) + 1}.jpg`}
-                  alt="Banner depois da data"
-                  className="w-full h-auto object-cover"
-                  
-                />
+                <a href="https://predialnet.com.br/assineja" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={`/img/bannerData${(dataIndex % 3) + 1}.jpg`}
+                    alt="Banner depois da data"
+                    className="w-full h-auto object-cover cursor-pointer"
+                    
+                  />
+                </a>
               </div>
             </section>
           ))
