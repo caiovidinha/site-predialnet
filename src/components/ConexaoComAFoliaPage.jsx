@@ -614,14 +614,14 @@ const ConexaoComAFoliaPage = () => {
               ))}
 
               {/* Banner fino depois de cada data */}
-              <div className="my-6">
+              {/* <div className="my-6">
                 <img
                   src={`/img/bannerData${dataIndex + 1}.jpg`}
                   alt="Banner depois da data"
                   className="w-full h-auto object-cover"
                   style={{ maxHeight: '120px' }}
                 />
-              </div>
+              </div> */}
             </section>
           ))
         )}
