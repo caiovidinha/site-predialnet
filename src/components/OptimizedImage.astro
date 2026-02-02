@@ -1,0 +1,29 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+}
+
+const { src, alt, width, height, class: className = '', loading = 'lazy' } = Astro.props;
+
+// Remover extensão e adicionar /img/ se necessário
+const cleanSrc = src.replace(/^(\/?)img\//, '/img/').replace(/\.(jpg|jpeg|png)$/i, '');
+const ext = src.match(/\.(jpg|jpeg|png)$/i)?.[1] || 'jpg';
+---
+
+<picture>
+  <source srcset={`${cleanSrc}.avif`} type="image/avif" />
+  <source srcset={`${cleanSrc}.webp`} type="image/webp" />
+  <img 
+    src={`${cleanSrc}.${ext}`}
+    alt={alt}
+    width={width}
+    height={height}
+    class={className}
+    loading={loading}
+  />
+</picture>

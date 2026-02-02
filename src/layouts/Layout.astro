@@ -1,0 +1,294 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'Predialnet - Sua nova internet',
+  description = 'Internet de alta velocidade com fibra óptica. Planos de 600 mega, 800 mega e 1 giga com Wi-Fi 6.'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
+    <!-- Preconnect para APIs externas -->
+    <link rel="preconnect" href="https://appgw.predialnet.com.br" />
+    <link rel="preconnect" href="https://api.ipify.org" />
+    
+    <!-- Preload da fonte -->
+    <link rel="preload" href="/fonts/Bahnschrift.woff" as="font" type="font/woff" crossorigin />
+    
+    <!-- Preload de imagens hero (primeiro banner do carrossel) -->
+    <link rel="preload" href="/img/banner1.avif" as="image" type="image/avif" media="(min-width: 900px)" />
+    <link rel="preload" href="/img/banner1.webp" as="image" type="image/webp" media="(min-width: 900px)" />
+    <link rel="preload" href="/img/banner1Mobile.avif" as="image" type="image/avif" media="(max-width: 899px)" />
+    <link rel="preload" href="/img/banner1Mobile.webp" as="image" type="image/webp" media="(max-width: 899px)" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.predialnet.com.br" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="author" content="Predialnet" />
+    <meta name="keywords" content="internet fibra óptica, wi-fi 6, planos internet rio de janeiro, internet alta velocidade, internet niterói, provedor de internet" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Predialnet" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WH2TDC4S');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://www.predialnet.com.br/#organization",
+          "name": "Predialnet",
+          "description": "Provedor de internet de alta velocidade com fibra óptica no Rio de Janeiro. Planos de 600 mega, 800 mega e 1 giga com Wi-Fi 6.",
+          "url": "https://www.predialnet.com.br",
+          "telephone": "+55-21-3515-0555",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "R. da Conceição, 188",
+            "addressLocality": "Niterói",
+            "addressRegion": "RJ",
+            "postalCode": "24020-087",
+            "addressCountry": "BR"
+          },
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.predialnet.com.br/img/logo.png"
+          },
+          "image": "https://www.predialnet.com.br/img/logo.png",
+          "priceRange": "R$ 99,90 - R$ 139,90",
+          "areaServed": {
+            "@type": "City",
+            "name": "Rio de Janeiro",
+            "containedIn": {
+              "@type": "State",
+              "name": "Rio de Janeiro"
+            }
+          },
+          "sameAs": [
+            "https://instagram.com/predialnet"
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "18:00",
+              "description": "Horário de Atendimento"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "20:00",
+              "description": "Setor Comercial"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "09:00",
+              "closes": "16:00",
+              "description": "Setor Comercial"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "06:00",
+              "closes": "24:00",
+              "description": "Suporte Técnico"
+            }
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.predialnet.com.br/#organization",
+          "name": "Predialnet",
+          "url": "https://www.predialnet.com.br",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.predialnet.com.br/img/logo.png"
+          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+55-21-3515-0555",
+              "contactType": "customer service",
+              "areaServed": "BR",
+              "availableLanguage": "Portuguese"
+            },
+            {
+              "@type": "ContactPoint",
+              "telephone": "+55-21-97728-7782",
+              "contactType": "sales",
+              "contactOption": "WhatsApp",
+              "areaServed": "BR",
+              "availableLanguage": "Portuguese"
+            }
+          ]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://www.predialnet.com.br/#service-600mega",
+          "serviceType": "Internet de Fibra Óptica 600 Mega",
+          "provider": {
+            "@id": "https://www.predialnet.com.br/#organization"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Rio de Janeiro"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "99.90",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.predialnet.com.br/#planos",
+            "priceValidUntil": "2026-12-31",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "99.90",
+              "priceCurrency": "BRL",
+              "unitText": "mês"
+            },
+            "description": "Plano de internet 600 mega com Super Wi-Fi Gigabit, instalação grátis e sem fidelidade"
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://www.predialnet.com.br/#service-800mega",
+          "serviceType": "Internet de Fibra Óptica 800 Mega",
+          "provider": {
+            "@id": "https://www.predialnet.com.br/#organization"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Rio de Janeiro"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "124.90",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.predialnet.com.br/#planos",
+            "priceValidUntil": "2026-12-31",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "124.90",
+              "priceCurrency": "BRL",
+              "unitText": "mês"
+            },
+            "description": "Plano de internet 800 mega com Super Wi-Fi 6, instalação grátis e sem fidelidade"
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://www.predialnet.com.br/#service-1giga",
+          "serviceType": "Internet de Fibra Óptica 1 Giga",
+          "provider": {
+            "@id": "https://www.predialnet.com.br/#organization"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Rio de Janeiro"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "139.90",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.predialnet.com.br/#planos",
+            "priceValidUntil": "2026-12-31",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "139.90",
+              "priceCurrency": "BRL",
+              "unitText": "mês"
+            },
+            "description": "Plano de internet 1 giga com Super Wi-Fi 6, instalação grátis e sem fidelidade"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.predialnet.com.br/#website",
+          "url": "https://www.predialnet.com.br",
+          "name": "Predialnet",
+          "description": "Internet de alta velocidade com fibra óptica",
+          "publisher": {
+            "@id": "https://www.predialnet.com.br/#organization"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.predialnet.com.br/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.predialnet.com.br"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Planos",
+              "item": "https://www.predialnet.com.br/#planos"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <!-- End Schema.org JSON-LD -->
+    
+    <title>{title}</title>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WH2TDC4S"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <a href="#main-content" class="skip-to-main">Pular para o conteúdo principal</a>
+    <main id="main-content">
+      <slot />
+    </main>
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    
+    <title>{title}</title>
+  </head>
+  <body class="bg-white text-black">
+    <slot />
+  </body>
+</html>

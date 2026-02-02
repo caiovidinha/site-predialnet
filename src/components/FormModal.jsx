@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-const axios = require("axios");
-const https = require("https");
+import { sanitizeInput, sanitizeFormData, validateFormData, validateEmail, validatePhone } from '../utils/validation';
+import { events } from '../utils/analytics';
 
 const FormModal = ({ isOpen, onClose, type, plan }) => {
   const [formData, setFormData] = useState({});
@@ -9,6 +9,8 @@ const FormModal = ({ isOpen, onClose, type, plan }) => {
   const [missingField, setMissingField] = useState("none");
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState("")
+  const [cooldown, setCooldown] = useState(false);
+  
   // Verifica se o modal está aberto
   if (!isOpen) {
     return null;
@@ -17,27 +19,45 @@ const FormModal = ({ isOpen, onClose, type, plan }) => {
   // Prevenir scroll na página enquanto o modal está aberto
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    events.formOpen(type || 'contact', plan);
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
+  // Rate limiting - cooldown de 3 segundos entre submissões
+  const startCooldown = () => {
+    setCooldown(true);
+    setTimeout(() => setCooldown(false), 3000);
+  };
 
-  const instance = axios.create({
-    httpsAgent: new https.Agent({
-        rejectUnauthorized: false,
-    }),
-});
 
 const sendEmail = async(to,subject,body) => {
+    if (cooldown) {
+      setResponse("Aguarde alguns segundos antes de enviar novamente.");
+      return { error: "Rate limit" };
+    }
+    
+    startCooldown();
+    
     const data = {
         "to": to,
         "subject": subject,
         "content": body
     }
-    const email = await instance.post('https://appgw.predialnet.com.br/emails', data)
-    if(!email) return {error: "Erro ao enviar o e-mail"}
-    return email
+    try {
+      const email = await fetch('https://appgw.predialnet.com.br/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      if(!email.ok) return {error: "Erro ao enviar o e-mail"}
+      return await email.json();
+    } catch(error) {
+      return {error: "Erro ao enviar o e-mail"}
+    }
 }
 
   const formatPhoneNumber = (value) => {
@@ -47,6 +67,7 @@ const sendEmail = async(to,subject,body) => {
     if (phoneNumber.length <= 7) return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`;
     return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}`;
   };
+  
   // Configuração do formulário com base no "type"
   const formConfig = {
     telefonia: {
@@ -66,7 +87,7 @@ const sendEmail = async(to,subject,body) => {
       ],
     },
     portoMaravilha: {
-      title: "Planos Resienciais - PORTO MARAVILHA",
+      title: "Planos Residenciais - PORTO MARAVILHA",
       email: "comercial@predialnet.com.br",
       subtitle: "Preencha o formulário e um de nossos consultores entrará em contato com você.",
       fields: [
@@ -221,29 +242,55 @@ const sendEmail = async(to,subject,body) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    formData["phone"] = phone
-    formData["plan"] = plan1 ? plan1 : plan
-        // Verificar se todos os campos estão preenchidos
+    
+    // Sanitiza dados do formulário
+    const sanitizedData = sanitizeFormData(formData);
+    sanitizedData["phone"] = phone;
+    sanitizedData["plan"] = plan1 ? plan1 : plan;
+    
+    // Verifica se todos os campos estão preenchidos
     for (let field of fields) {
-      const fieldValue = formData[field.id] || '';
+      const fieldValue = sanitizedData[field.id] || '';
       if (!fieldValue.trim()) {
-        setMissingField(field.label)
+        setMissingField(field.label);
         return; 
       }
     }
-    setMissingField("none")
+    
+    // Validação adicional
+    const validation = validateFormData(sanitizedData, fields.map(f => f.id));
+    if (!validation.isValid) {
+      setMissingField(validation.errors[0]);
+      return;
+    }
+    
+    // Validações específicas
+    if (sanitizedData.email && !validateEmail(sanitizedData.email)) {
+      setMissingField("E-mail inválido");
+      return;
+    }
+    
+    if (sanitizedData.phone && !validatePhone(sanitizedData.phone)) {
+      setMissingField("Telefone inválido");
+      return;
+    }
+    
+    setMissingField("none");
+    
+    // Usar dados sanitizados daqui pra frente
+    const finalFormData = sanitizedData;
+    
     // Definir o assunto do e-mail com base no tipo
     const subject = type === "telefonia" || type === "viaRadio" || type === "portoMaravilha"
       ? `Solicitação de ${type}`
-      : formData.subject || title;
+      : finalFormData.subject || title;
 
 
     let userIp = "";
     try {
-      const ipRes = await fetch("/api/get-ip");
+      const ipRes = await fetch("https://api.ipify.org?format=json");
       const data = await ipRes.json();
       userIp = data.ip;
-      console.log(userIp)
     } catch (error) {
       console.log("Erro ao obter IP:", error);
       userIp = "Não foi possível capturar o IP.";
@@ -251,10 +298,10 @@ const sendEmail = async(to,subject,body) => {
 
     // Corpo do e-mail formatado
     const body = `
-      <h3>${title}</h3>
+      <h3>${sanitizeInput(title)}</h3>
       ${fields.map(field => {
-        const fieldValue = formData[field.id] || "";
-        return `<p><strong>${field.label}:</strong> ${fieldValue}</p>`;
+        const fieldValue = finalFormData[field.id] || "";
+        return `<p><strong>${sanitizeInput(field.label)}:</strong> ${sanitizeInput(fieldValue)}</p>`;
       }).join("")}
       <hr />
       <p><strong>IP do solicitante:</strong> ${userIp}</p>
@@ -270,11 +317,14 @@ const sendEmail = async(to,subject,body) => {
       );
       if (response.error) {
         setResponse("error")
+        events.formSubmit(type || 'contact', plan, false);
       } else {
         setResponse("success")
+        events.formSubmit(type || 'contact', plan, true);
       }
     } catch (error) {
       setResponse("error")
+      events.formSubmit(type || 'contact', plan, false);
     }finally{
       setLoading(false)
     }
@@ -285,10 +335,15 @@ const sendEmail = async(to,subject,body) => {
       {loading? 
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-3xl p-6 relative overflow-y-auto mx-4 max-h-[90%] flex items-center justify-center">
       {/* Botão de Fechar */}
-      <button className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
+      <button 
+        className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" 
+        onClick={onClose}
+        aria-label="Fechar modal"
+        type="button"
+      >
         &times;
       </button>
-      <div className="w-12 h-12 border-4 border-t-[#9c0004] border-gray-200 rounded-full animate-spin"></div>
+      <div className="w-12 h-12 border-4 border-t-[#9c0004] border-gray-200 rounded-full animate-spin" role="status" aria-label="Carregando"></div>
 
 
 
@@ -441,8 +496,6 @@ const sendEmail = async(to,subject,body) => {
         : type === "empresa" ? 
         <form className="space-y-4">
         {/* Título e Subtítulo */}
-        <h2 className="text-xl font-bold">{empresa.title}</h2>
-        <p className="text-sm text-gray-600">{empresa.subtitle}</p>
 
         {/* Grupo: Nome da Empresa e Seu Nome */}
         <div className="flex flex-col md:flex-row md:gap-6 gap-4">
@@ -521,7 +574,15 @@ const sendEmail = async(to,subject,body) => {
           </div>
         </div>
     
-        
+        <div className="w-full ">
+            <label htmlFor="yourName" className="block mb-1 text-sm font-normal">Seu nome</label>
+            <input
+              id="yourName"
+              type="text"
+              onChange={handleInputChange}
+              className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-[#9c0004]"
+            />
+          </div>
     
         {/* Grupo: Telefone e E-mail */}
         <div className="flex flex-row md:flex-row md:gap-6 gap-4">

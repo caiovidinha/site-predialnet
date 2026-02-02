@@ -1,4 +1,3 @@
-'use client'
 import React, { useState, useEffect, useRef } from 'react';
 
 const ConexaoComAFoliaPage = () => {
@@ -339,7 +338,6 @@ const ConexaoComAFoliaPage = () => {
     },
   };
 
-  // Função de busca
   const filtrarBlocos = () => {
     if (!searchTerm.trim()) return blocos;
 
@@ -350,14 +348,14 @@ const ConexaoComAFoliaPage = () => {
       const regioesFiltradas = {};
       
       Object.entries(regioes).forEach(([regiao, blocosList]) => {
-        const blocosFiltrados = blocosList.filter(bloco => 
+        const blocosFiltradosRegiao = blocosList.filter(bloco => 
           bloco.nome.toLowerCase().includes(termoBusca) ||
           bloco.local.toLowerCase().includes(termoBusca) ||
           regiao.toLowerCase().includes(termoBusca)
         );
         
-        if (blocosFiltrados.length > 0) {
-          regioesFiltradas[regiao] = blocosFiltrados;
+        if (blocosFiltradosRegiao.length > 0) {
+          regioesFiltradas[regiao] = blocosFiltradosRegiao;
         }
       });
       
@@ -372,7 +370,6 @@ const ConexaoComAFoliaPage = () => {
   const blocosFiltrados = filtrarBlocos();
   const temResultados = Object.keys(blocosFiltrados).length > 0;
 
-  // Obter todas as regiões únicas
   const getAllRegions = () => {
     const regions = new Set();
     Object.values(blocos).forEach(regioes => {
@@ -381,15 +378,22 @@ const ConexaoComAFoliaPage = () => {
     return Array.from(regions).sort();
   };
 
-  // Carregar Google Maps
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     if (window.google && window.google.maps) {
       setMapLoaded(true);
       initMap();
       return;
     }
 
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'AIzaSyCDSX4R_nc9tva3kweFh2QYXZQCZIVBmGc';
+    const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+    
+    if (!apiKey) {
+      console.error('❌ PUBLIC_GOOGLE_MAPS_API_KEY não definida. Configure o arquivo .env.local');
+      return;
+    }
+
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
     script.async = true;
@@ -398,14 +402,12 @@ const ConexaoComAFoliaPage = () => {
       setMapLoaded(true);
       initMap();
     };
-    document.head.appendChild(script);
-
-    return () => {
-      // Cleanup não necessário, o script permanece carregado
+    script.onerror = () => {
+      console.error('❌ Erro ao carregar Google Maps API');
     };
+    document.head.appendChild(script);
   }, []);
 
-  // Atualizar marcadores quando filtros mudarem
   useEffect(() => {
     if (mapLoaded && mapRef.current) {
       updateMarkers();
@@ -415,7 +417,6 @@ const ConexaoComAFoliaPage = () => {
   const initMap = () => {
     if (!mapRef.current || !window.google) return;
 
-    // Centro do Rio de Janeiro
     const center = { lat: -22.9068, lng: -43.1729 };
     
     const map = new window.google.maps.Map(mapRef.current, {
@@ -439,31 +440,25 @@ const ConexaoComAFoliaPage = () => {
 
     const map = mapRef.current.mapInstance;
 
-    // Limpar marcadores existentes
     markersRef.current.forEach(marker => marker.setMap(null));
     markersRef.current = [];
 
-    // Fechar InfoWindow ativa
     if (activeInfoWindowRef.current) {
       activeInfoWindowRef.current.close();
       activeInfoWindowRef.current = null;
     }
 
-    // Criar marcadores filtrados
     Object.entries(blocos).forEach(([data, regioes]) => {
-      // Filtrar por data
       if (selectedMapDate !== 'todas' && data !== selectedMapDate) {
         return;
       }
 
       Object.entries(regioes).forEach(([regiao, blocosList]) => {
-        // Filtrar por região
         if (selectedMapRegion !== 'todas' && regiao !== selectedMapRegion) {
           return;
         }
 
         blocosList.forEach(bloco => {
-          // Usar Geocoding API para converter endereço em coordenadas
           const geocoder = new window.google.maps.Geocoder();
           const address = `${bloco.local}, Rio de Janeiro, RJ`;
           
@@ -503,11 +498,9 @@ const ConexaoComAFoliaPage = () => {
               });
 
               marker.addListener('click', () => {
-                // Fechar InfoWindow anterior
                 if (activeInfoWindowRef.current) {
                   activeInfoWindowRef.current.close();
                 }
-                // Abrir nova InfoWindow
                 infoWindow.open(map, marker);
                 activeInfoWindowRef.current = infoWindow;
               });
@@ -522,28 +515,24 @@ const ConexaoComAFoliaPage = () => {
 
   return (
     <div className="bg-white text-slate-900" style={{ fontFamily: 'Bahnschrift, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
-      {/* Banner */}
       <header className="relative w-full">
         <img
-          src="/img/bannerConexaoFolia.jpg"
+          src="/img/bannerConexaoFolia.webp"
           alt="Banner Conexão com a Folia - Predialnet"
           className="hidden md:block w-full h-auto object-cover"
         />
         
         <img
-          src="/img/bannerConexaoFoliaMobile.jpg"
+          src="/img/bannerConexaoFoliaMobile.webp"
           alt="Banner Conexão com a Folia Mobile - Predialnet"
           className="md:hidden w-full h-auto object-cover"
         />
       </header>
 
-      {/* Mapa dos Blocos */}
       <section className="bg-[#f4f5f5] py-8 border-t border-gray-200">
         <div className="max-w-[1200px] mx-auto px-[6%]">
-          {/* Filtros do Mapa */}
           <div className="bg-white p-4 mb-6 border border-gray-200">
             <div className="grid grid-cols-2 gap-4">
-              {/* Filtro por Data */}
               <div>
                 <label className="block text-xs font-semibold text-[#231f20] mb-2">
                   Filtrar por Data:
@@ -563,7 +552,6 @@ const ConexaoComAFoliaPage = () => {
                 </select>
               </div>
 
-              {/* Filtro por Região */}
               <div>
                 <label className="block text-xs font-semibold text-[#231f20] mb-2">
                   Filtrar por Região:
@@ -584,7 +572,6 @@ const ConexaoComAFoliaPage = () => {
               </div>
             </div>
 
-            {/* Botão Limpar Filtros */}
             {(selectedMapDate !== 'todas' || selectedMapRegion !== 'todas') && (
               <div className="mt-4 text-center">
                 <button
@@ -609,7 +596,6 @@ const ConexaoComAFoliaPage = () => {
         </div>
       </section>
 
-      {/* Search Section */}
       <div className="max-w-[1200px] mx-auto my-6 px-[6%]">
         <div className="bg-[#f4f5f5] p-4">
           <input
@@ -623,7 +609,6 @@ const ConexaoComAFoliaPage = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <main className="max-w-[1200px] mx-auto px-[6%] py-4">
         {!temResultados ? (
           <div className="text-center py-12 text-gray-400">
@@ -633,7 +618,6 @@ const ConexaoComAFoliaPage = () => {
         ) : (
           Object.entries(blocosFiltrados).map(([data, regioes], dataIndex) => (
             <section key={dataIndex} className="mb-6">
-              {/* Data */}
               <div className="bg-[#f4f5f5] text-[#231f20] py-3 px-4 mb-4">
                 <h2 className="text-xl md:text-2xl font-semibold text-[#9c0004] mb-0.5">
                   {data.split(' - ')[0]}
@@ -643,7 +627,6 @@ const ConexaoComAFoliaPage = () => {
                 </span>
               </div>
 
-              {/* Regiões */}
               {Object.entries(regioes).map(([regiao, blocosList], regiaoIndex) => (
                 <div
                   key={regiaoIndex}
@@ -653,7 +636,6 @@ const ConexaoComAFoliaPage = () => {
                     {regiao}
                   </h3>
 
-                  {/* Lista de Blocos */}
                   <div>
                     {blocosList.map((bloco, blocoIndex) => (
                       <div
@@ -685,7 +667,6 @@ const ConexaoComAFoliaPage = () => {
                 </div>
               ))}
 
-              {/* Banner depois de cada data - Apenas Mobile */}
               <div className="my-6 md:hidden">
                 <a href="https://predialnet.com.br/assineja" target="_blank" rel="noopener noreferrer">
                   <img
@@ -696,14 +677,12 @@ const ConexaoComAFoliaPage = () => {
                 </a>
               </div>
 
-              {/* Banner depois de cada data - Apenas Desktop */}
               <div className="hidden md:block my-6">
                 <a href="https://predialnet.com.br/assineja" target="_blank" rel="noopener noreferrer">
                   <img
                     src={`/img/bannerData${(dataIndex % 3) + 1}.jpg`}
                     alt="Banner depois da data"
                     className="w-full h-auto object-cover cursor-pointer"
-                    
                   />
                 </a>
               </div>
@@ -712,7 +691,6 @@ const ConexaoComAFoliaPage = () => {
         )}
       </main>
 
-      {/* Aviso Final */}
       <section className="bg-[#f4f5f5] py-8 px-[6%] mt-8 border-t border-gray-200">
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-white p-6 border border-gray-200">

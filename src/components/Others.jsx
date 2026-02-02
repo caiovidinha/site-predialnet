@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa6';
 import SpecialPlansModal from './SpecialPlansModal';
 import FormModal from './FormModal';
+import { events } from '../utils/analytics';
 
 function Others() {
   const [isSpecialModalOpen, setIsSpecialModalOpen] = useState(false);
@@ -31,6 +32,7 @@ function Others() {
   const handleOpenModal = (planType) => {
     setSelectedPlanType(planType);
     setIsSpecialModalOpen(true);
+    events.specialPlanView(planType);
   };
 
   const handleCloseModal = () => {
@@ -46,7 +48,8 @@ function Others() {
           <h1 className="text-xl md:text-2xl mb-1 text-center ">Opções de planos de internet<br /><strong className='text-2xl'>Via rádio</strong></h1>
           <button 
             onClick={() => handleOpenModal("viaRadio")}
-            className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
+            className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform"
+            aria-label="Ver planos de internet via rádio">
               Ver planos
             </button>
         </div>
@@ -58,7 +61,8 @@ function Others() {
           <h1 className="text-xl md:text-2xl mb-1 text-center ">Opções de planos de internet para o <strong className='text-2xl'>Porto Maravilha</strong></h1>
           <button 
             onClick={() => handleOpenModal("portoMaravilha")}
-            className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
+            className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform"
+            aria-label="Ver planos de internet para Porto Maravilha">
               Ver planos
             </button>
         </div>
@@ -69,7 +73,8 @@ function Others() {
           <h1 className="text-xl md:text-2xl mb-1 text-center ">Opções de planos de internet para a <strong className='text-2xl'>sua Empresa</strong></h1>
           <button 
             onClick={() => handleOpenFormModal("empresa")}
-            className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform">
+            className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform"
+            aria-label="Consultar opções de planos para empresas">
               Consultar opções
             </button>
         </div>

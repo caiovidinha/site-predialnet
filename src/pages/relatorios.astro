@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
+import Footer from '../components/Footer.astro';
+
+const reports = {
+  'Salario': [
+    {
+      title: 'Relatório 2° Semestre 2025 - base dados 2025',
+      link: 'https://www.predialnet.com.br/assineja/images/relatorios/relat%C3%B3rio%202%C2%BA%20semestre%20ano%202025%20-%20base%20de%20dados%202025.pdf',
+    },
+    {
+      title: 'Relatório 1° Semestre 2025 - base dados 2024',
+      link: 'https://www.predialnet.com.br/assineja/images/relatorios/relat%C3%B3rio%201%C2%BA%20semestre%20ano%202025%20-%20base%20de%20dados%202024.pdf',
+    },
+    {
+      title: 'Relatório 2° Semestre 2024 – base dados 2023',
+      link: 'https://www.predialnet.com.br/assineja/images/relatorios/relat%C3%B3rio%202%C2%BA%20semestre%20ano%202024%20-%20base%20de%20dados%202023.pdf',
+    },
+    {
+      title: 'Relatório 1° Semestre 2024 – base dados 2022',
+      link: 'https://www.predialnet.com.br/assineja/images/relatorios/relat%C3%B3rio%201%C2%BA%20semestre%20ano%202024%20-%20base%20de%20dados%202022.pdf',
+    },
+  ],
+};
+---
+
+<Layout title="Relatórios de Transparência - Predialnet">
+  <Navbar />
+  <SecNavBar />
+  
+  <div class="font-sans container mx-auto py-20 px-12 text-black">
+    {/* Conteúdo da Página */}
+    <div class="text-center">
+      <h2 class="text-lg md:text-xl text-black font-normal">DOCUMENTOS</h2>
+      <h3 class="text-xl md:text-4xl text-[#9c0004] mt-2 mb-4">
+        Relatórios de Transparência e Igualdade Salarial de Mulheres e Homens
+      </h3>
+    </div>
+
+    <div class="mb-12">
+      <hr class="border-t-2 border-black mb-8 w-1/6 mx-auto" />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {reports['Salario'].map((report) => (
+          <div class="flex flex-row items-center">
+            <img 
+              src="/img/regulamento.png" 
+              alt="Documento" 
+              width="35" 
+              height="35" 
+              class="mr-5 mt-1"
+            />
+            <div class="flex flex-col">
+              <p class="text-lg font-normal mt-2">{report.title}</p>
+              <a
+                href={report.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-normal hover:opacity-60 text-[#9c0004]"
+              >
+                Visualizar
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  
+  <Footer />
+</Layout>

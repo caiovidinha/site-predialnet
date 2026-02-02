@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
+import RedirectPage from '../components/RedirectPage';
+---
+
+<Layout title="Redirecionando - Predialnet">
+  <Navbar />
+  <SecNavBar />
+  <RedirectPage client:load />
+</Layout>

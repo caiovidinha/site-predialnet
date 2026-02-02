@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FaWhatsapp } from "react-icons/fa";
+import { events } from '../utils/analytics';
 
 const SpecialPlansModal = ({ isOpen, onClose, type, onSelectPlan  } ) => {
   if (!isOpen) return null;
@@ -85,10 +86,14 @@ const additionalInfo =
     ? "Condições para contratação por pessoa física, sem franquia de consumo, instalação sujeito à viabilidade técnica. Oferta válida para locais com cobertura via rádio."
     : "Condições para contratação por pessoa física, sem franquia de consumo. Para pessoa jurídica, consulte agente de vendas. Instalação sujeita a viabilidade técnica. Ofertas válidas para locais com cobertura via radio.";
 return (
-    <div className="fixed inset-0 bg-[#9c0004] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]">
+    <div className="fixed inset-0 bg-[#9c0004] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]" role="dialog" aria-modal="true" aria-labelledby="specialPlansTitle">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-5xl p-8 relative overflow-y-auto mx-4 max-h-[90%]">
         {/* Botão de Fechar */}
-        <button className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
+        <button 
+          className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" 
+          onClick={onClose}
+          aria-label="Fechar modal de planos especiais"
+          type="button">
           &times;
         </button>
 
@@ -99,7 +104,7 @@ return (
         <h2 className="block md:hidden text-2xl md:text-3xl text-[#505050] mb-4 text-left font-normal">
           {type === "viaRadio" ? "VIA RÁDIO" : "PORTO MARAVILHA"}
         </h2>
-        <h2 className="hidden md:block text-2xl md:text-3xl text-[#505050] mb-4 text-left font-normal">
+        <h2 id="specialPlansTitle" className="hidden md:block text-2xl md:text-3xl text-[#505050] mb-4 text-left font-normal">
           {type === "viaRadio" ? "Planos residenciais - VIA RÁDIO" : "Planos residenciais - PORTO MARAVILHA"}
         </h2>
 
@@ -118,7 +123,10 @@ return (
                 <div className="w-full flex flex-col items-center gap-2">
                     <p className='text-sm font-thin'>Contrate</p>
                     <button
-                    onClick={() => onSelectPlan(plan.plan)}
+                    onClick={() => {
+                      onSelectPlan(plan.plan);
+                      events.specialPlanClick(type, plan.plan, 'site');
+                    }}
                     className="bg-[#ffbd17] text-black py-2 px-4 rounded-full text-sm  w-full font-normal hover:bg-[#e6a30f] transition"
                   >
                         pelo site
@@ -126,7 +134,8 @@ return (
                   <a 
                   href={plan.whatsapp}
                   target='_blank'
-                  className="bg-[#2db640] text-white py-2 px-4 rounded-full text-sm w-full font-normal flex items-center justify-center gap-2 hover:bg-[#249c33] transition">
+                  className="bg-[#2db640] text-white py-2 px-4 rounded-full text-sm w-full font-normal flex items-center justify-center gap-2 hover:bg-[#249c33] transition"
+                  onClick={() => events.specialPlanClick(type, plan.plan, 'whatsapp')}>
                     <FaWhatsapp size={18} />pelo WhatsApp
                   </a>
                 </div>
@@ -151,7 +160,10 @@ return (
               <div className="w-full flex flex-col items-center gap-2">
                 <p className="text-sm font-thin">Contrate</p>
                 <button
-                  onClick={() => onSelectPlan(plan.plan)}
+                  onClick={() => {
+                    onSelectPlan(plan.plan);
+                    events.specialPlanClick(type, plan.plan, 'site');
+                  }}
                   className="bg-[#ffbd17] text-black py-2 px-4 rounded-full text-sm w-full font-normal hover:bg-[#e6a30f] transition"
                 >
                   Pelo site
@@ -160,6 +172,7 @@ return (
                   href={plan.whatsapp}
                   target="_blank"
                   className="bg-[#2db640] text-white py-2 px-4 rounded-full text-sm w-full flex items-center justify-center gap-2 hover:bg-[#249c33] transition"
+                  onClick={() => events.specialPlanClick(type, plan.plan, 'whatsapp')}
                 >
                   <FaWhatsapp size={18} /> Pelo WhatsApp
                 </a>

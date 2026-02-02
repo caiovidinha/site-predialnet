@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
+import RegistrarAgendamentos from '../components/RegistrarAgendamentos';
+---
+
+<Layout title="Registrar Agendamentos - Predialnet">
+  <Navbar />
+  <SecNavBar />
+  <RegistrarAgendamentos client:load />
+</Layout>

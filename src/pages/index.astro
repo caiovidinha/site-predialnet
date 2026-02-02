@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
+import Carousel from '../components/Carousel';
+import Plans from '../components/Plans';
+import Cards from '../components/Cards.astro';
+import Contrate from '../components/Contrate';
+import Why from '../components/Why.astro';
+import App from '../components/App.astro';
+import Phone from '../components/Phone';
+import Cliente from '../components/Cliente';
+import Others from '../components/Others';
+import Atendimento from '../components/Atendimento';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Predialnet">
+  <Navbar />
+  <SecNavBar />
+  <Carousel client:load />
+  <Plans client:load />
+  <Cards />
+  <Contrate client:visible />
+  <Why />
+  <App />
+  <Phone client:visible />
+  <Cliente client:visible />
+  <Others client:visible />
+  <Atendimento client:visible />
+  <Footer />
+</Layout>

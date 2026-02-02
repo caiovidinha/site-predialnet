@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 
 const InfoModal = ({ isOpen, onClose }) => {
   if (!isOpen) {
@@ -7,37 +6,43 @@ const InfoModal = ({ isOpen, onClose }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-[#9c0004] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]">
+    <div className="fixed inset-0 bg-[#9c0004] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-4xl p-8 relative overflow-y-auto mx-4 max-h-[90%]">
       <div className="absolute inset-0 opacity-20 md:opacity-50 flex items-center justify-center z-0">
-          <Image
+          <img
             src="/img/bg-mark.png"
-            alt="Background Mark"
-            objectFit="cover"
-            width={350}
-            height={350}
+            alt=""
+            width="350"
+            height="350"
+            style={{ objectFit: 'cover' }}
+            aria-hidden="true"
           />
         </div>
         <div className="relative z-10 md:px-16 pt-4">
         {/* Botão de Fechar */}
-        <button className="absolute -top-2 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
+        <button 
+          className="absolute -top-2 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" 
+          onClick={onClose}
+          aria-label="Fechar modal de informações"
+          type="button">
           &times;
         </button>
 
         {/* Imagem "Super Wi-Fi 6" */}
         <div className="flex flex-row justify-between  mb-6">
-          <Image
+          <img
+            id="infoModalTitle"
             src="/img/superw6.png" // Supondo que a imagem do título seja chamada "super-wifi6.png"
             alt="Super Wi-Fi 6"
-            width={100}
-            height={53}
+            width="100"
+            height="53"
             className="object-contain"
           />
-          <Image
+          <img
             src="/img/logo.png"
             alt="Predialnet Logo"
-            width={150}
-            height={40}
+            width="150"
+            height="40"
             className="object-contain"
           />
         </div>
