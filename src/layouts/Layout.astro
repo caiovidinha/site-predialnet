@@ -273,7 +273,7 @@ const {
     
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-white text-black">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WH2TDC4S"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -283,12 +283,5 @@ const {
     <main id="main-content">
       <slot />
     </main>
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    
-    <title>{title}</title>
-  </head>
-  <body class="bg-white text-black">
-    <slot />
   </body>
 </html>
