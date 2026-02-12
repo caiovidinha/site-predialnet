@@ -10,6 +10,8 @@ const {
   title = 'Predialnet - Sua nova internet',
   description = 'Internet de alta velocidade com fibra óptica. Planos de 600 mega, 800 mega e 1 giga com Wi-Fi 6.'
 } = Astro.props;
+
+const SHOW_CARNAVAL_POPUP = true;
 ---
 
 <!doctype html>
@@ -283,5 +285,71 @@ const {
     <main id="main-content">
       <slot />
     </main>
+
+    {SHOW_CARNAVAL_POPUP && (
+      <>
+        <div
+          id="carnaval-popup"
+          class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Aviso de horário de Carnaval"
+        >
+          <div class="relative w-full max-w-xl md:max-w-2xl lg:max-w-3xl">
+            <button
+              id="carnaval-popup-close"
+              type="button"
+              class="absolute right-5 top-3 text-white"
+              aria-label="Fechar aviso"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="h-5 w-5 md:h-8 md:w-8"
+                aria-hidden="true"
+              >
+                <path d="M5 5L19 19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                <path d="M19 5L5 19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+              </svg>
+            </button>
+            <img
+              src="/img/horarioCarnaval.webp"
+              alt="Aviso de horário de atendimento no Carnaval"
+              class="h-auto max-h-[90vh] w-full rounded-xl object-contain"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <script is:inline>
+          (() => {
+            const popup = document.getElementById('carnaval-popup');
+            const closeButton = document.getElementById('carnaval-popup-close');
+
+            if (!popup || !closeButton) return;
+
+            const closePopup = () => {
+              popup.remove();
+            };
+
+            closeButton.addEventListener('click', closePopup);
+
+            popup.addEventListener('click', (event) => {
+              if (event.target === popup) {
+                closePopup();
+              }
+            });
+
+            document.addEventListener('keydown', (event) => {
+              if (event.key === 'Escape') {
+                closePopup();
+              }
+            });
+          })();
+        </script>
+      </>
+    )}
   </body>
 </html>
