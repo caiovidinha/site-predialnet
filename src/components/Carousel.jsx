@@ -3,6 +3,13 @@ import React, { useState, useEffect, useRef } from 'react';
 const Carousel = () => {
   const images = [
     {
+      desktopSrc: '/img/fraud',
+      mobileSrc: '/img/fraudMobile',
+      link: '/',
+      linkMobile: '/',
+      jpgOnly: true
+    },
+    {
       desktopSrc: '/img/banner1',
       mobileSrc: '/img/banner1Mobile',
       link: 'https://www.predialnet.com.br/assineja',
@@ -13,13 +20,6 @@ const Carousel = () => {
       mobileSrc: '/img/banner4Mobile',
       link: '#App',
       linkMobile: '/#App2'
-    },
-    {
-      desktopSrc: '/img/fraud',
-      mobileSrc: '/img/fraudMobile',
-      link: '/',
-      linkMobile: '/',
-      jpgOnly: true
     },
   ];
 
