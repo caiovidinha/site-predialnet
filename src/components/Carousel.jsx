@@ -14,6 +14,13 @@ const Carousel = () => {
       link: '#App',
       linkMobile: '/#App2'
     },
+    {
+      desktopSrc: '/img/fraud',
+      mobileSrc: '/img/fraudMobile',
+      link: '/',
+      linkMobile: '/',
+      jpgOnly: true
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -104,8 +111,8 @@ const Carousel = () => {
             rel={image.link === 'https://www.predialnet.com.br/assineja' ? 'noopener noreferrer' : undefined}
           >
             <picture>
-              <source srcSet={`${image.mobileSrc}.avif`} type="image/avif" />
-              <source srcSet={`${image.mobileSrc}.webp`} type="image/webp" />
+              {!image.jpgOnly && <source srcSet={`${image.mobileSrc}.avif`} type="image/avif" />}
+              {!image.jpgOnly && <source srcSet={`${image.mobileSrc}.webp`} type="image/webp" />}
               <img
                 src={`${image.mobileSrc}.jpg`}
                 alt={`Slide ${index + 1}`}
@@ -130,8 +137,8 @@ const Carousel = () => {
             rel={image.link === 'https://www.predialnet.com.br/assineja' ? 'noopener noreferrer' : undefined}
           >
             <picture>
-              <source srcSet={`${image.desktopSrc}.avif`} type="image/avif" />
-              <source srcSet={`${image.desktopSrc}.webp`} type="image/webp" />
+              {!image.jpgOnly && <source srcSet={`${image.desktopSrc}.avif`} type="image/avif" />}
+              {!image.jpgOnly && <source srcSet={`${image.desktopSrc}.webp`} type="image/webp" />}
               <img
                 src={`${image.desktopSrc}.jpg`}
                 alt={`Slide ${index + 1}`}
