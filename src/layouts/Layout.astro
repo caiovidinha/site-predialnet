@@ -11,7 +11,8 @@ const {
   description = 'Internet de alta velocidade com fibra óptica. Planos de 600 mega, 800 mega e 1 giga com Wi-Fi 6.'
 } = Astro.props;
 
-const SHOW_CARNAVAL_POPUP = true;
+const SHOW_CARNAVAL_POPUP = false;
+const SHOW_FRAUD_POPUP = true;
 ---
 
 <!doctype html>
@@ -346,6 +347,108 @@ const SHOW_CARNAVAL_POPUP = true;
               if (event.key === 'Escape') {
                 closePopup();
               }
+            });
+          })();
+        </script>
+      </>
+    )}
+
+    {SHOW_FRAUD_POPUP && (
+      <>
+        <div
+          id="fraud-popup"
+          class="font-sans fixed inset-0 bg-[#f2f2f2] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Alerta de fraude"
+        >
+          <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl relative overflow-y-auto mx-4 max-h-[90%]">
+
+            <!-- Marca d'água -->
+            <div class="absolute inset-0 opacity-20 md:opacity-50 flex items-center justify-center z-0 pointer-events-none">
+              <img src="/img/bg-mark.avif" alt="" width="350" height="350" style="object-fit:cover;" aria-hidden="true" />
+            </div>
+
+            <div class="relative z-10 px-6 md:px-12 pt-8 pb-8">
+
+              <!-- Botão fechar -->
+              <button
+                id="fraud-popup-close"
+                type="button"
+                class="absolute top-2 right-4 text-gray-400 text-4xl font-thin leading-none"
+                aria-label="Fechar aviso"
+              >&times;</button>
+
+              <!-- Logo + título -->
+              <div class="flex flex-row items-start justify-between mb-6">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-widest" style="color:#9c0004;">Comunicado Importante</p>
+                  <h2 class="text-xl md:text-2xl font-bold leading-tight mt-1" style="color:#9c0004;">Alerta de Fraude</h2>
+                  <p class="text-sm text-black font-semibold mt-0.5">Pagamento via PIX e Boleto</p>
+                </div>
+                <img src="/img/logo.avif" alt="Predialnet" width="140" height="36" class="object-contain hidden sm:block" />
+              </div>
+
+              <!-- Corpo -->
+              <div class="text-left text-black flex flex-col gap-3">
+                <p class="text-sm md:text-base">
+                  Recebemos relatos de mensagens encaminhadas a clientes através de <strong>páginas falsas e perfis de WhatsApp fraudulentos</strong>, com tentativas de obter ganhos mediante fraude, contendo chaves PIX e/ou links para pagamento apresentados como se fossem cobranças desta empresa.
+                </p>
+                <p class="text-sm md:text-base">
+                  Em razão dessas tentativas de fraude, comunicamos a todos os clientes para se prevenirem quanto a estas ações nefastas. Pedimos que observem as seguintes orientações:
+                </p>
+
+                <div class="border-l-4 pl-4 flex flex-col gap-2 my-1" style="border-color:#9c0004;">
+                  <p class="text-sm font-bold" style="color:#9c0004;">Como se proteger:</p>
+                  <ul class="flex flex-col gap-1.5 text-sm text-black">
+                    <li>· Não clique em links nem abra anexos de e-mails suspeitos.</li>
+                    <li>· Não pague boletos nem realize PIX a partir de mensagens não oficiais.</li>
+                    <li>· Antes de efetuar qualquer pagamento, confira o beneficiário/destinatário (razão social/nome e CNPJ/CPF).</li>
+                    <li>· Ao processar seus pagamentos, atente-se ao beneficiário. Todas as nossas cobranças possuem como beneficiário a nossa razão social: <strong>Predlink Rede de Telecomunicações Ltda.</strong></li>
+                    <li>· Em caso de dúvida, entre em contato conosco pelos canais oficiais da empresa e desconsidere mensagens suspeitas.</li>
+                  </ul>
+                </div>
+
+                <p class="text-sm text-black mt-1">
+                  <strong>Predialnet – Predlink Rede de Telecomunicações Ltda.</strong><br />
+                  (21) 3515-0555
+                </p>
+              </div>
+
+              <!-- CTA -->
+              <div class="mt-6 flex justify-center">
+                <button
+                  id="fraud-popup-close-bottom"
+                  type="button"
+                  class="bg-[#ffbd17] text-black py-2 px-8 rounded-full text-sm font-semibold active:scale-95 md:hover:scale-105 transition-transform shadow-md"
+                >
+                  Entendido
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <script is:inline>
+          (() => {
+            const popup = document.getElementById('fraud-popup');
+            const closeBtn = document.getElementById('fraud-popup-close');
+            const closeBtnBottom = document.getElementById('fraud-popup-close-bottom');
+
+            if (!popup) return;
+
+            const closePopup = () => { popup.remove(); };
+
+            if (closeBtn) closeBtn.addEventListener('click', closePopup);
+            if (closeBtnBottom) closeBtnBottom.addEventListener('click', closePopup);
+
+            popup.addEventListener('click', (e) => {
+              if (e.target === popup) closePopup();
+            });
+
+            document.addEventListener('keydown', (e) => {
+              if (e.key === 'Escape') closePopup();
             });
           })();
         </script>
