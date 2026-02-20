@@ -20,7 +20,7 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   
   # Content Security Policy - Proteção contra XSS e injeção de código
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' https://api.whatsapp.com https://www.predialnet.com.br https://minhaconta.predialnet.com.br https://appgw.predialnet.com.br https://api.ipify.org https://speedtest.predialnet.com.br; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self' https://www.predialnet.com.br https://appgw.predialnet.com.br; frame-ancestors 'none'; upgrade-insecure-requests;
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' https://api.whatsapp.com https://www.predialnet.com.br https://appgw.predialnet.com.br https://api.ipify.org https://speedtest.predialnet.com.br; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self' https://www.predialnet.com.br https://appgw.predialnet.com.br; frame-ancestors 'none'; upgrade-insecure-requests;
 
 # Cache para assets estáticos (imagens, fontes, etc)
 /img/*

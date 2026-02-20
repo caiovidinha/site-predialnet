@@ -66,7 +66,8 @@ function Cliente() {
                 iconSrc: 'img/iconeConta.png',
                 title: `2ª via
                 <br />de conta`,
-                link: 'https://minhaconta.predialnet.com.br',
+                // link: 'https://minhaconta.predialnet.com.br',
+                link: '/',
               },
               {
                 iconSrc: 'img/iconeSuporte.png',
@@ -77,7 +78,8 @@ function Cliente() {
               {
                 iconSrc: 'img/iconeProfile.png',
                 title: 'Área do<br />cliente',
-                link: 'https://minhaconta.predialnet.com.br',
+                // link: 'https://minhaconta.predialnet.com.br',
+                link: '/',
               },
             ].map((card, index) => (
               <a
@@ -169,7 +171,8 @@ function Cliente() {
                 iconSrc: 'img/iconeConta.png',
                 title: `2ª via
                 <br />de conta`,
-                link: 'https://minhaconta.predialnet.com.br',
+                // link: 'https://minhaconta.predialnet.com.br',
+                link: '/',
               },
               {
                 iconSrc: 'img/iconeSuporte.png',
@@ -180,7 +183,8 @@ function Cliente() {
               {
                 iconSrc: 'img/iconeProfile.png',
                 title: 'Área do<br />cliente',
-                link: 'https://minhaconta.predialnet.com.br',
+                // link: 'https://minhaconta.predialnet.com.br',
+                link: '/',
               },
             ].map((card, index) => (
               <a
