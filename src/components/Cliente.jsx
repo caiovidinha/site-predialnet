@@ -67,7 +67,7 @@ function Cliente() {
                 title: `2ª via
                 <br />de conta`,
                 // link: 'https://minhaconta.predialnet.com.br',
-                link: '/',
+                link: '/#App',
               },
               {
                 iconSrc: 'img/iconeSuporte.png',
@@ -79,14 +79,14 @@ function Cliente() {
                 iconSrc: 'img/iconeProfile.png',
                 title: 'Área do<br />cliente',
                 // link: 'https://minhaconta.predialnet.com.br',
-                link: '/',
+                link: '/#App',
               },
             ].map((card, index) => (
               <a
                 key={index}
                 className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-6 w-40 h-40 text-left hover:scale-105 transition-transform"
                 href={card.link}
-                target={card.link === '/#App' || card.link === '/#Atendimento' ? '_self' : '_blank'}
+                target={card.link === '/#App' || card.link === '/#App2' || card.link === '/#Atendimento' ? '_self' : '_blank'}
               >
                 <picture>
                   <source srcSet={card.iconSrc.replace('.png', '.avif')} type="image/avif" />
@@ -172,7 +172,7 @@ function Cliente() {
                 title: `2ª via
                 <br />de conta`,
                 // link: 'https://minhaconta.predialnet.com.br',
-                link: '/',
+                link: '/#App2',
               },
               {
                 iconSrc: 'img/iconeSuporte.png',
@@ -184,14 +184,14 @@ function Cliente() {
                 iconSrc: 'img/iconeProfile.png',
                 title: 'Área do<br />cliente',
                 // link: 'https://minhaconta.predialnet.com.br',
-                link: '/',
+                link: '/#App2',
               },
             ].map((card, index) => (
               <a
                 key={index}
                 className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-4 w-full h-40 text-left active:scale-95 transition-transform "
                 href={card.link}
-                target={card.link === '/#App' || card.link === '/#Atendimento' ? '_self' : '_blank'}
+                target={card.link === '/#App' || card.link === '/#App2' || card.link === '/#Atendimento' ? '_self' : '_blank'}
               >
                 <picture>
                   <source srcSet={card.iconSrc.replace('.png', '.avif')} type="image/avif" />
