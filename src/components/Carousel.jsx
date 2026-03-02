@@ -18,8 +18,8 @@ const Carousel = () => {
     {
       desktopSrc: '/img/banner4',
       mobileSrc: '/img/banner4Mobile',
-      link: '#App',
-      linkMobile: '/#App2'
+      link: 'https://minhaconta.predialnet.com.br',
+      linkMobile: 'https://minhaconta.predialnet.com.br'
     },
   ];
 
