@@ -4,7 +4,7 @@ import { IoIosWifi } from "react-icons/io";
 import PlansModal from './PlansModal';
 import { FaWhatsapp } from 'react-icons/fa6';
 
-function Plans({ linkAssinar }) {
+function Plans({ linkAssinar = '' }) {
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [highlightedPlan, setHighlightedPlan] = useState('');
@@ -63,7 +63,7 @@ function Plans({ linkAssinar }) {
       <div className="mt-8 flex flex-col md:flex-row justify-between gap-4">
         <div
           id="gamer-pro"
-          className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-full md:w-[23%] rounded-3xl overflow-hidden"
+          className="shadow-[0px_0px_7px_7px_rgba(8240,5,11,0.3)] w-full md:w-[23%] rounded-3xl overflow-hidden"
           style={{ backgroundImage: "url('/img/fundo-plano-gamer.png')", backgroundSize: 'cover', backgroundPosition: 'center', brightness: '0.6' }}
         >
           <div className="px-4 pt-6 pb-4">
@@ -103,7 +103,7 @@ function Plans({ linkAssinar }) {
         <div
           id="1giga"
           className={`w-full md:w-[23%] rounded-3xl overflow-hidden border border-gray-200 flex flex-col ${
-            highlightedPlan === '1giga' ? 'shadow-[0px_0px_7px_7px_rgba(8240,5,11,0.3)]' : 'shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)]'
+            highlightedPlan === 'ddd' ? 'shadow-[0px_0px_7px_7px_rgba(8240,5,11,0.3)]' : 'shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)]'
           }`}
         >
           <div className="px-4 pt-6 pb-3 flex-1">
@@ -138,7 +138,7 @@ function Plans({ linkAssinar }) {
           </div>
         </div>
 
-        <div id="800mega" className={`w-full md:w-[23%] rounded-3xl overflow-hidden border border-gray-200 flex flex-col ${highlightedPlan === '800mega' ? 'shadow-[0px_0px_7px_7px_rgba(8240,5,11,0.3)]' : 'shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)]'}`}>
+        <div id="800mega" className={`w-full md:w-[23%] rounded-3xl overflow-hidden border border-gray-200 flex flex-col ${highlightedPlan === 'ddd' ? 'shadow-[0px_0px_7px_7px_rgba(8240,5,11,0.3)]' : 'shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)]'}`}>
           <div className="px-4 pt-6 pb-3 flex-1">
             <h1 className="text-2xl xl:text-3xl">800 mega</h1>
             <h2 className="text-sm xl:text-base">Mais alcance com <span className="text-[#008c4b]">Wi-Fi 6</span></h2>

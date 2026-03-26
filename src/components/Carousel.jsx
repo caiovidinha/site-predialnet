@@ -3,6 +3,12 @@ import React, { useState, useEffect, useRef } from 'react';
 const Carousel = () => {
   const images = [
     {
+      desktopSrc: '/img/bannerGamer',
+      mobileSrc: '/img/bannerGamerMobile',
+      link: 'https://www.predialnet.com.br/assineja',
+      linkMobile: 'https://www.predialnet.com.br/assineja'
+    },
+    {
       desktopSrc: '/img/banner1',
       mobileSrc: '/img/banner1Mobile',
       link: 'https://www.predialnet.com.br/assineja',
