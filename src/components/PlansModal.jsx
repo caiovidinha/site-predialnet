@@ -4,7 +4,9 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
   if (!isOpen) return null;
   const url = 'https://www.predialnet.com.br/assineja?services=false'
   const urlSA = 'https://www.predialnet.com.br/assineja'
-  const regulamentoURL = plan.title == "600 mega" 
+  const regulamentoURL = plan.id == "gamer-pro"
+  ? "https://www.predialnet.com.br/download/2026.03_Oferta_Conjunta_PREDIALNET_GAMER_PRO.pdf"
+  : plan.title == "600 mega" 
   ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_600.pdf" 
   : plan.title == "800 mega"
   ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf"
@@ -34,74 +36,114 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
 
         <div className="flex flex-col md:flex-row gap-8">
           {/* Seção 1: Colunas do Plano */}
-          <div className="flex-1 flex flex-row gap-6 relative w-full md:max-w-[41%] md:mr-10">
-            {/* Coluna 1 */}
-            <div className="bg-white text-[#9c0004] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
-            <div className='flex flex-col gap-2 '>
-                {plan.id !== 'gamer-pro' && <p className="text-sm md:text-md text-center ">Plano até</p>}
-                <h1 className={`${plan.id === 'gamer-pro' ? 'text-lg md:text-2xl' : 'text-2xl md:text-3xl'} md:my-2 font-normal `}>{plan.title}</h1>
-                
-                <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
-                {plan.id == 'gamer-pro' && <p className="mt-2 text-xs  px-1 md:px-0 text-left ">{plan.wifi}</p>}
-                <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
-                <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
-              </div>
-              <a
-                href={url}
-                target='_blank'
-                className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+          {plan.id === 'gamer-pro' ? (
+            /* Layout especial Gamer Pro: duas colunas com fundo da campanha */
+            <div className="flex-1 flex flex-row gap-6 relative w-full md:max-w-[41%] md:mr-10">
+              {/* Coluna SEM Serviços Inteligentes */}
+              <div
+                className="w-full flex flex-col justify-between p-4 md:p-5 text-white overflow-hidden"
+                style={{ backgroundImage: "url('/img/fundo-plano-gamer-v.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
               >
-                Assinar
-              </a>
-            </div>
-
-            {/* Circulo de "OU" */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#9c0004] text-white w-14 h-14 rounded-full flex items-center justify-center border-2 border-white text-2xl">
-              ou
-            </div>
-
-            {/* Coluna 2 */}
-            {
-              plan.title=="jasndjsa"?
-              <div className="bg-black text-white p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left ">
-              <div className='flex flex-col gap-2 '>
-                <p className="text-sm md:text-md text-center bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">Oferta até</p>
-                <h1 className="text-2xl md:text-3xl md:my-2 font-normal bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">{plan.title}</h1>
-                <h1 className="text-xs md:text-xs -mt-3 font-normal bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">+100 mega de bônus nos doze primeiros meses</h1>
-                <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
-                <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
-                <p className="px-1 md:px-0 text-left ">Sem fidelidade</p>
-                <p className=' px-1 md:px-0 text-left font-bold'>{plan.wifi}</p>
-                <p className=' px-1 md:px-0 text-left'>Serviços inteligentes*</p>
+                <div className="flex flex-col gap-1">
+                  <p className="text-xs font-bold uppercase tracking-wide text-white/80">Plano</p>
+                  <h2 className="text-base md:text-lg font-bold leading-tight">CABEADO MUDA O JOGO.</h2>
+                  <p className="text-xs text-white/80 leading-tight">Aproveite a promoção e tenha um dispositivo cabeado totalmente grátis para jogar com máxima estabilidade.</p>
+                  <p className="text-xl md:text-2xl font-medium mt-2">{plan.valor}<span className="text-sm">*</span><span className="text-xs">/mês</span></p>
+                  <p className="text-xs">{plan.wifi}</p>
+                  <p className="text-xs">Instalação grátis</p>
+                  <p className="text-xs">Sem fidelidade</p>
+                  <p className="text-xs">Dispositivo cabeado grátis</p>
+                </div>
+                <a
+                  href={url}
+                  target="_blank"
+                  className="mt-4 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+                >
+                  Assinar
+                </a>
               </div>
-              <a
-                href={urlSA}
-                target='_blank'
-                className="mt-4 md:mt-0 bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621]  text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+
+              {/* Circulo de "OU" */}
+              {plan.id !== 'gamer-pro' && (
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#9c0004] text-white w-14 h-14 rounded-full flex items-center justify-center border-2 border-white text-2xl">
+                  ou
+                </div>
+              )}
+
+              {/* Coluna COM Serviços Inteligentes */}
+              <div
+                className="w-full flex flex-col justify-between p-4 md:p-5 text-white overflow-hidden"
+                style={{ backgroundImage: "url('/img/fundo-plano-gamer-b.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
               >
-                Assinar
-              </a>
-            </div> :
-            <div className="bg-[#9c0004] text-[#fff] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left ">
-            <div className='flex flex-col gap-2 '>
-              {plan.id !== 'gamer-pro' && <p className="text-sm md:text-md text-center ">Oferta até</p>}
-              <h1 className={`${plan.id === 'gamer-pro' ? 'text-lg md:text-2xl' : 'text-2xl md:text-3xl'} md:my-2 font-normal `}>{plan.title}</h1>
-              
-              <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
-              <p className="text-xs md:text-md mt-2 px-1 md:px-0 text-left font-bold">{plan.wifi}</p>
-              <p className="text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
-              <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
-              <p className='text-xs   px-1 md:px-0 text-left'>Serviços inteligentes*</p>
+                <div className="flex flex-col gap-1">
+                  <p className="text-xs font-bold uppercase tracking-wide text-white/80">OFERTA</p>
+                  <h2 className="text-base md:text-lg font-bold leading-tight">CABEADO MUDA O JOGO.</h2>
+                  <p className="text-xs text-white/80 leading-tight">Aproveite a promoção e tenha um dispositivo cabeado totalmente grátis para jogar com máxima estabilidade.</p>
+                  <p className="text-xl md:text-2xl font-medium mt-2">{plan.valor}<span className="text-sm">*</span><span className="text-xs">/mês</span></p>
+                  <p className="text-xs">{plan.wifi}</p>
+                  <p className="text-xs">Instalação grátis</p>
+                  <p className="text-xs">Sem fidelidade</p>
+                  <p className="text-xs">Dispositivo cabeado grátis</p>
+                  <p className="text-xs font-semibold">Serviços inteligentes*</p>
+                </div>
+                <a
+                  href={urlSA}
+                  target="_blank"
+                  className="mt-4 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+                >
+                  Assinar
+                </a>
+              </div>
             </div>
-            <a
-              href={urlSA}
-              target='_blank'
-              className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
-            >
-              Assinar
-            </a>
-          </div>}
-          </div>
+          ) : (
+            /* Layout padrão para outros planos */
+            <div className="flex-1 flex flex-row gap-6 relative w-full md:max-w-[41%] md:mr-10">
+              {/* Coluna 1 */}
+              <div className="bg-white text-[#9c0004] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
+                <div className='flex flex-col gap-2'>
+                  <p className="text-sm md:text-md text-center">Plano até</p>
+                  <h1 className="text-2xl md:text-3xl md:my-2 font-normal">{plan.title}</h1>
+                  <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
+                  <p className="mt-2 text-xs px-1 md:px-0 text-left">Instalação grátis</p>
+                  <p className="text-xs px-1 md:px-0 text-left">Sem fidelidade</p>
+                </div>
+                <a
+                  href={url}
+                  target='_blank'
+                  className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+                >
+                  Assinar
+                </a>
+              </div>
+
+              {/* Circulo de "OU" */}
+              {plan.id !== 'gamer-pro' && (
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#9c0004] text-white w-14 h-14 rounded-full flex items-center justify-center border-2 border-white text-2xl">
+                  ou
+                </div>
+              )}
+
+              {/* Coluna 2 */}
+              <div className="bg-[#9c0004] text-[#fff] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
+                <div className='flex flex-col gap-2'>
+                  <p className="text-sm md:text-md text-center">Oferta até</p>
+                  <h1 className="text-2xl md:text-3xl md:my-2 font-normal">{plan.title}</h1>
+                  <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
+                  <p className="text-xs md:text-md mt-2 px-1 md:px-0 text-left font-bold">{plan.wifi}</p>
+                  <p className="text-xs px-1 md:px-0 text-left">Instalação grátis</p>
+                  <p className="text-xs px-1 md:px-0 text-left">Sem fidelidade</p>
+                  <p className='text-xs px-1 md:px-0 text-left'>Serviços inteligentes*</p>
+                </div>
+                <a
+                  href={urlSA}
+                  target='_blank'
+                  className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+                >
+                  Assinar
+                </a>
+              </div>
+            </div>
+          )}
           
           
           
@@ -142,6 +184,9 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
             </div>
           </div>
         </div>
+        {plan.id === 'gamer-pro' && (
+          <p className="text-xs text-gray-400 mt-6">*Oferta válida pelos 3 primeiros meses, após isso, R$ 139,90/mês</p>
+        )}
       </div>
     </div>
   );

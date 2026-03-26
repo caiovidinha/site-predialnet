@@ -71,7 +71,7 @@ function Plans({ linkAssinar }) {
             <h2 className="text-sm xl:text-base text-white">1 giga pelo preço de 800 mega</h2>
 
             <p className="text-2xl xl:text-3xl font-medium text-white mt-2 mb-1">
-              R$ 124,90<span className="text-lg xl:text-xl font-semibold">/mês</span>
+              R$ 124,90<span className="text-base font-medium">*</span><span className="text-lg xl:text-xl font-semibold">/mês</span>
             </p>
             <button
               onClick={() => openModal(plans[0])}
@@ -95,6 +95,7 @@ function Plans({ linkAssinar }) {
               <p className="flex items-center text-sm text-white">
                  Plano com <span className="text-[#008c4b]">&nbsp;dispositivo cabeado grátis</span>
               </p>
+              <p className="text-xs text-white/60 mt-2">*Oferta válida pelos 3 primeiros meses, após R$ 139,90/mês</p>
             </div>
           </div>
         </div>
