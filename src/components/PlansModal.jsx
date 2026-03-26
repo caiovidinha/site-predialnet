@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
-import { FaArrowRight } from "react-icons/fa";
-import { events } from '../utils/analytics';
 
 const PlansModal = ({ isOpen, onClose, plan } ) => {
   if (!isOpen) return null;
   const url = 'https://www.predialnet.com.br/assineja?services=false'
   const urlSA = 'https://www.predialnet.com.br/assineja'
   const regulamentoURL = plan.title == "600 mega" 
-  ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf" 
+  ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_600.pdf" 
   : plan.title == "800 mega"
   ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf"
   : "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf"
@@ -25,23 +23,12 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
     };
   }, [isOpen]);
 
-  const handlePlanClick = (method = 'site') => {
-    events.planClick(plan.title, plan.valor, method, 'plan_modal');
-  };
-
   return (
     <div
-    className="font-sans fixed inset-0 bg-[#f2f2f2] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="planModalTitle">
+    className="font-sans fixed inset-0 bg-[#f2f2f2] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]">
       <div className="bg-[#f2f2f2] rounded-lg pt-10 pb-8 md:py-20 px-6 md:px-10 max-w-5xl w-full mx-4 relative overflow-y-auto max-h-[85%] md:max-h-screen">
         {/* Botão de Fechar */}
-        <button 
-          className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" 
-          onClick={onClose}
-          aria-label="Fechar modal de plano"
-          type="button">
+        <button className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
           &times;
         </button>
 
@@ -51,10 +38,11 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
             {/* Coluna 1 */}
             <div className="bg-white text-[#9c0004] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
             <div className='flex flex-col gap-2 '>
-                <p className="text-sm md:text-md text-center ">Plano até</p>
-                <h1 id="planModalTitle" className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
+                {plan.id !== 'gamer-pro' && <p className="text-sm md:text-md text-center ">Plano até</p>}
+                <h1 className={`${plan.id === 'gamer-pro' ? 'text-lg md:text-2xl' : 'text-2xl md:text-3xl'} md:my-2 font-normal `}>{plan.title}</h1>
                 
                 <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
+                {plan.id == 'gamer-pro' && <p className="mt-2 text-xs  px-1 md:px-0 text-left ">{plan.wifi}</p>}
                 <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
                 <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
               </div>
@@ -62,7 +50,6 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 href={url}
                 target='_blank'
                 className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
-                onClick={() => handlePlanClick('site')}
               >
                 Assinar
               </a>
@@ -97,8 +84,8 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
             </div> :
             <div className="bg-[#9c0004] text-[#fff] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left ">
             <div className='flex flex-col gap-2 '>
-              <p className="text-sm md:text-md text-center ">Oferta até</p>
-              <h1 className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
+              {plan.id !== 'gamer-pro' && <p className="text-sm md:text-md text-center ">Oferta até</p>}
+              <h1 className={`${plan.id === 'gamer-pro' ? 'text-lg md:text-2xl' : 'text-2xl md:text-3xl'} md:my-2 font-normal `}>{plan.title}</h1>
               
               <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
               <p className="text-xs md:text-md mt-2 px-1 md:px-0 text-left font-bold">{plan.wifi}</p>
@@ -128,7 +115,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
               </a>
             </div>
             <h1 className="text-[#9c0004] text-[13pt] font-bold md:font-normal md:text-xl md:mb-4">SEM FIDELIDADE . SEM TAXA DE INSTALAÇÃO</h1>
-            <h2 className="font-bold text-sm">Oferta com velocidade de até {plan.title}</h2>
+            <h2 className="font-bold text-sm">{plan.id === 'gamer-pro' ? 'Plano Gamer Pro: 1 giga pelo preço de 800 mega' : `Oferta com velocidade de até ${plan.title}`}</h2>
             <p className=" mb-4 leading-tight text-sm">
               Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com
               cobertura fibra óptica, exceto: Região do Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
