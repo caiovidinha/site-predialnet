@@ -7,6 +7,14 @@ const documents = {
       link: 'https://www.predialnet.com.br/download/contrato-padrao-adesao-servico-internet.pdf',
     },
     {
+      title: 'Regulamento Oferta Promocional "Predial Fibra 800 – Black Friday 2025"',
+      link: 'https://www.predialnet.com.br/download/2025.11_Oferta_Conjunta_800-Black_Friday.pdf',
+    },
+    {
+      title: 'Regulamento Oferta Promocional "Predial Fibra 1 Giga – Black Friday 2025"',
+      link: 'https://www.predialnet.com.br/download/2025.11_Oferta_Conjunta_1_GB-Black_Friday.pdf',
+    },
+    {
       title: 'Regulamento Plano "Fibra 1 Giga – Preço Fixo até 2029"',
       link: 'https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Plano_1GB.pdf',
     },

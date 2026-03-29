@@ -5,29 +5,24 @@ const CarouselComponent = () => {
   const images = [
 
     {
-      desktopSrc: '/img/banner1.jpg',
-      mobileSrc: '/img/banner1Mobile.jpg',
+      desktopSrc: '/img/banner2.jpg',
+      mobileSrc: '/img/banner2Mobile.jpg',
       link: 'https://www.predialnet.com.br/assineja',
       linkMobile: 'https://www.predialnet.com.br/assineja'
     },
-    // {
-    //   desktopSrc: '/img/banner2.jpg',
-    //   mobileSrc: '/img/banner2Mobile.jpg',
-    //   link: 'https://www.predialnet.com.br/assineja',
-    //   linkMobile: 'https://www.predialnet.com.br/assineja'
-    // },
+
     // {
     //   desktopSrc: '/img/banner3.jpg',
     //   mobileSrc: '/img/banner3Mobile.jpg',
     //   link: 'https://www.predialnet.com.br/assineja',
     //   linkMobile: 'https://www.predialnet.com.br/assineja'
     // },
-    {
-      desktopSrc: '/img/banner4.jpg',
-      mobileSrc: '/img/banner4Mobile.jpg',
-      link: '#App',
-      linkMobile: '/#App2'
-    },
+    // {
+    //   desktopSrc: '/img/banner4.jpg',
+    //   mobileSrc: '/img/banner4Mobile.jpg',
+    //   link: '#App',
+    //   linkMobile: '/#App2'
+    // },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
