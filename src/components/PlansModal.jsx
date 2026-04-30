@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
+import { FaArrowRight } from "react-icons/fa";
+import { events } from '../utils/analytics';
 
 const PlansModal = ({ isOpen, onClose, plan } ) => {
   if (!isOpen) return null;
   const url = 'https://www.predialnet.com.br/assineja?services=false'
   const urlSA = 'https://www.predialnet.com.br/assineja'
   const regulamentoURL = plan.title == "600 mega" 
-  ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_600.pdf" 
+  ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf" 
   : plan.title == "800 mega"
   ? "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf"
   : "https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf"
@@ -23,12 +25,23 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
     };
   }, [isOpen]);
 
+  const handlePlanClick = (method = 'site') => {
+    events.planClick(plan.title, plan.valor, method, 'plan_modal');
+  };
+
   return (
     <div
-    className="font-sans fixed inset-0 bg-[#f2f2f2] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]">
+    className="font-sans fixed inset-0 bg-[#f2f2f2] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="planModalTitle">
       <div className="bg-[#f2f2f2] rounded-lg pt-10 pb-8 md:py-20 px-6 md:px-10 max-w-5xl w-full mx-4 relative overflow-y-auto max-h-[85%] md:max-h-screen">
         {/* Botão de Fechar */}
-        <button className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
+        <button 
+          className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" 
+          onClick={onClose}
+          aria-label="Fechar modal de plano"
+          type="button">
           &times;
         </button>
 
@@ -39,7 +52,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
             <div className="bg-white text-[#9c0004] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
             <div className='flex flex-col gap-2 '>
                 <p className="text-sm md:text-md text-center ">Plano até</p>
-                <h1 className="text-2xl md:text-3xl md:my-2 font-normal">{plan.title}</h1>
+                <h1 id="planModalTitle" className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
                 
                 <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
                 <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
@@ -49,6 +62,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
                 href={url}
                 target='_blank'
                 className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+                onClick={() => handlePlanClick('site')}
               >
                 Assinar
               </a>
@@ -60,24 +74,46 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
             </div>
 
             {/* Coluna 2 */}
-            <div className="bg-[#9c0004] text-[#fff] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left">
-              <div className='flex flex-col gap-2'>
-                <p className="text-sm md:text-md text-center">Oferta até</p>
-                <h1 className="text-2xl md:text-3xl md:my-2 font-normal">{plan.title}</h1>
+            {
+              plan.title=="jasndjsa"?
+              <div className="bg-black text-white p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left ">
+              <div className='flex flex-col gap-2 '>
+                <p className="text-sm md:text-md text-center bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">Oferta até</p>
+                <h1 className="text-2xl md:text-3xl md:my-2 font-normal bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">{plan.title}</h1>
+                <h1 className="text-xs md:text-xs -mt-3 font-normal bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621] inline-block text-transparent bg-clip-text">+100 mega de bônus nos doze primeiros meses</h1>
                 <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
-                <p className="text-xs md:text-md mt-2 px-1 md:px-0 text-left font-bold">{plan.wifi}</p>
-                <p className="text-xs px-1 md:px-0 text-left">Instalação grátis</p>
-                <p className="text-xs px-1 md:px-0 text-left">Sem fidelidade</p>
-                <p className='text-xs px-1 md:px-0 text-left'>Serviços inteligentes*</p>
+                <p className="mt-2 text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
+                <p className="px-1 md:px-0 text-left ">Sem fidelidade</p>
+                <p className=' px-1 md:px-0 text-left font-bold'>{plan.wifi}</p>
+                <p className=' px-1 md:px-0 text-left'>Serviços inteligentes*</p>
               </div>
               <a
                 href={urlSA}
                 target='_blank'
-                className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+                className="mt-4 md:mt-0 bg-gradient-to-r from-[#c48621] via-[#efd86d] to-[#c48621]  text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
               >
                 Assinar
               </a>
+            </div> :
+            <div className="bg-[#9c0004] text-[#fff] p-4 md:p-6 w-full flex flex-col justify-between text-center md:text-left ">
+            <div className='flex flex-col gap-2 '>
+              <p className="text-sm md:text-md text-center ">Oferta até</p>
+              <h1 className="text-2xl md:text-3xl md:my-2 font-normal ">{plan.title}</h1>
+              
+              <p className="text-xl md:text-2xl">{plan.valor}<span className="text-xs">/mês</span></p>
+              <p className="text-xs md:text-md mt-2 px-1 md:px-0 text-left font-bold">{plan.wifi}</p>
+              <p className="text-xs  px-1 md:px-0 text-left ">Instalação grátis</p>
+              <p className="text-xs  px-1 md:px-0 text-left ">Sem fidelidade</p>
+              <p className='text-xs   px-1 md:px-0 text-left'>Serviços inteligentes*</p>
             </div>
+            <a
+              href={urlSA}
+              target='_blank'
+              className="mt-4 md:mt-0 bg-[#ffbd17] text-black py-1 px-4 rounded-full text-sm flex items-center justify-center gap-2 active:scale-95 md:hover:scale-105 transition-transform"
+            >
+              Assinar
+            </a>
+          </div>}
           </div>
           
           
