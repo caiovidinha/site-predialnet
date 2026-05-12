@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import SecNavBar from '../components/SecNavBar.astro';
-import Carousel from '../components/Carousel';
 import Plans from '../components/Plans';
 import Cards from '../components/Cards.astro';
 import Contrate from '../components/Contrate';
@@ -18,7 +17,7 @@ import Footer from '../components/Footer.astro';
 <Layout title="Predialnet">
   <Navbar />
   <SecNavBar />
-  <Carousel client:load />
+  <img src="/img/hero.webp" alt="Predialnet" class="w-full h-auto block" width="2560" height="722" loading="eager" />
   <Plans client:load />
   <Cards />
   <Contrate client:visible />

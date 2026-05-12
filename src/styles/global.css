@@ -3,9 +3,17 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Bahnschrift';
-  src: url('/fonts/Bahnschrift.woff') format('woff');
-  font-weight: normal;
+  font-family: 'Swis721';
+  src: url('/fonts/Swis721 Lt BT Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Swis721';
+  src: url('/fonts/Swis721 BT Roman.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -21,10 +29,16 @@ html {
 }
 
 body {
-  font-family: 'Bahnschrift', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Swis721', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.025em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Swis721', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
 }
 /* Esconder scrollbar mantendo funcionalidade */
 .scrollbar-hide {

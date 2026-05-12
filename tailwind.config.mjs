@@ -4,7 +4,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Bahnschrift', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Swis721', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        roman: ['Swis721', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+      },
+      fontWeight: {
+        thin:       '300',
+        extralight: '300',
+        light:      '300',
+        normal:     '300',
+        medium:     '400',
+        semibold:   '400',
+        bold:       '400',
+        extrabold:  '400',
+        black:      '400',
       },
     },
   },

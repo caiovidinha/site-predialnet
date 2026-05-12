@@ -1,190 +1,257 @@
 import React, { useState } from 'react';
-import { IoIosWifi } from 'react-icons/io';
-import { FaWhatsapp } from 'react-icons/fa6';
-import PlansModal from './PlansModal';
 import { events } from '../utils/analytics';
 
+// Paleta
+// v1:   #8a0005
+// g1:   #fafafa
+// g2:   #e6e6e6
+// g3:   #dcdcdc
+// vrd1: #00a650
+
+const planData = [
+  {
+    id: '600mega',
+    tagline: 'Navegue sem limites',
+    title: '600 Mega',
+    price: '99,90',
+    wifi: 'Wi-Fi Gigabit',
+    seal: null,
+    gamerPonto: false,
+    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf',
+  },
+  {
+    id: '800mega',
+    tagline: 'Pra conectar todo mundo',
+    title: '800 Mega',
+    price: '124,90',
+    wifi: 'Wi-Fi 6',
+    seal: { text: 'MAIS VENDIDO', bg: '#dcdcdc', color: '#8a0005' },
+    gamerPonto: false,
+    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf',
+  },
+  {
+    id: '1giga',
+    tagline: 'Muita internet pra casa toda',
+    title: '1 Giga',
+    price: '139,90',
+    wifi: 'Wi-Fi 6',
+    seal: { text: 'MELHOR OFERTA', bg: '#8a0005', color: '#ffffff' },
+    gamerPonto: false,
+    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
+  },
+  {
+    id: 'gamer1giga',
+    tagline: 'Jogue sem lag',
+    title: 'Gamer Pro 1 Giga',
+    price: '159,90',
+    wifi: 'Wi-Fi 6',
+    seal: { text: 'PLANO GAMER', bg: '#000000', color: '#ffffff' },
+    gamerPonto: true,
+    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
+  },
+];
+
 const Plans = () => {
-  const [selectedPlan, setSelectedPlan] = useState(null);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [openDetails, setOpenDetails] = useState(null);
+  const [pontoCabeado, setPontoCabeado] = useState({
+    '600mega': false,
+    '800mega': false,
+    '1giga': false,
+    'gamer1giga': true,
+  });
 
-  const plans = [
-    {
-      id: '600mega',
-      title: '600 mega',
-      valor: 'R$ 99,90',
-      wifi: 'Com Super Wi-Fi Gigabit',
-    },
-    {
-      id: '800mega',
-      title: '800 mega',
-      valor: 'R$ 124,90',
-      wifi: 'Com Super Wi-Fi 6',
-    },
-    {
-      id: '1giga',
-      title: '1 giga',
-      valor: 'R$ 139,90',
-      wifi: 'Com Super Wi-Fi 6',
-    },
-  ];
-
-  const openModal = (plan) => {
-    setSelectedPlan(plan);
-    setModalOpen(true);
-    events.planView(plan.title, plan.valor, 'plans_section');
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setSelectedPlan(null);
-  };
+  const toggleDetails = (id) => setOpenDetails((prev) => (prev === id ? null : id));
 
   return (
     <div id="Plans" className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#231f20]">
-      <h1 className="text-3xl sm:text-3xl mb-1 tracking-tight">
-        Predialnet é muito mais velocidade e estabilidade
+      {/* Cabeçalho */}
+      <h1 className="text-3xl mb-1 tracking-tight">
+        Planos Predialnet Fibra para sua casa
       </h1>
-      <h2 className="text-[#9e9e9e] text-lg sm:text-xl leading-6">
-        Agora sua internet vai decolar com os novos planos Wi-Fi 6. + Conexão | + Velocidade |<br />
-        + Estabilidade | + Alcance
+      <h2 className="text-lg font-light leading-6">
+        Conquiste um plano Predialnet e mude sua experiência de conexão
       </h2>
 
-      <div className="mt-8 flex flex-col md:flex-row justify-between gap-6">
-        {/* 1 Giga Plan */}
-        <div id="1giga" className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-full md:w-[31%] rounded-3xl">
-          <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
-            <h1 className="text-4xl dsm:text-4xl">1 giga</h1>
-            <h2 className="text-lg">
-              Mais alcance com <span className="text-[#008c4b]">Wi-Fi 6</span>
-            </h2>
-            <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
-              R$ 139,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
-            </p>
-            <button
-              onClick={() => openModal(plans[2])}
-              className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform"
-              aria-label="Abrir formulário de contratação do plano de 1 giga"
-            >
-              Assinar pelo site
-            </button>
-            <a
-              href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%201%20giga!"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform"
-              aria-label="Contratar plano de 1 giga pelo WhatsApp"
-              onClick={() => events.planClick('1 giga', 'R$ 139,90', 'whatsapp', 'plans_section')}
-            >
-              <FaWhatsapp size={25} aria-hidden="true" /> Assinar pelo WhatsApp
-            </a>
-            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>
-          </div>
-          <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
-            <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
-              <IoIosWifi /> Plano com Super <span className="text-[#008c4b]">Wi-Fi 6</span>
-            </p>
-          </div>
-        </div>
+      {/* Cards */}
+      <div className="mt-10 flex flex-col md:flex-row gap-3 items-start">
+        {planData.map((plan) => {
+          const isOpen = openDetails === plan.id;
+          const isPonto = pontoCabeado[plan.id];
 
-        {/* 800 Mega Plan */}
-        <div id="600mega" className="shadow-[0px_0px_7px_7px_rgba(8240,5,11,0.3)] w-full md:w-[31%] rounded-3xl">
-          <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
-            <h1 className="text-4xl sm:text-4xl">800 mega</h1>
-            <h2 className="text-lg">
-              Mais alcance com <span className="text-[#008c4b]">Wi-Fi 6</span>
-            </h2>
-            <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
-              R$ 124,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
-            </p>
-            <button
-              onClick={() => openModal(plans[1])}
-              className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform"
-              aria-label="Abrir formulário de contratação do plano de 800 mega"
-            >
-              Assinar pelo site
-            </button>
-            <a
-              href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20800%20mega!"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform"
-              aria-label="Contratar plano de 800 mega pelo WhatsApp"
-              onClick={() => events.planClick('800 mega', 'R$ 124,90', 'whatsapp', 'plans_section')}
-            >
-              <FaWhatsapp size={25} aria-hidden="true" /> Assinar pelo WhatsApp
-            </a>
-            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>
-          </div>
-          <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
-            <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
-              <IoIosWifi /> Plano com Super <span className="text-[#008c4b]">Wi-Fi 6</span>
-            </p>
-          </div>
-        </div>
+          return (
+            <div key={plan.id} className="relative pt-4 w-full md:w-1/4 flex flex-col">
 
-        {/* 600 Mega Plan */}
-        <div id="600mega" className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] w-full md:w-[31%] rounded-3xl">
-          <div className="rounded-t-3xl border-b-0 border-gray-200 border-[2px] px-6 pt-8 pb-3">
-            <h1 className="text-4xl sm:text-4xl tracking-tight">600 mega</h1>
-            <h2 className="text-lg">Com Super Wi-Fi Gigabit</h2>
-            <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
-              R$ 99,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
-            </p>
-            <button
-              onClick={() => openModal(plans[0])}
-              className="py-2 bg-[#9c0004] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-1 hover:scale-105 transition-transform"
-              aria-label="Abrir formulário de contratação do plano de 600 mega"
-            >
-              Assinar pelo site
-            </button>
-            <a
-              href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20600%20mega!"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform"
-              aria-label="Contratar plano de 600 mega pelo WhatsApp"
-              onClick={() => events.planClick('600 mega', 'R$ 99,90', 'whatsapp', 'plans_section')}
-            >
-              <FaWhatsapp size={25} aria-hidden="true" /> Assinar pelo WhatsApp
-            </a>
-            <p className="text-base sm:text-lg text-[#9e9e9e] mt-2">Sem fidelidade</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Instalação grátis</p>
-            <p className="text-base sm:text-lg text-[#9e9e9e]">Serviços inteligentes</p>
-          </div>
-          <div className="rounded-b-3xl border-t-0 border-gray-200 border-[2px] px-6 py-6 bg-[#e9e9e9b6]">
-            <p className="flex flex-row items-center gap-2 text-base sm:text-lg text-[#5c595b]">
-              <IoIosWifi /> Plano com Super Wi-Fi Gigabit
-            </p>
-          </div>
-        </div>
+              {/* Selo �?" metade saindo pelo topo da caixa */}
+              {plan.seal && (
+                <div
+                  className="absolute top-0 left-0 px-4 py-1 text-xs font-medium tracking-wide z-10 rounded-r"
+                  style={{ backgroundColor: plan.seal.bg, color: plan.seal.color }}
+                >
+                  {plan.seal.text}
+                </div>
+              )}
+
+              {/* Card */}
+              <div className="border border-[#dcdcdc] rounded bg-white flex flex-col p-6">
+
+                {/* Tagline �?" f4 */}
+                <p className="text-sm font-light mb-4">{plan.tagline}</p>
+
+                {/* Nome do plano — f1 */}
+                <h2 className="text-3xl font-light tracking-tight mb-8">{plan.title}</h2>
+
+                {/* Features �?" f5 */}
+                <ul className="flex flex-col gap-2.5 mb-7">
+                  <li className="text-sm font-light flex items-center gap-1.5">
+                    <span>✔</span>{plan.wifi}
+                  </li>
+                  <li className="text-sm font-light flex items-center gap-1.5">
+                    <span>✔</span>Instalação Grátis
+                  </li>
+                  <li className="text-sm font-light flex items-center gap-1.5">
+                    <span>✔</span>Sem fidelidade
+                  </li>
+                  <li className="text-sm font-light flex items-center gap-1.5">
+                    <span>✔</span>Serviços Inteligentes
+                  </li>
+                </ul>
+
+                {/* Ponto cabeado �?" f4 */}
+                <div
+                  className={`rounded flex items-center justify-between gap-3 px-4 py-3 mb-6 bg-[#e6e6e6] transition-colors ${
+                    plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'
+                  } text-sm`}
+                  onClick={() =>
+                    !plan.gamerPonto &&
+                    setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))
+                  }
+                >
+                  <span className="font-light leading-tight">
+                    {isPonto ? '1 Ponto cabeado selecionado' : 'Adicionar um ponto cabeado. + R$ 30,00/mês'}
+                  </span>
+                  {/* Checkbox à direita */}
+                  <div
+                    className="w-5 h-5 flex-shrink-0 rounded-sm border flex items-center justify-center transition-colors"
+                    style={{
+                      backgroundColor: isPonto ? '#00a650' : 'white',
+                      borderColor: isPonto ? '#00a650' : '#aaaaaa',
+                    }}
+                  >
+                    {isPonto && (
+                      <svg width="11" height="9" viewBox="0 0 11 9" fill="none" aria-hidden="true">
+                        <path d="M1 4.5L4 7.5L10 1.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </div>
+                </div>
+
+                {/* Preço �?" f2 */}
+                <p className="text-2xl tracking-tight mb-6">
+                  R$ {plan.price} <span className="text-sm font-light">/mês</span>
+                </p>
+
+                {/* Botão Assinar �?" v1, rounded mínimo */}
+                <a
+                  href="https://www.predialnet.com.br/assineja"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center py-2 rounded text-xs text-white bg-[#8a0005] hover:opacity-90 transition-opacity mb-3"
+                  aria-label={`Assinar plano ${plan.title}`}
+                  onClick={() => events.planClick(plan.title, `R$ ${plan.price}`, 'site', 'plans_section')}
+                >
+                  Assinar
+                </a>
+
+                {/* Mais detalhes �?" f4 */}
+                <button
+                  type="button"
+                  onClick={() => toggleDetails(plan.id)}
+                  className="flex items-center justify-center gap-1 text-sm font-light hover:text-[#8a0005] transition-colors"
+                >
+                  Mais detalhes
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Accordion de detalhes */}
+                {isOpen && (
+                  <div className="mt-4 pt-4 border-t border-[#e6e6e6] flex flex-col gap-3">
+                    {/* f2 */}
+                    <p className="text-2xl tracking-tight">Plano {plan.title}</p>
+                    {/* f3 */}
+                    <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
+                    {/* f4 */}
+                    <p className="text-sm leading-relaxed">
+                      Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
+                      viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
+                      Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+                    </p>
+                    <div>
+                      {/* f3 */}
+                      <p className="text-base mb-2">*Serviços Inteligentes:</p>
+                      {/* f4 */}
+                      <div className="flex flex-col gap-2 text-sm font-light leading-relaxed">
+                        <p>
+                          <span className="font-normal">· Controle Parental (1 licença)</span><br />
+                          Permite ao titular da conta controlar o horário de utilização da sua Internet.
+                        </p>
+                        <p>
+                          <span className="font-normal">· Navegação mais segura</span><br />
+                          Oferece tentativa de proteção contra conexões entrantes indesejadas.
+                          Auxilia o usuário na tentativa de identificar e bloquear sites fraudulentos.
+                        </p>
+                        <p>
+                          <span className="font-normal">· Predial Protect (1 Licença)</span><br />
+                          Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.
+                        </p>
+                      </div>
+                    </div>
+                    {/* f4 */}
+                    <p className="text-sm leading-relaxed">
+                      Baixe o App Minha Predialnet e gerencie seu plano.
+                    </p>
+                    {/* f3 */}
+                    <a
+                      href={plan.regulamento}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors"
+                    >
+                      <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" />
+                      Baixe o regulamento
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Observações e Link para Documentos */}
-      <div className="mt-8 w-full flex items-center justify-left text-gray-400 flex-col">
+      {/* Rodapé �?" mantém como estava */}
+      <div className="mt-8 w-full flex items-center justify-left font-light text-xs flex-col">
         <p className="text-xs w-full">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.</p>
         <p className="text-xs">
-          OBS: Condições para contratação por pessoa física, sem franquia de consumo. 
-          Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: 
+          OBS: Condições para contratação por pessoa física, sem franquia de consumo.{' '}
+          Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto:{' '}
           Região do Porto Maravilha, e locais com tecnologia Rádio ou FTTH. Consulte o Regulamento.
         </p>
       </div>
       <div className="mt-6 w-full flex items-center justify-center">
-        <a href="/documentos" className="flex flex-row gap-1 items-start justify-center border-[#9c0004] hover:border-b-2 transition-all duration-75">
-          <img src="/img/regulamento.png" alt="Documento" width="15" height="15" className="mt-0.5" />
+        <a href="/documentos" className="flex flex-row gap-1 items-start justify-center hover:text-[#8a0005] transition-colors duration-75">
+          <img src="/img/regulamento.png" alt="Documento" width="15" height="15" className="mt-0.5" aria-hidden="true" />
           Documentos
         </a>
       </div>
-
-      {/* Modal */}
-      {isModalOpen && selectedPlan && <PlansModal isOpen={isModalOpen} onClose={closeModal} plan={selectedPlan} />}
     </div>
   );
 };
 
 export default Plans;
-

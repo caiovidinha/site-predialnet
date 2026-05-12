@@ -1,67 +1,38 @@
 ---
 // Navbar Component
-import { FaInstagram } from 'react-icons/fa';
 import OptimizedImage from './OptimizedImage.astro';
 ---
 
 <>
   <!-- Desktop Navbar -->
-  <nav class="hidden sm:flex pb-2 py-2 px-6 sm:px-[8%] md:px-[12%] font-sans font-thin duration-300 transition-all border-b-[2.5px] border-solid border-[#e3e3e3] items-center justify-between flex-row bg-[#f3f3f3]">
-    <div class="flex justify-between gap-8 items-center w-full">
-      <a href="/">
-        <OptimizedImage
-          src="/img/logo.png"
-          width={200}
-          height={50}
-          class="hover:scale-105 duration-300 ease-in hover:cursor-pointer"
-          alt="Predialnet Logo"
-          loading="eager"
-        />
-      </a>
-      <ul class="flex space-x-4 justify-start items-center w-full mt-4 gap-4 tracking-normal h-full">
-        <li>
-          <a href="/">
-            <p class="text-[#9c0004] text-sm font-semibold duration-150 ease-in-out border-b-[#9c0004] border-solid border-b-2 h-full">
-              Para sua casa
-            </p>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div id="buttons" class="flex w-80 items-center justify-end">
-      <div class="flex items-center justify-start gap-3">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          class="p-2 bg-[#9c0004] inline-block rounded-full text-xs font-medium uppercase leading-normal shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg hover:scale-105"
-          href="https://instagram.com/predialnet"
-          aria-label="Seguir Predialnet no Instagram"
-        >
-          <FaInstagram className="relative" color="white" size={20} aria-hidden="true" />
-        </a>
-      </div>
-      <div class="max-w-0.5 min-h-8 mx-4 bg-[#e3e3e3] p-[0.8px]"></div>
-      <a
-        href="https://minhaconta.predialnet.com.br"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex text-right items-center justify-end gap-2 flex-row text-sm rounded-lg text-black font-bold font-sans mt-4"
-        aria-label="Acessar área do cliente"
-      >
-      <p class="hover:border-b-2 border-[#9c0004] transition-all ease-in-out duration-100">
-          Já sou cliente
-        </p>
-        <OptimizedImage
-          src="/img/icone_profile.png"
-          width={24}
-          height={24}
-          class="w-6 h-6 object-contain"
-          alt="Perfil"
-          loading="eager"
-        />
-        
-      </a>
-    </div>
+  <nav class="hidden sm:flex pt-5 pb-1 px-6 sm:px-[8%] md:px-[12%] font-sans duration-300 transition-all items-end justify-between flex-row bg-[#f3f3f3]">
+    <a href="/">
+      <OptimizedImage
+        src="/img/logo.png"
+        width={150}
+        height={38}
+        class="hover:scale-[101%] duration-100 ease-in hover:cursor-pointer"
+        alt="Predialnet Logo"
+        loading="eager"
+      />
+    </a>
+    <a
+      href="https://minhaconta.predialnet.com.br"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center gap-1 font-medium text-sm font-sans"
+      aria-label="Acessar área do cliente"
+    >
+      <OptimizedImage
+        src="/img/icone_profile.png"
+        width={24}
+        height={24}
+        class="w-6 h-6 object-contain"
+        alt="Perfil"
+        loading="eager"
+      />
+      <p class="text-[#9e9e9e] hover:text-[#9c0004] transition-colors ease-in duration-150">Já sou cliente</p>
+    </a>
   </nav>
 
   <!-- Mobile Navbar -->

@@ -480,7 +480,7 @@ const ConexaoComAFoliaPage = () => {
 
               const infoWindow = new window.google.maps.InfoWindow({
                 content: `
-                  <div style="font-family: 'Bahnschrift', sans-serif; padding: 8px; max-width: 250px;">
+                  <div style="font-family: 'Swiss721BT', sans-serif; padding: 8px; max-width: 250px;">
                     <h3 style="color: #9c0004; font-size: 14px; font-weight: bold; margin: 0 0 8px 0;">
                       ${bloco.nome}
                     </h3>
@@ -514,7 +514,7 @@ const ConexaoComAFoliaPage = () => {
   };
 
   return (
-    <div className="bg-white text-slate-900" style={{ fontFamily: 'Bahnschrift, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
+    <div className="bg-white text-slate-900" style={{ fontFamily: 'Swiss721BT, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
       <header className="relative w-full">
         <img
           src="/img/bannerConexaoFolia.webp"
@@ -541,7 +541,7 @@ const ConexaoComAFoliaPage = () => {
                   value={selectedMapDate}
                   onChange={(e) => setSelectedMapDate(e.target.value)}
                   className="w-full px-2 py-2 text-xs border border-gray-300 focus:outline-none focus:border-[#9c0004]"
-                  style={{ fontFamily: 'Bahnschrift, sans-serif' }}
+                  style={{ fontFamily: 'Swiss721BT, sans-serif' }}
                 >
                   <option value="todas">Todas as Datas</option>
                   {Object.keys(blocos).map((data, idx) => (
@@ -560,7 +560,7 @@ const ConexaoComAFoliaPage = () => {
                   value={selectedMapRegion}
                   onChange={(e) => setSelectedMapRegion(e.target.value)}
                   className="w-full px-2 py-2 text-xs border border-gray-300 focus:outline-none focus:border-[#9c0004]"
-                  style={{ fontFamily: 'Bahnschrift, sans-serif' }}
+                  style={{ fontFamily: 'Swiss721BT, sans-serif' }}
                 >
                   <option value="todas">Todas as Regiões</option>
                   {getAllRegions().map((regiao, idx) => (
@@ -580,7 +580,7 @@ const ConexaoComAFoliaPage = () => {
                     setSelectedMapRegion('todas');
                   }}
                   className="text-sm text-[#9c0004] hover:underline font-medium"
-                  style={{ fontFamily: 'Bahnschrift, sans-serif' }}
+                  style={{ fontFamily: 'Swiss721BT, sans-serif' }}
                 >
                   Limpar Filtros
                 </button>
@@ -604,7 +604,7 @@ const ConexaoComAFoliaPage = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Buscar bloco por nome ou região..."
             className="w-full px-4 py-2.5 text-base border border-gray-300 focus:outline-none focus:border-[#9c0004] transition-colors"
-            style={{ fontFamily: 'Bahnschrift, sans-serif' }}
+            style={{ fontFamily: 'Swiss721BT, sans-serif' }}
           />
         </div>
       </div>
