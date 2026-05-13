@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
+import Footer from '../components/Footer.astro';
+import SpecialPlanPage from '../components/SpecialPlanPage';
+
+const plans = [
+  { value: '10 mega', label: '10 Mega', price: 'R$ 89,90 /mês' },
+  { value: '8 mega',  label: '8 Mega',  price: 'R$ 79,00 /mês' },
+  { value: '6 mega',  label: '6 Mega',  price: 'R$ 64,90 /mês' },
+  { value: '5 mega',  label: '5 Mega',  price: 'R$ 59,80 /mês' },
+];
+---
+
+<Layout
+  title="Internet Via Rádio - Predialnet"
+  description="Conheça os planos de internet residencial Via Rádio da Predialnet. Velocidades de 5 a 10 Mega."
+>
+  <Navbar />
+  <SecNavBar />
+  <SpecialPlanPage
+    client:load
+    title="Internet Via Rádio"
+    subtitle="Planos residenciais"
+    plans={plans}
+    type="viaRadio"
+    emailTo="comercial@predialnet.com.br"
+    disclaimer="Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeita à viabilidade técnica. Oferta válida para locais com cobertura via rádio."
+  />
+  <Footer />
+</Layout>

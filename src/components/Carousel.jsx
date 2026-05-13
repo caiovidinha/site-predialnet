@@ -109,7 +109,7 @@ const Carousel = () => {
               <img
                 src={`${image.mobileSrc}.jpg`}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full block"
               />
             </picture>
           </a>
@@ -135,7 +135,7 @@ const Carousel = () => {
               <img
                 src={`${image.desktopSrc}.jpg`}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full block"
               />
             </picture>
           </a>

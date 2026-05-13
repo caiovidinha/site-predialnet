@@ -155,7 +155,7 @@ const Plans = () => {
                   href="https://www.predialnet.com.br/assineja"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center py-2 rounded text-xs text-white bg-[#8a0005] hover:opacity-90 transition-opacity mb-3"
+                  className="block text-center py-2 rounded-sm text-xs text-white bg-[#8a0005] hover:opacity-90 transition-opacity mb-3"
                   aria-label={`Assinar plano ${plan.title}`}
                   onClick={() => events.planClick(plan.title, `R$ ${plan.price}`, 'site', 'plans_section')}
                 >

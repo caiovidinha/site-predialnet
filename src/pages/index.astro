@@ -3,13 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import SecNavBar from '../components/SecNavBar.astro';
 import Plans from '../components/Plans';
+import PromoCarousel from '../components/PromoCarousel';
+import IdealPlans from '../components/IdealPlans';
+import NavegaSection from '../components/NavegaSection';
 import Cards from '../components/Cards.astro';
 import Contrate from '../components/Contrate';
 import Why from '../components/Why.astro';
 import App from '../components/App.astro';
 import Phone from '../components/Phone';
+import TelefoniaSection from '../components/TelefoniaSection';
 import Cliente from '../components/Cliente';
 import Others from '../components/Others';
+import ClienteAtendimento from '../components/ClienteAtendimento';
 import Atendimento from '../components/Atendimento';
 import Footer from '../components/Footer.astro';
 ---
@@ -17,15 +22,35 @@ import Footer from '../components/Footer.astro';
 <Layout title="Predialnet">
   <Navbar />
   <SecNavBar />
-  <img src="/img/hero.webp" alt="Predialnet" class="w-full h-auto block" width="2560" height="722" loading="eager" />
+  <a href="https://www.predialnet.com.br/assineja" target="_blank" rel="noopener noreferrer">
+    <img src="/img/hero.webp" alt="Predialnet" class="w-full h-auto block" width="2560" height="722" loading="eager" />
+  </a>
   <Plans client:load />
-  <Cards />
-  <Contrate client:visible />
-  <Why />
-  <App />
-  <Phone client:visible />
-  <Cliente client:visible />
+  <PromoCarousel client:visible />
+  <IdealPlans client:visible />
+  <PromoCarousel
+    client:visible
+    title="Facilite sua vida, baixe o App Minha Predialnet"
+    subtitle="Gerenciamento completo do seu plano"
+    slides={[
+      { src: '/img/carrossel-c.webp', alt: 'App Predialnet A', link: '' },
+      { src: '/img/carrossel-d.webp', alt: 'App Predialnet B', link: '' },
+    ]}
+  />
+  <NavegaSection client:visible />
+  <PromoCarousel
+    client:visible
+    title="O maior provedor regional do Estado do Rio de Janeiro"
+    subtitle="Agora sua internet vai ser gigante, venha para Predialnet."
+    slides={[
+      { src: '/img/carrossel-e.webp', alt: 'Provedor RJ A', link: '' },
+      { src: '/img/carrossel-f.webp', alt: 'Provedor RJ B', link: '' },
+    ]}
+  />
+  <TelefoniaSection client:visible />
   <Others client:visible />
-  <Atendimento client:visible />
+  <ClienteAtendimento client:visible />
+  <Plans client:visible />
+  <Contrate client:visible />
   <Footer />
 </Layout>

@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
+import Footer from '../components/Footer.astro';
+import SpecialPlanPage from '../components/SpecialPlanPage';
+
+const plans = [
+  { value: '60 mega', label: '60 Mega', price: 'R$ 189,90 /mês' },
+  { value: '40 mega', label: '40 Mega', price: 'R$ 129,90 /mês' },
+  { value: '30 mega', label: '30 Mega', price: 'R$ 99,90 /mês' },
+  { value: '25 mega', label: '25 Mega', price: 'R$ 89,90 /mês' },
+];
+---
+
+<Layout
+  title="Internet Porto Maravilha - Predialnet"
+  description="Conheça os planos de internet residencial para a região do Porto Maravilha da Predialnet. Velocidades de 25 a 60 Mega."
+>
+  <Navbar />
+  <SecNavBar />
+  <SpecialPlanPage
+    client:load
+    title="Internet região Porto Maravilha"
+    subtitle="Planos residenciais"
+    plans={plans}
+    type="portoMaravilha"
+    emailTo="comercial@predialnet.com.br"
+    disclaimer="Condições para contratação por pessoa física, sem franquia de consumo. Para pessoa jurídica, consulte agente de vendas. Instalação sujeita à viabilidade técnica. Ofertas válidas para locais com cobertura via rádio."
+  />
+  <Footer />
+</Layout>
