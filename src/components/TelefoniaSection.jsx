@@ -126,7 +126,7 @@ const TelefoniaSection = () => {
   const labelClass = 'block mb-0.5 text-[10px] font-normal text-[#6b6b6b]';
 
   return (
-    <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#231f20]">
+    <section id='Telefone' className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#231f20]">
       <h2 className="text-3xl mb-8 tracking-tight">Telefonia fixa</h2>
 
       {/* Subtítulos */}
@@ -154,12 +154,13 @@ const TelefoniaSection = () => {
               <div key={plan.id} className={`flex-1 bg-white border rounded p-7 flex flex-col gap-3 transition-opacity ${
                 isSelected ? 'border-[#8a0005]' : 'border-[#dcdcdc]'
               } ${anySelected && !isSelected ? 'opacity-40' : ''}`}>
-                <p className="text-xs text-[#9e9e9e]">Plano Telefonia Fixa</p>
+                <p className="text-xs text-[#555]">Plano Telefonia Fixa</p>
                 <h3 className="text-2xl font-light tracking-tight" style={{ color: '#8a0005' }}>{plan.label}</h3>
                 <ul className="flex flex-col gap-2 w-full">
                   {plan.features.map((f, i) => (
                     <li key={i} className="text-xs font-light flex items-center gap-1.5">
-                      <span>✔</span>{f}
+                      <svg width="11" height="9" viewBox="0 0 12 10" fill="none" className="flex-shrink-0 text-[#8a0005]" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      {f}
                     </li>
                   ))}
                 </ul>
@@ -266,7 +267,7 @@ const TelefoniaSection = () => {
         </div>
       </div>
 
-      <p className="text-xs text-[#9e9e9e] mt-8">
+      <p className="text-xs text-[#555] mt-8">
         Consulte sobre as tarifas excedentes Predialfone. Exceto para ligações Nextel SME (rádio).
         Os valores acima são promocionais e estão sujeitos a alteração.
       </p>

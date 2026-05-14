@@ -65,7 +65,7 @@ const Plans = () => {
   return (
     <div id="Plans" className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#231f20]">
       {/* Cabeçalho */}
-      <h1 className="text-3xl mb-1 tracking-tight">
+      <h1 className="text-3xl mb-1 tracking-tight font-light">
         Planos Predialnet Fibra para sua casa
       </h1>
       <h2 className="text-lg font-light leading-6">
@@ -84,7 +84,7 @@ const Plans = () => {
               {/* Selo �?" metade saindo pelo topo da caixa */}
               {plan.seal && (
                 <div
-                  className="absolute top-0 left-0 px-4 py-1 text-xs font-medium tracking-wide z-10 rounded-r"
+                  className="absolute top-0 left-0 px-3 py-0.5 text-[10px] font-medium tracking-wide z-10 rounded-r"
                   style={{ backgroundColor: plan.seal.bg, color: plan.seal.color }}
                 >
                   {plan.seal.text}
@@ -100,20 +100,16 @@ const Plans = () => {
                 {/* Nome do plano — f1 */}
                 <h2 className="text-3xl font-light tracking-tight mb-8">{plan.title}</h2>
 
-                {/* Features �?" f5 */}
+                {/* Features — f5 */}
                 <ul className="flex flex-col gap-2.5 mb-7">
-                  <li className="text-sm font-light flex items-center gap-1.5">
-                    <span>✔</span>{plan.wifi}
-                  </li>
-                  <li className="text-sm font-light flex items-center gap-1.5">
-                    <span>✔</span>Instalação Grátis
-                  </li>
-                  <li className="text-sm font-light flex items-center gap-1.5">
-                    <span>✔</span>Sem fidelidade
-                  </li>
-                  <li className="text-sm font-light flex items-center gap-1.5">
-                    <span>✔</span>Serviços Inteligentes
-                  </li>
+                  {[plan.wifi, 'Instalação Grátis', 'Sem fidelidade', 'Serviços Inteligentes'].map((feat) => (
+                    <li key={feat} className="text-sm font-light flex items-center gap-1.5">
+                      <svg width="12" height="10" viewBox="0 0 12 10" fill="none" className="flex-shrink-0 text-[#8a0005]" aria-hidden="true">
+                        <path d="M1 5L4.5 8.5L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      {feat}
+                    </li>
+                  ))}
                 </ul>
 
                 {/* Ponto cabeado �?" f4 */}
@@ -127,7 +123,7 @@ const Plans = () => {
                   }
                 >
                   <span className="font-light leading-tight">
-                    {isPonto ? '1 Ponto cabeado selecionado' : 'Adicionar um ponto cabeado. + R$ 30,00/mês'}
+                    {isPonto ? <><span>1 Ponto cabeado</span><br /><span>selecionado</span></> : 'Adicionar um ponto cabeado. + R$ 30,00/mês'}
                   </span>
                   {/* Checkbox à direita */}
                   <div
@@ -145,14 +141,14 @@ const Plans = () => {
                   </div>
                 </div>
 
-                {/* Preço �?" f2 */}
+                {/* Preço — f2 */}
                 <p className="text-2xl tracking-tight mb-6">
-                  R$ {plan.price} <span className="text-sm font-light">/mês</span>
+                  R$ {isPonto ? (parseFloat(plan.price.replace(',', '.')) + 30).toFixed(2).replace('.', ',') : plan.price} <span className="text-sm font-light">/mês</span>
                 </p>
 
                 {/* Botão Assinar �?" v1, rounded mínimo */}
                 <a
-                  href="https://www.predialnet.com.br/assineja"
+                  href={`https://www.predialnet.com.br/assineja?plano=${plan.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-center py-2 rounded-sm text-xs text-white bg-[#8a0005] hover:opacity-90 transition-opacity mb-3"
@@ -235,20 +231,12 @@ const Plans = () => {
         })}
       </div>
 
-      {/* Rodapé �?" mantém como estava */}
-      <div className="mt-8 w-full flex items-center justify-left font-light text-xs flex-col">
+      {/* Rodapé — OBS */}
+      <div className="mt-8 w-full flex items-start font-light text-xs flex-col gap-1">
         <p className="text-xs w-full">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.</p>
-        <p className="text-xs">
-          OBS: Condições para contratação por pessoa física, sem franquia de consumo.{' '}
-          Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto:{' '}
-          Região do Porto Maravilha, e locais com tecnologia Rádio ou FTTH. Consulte o Regulamento.
+        <p className="text-xs w-full whitespace-normal">
+          OBS: Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do Porto Maravilha, e locais com tecnologia Rádio ou FTTH. Consulte o Regulamento.
         </p>
-      </div>
-      <div className="mt-6 w-full flex items-center justify-center">
-        <a href="/documentos" className="flex flex-row gap-1 items-start justify-center hover:text-[#8a0005] transition-colors duration-75">
-          <img src="/img/regulamento.png" alt="Documento" width="15" height="15" className="mt-0.5" aria-hidden="true" />
-          Documentos
-        </a>
       </div>
     </div>
   );

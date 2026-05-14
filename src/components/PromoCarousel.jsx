@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const defaultSlides = [
-  { src: '/img/carrossel-a.webp', alt: 'Promoção A', link: 'https://www.predialnet.com.br/assineja' },
-  { src: '/img/carrossel-b.webp', alt: 'Promoção B', link: 'https://www.predialnet.com.br/assineja' },
+  { src: '/img/carrossel-a.webp', alt: 'Promoção A', link: 'https://www.predialnet.com.br/assineja?plano=promo' },
+  { src: '/img/carrossel-b.webp', alt: 'Promoção B', link: 'https://www.predialnet.com.br/assineja?plano=promo' },
 ];
 
 const PromoCarousel = ({
@@ -13,24 +13,36 @@ const PromoCarousel = ({
   const [current, setCurrent] = useState(0);
   const autoplayRef = useRef(null);
   const trackRef = useRef(null);
+  const isHoveredRef = useRef(false);
 
   const goTo = (index) => {
     setCurrent(index);
   };
 
-  useEffect(() => {
+  const startAutoplay = () => {
+    if (autoplayRef.current) clearInterval(autoplayRef.current);
     autoplayRef.current = setInterval(() => {
-      setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 5000);
+      if (!isHoveredRef.current) {
+        setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      }
+    }, 4000);
+  };
+
+  useEffect(() => {
+    startAutoplay();
     return () => clearInterval(autoplayRef.current);
-  }, []);
+  }, [slides.length]);
 
   return (
-    <section className="bg-white py-12 px-6 sm:px-[8%] md:px-[12%] font-sans">
-      <h2 className="text-2xl sm:text-3xl font-bold text-[#231f20] text-left mb-2">
+    <section
+      className="bg-white py-12 px-6 sm:px-[8%] md:px-[12%] font-sans"
+      onMouseEnter={() => { isHoveredRef.current = true; }}
+      onMouseLeave={() => { isHoveredRef.current = false; }}
+    >
+      <h2 className="text-2xl sm:text-3xl text-[#231f20] text-left mb-2">
         {title}
       </h2>
-      <p className="text-sm sm:text-base text-[#6b6b6b] text-left mb-8">
+      <p className="text-sm sm:text-base text-[#555] text-left mb-8">
         {subtitle}
       </p>
 

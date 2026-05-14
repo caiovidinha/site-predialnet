@@ -161,11 +161,11 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
             return (
               <div
                 key={plan.value}
-                className={`flex-1 bg-white border rounded p-7 flex flex-col gap-3 transition-opacity ${
+                className={`flex-1 bg-white border rounded p-7 flex flex-col gap-2 transition-opacity ${
                   isSelected ? 'border-[#8a0005]' : 'border-[#dcdcdc]'
                 } ${anySelected && !isSelected ? 'opacity-40' : ''}`}
               >
-                <p className="text-xs text-[#9e9e9e]">Navegue com até</p>
+                <p className="text-xs text-[#555]">Navegue com até</p>
                 <h3 className="text-2xl font-light tracking-tight" style={{ color: '#8a0005' }}>{plan.label}</h3>
                 <p className="text-2xl tracking-tight mt-auto">{plan.price}</p>
                 <button

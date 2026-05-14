@@ -668,7 +668,7 @@ const ConexaoComAFoliaPage = () => {
               ))}
 
               <div className="my-6 md:hidden">
-                <a href="https://predialnet.com.br/assineja" target="_blank" rel="noopener noreferrer">
+                <a href="https://predialnet.com.br/assineja?plano=folia" target="_blank" rel="noopener noreferrer">
                   <img
                     src={`/img/bannerData${(dataIndex % 3) + 1}Mobile.jpg`}
                     alt="Banner depois da data"
@@ -678,7 +678,7 @@ const ConexaoComAFoliaPage = () => {
               </div>
 
               <div className="hidden md:block my-6">
-                <a href="https://predialnet.com.br/assineja" target="_blank" rel="noopener noreferrer">
+                <a href="https://predialnet.com.br/assineja?plano=folia" target="_blank" rel="noopener noreferrer">
                   <img
                     src={`/img/bannerData${(dataIndex % 3) + 1}.jpg`}
                     alt="Banner depois da data"

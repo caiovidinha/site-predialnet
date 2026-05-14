@@ -45,7 +45,7 @@ function Cliente() {
         <div className="flex flex-row justify-between pt-2">
           <div className="w-full lg:w-[32%]">
             <h3 className="text-[#f8abad] text-lg">Cliente Predialnet</h3>
-            <h2 className="text-3xl font-medium text-white">
+            <h2 className="text-3xl text-white">
               Acesso fácil às principais funções de atendimento
             </h2>
             {/* <p className="text-[#f8abad] mt-0.5 text-lg">
@@ -55,7 +55,7 @@ function Cliente() {
           </div>
 
           {/* Cards de Contato */}
-          <div className="w-full lg:w-[60%] flex flex-row justify-end gap-6">
+          <div className="w-full lg:w-[60%] flex flex-row justify-end gap-4">
             {[
               {
                 iconSrc: 'img/iconeMedidor.png',
@@ -82,16 +82,16 @@ function Cliente() {
             ].map((card, index) => (
               <a
                 key={index}
-                className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-6 w-40 h-40 text-left hover:scale-105 transition-transform"
+                className="flex flex-col items-start justify-center rounded-2xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-4 w-32 h-32 text-left hover:scale-105 transition-transform"
                 href={card.link}
                 target={card.link === '/#Atendimento' ? '_self' : '_blank'}
               >
                 <picture>
                   <source srcSet={card.iconSrc.replace('.png', '.avif')} type="image/avif" />
                   <source srcSet={card.iconSrc.replace('.png', '.webp')} type="image/webp" />
-                  <img src={card.iconSrc} className="w-8 h-8 mb-2 object-contain" alt={card.title} />
+                  <img src={card.iconSrc} className="w-6 h-6 mb-2 object-contain" alt={card.title} />
                 </picture>
-                <h4 className="text-md leading-5" dangerouslySetInnerHTML={{ __html: card.title }} />
+                <h4 className="text-sm leading-4 text-[#444]" dangerouslySetInnerHTML={{ __html: card.title }} />
               </a>
             ))}
           </div>
@@ -99,7 +99,7 @@ function Cliente() {
 
         <div className="flex flex-row justify-between mt-2">
           <div className="w-full lg:w-[32%] mt-10">
-            <h2 className="text-3xl font-medium text-white">Que tal um upgrade no seu plano?</h2>
+            <h2 className="text-3xl text-white">Que tal um upgrade no seu plano?</h2>
             <p className="text-[#f8abad] text-lg leading-5 mt-1.5">
               Planos com Wi-Fi 6 que vão mudar sua experiência de conexão.
             </p>
@@ -148,7 +148,7 @@ function Cliente() {
         <div className="flex flex-col">
           <div className="w-full mb-8">
             <h3 className="text-[#f8abad] text-base sm:text-lg">Cliente Predialnet</h3>
-            <h2 className="text-3xl sm:text-3xl font-medium text-white mt-2">
+            <h2 className="text-3xl sm:text-3xl text-white mt-2">
               Acesso fácil às principais funções de atendimento
             </h2>
             {/* <p className="text-[#f8abad] mt-0.5 text-lg">
@@ -158,7 +158,7 @@ function Cliente() {
           </div>
 
           {/* Cards de Contato */}
-          <div className="w-full grid grid-cols-2 gap-6">
+          <div className="w-full grid grid-cols-2 gap-4">
             {[
               {
                 iconSrc: 'img/iconeMedidor.png',
@@ -185,16 +185,16 @@ function Cliente() {
             ].map((card, index) => (
               <a
                 key={index}
-                className="flex flex-col items-start justify-center rounded-3xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-4 w-full h-40 text-left active:scale-95 transition-transform "
+                className="flex flex-col items-start justify-center rounded-2xl bg-white shadow-[0px_0px_5px_5px_rgba(240,5,11,0.3)] border-gray-200 border-[1.5px] p-3 w-full h-32 text-left active:scale-95 transition-transform"
                 href={card.link}
                 target={card.link === '/#Atendimento' ? '_self' : '_blank'}
               >
                 <picture>
                   <source srcSet={card.iconSrc.replace('.png', '.avif')} type="image/avif" />
                   <source srcSet={card.iconSrc.replace('.png', '.webp')} type="image/webp" />
-                  <img src={card.iconSrc} className="w-10 h-10 mb-2 object-contain" alt={card.title} />
+                  <img src={card.iconSrc} className="w-7 h-7 mb-1.5 object-contain" alt={card.title} />
                 </picture>
-                <h4 className="text-md leading-5 mt-1" dangerouslySetInnerHTML={{__html: card.title}} />
+                <h4 className="text-sm leading-4 text-[#444]" dangerouslySetInnerHTML={{__html: card.title}} />
               </a>
             ))}
           </div>
@@ -202,7 +202,7 @@ function Cliente() {
           
           {/* Seção Upgrade de Plano */}
           <div className="w-full mt-8">
-            <h2 className="text-3xl sm:text-3xl font-medium text-white pr-20">Que tal um upgrade no seu plano?</h2>
+            <h2 className="text-3xl sm:text-3xl text-white pr-20">Que tal um upgrade no seu plano?</h2>
             <p className="text-[#f8abad] text-base sm:text-lg leading-6 mt-1.5">
               Planos com Wi-Fi 6 que vão mudar sua experiência de conexão.
             </p>

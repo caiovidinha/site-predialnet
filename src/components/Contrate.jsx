@@ -6,7 +6,7 @@ const actions = [
     icon: '/img/iconeDesktop.avif',
     label: 'Assine pelo site',
     sub: 'ver disponibilidade',
-    href: 'https://www.predialnet.com.br/assineja',
+    href: 'https://www.predialnet.com.br/assineja?plano=site',
     external: true,
   },
   {
@@ -30,20 +30,23 @@ function Contrate() {
     <div
       id="Contrate"
       className="relative font-sans overflow-hidden"
-      style={{
-        backgroundImage: 'url(/img/fundo-contrate.webp)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
     >
+      {/* Imagem define as dimensões reais da seção */}
+      <img
+        src="/img/fundo-contrate.webp"
+        alt=""
+        aria-hidden="true"
+        className="w-full h-auto block"
+      />
+
       <div className="absolute inset-0 bg-black/20" />
 
-      <div className="relative z-10 px-6 sm:px-[8%] md:px-[12%] py-12 flex flex-col md:flex-row items-center gap-10">
-        {/* Esquerda � texto */}
+      <div className="absolute inset-0 z-10 px-6 sm:px-[8%] md:px-[12%] py-16 flex flex-col md:flex-row items-center gap-10">
+        {/* Esquerda — texto */}
         <div className="flex-1 flex flex-col justify-between h-full gap-6">
           <div>
             <p className="text-white text-sm mb-3 opacity-80">Contrate já!</p>
-            <h2 className="text-white text-4xl font-semibold leading-tight mb-4">
+            <h2 className="text-white text-4xl leading-tight mb-4">
               Assine do seu jeito e venha<br />para Predialnet agora!
             </h2>
             <p className="text-white text-base opacity-80">
@@ -53,7 +56,7 @@ function Contrate() {
           <img src="/img/logo-fibra-branca.png" alt="Predialnet Fibra" className="w-36 mt-4" />
         </div>
 
-        {/* Direita � cards de a��o */}
+        {/* Direita — cards de ação */}
         <div className="w-full md:w-[42%] flex flex-col gap-3">
           {actions.map((action) => (
             <a
@@ -61,7 +64,7 @@ function Contrate() {
               href={action.href}
               target={action.external ? '_blank' : '_self'}
               rel={action.external ? 'noopener noreferrer' : undefined}
-              className="flex items-center gap-4 bg-transparent border border-white/70 hover:border-white transition-colors rounded-lg px-5 py-4"
+              className="flex items-center gap-4 bg-transparent border-2 border-white/70 hover:border-white transition-colors rounded-lg px-5 py-4"
             >
               <img src={action.icon} alt={action.label} className="w-8 h-8 object-contain shrink-0" />
               <span className="flex-1 text-white text-lg ">

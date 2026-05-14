@@ -5,8 +5,8 @@ const Carousel = () => {
     {
       desktopSrc: '/img/banner1',
       mobileSrc: '/img/banner1Mobile',
-      link: 'https://www.predialnet.com.br/assineja',
-      linkMobile: 'https://www.predialnet.com.br/assineja'
+      link: 'https://www.predialnet.com.br/assineja?plano=banner',
+      linkMobile: 'https://www.predialnet.com.br/assineja?plano=banner'
     },
     {
       desktopSrc: '/img/banner4',
@@ -50,14 +50,12 @@ const Carousel = () => {
   const startAutoplay = () => {
     if (autoplayRef.current) clearInterval(autoplayRef.current);
 
-    const delay = transitionCountRef.current === 0 ? 3000 : 8000;
-
     autoplayRef.current = setInterval(() => {
       if (!isHoveredRef.current) {
         nextSlide();
         transitionCountRef.current += 1;
       }
-    }, delay);
+    }, 4000);
   };
 
   useEffect(() => {
@@ -67,8 +65,14 @@ const Carousel = () => {
     };
   }, [currentIndex]);
 
-  const handleMouseEnter = () => { isHoveredRef.current = true; };
-  const handleMouseLeave = () => { isHoveredRef.current = false; };
+  const handleMouseEnter = () => {
+    isHoveredRef.current = true;
+    if (autoplayRef.current) clearInterval(autoplayRef.current);
+  };
+  const handleMouseLeave = () => {
+    isHoveredRef.current = false;
+    startAutoplay();
+  };
 
   const handleScroll = () => {
     if (!mobileScrollRef.current || !isMobile) return;
@@ -100,8 +104,8 @@ const Carousel = () => {
             key={index}
             className="w-full flex-shrink-0 snap-start"
             href={image.linkMobile}
-            target={image.link === 'https://www.predialnet.com.br/assineja' ? '_blank' : '_self'}
-            rel={image.link === 'https://www.predialnet.com.br/assineja' ? 'noopener noreferrer' : undefined}
+            target={image.link.startsWith('https://') ? '_blank' : '_self'}
+            rel={image.link.startsWith('https://') ? 'noopener noreferrer' : undefined}
           >
             <picture>
               {!image.jpgOnly && <source srcSet={`${image.mobileSrc}.avif`} type="image/avif" />}
@@ -126,8 +130,8 @@ const Carousel = () => {
             key={index}
             className="w-full flex-shrink-0"
             href={image.link}
-            target={image.link === 'https://www.predialnet.com.br/assineja' ? '_blank' : '_self'}
-            rel={image.link === 'https://www.predialnet.com.br/assineja' ? 'noopener noreferrer' : undefined}
+            target={image.link.startsWith('https://') ? '_blank' : '_self'}
+            rel={image.link.startsWith('https://') ? 'noopener noreferrer' : undefined}
           >
             <picture>
               {!image.jpgOnly && <source srcSet={`${image.desktopSrc}.avif`} type="image/avif" />}

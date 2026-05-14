@@ -54,19 +54,19 @@ function ClienteAtendimento() {
       <div className="flex flex-col md:flex-row items-stretch justify-between gap-10">
         {/* Coluna esquerda */}
         <div className="md:w-[40%] flex flex-col justify-between text-left">
-          <p className="text-sm text-[#9e9e9e] mb-2">Cliente Predialnet</p>
-          <h2 className="text-3xl font-medium text-[#8a0005] leading-snug mb-6">
+          <p className="text-sm text-[#444] mb-2">Cliente Predialnet</p>
+          <h2 className="text-3xl text-[#8a0005] leading-snug mb-6">
             Acesso rápido às principais funções de atendimento
           </h2>
 
-          <p className="text-base font-medium text-[#231f20]">Horário de Atendimento</p>
-          <p className="text-sm text-[#9e9e9e]">Segunda a sexta das 9h às 18h</p>
+          <p className="text-base text-[#444]">Horário de Atendimento</p>
+          <p className="text-sm text-[#444]">Segunda a sexta das 9h às 18h</p>
 
-          <p className="text-base font-medium text-[#231f20] mt-3">Setor Comercial</p>
-          <p className="text-sm text-[#9e9e9e]">Segunda a sexta das 9h às 20h | Sábado das 9h às 16h</p>
+          <p className="text-base text-[#444] mt-3">Setor Comercial</p>
+          <p className="text-sm text-[#444]">Segunda a sexta das 9h às 20h | Sábado das 9h às 16h</p>
 
-          <p className="text-base font-medium text-[#231f20] mt-3">Suporte</p>
-          <p className="text-sm text-[#9e9e9e]">Todos os dias das 6h às 24h</p>
+          <p className="text-base text-[#444] mt-3">Suporte</p>
+          <p className="text-sm text-[#444]">Todos os dias das 6h às 24h</p>
         </div>
 
         {/* Coluna direita — 2 linhas de 4 cards, alinhados à direita */}
@@ -82,7 +82,7 @@ function ClienteAtendimento() {
                 className="bg-white border border-[#dcdcdc] rounded-none aspect-square flex flex-col items-start justify-center gap-2 p-3 hover:shadow-md transition-shadow"
               >
                 <img src={card.icon} alt={card.title} className="w-8 h-8 object-contain" />
-                <span className="text-sm font-medium text-[#231f20] leading-tight whitespace-pre-line">{card.title}</span>
+                <span className="text-sm text-[#444] leading-tight whitespace-pre-line">{card.title}</span>
               </a>
             ))}
           </div>
@@ -96,8 +96,8 @@ function ClienteAtendimento() {
                 className="bg-white border border-[#dcdcdc] rounded-none aspect-square flex flex-col items-start justify-center gap-1 p-3 hover:shadow-md transition-shadow text-left"
               >
                 <img src={card.icon} alt={card.title} className="w-8 h-8 object-contain" />
-                <span className="text-sm font-medium text-[#231f20] whitespace-pre-line">{card.title}</span>
-                <span className="text-sm text-[#9e9e9e] whitespace-pre-line">{card.phone}</span>
+                <span className="text-sm text-[#444] whitespace-pre-line">{card.title}</span>
+                <span className="text-sm text-[#444] whitespace-pre-line">{card.phone}</span>
               </button>
             ))}
           </div>

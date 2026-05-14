@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 
 const PlansModal = ({ isOpen, onClose, plan } ) => {
   if (!isOpen) return null;
-  const url = 'https://www.predialnet.com.br/assineja?services=false'
-  const urlSA = 'https://www.predialnet.com.br/assineja'
+  const url = `https://www.predialnet.com.br/assineja?plano=${plan.id}&services=false`
+  const urlSA = `https://www.predialnet.com.br/assineja?plano=${plan.id}`
   const regulamentoURL = plan.title == "600 mega" 
   ? "https://www.predialnet.com.br/download/2025.07.28_a_2025.10.31_Oferta_Conjunta_2029_600.pdf" 
   : plan.title == "800 mega"
