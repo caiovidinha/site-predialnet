@@ -123,7 +123,7 @@ const Plans = () => {
                   }
                 >
                   <span className="font-light leading-tight">
-                    {isPonto ? <><span>1 Ponto cabeado</span><br /><span>selecionado</span></> : 'Adicionar um ponto cabeado. + R$ 30,00/mês'}
+                    {isPonto ? <><span>1 Ponto cabeado</span><br /><span>selecionado</span></> : 'Adicionar um ponto cabeado. +R$ 30,00/mês'}
                   </span>
                   {/* Checkbox à direita */}
                   <div
