@@ -13,7 +13,7 @@ const plans = [
   },
   {
     id: '800mega',
-    seal: 'Múltiplos dispositivos',
+    seal: 'Múltiplos dispositivos conectados',
     title: '800 Mega',
     img: '/img/ideal-800.webp',
     description:
@@ -33,11 +33,11 @@ const plans = [
   },
   {
     id: 'gamer1giga',
-    seal: 'Para jogar sem lag',
+    seal: 'Para jogar sem lag nenhum',
     title: 'Gamer Pro 1 Giga',
     img: '/img/ideal-gamer.webp',
     description:
-      'Com ponto cabeado, este plano é perfeito para jogos online, proporcionando ping baixo e conexão estável para respostas rápidas. Alta velocidade de download e upload com desempenho consistente para partidas fluidas e competitivas.',
+      'Com ponto cabeado, este plano é perfeito para jogos online, proporcionando ping baixo e conexão estável para respostas rápidas. Alta velocidade com desempenho consistente para partidas fluidas e competitivas.',
     btnLabel: 'Assinar Gamer Pro',
     regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
   },
