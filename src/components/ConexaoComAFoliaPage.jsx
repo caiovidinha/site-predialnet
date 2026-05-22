@@ -137,7 +137,7 @@ const ConexaoComAFoliaPage = () => {
         { nome: 'Areia', local: 'Posto 12, Leblon', horario: '7h', estilo: '' },
         { nome: 'Laranjada Samba Clube', local: 'Praça Jardim Laranjeiras, Laranjeiras', horario: '8h', estilo: '' },
         { nome: 'Divina Tretas (LGBTQUIAPN+)', local: 'Campo de Terra Batida do Aterro do Flamengo, Praia do Flamengo, 340', horario: '8h', estilo: '' },
-        { nome: 'Que Merda É Essa', local: 'Bar Paz e Amor – Rua Garcia D\'Ávila, 173, esquina com Rua Nascimento Silva, Ipanema', horario: '8h', estilo: '' },
+        { nome: 'Que Merda É Essa', local: 'Bar Paz e Amor - Rua Garcia D\'Ávila, 173, esquina com Rua Nascimento Silva, Ipanema', horario: '8h', estilo: '' },
         { nome: 'É Tudo ou Nada', local: 'Rua Capistrano Abreu, 43, Botafogo', horario: '9h', estilo: '' },
         { nome: 'Bloco pra Iaiá', local: 'Praça Almirante Júlio de Noronha, 86, Leme', horario: '9h', estilo: '' },
         { nome: 'Banda do Lidinho (infantil)', local: 'Praça do Lido, Copacabana', horario: '13h', estilo: 'Infantil, desfila a frente da Banda do Lido' },
@@ -173,7 +173,7 @@ const ConexaoComAFoliaPage = () => {
         { nome: 'Batikum Afro', local: 'Rua Soares Caldeiras, 115, Madureira', horario: '15h', estilo: '' },
         { nome: 'Bonecas Deslumbradas de Olaria', local: 'Rua Conselheiro Paulino, 567, Olaria', horario: '16h', estilo: '' },
         { nome: 'Bloco Tchetcheca', local: 'Rua Pernambuco, 179, Engenho de Dentro', horario: '16h', estilo: '' },
-        { nome: 'Bloco Cervejeiro', local: 'Rua Sales Guimarães – Engenho de Dentro', horario: '16h', estilo: '' },
+        { nome: 'Bloco Cervejeiro', local: 'Rua Sales Guimarães - Engenho de Dentro', horario: '16h', estilo: '' },
       ],
       'Zona Oeste': [
         { nome: 'Arrastão da Barra de Guaratiba', local: 'Estrada da Vendinha, 871, Barra de Guaratiba', horario: '10h', estilo: '' },
@@ -484,10 +484,10 @@ const ConexaoComAFoliaPage = () => {
                     <h3 style="color: #9c0004; font-size: 14px; font-weight: bold; margin: 0 0 8px 0;">
                       ${bloco.nome}
                     </h3>
-                    <p style="font-size: 12px; color: #231f20; margin: 4px 0;">
+                    <p style="font-size: 12px; color: #3d3838; margin: 4px 0;">
                       <strong>Data:</strong> ${data.split(' - ')[0]}
                     </p>
-                    <p style="font-size: 12px; color: #231f20; margin: 4px 0;">
+                    <p style="font-size: 12px; color: #3d3838; margin: 4px 0;">
                       <strong>Horário:</strong> ${bloco.horario}
                     </p>
                     <p style="font-size: 11px; color: #666; margin: 4px 0;">
@@ -534,7 +534,7 @@ const ConexaoComAFoliaPage = () => {
           <div className="bg-white p-4 mb-6 border border-gray-200">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-[#231f20] mb-2">
+                <label className="block text-xs font-semibold text-[#3d3838] mb-2">
                   Filtrar por Data:
                 </label>
                 <select
@@ -553,7 +553,7 @@ const ConexaoComAFoliaPage = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#231f20] mb-2">
+                <label className="block text-xs font-semibold text-[#3d3838] mb-2">
                   Filtrar por Região:
                 </label>
                 <select
@@ -618,7 +618,7 @@ const ConexaoComAFoliaPage = () => {
         ) : (
           Object.entries(blocosFiltrados).map(([data, regioes], dataIndex) => (
             <section key={dataIndex} className="mb-6">
-              <div className="bg-[#f4f5f5] text-[#231f20] py-3 px-4 mb-4">
+              <div className="bg-[#f4f5f5] text-[#3d3838] py-3 px-4 mb-4">
                 <h2 className="text-xl md:text-2xl font-semibold text-[#9c0004] mb-0.5">
                   {data.split(' - ')[0]}
                 </h2>
@@ -642,7 +642,7 @@ const ConexaoComAFoliaPage = () => {
                         key={blocoIndex}
                         className="py-2 mb-2 border-b border-gray-200 last:border-b-0"
                       >
-                        <div className="font-semibold text-[#231f20] text-base mb-1">
+                        <div className="font-semibold text-[#3d3838] text-base mb-1">
                           {bloco.nome}
                         </div>
                         

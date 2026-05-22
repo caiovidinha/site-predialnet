@@ -39,19 +39,19 @@ function Contrate() {
         className="w-full h-auto block"
       />
 
-      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-0" />
 
       <div className="absolute inset-0 z-10 px-6 sm:px-[8%] md:px-[12%] py-16 flex flex-col md:flex-row items-center gap-10">
         {/* Esquerda — texto */}
         <div className="flex-1 flex flex-col justify-between h-full gap-6">
           <div>
-            <p className="text-white text-sm mb-3 opacity-80">Contrate já!</p>
-            <h2 className="text-white text-4xl leading-tight mb-4">
-              Assine do seu jeito e venha<br />para Predialnet agora!
-            </h2>
-            <p className="text-white text-base opacity-80">
-              A melhor internet fibra que vai<br />transformar sua casa
-            </p>
+            <p className="text-white text-sm mb-6">Contrate já!</p>
+                <h1 className="text-3xl mb-6 font-light tracking-[-0.01em] text-white">
+        Assine do seu jeito e venha<br />para Predialnet agora!
+      </h1>
+      <h2 className="text-lg font-light leading-6 text-white">
+        A melhor internet fibra que vai<br />transformar sua casa
+      </h2>
           </div>
           <img src="/img/logo-fibra-branca.png" alt="Predialnet Fibra" className="w-36 mt-4" />
         </div>

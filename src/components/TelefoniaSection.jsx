@@ -40,6 +40,14 @@ const TelefoniaSection = () => {
   const formatPhoneNumber = (value) => {
     if (!value) return value;
     const n = value.replace(/\D/g, '');
+    if (n.length > 11) {
+      const ddd = n.slice(2, 4);
+      const num = n.slice(4, 13);
+      if (num.length === 0) return `+${n.slice(0, 2)}`;
+      if (num.length <= 2) return `+${n.slice(0, 2)} (${ddd}`;
+      if (num.length <= 7) return `+${n.slice(0, 2)} (${ddd}) ${num}`;
+      return `+${n.slice(0, 2)} (${ddd}) ${num.slice(0, 5)}-${num.slice(5, 9)}`;
+    }
     if (n.length <= 2) return `(${n}`;
     if (n.length <= 7) return `(${n.slice(0, 2)}) ${n.slice(2)}`;
     return `(${n.slice(0, 2)}) ${n.slice(2, 7)}-${n.slice(7, 11)}`;
@@ -123,11 +131,11 @@ const TelefoniaSection = () => {
   };
 
   const inputClass = 'w-full border border-[#dcdcdc] px-2 py-1.5 text-xs rounded-sm focus:outline-none focus:border-[#9c0004]';
-  const labelClass = 'block mb-0.5 text-[10px] font-normal text-[#6b6b6b]';
+  const labelClass = 'block mb-0.5 text-[12px] font-normal text-[#6b6b6b]';
 
   return (
-    <section id='Telefone' className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#231f20]">
-      <h2 className="text-3xl mb-8 tracking-tight">Telefonia fixa</h2>
+    <section id='Telefone' className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#3d3838]">
+      <h2 className="text-3xl mb-1">Telefonia fixa</h2>
 
       {/* Subtítulos */}
       <div className="flex flex-col md:flex-row gap-6 mb-4">
@@ -146,7 +154,7 @@ const TelefoniaSection = () => {
       {/* Cards + Formulário — mesma altura */}
       <div className="flex flex-col md:flex-row gap-6 items-stretch">
         {/* Coluna 1 — Cards lado a lado */}
-        <div className="flex flex-row gap-4 md:w-[45%]">
+        <div className="flex flex-row gap-2 md:w-[45%]">
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.id;
             const anySelected = selectedPlan !== '';
@@ -155,7 +163,7 @@ const TelefoniaSection = () => {
                 isSelected ? 'border-[#8a0005]' : 'border-[#dcdcdc]'
               } ${anySelected && !isSelected ? 'opacity-40' : ''}`}>
                 <p className="text-xs text-[#555]">Plano Telefonia Fixa</p>
-                <h3 className="text-2xl font-light tracking-tight" style={{ color: '#8a0005' }}>{plan.label}</h3>
+                <h3 className="text-2xl font-light" style={{ color: '#8a0005' }}>{plan.label}</h3>
                 <ul className="flex flex-col gap-2 w-full">
                   {plan.features.map((f, i) => (
                     <li key={i} className="text-xs font-light flex items-center gap-1.5">
@@ -164,8 +172,8 @@ const TelefoniaSection = () => {
                     </li>
                   ))}
                 </ul>
-                <p className="text-2xl tracking-tight mt-auto">
-                  R$ {plan.price} <span className="text-sm font-light">/mês</span>
+                <p className="text-2xl mt-auto">
+                  R$ {plan.price}<span className="text-sm font-light">/mês</span>
                 </p>
                 <button
                   type="button"
@@ -251,7 +259,7 @@ const TelefoniaSection = () => {
                     value={phone}
                     onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
                     className={inputClass}
-                    maxLength={15}
+                    maxLength={20}
                   />
                 </div>
               </div>
@@ -267,7 +275,7 @@ const TelefoniaSection = () => {
         </div>
       </div>
 
-      <p className="text-xs text-[#555] mt-8">
+      <p className="text-[10px] w-full text-[#555] mt-8">
         Consulte sobre as tarifas excedentes Predialfone. Exceto para ligações Nextel SME (rádio).
         Os valores acima são promocionais e estão sujeitos a alteração.
       </p>

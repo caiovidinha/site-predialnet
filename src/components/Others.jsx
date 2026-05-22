@@ -14,9 +14,27 @@ function Others() {
   const formatPhoneNumber = (value) => {
     if (!value) return value;
     const n = value.replace(/\D/g, '');
+    if (n.length > 11) {
+      const ddd = n.slice(2, 4);
+      const num = n.slice(4, 13);
+      if (num.length === 0) return `+${n.slice(0, 2)}`;
+      if (num.length <= 2) return `+${n.slice(0, 2)} (${ddd}`;
+      if (num.length <= 7) return `+${n.slice(0, 2)} (${ddd}) ${num}`;
+      return `+${n.slice(0, 2)} (${ddd}) ${num.slice(0, 5)}-${num.slice(5, 9)}`;
+    }
     if (n.length <= 2) return `(${n}`;
     if (n.length <= 7) return `(${n.slice(0, 2)}) ${n.slice(2)}`;
     return `(${n.slice(0, 2)}) ${n.slice(2, 7)}-${n.slice(7, 11)}`;
+  };
+
+  const formatCnpj = (value) => {
+    if (!value) return value;
+    const n = value.replace(/\D/g, '').slice(0, 14);
+    if (n.length <= 2) return n;
+    if (n.length <= 5) return `${n.slice(0, 2)}.${n.slice(2)}`;
+    if (n.length <= 8) return `${n.slice(0, 2)}.${n.slice(2, 5)}.${n.slice(5)}`;
+    if (n.length <= 12) return `${n.slice(0, 2)}.${n.slice(2, 5)}.${n.slice(5, 8)}/${n.slice(8)}`;
+    return `${n.slice(0, 2)}.${n.slice(2, 5)}.${n.slice(5, 8)}/${n.slice(8, 12)}-${n.slice(12, 14)}`;
   };
 
   const startCooldown = () => {
@@ -42,7 +60,8 @@ function Others() {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData((prev) => ({ ...prev, [id]: value }));
+    const formatted = id === 'cnpj' ? formatCnpj(value) : value;
+    setFormData((prev) => ({ ...prev, [id]: formatted }));
   };
 
   const handleSubmit = async (e) => {
@@ -110,27 +129,27 @@ function Others() {
     }
   };
 
-  const inputClass = 'w-full border border-[#dcdcdc] px-3 py-1.5 text-sm rounded-sm focus:outline-none focus:border-[#8a0005] bg-white';
+  const inputClass = 'w-full border border-[#dcdcdc] px-3 py-1.5 text-sm rounded-sm focus:outline-none focus:border-[#9c0004] bg-white';
   const labelClass = 'block mb-1 text-xs text-[#6b6b6b]';
 
   return (
-    <div className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fff] text-[#231f20]">
+    <div className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fff] text-[#3d3838]">
       {success && <SuccessToast onClose={() => setSuccess(false)} />}
 
-      <div className="flex flex-col md:flex-row gap-2">
+      <div className="flex flex-col md:flex-row gap-6 items-stretch ">
         {/* Left — Via Rádio + Porto Maravilha */}
-        <div className="md:w-[48%] flex flex-col">
-          <h2 className="text-3xl tracking-tight mb-1">Internet Via Rádio e Porto Maravilha</h2>
-          <p className="text-base font-light mb-6">Planos residenciais</p>
+        <div className="md:w-[45%] flex flex-col">
+          <h2 className="text-3xl mb-1">Internet Via Rádio e Porto Maravilha</h2>
+          <p className="text-lg font-light leading-6 mb-4">Planos residenciais</p>
 
-          <div className="flex flex-row gap-2 flex-1">
+          <div className="flex flex-row gap-2 flex-1 ">
             {[
               { label: 'Planos de internet - Via Rádio', href: '/via-radio', desc: 'Conheça os Planos de internet <strong>residencial<br>Via Rádio</strong>' },
               { label: 'Planos de internet - Porto Maravilha', href: '/porto-maravilha', desc: 'Conheça os Planos de internet <strong>residencial</strong><br>para região do <strong>Porto Maravilha</strong>' },
             ].map((item) => (
-              <div key={item.href} className="bg-white border border-[#dcdcdc] rounded p-6 flex flex-col gap-4 flex-1">
+              <div key={item.href} className=" border border-[#dcdcdc] rounded p-6 flex flex-col gap-4 flex-1">
                 <p className="text-xs text-[#9e9e9e]">{item.label}</p>
-                <p className="text-[28px] font-light leading-tighter" style={{ color: '#8a0005' }} dangerouslySetInnerHTML={{ __html: item.desc }} />
+                <p className="text-[25px] font-light leading-none" style={{ color: '#8a0005' }} dangerouslySetInnerHTML={{ __html: item.desc }} />
                 <div className="flex flex-col items-center gap-2 mt-auto">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-[#c0c0c0] mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -149,10 +168,10 @@ function Others() {
 
         {/* Right — Internet Empresa inline form */}
         <div className="md:flex-1 flex flex-col">
-          <h2 className="text-3xl tracking-tight mb-1">Internet Empresa</h2>
-          <p className="text-base font-light mb-6">Preencha o formulário que entraremos em contato.</p>
+          <h2 className="text-3xl mb-1">Internet Empresa</h2>
+          <p className="text-lg font-light leading-6 mb-4">Preencha o formulário e entraremos em contato para apresentar os planos</p>
 
-          <form onSubmit={handleSubmit} noValidate className="bg-[#ebebeb] border border-[#dcdcdc] rounded p-6 flex flex-col gap-3 flex-1">
+          <form onSubmit={handleSubmit} noValidate className="bg-white border border-[#dcdcdc] rounded p-6 flex flex-col gap-3 flex-1">
             {missingField !== 'none' && (
               <p className="text-xs text-red-700">Por favor, preencha corretamente: {missingField}</p>
             )}
@@ -164,7 +183,7 @@ function Others() {
               </div>
               <div className="w-2/5">
                 <label className={labelClass}>CNPJ</label>
-                <input id="cnpj" type="text" onChange={handleInputChange} className={inputClass} />
+                <input id="cnpj" type="text" value={formData.cnpj || ''} onChange={handleInputChange} className={inputClass} />
               </div>
             </div>
 
@@ -211,7 +230,7 @@ function Others() {
                   value={phone}
                   onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
                   className={inputClass}
-                  maxLength={15}
+                  maxLength={20}
                 />
               </div>
             </div>

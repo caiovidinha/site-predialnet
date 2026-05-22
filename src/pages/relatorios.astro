@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import SecNavBar from '../components/SecNavBar.astro';
 import Footer from '../components/Footer.astro';
 
 const reports = {
@@ -19,11 +18,11 @@ const reports = {
       link: 'https://www.predialnet.com.br/assineja/images/relatorios/relat%C3%B3rio%201%C2%BA%20semestre%20ano%202025%20-%20base%20de%20dados%202024.pdf',
     },
     {
-      title: 'Relatório 2° Semestre 2024 – base dados 2024',
+      title: 'Relatório 2° Semestre 2024 - base dados 2024',
       link: 'https://www.predialnet.com.br/assineja/images/relatorios/relat%C3%B3rio%202%C2%BA%20semestre%20ano%202024%20-%20base%20de%20dados%202023.pdf',
     },
     {
-      title: 'Relatório 1° Semestre 2024 – base dados 2023',
+      title: 'Relatório 1° Semestre 2024 - base dados 2023',
       link: 'https://www.predialnet.com.br/assineja/images/relatorios/relat%C3%B3rio%201%C2%BA%20semestre%20ano%202024%20-%20base%20de%20dados%202022.pdf',
     },
   ],
@@ -33,47 +32,35 @@ const reports = {
 <Layout title="Relatórios de Transparência - Predialnet">
   <div class="flex flex-col min-h-screen">
   <Navbar />
-  <SecNavBar />
-  
-  <div class="font-sans container mx-auto py-20 px-12 text-black flex-1">
-    {/* Conteúdo da Página */}
-    <div class="text-center">
-      <h2 class="text-lg md:text-xl text-black font-normal">DOCUMENTOS</h2>
-      <h3 class="text-xl md:text-4xl text-[#9c0004] mt-2 mb-4">
-        Relatórios de Transparência e Igualdade Salarial de Mulheres e Homens
-      </h3>
-    </div>
 
-    <div class="mb-12">
-      <hr class="border-t-2 border-black mb-8 w-1/6 mx-auto" />
+  <div class="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#3d3838] flex-1">
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="mb-10">
+      <p class="text-sm font-light text-[#6b6b6b] mb-1">Documentos</p>
+      <h2 class="text-3xl font-light mb-1">Transparência e Igualdade Salarial</h2>
+      <p class="text-lg font-light leading-6 mb-8">Relatórios de igualdade salarial de mulheres e homens</p>
+
+      <div class="flex flex-col gap-3">
         {reports['Salario'].map((report) => (
-          <div class="flex flex-row items-center">
-            <img 
-              src="/img/regulamento.png" 
-              alt="Documento" 
-              width="35" 
-              height="35" 
-              class="mr-5 mt-1"
-            />
-            <div class="flex flex-col">
-              <p class="text-lg font-normal mt-2">{report.title}</p>
+          <div class="flex flex-row items-center gap-3">
+            <p class="text-sm font-light leading-snug">
+              {report.title}
               <a
                 href={report.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-sm font-normal hover:opacity-60 text-[#9c0004]"
+                class="text-xs ml-2 text-[#8a0005] hover:underline underline-offset-2 transition-opacity"
               >
-                Visualizar
+                Download PDF
               </a>
-            </div>
+            </p>
           </div>
         ))}
       </div>
     </div>
+
   </div>
-  
+
   <Footer />
   </div>
 </Layout>

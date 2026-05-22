@@ -20,7 +20,7 @@ function Phone() {
   return (
     <>
       {/* Versão para Desktop */}
-      <div id="Telefone" className="hidden md:block px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#231f20]">
+      <div id="Telefone" className="hidden md:block px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#3d3838]">
         <h1 className="text-3xl mb-1">Telefonia</h1>
         <h2 className="text-[#9e9e9e] text-xl">A melhor internet fibra também</h2>
         <h2 className="text-[#9e9e9e] text-xl -mt-1">é a melhor telefonia fixa</h2>
@@ -95,7 +95,7 @@ function Phone() {
       </div>
 
       {/* Versão para Mobile */}
-      <div id="Telefone2" className="md:hidden px-6 pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#231f20]">
+      <div id="Telefone2" className="md:hidden px-6 pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#3d3838]">
         <h1 className="text-4xl sm:text-5xl mb-1">Telefonia</h1>
         <h2 className="text-[#9e9e9e] text-lg leading-6">A melhor internet fibra também é a melhor telefonia fixa</h2>
         

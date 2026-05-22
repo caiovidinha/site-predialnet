@@ -33,7 +33,7 @@ const plans = [
   },
   {
     id: 'gamer1giga',
-    seal: 'Para jogar sem lag nenhum',
+    seal: 'Para jogar sem lag',
     title: 'Gamer Pro 1 Giga',
     img: '/img/ideal-gamer.webp',
     description:
@@ -50,13 +50,13 @@ const IdealPlans = () => {
     setOpenDetails((prev) => (prev === id ? null : id));
 
   return (
-    <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#231f20]">
-      <h2 className="text-3xl mb-1 tracking-tight">
+    <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#3d3838]">
+      <h1 className="text-3xl mb-1 font-light tracking-[-0.01em]">
         Saiba como escolher o plano ideal pra você
+      </h1>
+      <h2 className="text-lg font-light leading-6">
+        Veja qual opção combina melhor com o seu perfil
       </h2>
-      <p className="text-lg font-light leading-6">
-        Saiba como escolher o plano ideal pra você
-      </p>
 
       <div className="mt-12 flex flex-col md:flex-row gap-3 items-start">
         {plans.map((plan) => {
@@ -64,7 +64,7 @@ const IdealPlans = () => {
           return (
             <div key={plan.id} className="relative flex-1 mt-4 flex flex-col">
               {/* Selo */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 bg-[#dcdcdc] text-xs rounded-sm text-center" style={{ padding: '6px 18px', width: '170px' }}>
+              <div className="absolute top-0 left-7 right-7 -translate-y-1/2 z-10 bg-[#dcdcdc] text-xs rounded-sm text-center whitespace-nowrap" style={{ padding: '6px 18px' }}>
                 {plan.seal}
               </div>
 
@@ -72,7 +72,7 @@ const IdealPlans = () => {
               <div className="border border-[#dcdcdc] bg-white flex flex-col">
                 <div className="p-7 flex flex-col flex-1">
                   {/* Título */}
-                  <h3 className="text-2xl font-light tracking-tight mb-4">{plan.title}</h3>
+                  <h3 className="text-2xl font-light mb-4">{plan.title}</h3>
 
                   {/* Imagem */}
                   <img
@@ -82,7 +82,7 @@ const IdealPlans = () => {
                   />
 
                   {/* Descrição */}
-                  <p className="text-sm font-light leading-relaxed mb-6">{plan.description}</p>
+                  <p className="text-sm font-light mb-6">{plan.description}</p>
 
                   {/* Botão Assinar */}
                   <a
@@ -99,7 +99,7 @@ const IdealPlans = () => {
                   <button
                     type="button"
                     onClick={() => toggleDetails(plan.id)}
-                    className="flex items-center justify-center gap-1 text-sm font-light hover:text-[#8a0005] transition-colors"
+                    className="flex items-center justify-center gap-1 text-xs font-light hover:text-[#8a0005] transition-colors"
                   >
                     Mais detalhes
                     <svg
@@ -116,16 +116,16 @@ const IdealPlans = () => {
                   {/* Accordion */}
                   {isOpen && (
                     <div className="mt-4 pt-4 border-t border-[#e6e6e6] flex flex-col gap-3">
-                      <p className="text-2xl tracking-tight">Plano {plan.title}</p>
+                      <p className="text-xl">Plano {plan.title}</p>
                       <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
-                      <p className="text-sm leading-relaxed">
+                      <p className="text-sm">
                         Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
                         viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
                         Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
                       </p>
                       <div>
                         <p className="text-base mb-2">*Serviços Inteligentes:</p>
-                        <div className="flex flex-col gap-2 text-sm font-light leading-relaxed">
+                        <div className="flex flex-col gap-2 text-sm font-light">
                           <p>
                             <span className="font-normal">· Controle Parental (1 licença)</span><br />
                             Permite ao titular da conta controlar o horário de utilização da sua Internet.
@@ -141,7 +141,7 @@ const IdealPlans = () => {
                           </p>
                         </div>
                       </div>
-                      <p className="text-sm leading-relaxed">
+                      <p className="text-sm">
                         Baixe o App Minha Predialnet e gerencie seu plano.
                       </p>
                       <a

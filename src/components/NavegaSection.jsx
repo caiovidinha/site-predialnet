@@ -8,7 +8,7 @@ const cards = [
   },
   {
     img: '/img/navega-2.webp',
-    title: 'Vídeochamadas com alta qualidade e estabilidade',
+    title: 'Vídeochamadas com muita qualidade e estabilidade',
     text: 'Faça chamadas de vídeo sem travar com uma conexão estável e de qualidade.',
   },
   {
@@ -25,8 +25,8 @@ const cards = [
 
 const NavegaSection = () => {
   return (
-    <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#ebebeb] text-[#231f20]">
-      <h2 className="text-3xl mb-1 tracking-tight">
+    <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#ebebeb] text-[#3d3838]">
+      <h2 className="text-3xl mb-1 tracking-[-0.01em]">
         Com Predialnet sua casa navega com você
       </h2>
       <p className="text-lg font-light leading-6 mb-10">
@@ -42,10 +42,10 @@ const NavegaSection = () => {
               className="w-full block mb-4"
             />
             <div className="px-6 pb-5">
-              <h3 className="text-xl font-semibold leading-snug mb-2" style={{ color: '#8a0005' }}>
+              <h3 className="text-xl leading-tight mb-2 tracking-[-0.01em]" style={{ color: '#8a0005' }}>
                 {card.title}
               </h3>
-              <p className="text-sm font-light leading-tight">
+              <p className="text-sm font-light">
                 {card.text}
               </p>
             </div>

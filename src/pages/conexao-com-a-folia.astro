@@ -1,15 +1,13 @@
-ï»¿---
+---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import SecNavBar from '../components/SecNavBar.astro';
 import ConexaoComAFoliaPage from '../components/ConexaoComAFoliaPage.jsx';
 ---
 
 <Layout 
-  title="ConexÃ£o com a Folia - Blocos de Carnaval RJ 2026" 
-  description="ProgramaÃ§Ã£o completa dos blocos de Carnaval 2026 do Rio de Janeiro. Confira os horÃ¡rios e locais de todos os blocos de rua de 13 a 17 de fevereiro."
+  title="Conexão com a Folia - Blocos de Carnaval RJ 2026" 
+  description="Programação completa dos blocos de Carnaval 2026 do Rio de Janeiro. Confira os horários e locais de todos os blocos de rua de 13 a 17 de fevereiro."
 >
   <Navbar />
-  <SecNavBar />
   <ConexaoComAFoliaPage client:load />
 </Layout>

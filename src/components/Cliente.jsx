@@ -41,7 +41,7 @@ function Cliente() {
   return (
     <>
       {/* Versão para Desktop */}
-      <div id="Cliente" className="hidden md:block px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#6e0000] text-[#231f20]">
+      <div id="Cliente" className="hidden md:block px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#6e0000] text-[#3d3838]">
         <div className="flex flex-row justify-between pt-2">
           <div className="w-full lg:w-[32%]">
             <h3 className="text-[#f8abad] text-lg">Cliente Predialnet</h3>
@@ -144,7 +144,7 @@ function Cliente() {
       </div>
 
       {/* Versão para Mobile */}
-      <div id="Cliente2" className="md:hidden px-6 py-10 font-sans bg-[#6e0000] text-[#231f20]">
+      <div id="Cliente2" className="md:hidden px-6 py-10 font-sans bg-[#6e0000] text-[#3d3838]">
         <div className="flex flex-col">
           <div className="w-full mb-8">
             <h3 className="text-[#f8abad] text-base sm:text-lg">Cliente Predialnet</h3>

@@ -139,10 +139,10 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
   const labelClass = 'block mb-0.5 text-[10px] font-normal text-[#6b6b6b]';
 
   return (
-    <div className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-white text-[#231f20]">
+    <div className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-white text-[#3d3838]">
       {success && <SuccessToast onClose={() => setSuccess(false)} />}
 
-      <h1 className="text-3xl mb-8 tracking-tight">{title}</h1>
+      <h1 className="text-3xl mb-8">{title}</h1>
 
       {/* Subtítulos */}
       <div className="flex flex-col md:flex-row gap-6 mb-4">
@@ -166,8 +166,8 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
                 } ${anySelected && !isSelected ? 'opacity-40' : ''}`}
               >
                 <p className="text-xs text-[#555]">Navegue com até</p>
-                <h3 className="text-2xl font-light tracking-tight" style={{ color: '#8a0005' }}>{plan.label}</h3>
-                <p className="text-2xl tracking-tight mt-auto">{plan.price}</p>
+                <h3 className="text-2xl font-light" style={{ color: '#8a0005' }}>{plan.label}</h3>
+                <p className="text-2xl mt-auto">{plan.price}</p>
                 <button
                   type="button"
                   onClick={() => {

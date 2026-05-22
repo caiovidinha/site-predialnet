@@ -17,16 +17,16 @@ function Atendimento() {
       setIsModalFormOpen(false);
     };
   return (
-    <div id="Atendimento" className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#f4f5f5] text-[#231f20] tracking-tight">
+    <div id="Atendimento" className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#f4f5f5] text-[#3d3838]">
       <div className="flex flex-col md:flex-row md:justify-between gap-10">
         {/* Horários de Atendimento e Suporte */}
         <div className="w-full md:w-[32%]">
-          <h2 className="text-3xl sm:text-3xl text-[#9c0004] tracking-tight">Horário de Atendimento</h2>
+          <h2 className="text-3xl sm:text-3xl text-[#9c0004]">Horário de Atendimento</h2>
           <p className="text-[#555] text-base sm:text-lg">Segunda a sexta das 9h às 18h</p>
-          <h2 className="text-3xl sm:text-3xl text-[#9c0004] mt-4 tracking-tight">Setor Comercial</h2>
+          <h2 className="text-3xl sm:text-3xl text-[#9c0004] mt-4">Setor Comercial</h2>
           <p className="text-[#555] text-base sm:text-lg">Segunda a sexta das 9h às 20h</p>
           <p className="text-[#555] text-base sm:text-lg">Sábado de 9h às 16h</p>
-          <h3 className="text-3xl sm:text-3xl text-[#9c0004] mt-4 tracking-tight">Suporte</h3>
+          <h3 className="text-3xl sm:text-3xl text-[#9c0004] mt-4">Suporte</h3>
           <p className="text-[#555] text-base sm:text-lg mt-1">Todos os dias das 6h às 24h</p>
         </div>
 
@@ -70,7 +70,7 @@ function Atendimento() {
             >
               <img src={card.iconSrc} alt={card.title} className="w-10 h-10 mb-3" />
               <h4 className="text-lg font-semibold">{card.title}</h4>
-              <p className="text-lg text-[#231f20] mt-1">{card.phone}</p>
+              <p className="text-lg text-[#3d3838] mt-1">{card.phone}</p>
             </button>
           ))}
         </div>

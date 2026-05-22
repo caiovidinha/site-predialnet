@@ -5,8 +5,9 @@ import OptimizedImage from './OptimizedImage.astro';
 
 <>
   <!-- Desktop Navbar -->
-  <nav class="hidden sm:flex pt-5 pb-1 px-6 sm:px-[8%] md:px-[12%] font-sans duration-300 transition-all items-end justify-between flex-row bg-[#f3f3f3]">
-    <a href="/">
+  <nav class="hidden sm:flex items-end gap-6 pt-6 pb-4 px-6 sm:px-[8%] md:px-[12%] font-sans bg-[#f3f3f3]">
+    <!-- Logo -->
+    <a href="/" class="shrink-0 mr-4">
       <OptimizedImage
         src="/img/logo.png"
         width={150}
@@ -16,43 +17,105 @@ import OptimizedImage from './OptimizedImage.astro';
         loading="eager"
       />
     </a>
+
+    <!-- Nav links -->
+    <div class="flex gap-6 items-end text-sm text-[#575757]">
+      <a class="hover:text-[#9c0004] transition-colors ease-in duration-150" href="/#Plans">Internet</a>
+      <a class="hover:text-[#9c0004] transition-colors ease-in duration-150" href="/#Telefone">Telefonia fixa</a>
+      <a class="hover:text-[#9c0004] transition-colors ease-in duration-150" href="https://webmail.predialnet.com.br/index.php" target="_blank" rel="noopener noreferrer">Webmail</a>
+    </div>
+
+    <!-- Spacer left -->
+    <div class="flex-1"></div>
+
+    <!-- Phone text (no border) -->
+    <span class="text-sm text-[#575757] whitespace-nowrap">
+      Assine também pelo telefone 21 3515-0555
+    </span>
+
+    <!-- Spacer right -->
+    <div class="flex-1"></div>
+
+    <!-- Já sou cliente -->
     <a
       href="https://minhaconta.predialnet.com.br"
       target="_blank"
       rel="noopener noreferrer"
-      class="flex items-center gap-1 font-medium text-sm font-sans"
+      class="flex items-center gap-1"
       aria-label="Acessar área do cliente"
     >
       <OptimizedImage
         src="/img/icone_profile.png"
         width={24}
         height={24}
-        class="w-6 h-6 object-contain"
+        class="w-6 h-6 object-contain pt-0.5"
         alt="Perfil"
         loading="eager"
       />
-      <p class="text-[#9e9e9e] hover:text-[#9c0004] transition-colors ease-in duration-150">Já sou cliente</p>
+      <p class="text-sm text-[#575757] hover:text-[#9c0004] transition-colors ease-in duration-150 shrink-0 pt-0.5">
+      Minha conta
+      </p>
     </a>
   </nav>
 
   <!-- Mobile Navbar -->
-  <nav class="sm:hidden px-6 py-3 font-sans bg-[#f3f3f3] border-b-2 border-gray-200 flex items-center justify-between">
-    <a href="/">
-      <OptimizedImage
-        src="/img/logo.png"
-        width={160}
-        height={32}
-        alt="Predialnet Logo"
-        class="h-8 object-contain"
-        loading="eager"
-      />
-    </a>
-
-    <div class="flex items-end mt-3 space-x-2">
+  <nav class="sm:hidden font-sans bg-[#f3f3f3]">
+    <!-- Topo: logo + botões de assinar/contato/perfil -->
+    <div class="py-3 px-6 flex items-center justify-between bg-[#f3f3f3]">
       <a href="/">
-        <p class="text-[#9c0004] text-xs font-semibold whitespace-nowrap">
-          Para sua casa
-        </p>
+        <OptimizedImage
+          src="/img/logo.png"
+          width={140}
+          height={32}
+          alt="Predialnet Logo"
+          class="h-8 object-contain"
+          loading="eager"
+        />
+      </a>
+      <div class="flex items-center gap-2">
+        <a
+          href="https://www.predialnet.com.br/assineja?plano=navbar"
+          target="_blank"
+          class="bg-[#f7adaf] text-xs px-3 py-1.5 rounded-full font-semibold whitespace-nowrap hover:scale-105 transition-transform"
+        >
+          Assinar
+        </a>
+        <a
+          href="tel:02135150555"
+          class="border border-black px-3 py-1.5 rounded-full font-semibold text-xs whitespace-nowrap"
+        >
+          3515-0555
+        </a>
+        <a href="https://minhaconta.predialnet.com.br" target="_blank" rel="noopener noreferrer">
+          <OptimizedImage
+            src="/img/icone_profile.png"
+            alt="Perfil"
+            width={28}
+            height={32}
+            class="w-7 h-8 object-contain"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+
+    <!-- Ícones de navegação rápida -->
+    <div class="bg-white pt-1 pb-2 flex justify-between px-6">
+      <a href="/#Plans" class="flex flex-col items-center hover:scale-105 transition-transform w-1/4">
+        <OptimizedImage src="/img/iconePlanos.png" alt="Planos Internet" width={40} height={40} class="w-10 h-10" loading="lazy" />
+        <p class="text-xs text-center leading-tight px-2 mt-0.5">Planos<br />Internet</p>
+      </a>
+      <a href="/#Telefone" class="flex flex-col items-center hover:scale-105 transition-transform w-1/4">
+        <OptimizedImage src="/img/iconeTelefonia.png" alt="Telefonia Fixa" width={40} height={40} class="w-10 h-10" loading="lazy" />
+        <p class="text-xs text-center leading-tight px-2 mt-0.5">Telefonia<br />Fixa</p>
+      </a>
+      <a href="/#Cliente2" class="flex flex-col items-center hover:scale-105 transition-transform w-1/4">
+        <OptimizedImage src="/img/iconeAcesso.png" alt="Suporte rápido" width={40} height={40} class="w-10 h-10" loading="lazy" />
+        <p class="text-xs text-center leading-tight px-2 mt-0.5">Suporte<br />rápido</p>
+      </a>
+      <a href="https://webmail.predialnet.com.br/index.php" target="_blank" class="flex flex-col items-center hover:scale-105 transition-transform w-1/4">
+        <OptimizedImage src="/img/iconeWebmail.png" alt="Webmail" width={40} height={40} class="w-10 h-10" loading="lazy" />
+        <p class="text-xs text-center leading-tight px-2 mt-0.5">Acessar Webmail</p>
       </a>
     </div>
   </nav>

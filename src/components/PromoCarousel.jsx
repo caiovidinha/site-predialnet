@@ -6,8 +6,9 @@ const defaultSlides = [
 ];
 
 const PromoCarousel = ({
+  id,
   title = 'Os melhores planos estão aqui',
-  subtitle = 'A Predialnet tem um plano feito para você viver o melhor da conexão',
+  subtitle = 'A Predialnet tem um plano feito para você viver o melhor conectado',
   slides = defaultSlides,
 }) => {
   const [current, setCurrent] = useState(0);
@@ -25,7 +26,7 @@ const PromoCarousel = ({
       if (!isHoveredRef.current) {
         setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
       }
-    }, 4000);
+    }, 2800);
   };
 
   useEffect(() => {
@@ -35,16 +36,18 @@ const PromoCarousel = ({
 
   return (
     <section
-      className="bg-white py-12 px-6 sm:px-[8%] md:px-[12%] font-sans"
+      id={id}
+      className="bg-white py-12 px-6 sm:px-[8%] md:px-[12%] font-sans text-[#3d3838]"
       onMouseEnter={() => { isHoveredRef.current = true; }}
       onMouseLeave={() => { isHoveredRef.current = false; }}
     >
-      <h2 className="text-2xl sm:text-3xl text-[#231f20] text-left mb-2">
+
+      <h1 className="text-3xl mb-1 font-light tracking-[-0.01em]">
         {title}
-      </h2>
-      <p className="text-sm sm:text-base text-[#555] text-left mb-8">
+      </h1>
+      <h2 className="text-lg font-light leading-6 mb-8">
         {subtitle}
-      </p>
+      </h2>
 
       {/* Carousel */}
       <div className="overflow-hidden">
