@@ -17,25 +17,25 @@ function ClienteAtendimento() {
 
   const acessoCards = [
     {
-      icon: '/img/iconeMedidor.avif',
+      icon: '/img/medidor.svg',
       title: 'Medidor de velocidade',
       href: 'https://speedtest.predialnet.com.br',
       external: true,
     },
     {
-      icon: '/img/iconeConta.avif',
+      icon: '/img/segunda-via.svg',
       title: '2ª via de conta',
       href: 'https://minhaconta.predialnet.com.br',
       external: true,
     },
     {
-      icon: '/img/iconeSuporte.avif',
-      title: 'Suporte técnico',
-      href: '/#Atendimento',
-      external: false,
+      icon: '/img/webmail.svg',
+      title: 'Webmail',
+      href: 'https://webmail.predialnet.com.br/index.php',
+      external: true,
     },
     {
-      icon: '/img/iconeCelular.avif',
+      icon: '/img/app.svg',
       title: 'Gerenciar pelo App',
       href: '#App',
       external: false,
@@ -43,10 +43,10 @@ function ClienteAtendimento() {
   ];
 
   const atendimentoCards = [
-    { icon: '/img/iconeSuporte.avif', title: 'Suporte', phone: '21 3515-0500', type: 'suporte' },
-    { icon: '/img/iconeFinanceiro.avif', title: 'Financeiro', phone: '21 3515-0555', type: 'financeiro' },
-    { icon: '/img/iconeCancelamento.avif', title: 'Cancelamento', phone: '21 3515-0555', type: 'cancelamento' },
-    { icon: '/img/iconeSAC.avif', title: 'SAC', phone: '0800 878 7319', type: 'contato' },
+    { icon: '/img/suporte.svg', title: 'Suporte', phone: '21 3515-0500', type: 'suporte' },
+    { icon: '/img/financeiro.svg', title: 'Financeiro', phone: '21 3515-0555', type: 'financeiro' },
+    { icon: '/img/cancelameto.svg', title: 'Cancelamento', phone: '21 3515-0555', type: 'cancelamento' },
+    { icon: '/img/sac.svg', title: 'SAC', phone: '0800 878 7319', type: 'contato' },
   ];
 
   return (
@@ -82,9 +82,13 @@ function ClienteAtendimento() {
                 href={card.href}
                 target={card.external ? '_blank' : '_self'}
                 rel={card.external ? 'noopener noreferrer' : undefined}
-                className="flex-1 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-5 hover:shadow-md transition-shadow"
+                className="flex-1 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-5 hover:shadow-md transition-shadow group"
               >
-                <img src={card.icon} alt={card.title} className="w-5 h-5 object-contain flex-shrink-0" />
+                <img
+                  src={card.icon}
+                  alt=""
+                  className="w-5 h-5 object-contain flex-shrink-0 transition-all group-hover:[filter:brightness(0)_saturate(100%)_invert(8%)_sepia(97%)_saturate(4000%)_hue-rotate(352deg)_brightness(82%)]"
+                />
                 <span className="text-sm text-[#444] flex-1 leading-tight">{card.title}</span>
                 <svg className="w-4 h-4 flex-shrink-0 text-[#aaa]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
@@ -92,9 +96,13 @@ function ClienteAtendimento() {
               </a>
               <button
                 onClick={() => openModal(atendimentoCards[i].type)}
-                className="flex-1 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-3 hover:shadow-md transition-shadow text-left"
+                className="flex-1 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-3 hover:shadow-md transition-shadow text-left group"
               >
-                <img src={atendimentoCards[i].icon} alt={atendimentoCards[i].title} className="w-5 h-5 object-contain flex-shrink-0" />
+                <img
+                  src={atendimentoCards[i].icon}
+                  alt=""
+                  className="w-5 h-5 object-contain flex-shrink-0 transition-all group-hover:[filter:brightness(0)_saturate(100%)_invert(8%)_sepia(97%)_saturate(4000%)_hue-rotate(352deg)_brightness(82%)]"
+                />
                 <span className="text-sm text-[#444] flex-1 leading-tight">{atendimentoCards[i].title} {atendimentoCards[i].phone}</span>
                 <svg className="w-4 h-4 flex-shrink-0 text-[#aaa]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />

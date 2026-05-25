@@ -5,9 +5,9 @@ import OptimizedImage from './OptimizedImage.astro';
 
 <>
   <!-- Desktop Navbar -->
-  <nav class="hidden sm:flex items-end gap-6 pt-6 pb-4 px-6 sm:px-[8%] md:px-[12%] font-sans bg-[#f3f3f3]">
+  <nav class="hidden sm:flex items-end gap-6 pt-5 pb-3 px-6 sm:px-[8%] md:px-[12%] font-sans bg-[#f3f3f3] text-[13px] text-[#575757]">
     <!-- Logo -->
-    <a href="/" class="shrink-0 mr-4">
+    <a href="/" class="shrink-0 mr-4 pb-0.5">
       <OptimizedImage
         src="/img/logo.png"
         width={150}
@@ -19,7 +19,7 @@ import OptimizedImage from './OptimizedImage.astro';
     </a>
 
     <!-- Nav links -->
-    <div class="flex gap-6 items-end text-sm text-[#575757]">
+    <div class="flex gap-6 items-end mb-[3px]">
       <a class="hover:text-[#9c0004] transition-colors ease-in duration-150" href="/#Plans">Internet</a>
       <a class="hover:text-[#9c0004] transition-colors ease-in duration-150" href="/#Telefone">Telefonia fixa</a>
       <a class="hover:text-[#9c0004] transition-colors ease-in duration-150" href="https://webmail.predialnet.com.br/index.php" target="_blank" rel="noopener noreferrer">Webmail</a>
@@ -28,33 +28,30 @@ import OptimizedImage from './OptimizedImage.astro';
     <!-- Spacer left -->
     <div class="flex-1"></div>
 
-    <!-- Phone text (no border) -->
-    <span class="text-sm text-[#575757] whitespace-nowrap">
-      Assine também pelo telefone 21 3515-0555
-    </span>
+    <!-- Phone CTA -->
+    <span class="whitespace-nowrap mb-[3px]">Assine agora 21 3515-0555</span>
 
     <!-- Spacer right -->
     <div class="flex-1"></div>
+
+    <!-- Anatel badge -->
+    <a href="/anatel" class="flex items-center gap-1.5 whitespace-nowrap mb-[3px] hover:text-[#8c0005] transition-all group">
+      <span>Provedor Licenciado</span>
+      <img src="/img/anatel.png" alt="Anatel" class="h-4 object-contain mb-[5px] transition-opacity group-hover:opacity-80" loading="eager" />
+    </a>
 
     <!-- Já sou cliente -->
     <a
       href="https://minhaconta.predialnet.com.br"
       target="_blank"
       rel="noopener noreferrer"
-      class="flex items-center gap-1"
+      class="flex items-end gap-1 ml-2 group mb-[3px]"
       aria-label="Acessar área do cliente"
     >
-      <OptimizedImage
-        src="/img/icone_profile.png"
-        width={24}
-        height={24}
-        class="w-6 h-6 object-contain pt-0.5"
-        alt="Perfil"
-        loading="eager"
-      />
-      <p class="text-sm text-[#575757] hover:text-[#9c0004] transition-colors ease-in duration-150 shrink-0 pt-0.5">
-      Minha conta
-      </p>
+      <svg class="w-[20px] h-[20px] text-[#575757] group-hover:text-[#9c0004] transition-colors ease-in duration-150 mb-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      <span class="group-hover:text-[#9c0004] transition-colors ease-in duration-150 shrink-0">Minha conta</span>
     </a>
   </nav>
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const defaultSlides = [
-  { src: '/img/carrossel-a.webp', alt: 'Promoção A', link: 'https://www.predialnet.com.br/assineja?plano=promo' },
   { src: '/img/carrossel-b.webp', alt: 'Promoção B', link: 'https://www.predialnet.com.br/assineja?plano=promo' },
+  { src: '/img/carrossel-d.webp', alt: 'Promoção A', link: '' },
 ];
 
 const PromoCarousel = ({
@@ -56,26 +56,36 @@ const PromoCarousel = ({
           className="flex transition-transform duration-500 ease-out"
           style={{ transform: `translateX(-${current * 100}%)` }}
         >
-          {slides.map((slide, i) => (
-            <a
-              key={i}
-              href={slide.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex-shrink-0 block"
-            >
-              <img
-                src={slide.src}
-                alt={slide.alt}
-                className="w-full block"
-              />
-            </a>
-          ))}
+          {slides.map((slide, i) =>
+            slide.link ? (
+              <a
+                key={i}
+                href={slide.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex-shrink-0 block"
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  className="w-full block"
+                />
+              </a>
+            ) : (
+              <div key={i} className="w-full flex-shrink-0 block">
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  className="w-full block"
+                />
+              </div>
+            )
+          )}
         </div>
       </div>
 
       {/* Dots */}
-      <div className="flex justify-center gap-2 mt-4">
+      {slides.length > 1 ? <div className="flex justify-center gap-2 mt-4">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -93,7 +103,7 @@ const PromoCarousel = ({
             }}
           />
         ))}
-      </div>
+      </div> : null}
     </section>
   );
 };
