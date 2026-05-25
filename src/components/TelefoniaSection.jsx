@@ -218,7 +218,7 @@ const TelefoniaSection = () => {
                   id="tel-plan"
                   value={selectedPlan}
                   onChange={(e) => setSelectedPlan(e.target.value)}
-                  className={inputClass('plan') + ' h-[30px]'})
+                  className={inputClass('plan') + ' h-[30px]'}
                 >
                   <option value="">Selecione</option>
                   <option value="Ideal Plus">Ideal Plus</option>

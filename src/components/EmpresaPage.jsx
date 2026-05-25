@@ -166,15 +166,15 @@ function EmpresaPage() {
         <div className="flex gap-3">
           <div className="flex-1">
             <label className={labelClass}>Endereço</label>
-            <input id="address" type="text" onChange={handleInputChange} className={inputClass} />
+              <input id="address" type="text" onChange={handleInputChange} className={inputClass('address')} />
           </div>
           <div className="w-1/5">
             <label className={labelClass}>Número</label>
-            <input id="number" type="text" onChange={handleInputChange} className={inputClass} />
+            <input id="number" type="text" onChange={handleInputChange} className={inputClass('number')} />
           </div>
           <div className="w-1/4">
             <label className={labelClass}>Complemento</label>
-            <input id="complement" type="text" onChange={handleInputChange} className={inputClass} />
+            <input id="complement" type="text" onChange={handleInputChange} className={inputClass('complement')} />
           </div>
         </div>
 
@@ -192,7 +192,7 @@ function EmpresaPage() {
         <div className="flex gap-3">
           <div className="flex-1">
             <label className={labelClass}>E-mail</label>
-            <input id="email" type="email" onChange={handleInputChange} className={inputClass} />
+            <input id="email" type="email" onChange={handleInputChange} className={inputClass('email')} />
           </div>
           <div className="w-2/5">
             <label className={labelClass}>Telefone</label>
@@ -200,7 +200,7 @@ function EmpresaPage() {
               type="text"
               value={phone}
               onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
-              className={inputClass}
+              className={inputClass('phone')}
               maxLength={20}
             />
           </div>

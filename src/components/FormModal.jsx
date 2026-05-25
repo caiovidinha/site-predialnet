@@ -283,7 +283,9 @@ const sendEmail = async(to,subject,body) => {
     sanitizedData["plan"] = plan1 ? plan1 : plan;
     
     // Verifica se todos os campos estão preenchidos
+    const optionalFields = ['complement', 'observation'];
     for (let field of fields) {
+      if (optionalFields.includes(field.id)) continue;
       const fieldValue = sanitizedData[field.id] || '';
       if (!fieldValue.trim()) {
         setMissingField(field.label);
