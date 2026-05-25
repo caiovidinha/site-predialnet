@@ -89,7 +89,7 @@ const IdealPlans = () => {
                     href={`https://www.predialnet.com.br/assineja?plano=${plan.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-90 transition-opacity rounded-sm mb-3"
+                    className="block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm mb-3"
                     aria-label={plan.btnLabel}
                   >
                     {plan.btnLabel}

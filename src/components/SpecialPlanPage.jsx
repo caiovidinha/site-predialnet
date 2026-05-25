@@ -4,23 +4,19 @@ import { events } from '../utils/analytics';
 
 const SuccessToast = ({ onClose }) => (
   <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40">
-    <div className="bg-white rounded border border-[#dcdcdc] p-6 max-w-sm w-full mx-4 relative shadow-lg">
+    <div className="bg-[#ddf9ed] rounded border-2 border-[#316a58] px-10 py-10 max-w-[400px] w-full mx-4 relative shadow-lg">
       <button
         onClick={onClose}
-        className="absolute top-2 right-3 text-gray-400 text-2xl leading-none hover:text-gray-600"
+        className="absolute top-3 right-3 hover:opacity-60 opacity-100 transition-opacity"
         aria-label="Fechar"
       >
-        &times;
+        <img src="/img/x-form.png" alt="Fechar" className="w-4 h-4" />
       </button>
-      <div className="flex items-start gap-3 mb-3">
-        <div className="w-8 h-8 rounded-full bg-[#00a650] flex items-center justify-center flex-shrink-0 mt-0.5">
-          <svg width="14" height="11" viewBox="0 0 14 11" fill="none" aria-hidden="true">
-            <path d="M1 5.5L5 9.5L13 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-        <p className="text-[#00a650] font-medium text-sm leading-snug">Seu formulário foi enviado com sucesso!</p>
+      <div className="flex items-start gap-2 ml-2 mb-3">
+        <img src="/img/check-form.png" alt="" className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+        <p className="text-[#316a58] font-semibold text-sm leading-snug">Seu formulário foi enviado com sucesso!</p>
       </div>
-      <p className="text-sm text-[#6b6b6b] ml-11">
+      <p className="text-sm text-[#316a58] px-9">
         Em breve um de nossos consultores entrará em contato para finalizar sua contratação.
       </p>
     </div>
@@ -32,6 +28,7 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
   const [formData, setFormData] = useState({});
   const [phone, setPhone] = useState('');
   const [missingField, setMissingField] = useState('none');
+  const [invalidFieldId, setInvalidFieldId] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [cooldown, setCooldown] = useState(false);
@@ -87,12 +84,13 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
       { id: 'email', label: 'E-mail' },
     ];
     for (const f of required) {
-      if (!sanitized[f.id]?.trim()) { setMissingField(f.label); return; }
+      if (!sanitized[f.id]?.trim()) { setMissingField(f.label); setInvalidFieldId(f.id); return; }
     }
-    if (!validateEmail(sanitized.email)) { setMissingField('E-mail inválido'); return; }
-    if (!validatePhone(sanitized.phone)) { setMissingField('Telefone inválido'); return; }
+    if (!validateEmail(sanitized.email)) { setMissingField('E-mail inválido'); setInvalidFieldId('email'); return; }
+    if (!validatePhone(sanitized.phone)) { setMissingField('Telefone inválido'); setInvalidFieldId('phone'); return; }
 
     setMissingField('none');
+    setInvalidFieldId('');
 
     let userIp = '';
     try {
@@ -123,6 +121,7 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
         setFormData({});
         setPhone('');
         setSelectedPlan('');
+        setInvalidFieldId('');
         events.formSubmit(type, selectedPlan, true);
       } else {
         setMissingField('Erro ao enviar. Tente novamente.');
@@ -135,22 +134,20 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
     }
   };
 
-  const inputClass = 'w-full border border-[#dcdcdc] px-2 py-1.5 text-xs rounded-sm focus:outline-none focus:border-[#9c0004]';
+  const inputClass = (id) => `w-full border ${invalidFieldId === id ? 'border-red-500' : 'border-[#dcdcdc]'} px-2 py-1.5 text-xs rounded-sm focus:outline-none focus:border-[#9c0004]`;
   const labelClass = 'block mb-0.5 text-[10px] font-normal text-[#6b6b6b]';
 
   return (
     <div className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-white text-[#3d3838]">
       {success && <SuccessToast onClose={() => setSuccess(false)} />}
 
-      <h1 className="text-3xl mb-8">{title}</h1>
-
-      {/* Subtítulos */}
-      <div className="flex flex-col md:flex-row gap-6 mb-4">
-        <div className="md:w-[45%]">
-          <p className="text-lg font-light leading-6">{subtitle}</p>
-        </div>
-   
-      </div>
+      <h1 className="text-3xl mb-1 font-light tracking-[-0.01em]">
+        {title}
+      </h1>
+      <h2 className="text-lg font-light leading-6 mb-4">
+        {subtitle}
+      </h2>
+      
 
       {/* Cards em linha */}
       <div className="flex flex-row gap-4 mb-6">
@@ -165,16 +162,21 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
                   isSelected ? 'border-[#8a0005]' : 'border-[#dcdcdc]'
                 } ${anySelected && !isSelected ? 'opacity-40' : ''}`}
               >
-                <p className="text-xs text-[#555]">Navegue com até</p>
-                <h3 className="text-2xl font-light" style={{ color: '#8a0005' }}>{plan.label}</h3>
-                <p className="text-2xl mt-auto">{plan.price}</p>
+                <div>
+                  <p className="text-xs text-[#555]">Navegue com até</p>
+                  <h3 className="text-2xl font-light" style={{ color: '#3d3838' }}>{plan.label}</h3>
+                </div>
+                <div>
+                  <p className="text-xs text-[#555]">Por apenas</p>
+                  <p className="text-xl mt-auto mb-3">{plan.price}</p>
+                </div>
                 <button
                   type="button"
                   onClick={() => {
                     setSelectedPlan(plan.value);
                     document.getElementById('special-plan-form')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                   }}
-                  className="block w-full text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-90 transition-opacity rounded-sm"
+                  className="block w-full text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm"
                 >
                   {isSelected ? 'Plano escolhido' : 'Aproveitar oferta'}
                 </button>
@@ -182,8 +184,8 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
             );
           })}
       </div>
-        <div className="md:w-[45%]">
-          <p className="text-lg font-light leading-6 mb-5">Preencha o formulário que entraremos em contato</p>
+        <div className="">
+          <p className="text-lg font-light leading-6 mb-5">Preencha o formulário que entraremos em contato para finalizar sua assinatura</p>
         </div>
 
       {/* Formulário em 2 cards lado a lado */}
@@ -196,14 +198,14 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
         <div className={`flex-1 border rounded p-6 flex flex-col gap-3 transition-colors ${selectedPlan ? 'border-[#8a0005]' : 'border-[#dcdcdc]'}`}>
           <div>
             <label className={labelClass}>Nome</label>
-            <input id="nome" type="text" onChange={handleInputChange} className={inputClass} />
+            <input id="nome" type="text" onChange={handleInputChange} className={inputClass('nome')} />
           </div>
           <div>
             <label className={labelClass}>Selecione o plano</label>
             <select
               value={selectedPlan}
               onChange={(e) => setSelectedPlan(e.target.value)}
-              className={inputClass + ' h-9 cursor-pointer'}
+              className={inputClass('plan') + ' h-9 cursor-pointer'}
             >
               <option value="">Selecione</option>
               {plans.map((p) => (
@@ -214,7 +216,7 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
           <div className="flex gap-3">
             <div className="flex-1">
               <label className={labelClass}>E-mail</label>
-              <input id="email" type="email" onChange={handleInputChange} className={inputClass} />
+              <input id="email" type="email" onChange={handleInputChange} className={inputClass('email')} />
             </div>
             <div className="w-2/5">
               <label className={labelClass}>Telefone</label>
@@ -222,7 +224,7 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
                 type="text"
                 value={phone}
                 onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
-                className={inputClass}
+                className={inputClass('phone')}
                 maxLength={15}
               />
             </div>
@@ -234,31 +236,31 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
           <div className="flex gap-3">
             <div className="flex-1">
               <label className={labelClass}>Endereço</label>
-              <input id="address" type="text" onChange={handleInputChange} className={inputClass} />
+              <input id="address" type="text" onChange={handleInputChange} className={inputClass('address')} />
             </div>
             <div className="w-1/5">
               <label className={labelClass}>Número</label>
-              <input id="number" type="text" onChange={handleInputChange} className={inputClass} />
+              <input id="number" type="text" onChange={handleInputChange} className={inputClass('number')} />
             </div>
             <div className="w-1/4">
               <label className={labelClass}>Complemento</label>
-              <input id="complement" type="text" onChange={handleInputChange} className={inputClass} />
+              <input id="complement" type="text" onChange={handleInputChange} className={inputClass('complement')} />
             </div>
           </div>
           <div className="flex gap-3">
             <div className="flex-1">
               <label className={labelClass}>Bairro</label>
-              <input id="neighborhood" type="text" onChange={handleInputChange} className={inputClass} />
+              <input id="neighborhood" type="text" onChange={handleInputChange} className={inputClass('neighborhood')} />
             </div>
             <div className="w-1/3">
               <label className={labelClass}>CEP</label>
-              <input id="cep" type="text" onChange={handleInputChange} className={inputClass} />
+              <input id="cep" type="text" onChange={handleInputChange} className={inputClass('cep')} />
             </div>
           </div>
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 text-sm text-white bg-[#8a0005] hover:opacity-90 transition-opacity disabled:opacity-60 rounded-sm mt-auto"
+            className="w-full py-2.5 text-sm text-white bg-[#8a0005] hover:opacity-80 transition-opacity disabled:opacity-60 rounded-sm mt-auto"
           >
             {loading ? 'Enviando...' : 'Enviar'}
           </button>
@@ -266,7 +268,7 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
       </form>
 
       {disclaimer && (
-        <p className="text-xs text-[#9e9e9e] mt-8">{disclaimer}</p>
+        <p className=" mt-6 text-[10px] w-full">{disclaimer}</p>
       )}
     </div>
   );

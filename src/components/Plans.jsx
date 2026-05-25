@@ -43,7 +43,7 @@ const planData = [
     id: 'gamer1giga',
     tagline: 'Jogue sem lag',
     title: 'Gamer Pro 1 Giga',
-    price: '159,90',
+    price: '129,90',
     wifi: 'Wi-Fi 6',
     seal: { text: 'PLANO GAMER', bg: '#000000', color: '#ffffff' },
     gamerPonto: true,
@@ -151,7 +151,7 @@ const Plans = () => {
                   href={`https://www.predialnet.com.br/assineja?plano=${plan.id}${isPonto ? '&ponto-cabeado' : ''}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center py-2 rounded-sm text-xs text-white bg-[#8a0005] hover:opacity-90 transition-opacity mb-3"
+                  className="block text-center py-2 rounded-sm text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity mb-3"
                   aria-label={`Assinar plano ${plan.title}`}
                   onClick={() => events.planClick(plan.title, `R$ ${plan.price}`, 'site', 'plans_section')}
                 >

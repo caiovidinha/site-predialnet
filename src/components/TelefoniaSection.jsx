@@ -33,6 +33,7 @@ const TelefoniaSection = () => {
   const [formData, setFormData] = useState({});
   const [phone, setPhone] = useState('');
   const [missingField, setMissingField] = useState('none');
+  const [invalidFieldId, setInvalidFieldId] = useState('');
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState('');
   const [cooldown, setCooldown] = useState(false);
@@ -85,17 +86,24 @@ const TelefoniaSection = () => {
     sanitized.phone = phone;
     sanitized.plan = selectedPlan;
 
-    const fields = ['nome', 'plan', 'address', 'number', 'neighborhood', 'cep', 'phone', 'email'];
-    for (const f of fields) {
-      if (!sanitized[f]?.trim()) {
-        setMissingField(f === 'nome' ? 'Nome' : f === 'plan' ? 'Plano' : f === 'address' ? 'Endereço' : f === 'number' ? 'Número' : f === 'neighborhood' ? 'Bairro' : f === 'cep' ? 'CEP' : f === 'phone' ? 'Telefone' : 'E-mail');
-        return;
-      }
+    const required = [
+      { id: 'nome', label: 'Nome' },
+      { id: 'plan', label: 'Plano' },
+      { id: 'address', label: 'Endereço' },
+      { id: 'number', label: 'Número' },
+      { id: 'neighborhood', label: 'Bairro' },
+      { id: 'cep', label: 'CEP' },
+      { id: 'phone', label: 'Telefone' },
+      { id: 'email', label: 'E-mail' },
+    ];
+    for (const f of required) {
+      if (!sanitized[f.id]?.trim()) { setMissingField(f.label); setInvalidFieldId(f.id); return; }
     }
-    if (!validateEmail(sanitized.email)) { setMissingField('E-mail inválido'); return; }
-    if (!validatePhone(sanitized.phone)) { setMissingField('Telefone inválido'); return; }
+    if (!validateEmail(sanitized.email)) { setMissingField('E-mail inválido'); setInvalidFieldId('email'); return; }
+    if (!validatePhone(sanitized.phone)) { setMissingField('Telefone inválido'); setInvalidFieldId('phone'); return; }
 
     setMissingField('none');
+    setInvalidFieldId('');
 
     let userIp = '';
     try {
@@ -130,7 +138,7 @@ const TelefoniaSection = () => {
     }
   };
 
-  const inputClass = 'w-full border border-[#dcdcdc] px-2 py-1.5 text-xs rounded-sm focus:outline-none focus:border-[#9c0004]';
+  const inputClass = (id) => `w-full border ${invalidFieldId === id ? 'border-red-500' : 'border-[#dcdcdc]'} px-2 py-1.5 text-xs rounded-sm focus:outline-none focus:border-[#9c0004]`;
   const labelClass = 'block mb-0.5 text-[12px] font-normal text-[#6b6b6b]';
 
   return (
@@ -181,7 +189,7 @@ const TelefoniaSection = () => {
                     setSelectedPlan(plan.id);
                     document.getElementById('telefonia-form')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                   }}
-                  className="block w-full text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-90 transition-opacity rounded-sm"
+                  className="block w-full text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm"
                 >
                   {isSelected ? 'Plano escolhido' : 'Aproveitar oferta'}
                 </button>
@@ -201,7 +209,7 @@ const TelefoniaSection = () => {
 
               <div>
                 <label htmlFor="tel-nome" className={labelClass}>Nome</label>
-                <input id="nome" type="text" onChange={handleInputChange} className={inputClass} />
+                <input id="nome" type="text" onChange={handleInputChange} className={inputClass('nome')} />
               </div>
 
               <div>
@@ -210,7 +218,7 @@ const TelefoniaSection = () => {
                   id="tel-plan"
                   value={selectedPlan}
                   onChange={(e) => setSelectedPlan(e.target.value)}
-                  className={inputClass + ' h-[30px]'}
+                  className={inputClass('plan') + ' h-[30px]'})
                 >
                   <option value="">Selecione</option>
                   <option value="Ideal Plus">Ideal Plus</option>
@@ -222,26 +230,26 @@ const TelefoniaSection = () => {
               <div className="flex gap-3">
                 <div className="flex-1">
                   <label htmlFor="tel-address" className={labelClass}>Endereço</label>
-                  <input id="address" type="text" onChange={handleInputChange} className={inputClass} />
+                  <input id="address" type="text" onChange={handleInputChange} className={inputClass('address')} />
                 </div>
                 <div className="w-1/5">
                   <label htmlFor="tel-number" className={labelClass}>Número</label>
-                  <input id="number" type="text" onChange={handleInputChange} className={inputClass} />
+                  <input id="number" type="text" onChange={handleInputChange} className={inputClass('number')} />
                 </div>
                 <div className="w-1/4">
                   <label htmlFor="tel-complement" className={labelClass}>Complemento</label>
-                  <input id="complement" type="text" onChange={handleInputChange} className={inputClass} />
+                  <input id="complement" type="text" onChange={handleInputChange} className={inputClass('complement')} />
                 </div>
               </div>
 
               <div className="flex gap-3">
                 <div className="flex-1">
                   <label htmlFor="tel-neighborhood" className={labelClass}>Bairro</label>
-                  <input id="neighborhood" type="text" onChange={handleInputChange} className={inputClass} />
+                  <input id="neighborhood" type="text" onChange={handleInputChange} className={inputClass('neighborhood')} />
                 </div>
                 <div className="w-1/3">
                   <label htmlFor="tel-cep" className={labelClass}>CEP</label>
-                  <input id="cep" type="text" onChange={handleInputChange} className={inputClass} />
+                  <input id="cep" type="text" onChange={handleInputChange} className={inputClass('cep')} />
                 </div>
               </div>
 
@@ -249,7 +257,7 @@ const TelefoniaSection = () => {
               <div className="flex gap-3">
                 <div className="flex-1">
                   <label htmlFor="tel-email" className={labelClass}>E-mail</label>
-                  <input id="email" type="email" onChange={handleInputChange} className={inputClass} />
+                  <input id="email" type="email" onChange={handleInputChange} className={inputClass('email')} />
                 </div>
                 <div className="w-2/5">
                   <label htmlFor="tel-phone" className={labelClass}>Telefone</label>
@@ -258,7 +266,7 @@ const TelefoniaSection = () => {
                     type="text"
                     value={phone}
                     onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
-                    className={inputClass}
+                    className={inputClass('phone')}
                     maxLength={20}
                   />
                 </div>
@@ -267,7 +275,7 @@ const TelefoniaSection = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-90 transition-opacity disabled:opacity-60 rounded-sm mt-auto"
+                className="block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity disabled:opacity-60 rounded-sm mt-auto"
               >
                 {loading ? 'Enviando...' : 'Enviar'}
               </button>

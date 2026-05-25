@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import EmpresaPage from '../components/EmpresaPage';
+---
+
+<Layout
+  title="Internet Empresa - Predialnet"
+  description="Planos de internet sob medida para a sua empresa. Preencha o formulário e entraremos em contato."
+>
+  <Navbar />
+  <EmpresaPage client:load />
+  <Footer />
+</Layout>
