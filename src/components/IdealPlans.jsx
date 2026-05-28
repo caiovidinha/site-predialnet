@@ -33,13 +33,8 @@ const plans = [
   },
   {
     id: 'gamer1giga',
-    seal: 'Para jogar sem lag',
+    imageCard: '/img/cardPlanoIdeal.webp',
     title: 'Gamer Pro 1 Giga',
-    img: '/img/ideal-gamer.webp',
-    description:
-      'Com ponto cabeado, este plano é perfeito para jogos online, proporcionando ping baixo e conexão estável para respostas rápidas. Alta velocidade com desempenho consistente para partidas fluidas e competitivas.',
-    btnLabel: 'Assinar Gamer Pro',
-    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
   },
 ];
 
@@ -58,31 +53,38 @@ const IdealPlans = () => {
         Veja qual opção combina melhor com o seu perfil
       </h2>
 
-      <div className="mt-12 flex flex-col md:flex-row gap-3 items-start">
+      <div className="mt-12 flex flex-col md:flex-row gap-3">
         {plans.map((plan) => {
           const isOpen = openDetails === plan.id;
           return (
             <div key={plan.id} className="relative flex-1 mt-4 flex flex-col">
               {/* Selo */}
-              <div className="absolute top-0 left-7 right-7 -translate-y-1/2 z-10 bg-[#dcdcdc] text-xs rounded-sm text-center whitespace-nowrap" style={{ padding: '6px 18px' }}>
-                {plan.seal}
-              </div>
+              {plan.seal && (
+                <div className="absolute top-0 left-7 right-7 -translate-y-1/2 z-10 bg-[#dcdcdc] text-xs rounded-sm text-center whitespace-nowrap" style={{ padding: '6px 18px' }}>
+                  {plan.seal}
+                </div>
+              )}
 
               {/* Card */}
-              <div className="border border-[#dcdcdc] bg-white flex flex-col">
-                <div className="p-7 flex flex-col flex-1">
+              {plan.imageCard ? (
+                <div className="border border-[#dcdcdc] bg-white overflow-hidden rounded-sm flex-1">
+                  <img src={plan.imageCard} alt={plan.title} className="w-full block" />
+                </div>
+              ) : (
+              <div className="border border-[#dcdcdc] bg-white flex flex-col rounded flex-1">
+                <div className="px-7 pt-8 pb-7 flex flex-col justify-between flex-1">
                   {/* Título */}
-                  <h3 className="text-2xl font-light mb-4">{plan.title}</h3>
+                  <h3 className="text-2xl font-light mb-5">{plan.title}</h3>
 
                   {/* Imagem */}
                   <img
                     src={plan.img}
                     alt={plan.title}
-                    className="w-full block rounded mb-4"
+                    className="w-full block rounded-sm mb-5"
                   />
 
                   {/* Descrição */}
-                  <p className="text-sm font-light mb-6">{plan.description}</p>
+                  <p className="text-sm font-light mb-5">{plan.description}</p>
 
                   {/* Botão Assinar */}
                   <a
@@ -157,6 +159,7 @@ const IdealPlans = () => {
                   )}
                 </div>
               </div>
+              )}
             </div>
           );
         })}

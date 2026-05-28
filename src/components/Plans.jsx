@@ -41,13 +41,8 @@ const planData = [
   },
   {
     id: 'gamer1giga',
-    tagline: 'Jogue sem lag',
+    imageCard: '/img/cardPlanos.webp',
     title: 'Gamer Pro 1 Giga',
-    price: '129,90',
-    wifi: 'Wi-Fi 6',
-    seal: { text: 'PLANO GAMER', bg: '#000000', color: '#ffffff' },
-    gamerPonto: true,
-    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
   },
 ];
 
@@ -73,7 +68,7 @@ const Plans = () => {
       </h2>
 
       {/* Cards */}
-      <div className="mt-10 flex flex-col md:flex-row gap-3 items-start">
+      <div className="mt-10 flex flex-col md:flex-row gap-3">
         {planData.map((plan) => {
           const isOpen = openDetails === plan.id;
           const isPonto = pontoCabeado[plan.id];
@@ -81,10 +76,10 @@ const Plans = () => {
           return (
             <div key={plan.id} className="relative pt-4 w-full md:w-1/4 flex flex-col">
 
-              {/* Selo �?" metade saindo pelo topo da caixa */}
+              {/* Selo */}
               {plan.seal && (
                 <div
-                  className="absolute top-0 left-0 px-3 py-0.5 text-[10px] font-medium tracking-wide z-10 rounded-r"
+                  className="absolute top-4 left-0 -translate-y-1/2 px-6 py-1.5 text-[10px] font-medium tracking-wide z-10 rounded-r"
                   style={{ backgroundColor: plan.seal.bg, color: plan.seal.color }}
                 >
                   {plan.seal.text}
@@ -92,16 +87,23 @@ const Plans = () => {
               )}
 
               {/* Card */}
-              <div className="border border-[#dcdcdc] rounded bg-white flex flex-col p-4">
+              {plan.imageCard ? (
+                <div className="border border-[#dcdcdc] rounded bg-white overflow-hidden flex-1">
+                  <img src={plan.imageCard} alt={plan.title} className="w-full block" />
+                </div>
+              ) : (
+              <div className="border border-[#dcdcdc] rounded bg-white flex flex-col justify-between px-6 pt-10 pb-7 flex-1">
 
                 {/* Tagline �?" f4 */}
-                <p className="text-sm font-light mb-4">{plan.tagline}</p>
+                <div>
+                  <p className="text-sm font-light mb-1">{plan.tagline}</p>
 
-                {/* Nome do plano — f1 */}
-                <h2 className="text-[28px] font-light mb-7 tracking-[-0.01em]">{plan.title}</h2>
-
+                  {/* Nome do plano — f1 */}
+                  <h2 className="text-[28px] font-light mb-5 tracking-[-0.01em]">{plan.title}</h2>
+                </div>
                 {/* Features — f5 */}
-                <ul className="flex flex-col gap-2.5 mb-7">
+                <div>
+                <ul className="flex flex-col gap-2.5 mb-5">
                   {[plan.wifi, 'Instalação Grátis', 'Sem fidelidade', 'Serviços Inteligentes'].map((feat) => (
                     <li key={feat} className="text-xs font-light flex items-center gap-1.5">
                       <svg width="12" height="10" viewBox="0 0 12 10" fill="none" className="flex-shrink-0 text-[#8a0005]" aria-hidden="true">
@@ -114,7 +116,7 @@ const Plans = () => {
 
                 {/* Ponto cabeado �?" f4 */}
                 <div
-                  className={`rounded flex items-center justify-between px-4 py-3 mb-6 bg-[#e6e6e6] transition-colors ${
+                  className={`rounded-sm flex items-center justify-between px-4 py-3 mb-5 bg-[#e6e6e6] transition-colors ${
                     plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'
                   } text-sm`}
                   onClick={() =>
@@ -122,12 +124,12 @@ const Plans = () => {
                     setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))
                   }
                 >
-                  <span className="text-[12px] font-light leading-tight">
+                  <span className="text-[12px] font-light">
                     {isPonto ? (plan.gamerPonto ?<><span>1 Ponto cabeado</span><br /><span>grátis</span></>: <><span>1 Ponto cabeado</span><br /><span>selecionado</span></>) : <><span>Adicionar ponto cabeado</span><br /><span>+R$ 30,00/mês</span></>}
                   </span>
                   {/* Checkbox à direita */}
                   <div
-                    className="w-5 h-5 flex-shrink-0 rounded-sm border flex items-center justify-center transition-colors"
+                    className="w-6 h-6 flex-shrink-0 rounded-sm border flex items-center justify-center transition-colors"
                     style={{
                       backgroundColor: isPonto ? '#00a650' : 'white',
                       borderColor: isPonto ? '#00a650' : '#aaaaaa',
@@ -140,9 +142,10 @@ const Plans = () => {
                     )}
                   </div>
                 </div>
+                </div>
 
                 {/* Preço — f2 */}
-                <p className="text-2xl mb-6">
+                <p className="text-2xl mb-5">
                   R$ {isPonto ? (parseFloat(plan.price.replace(',', '.')) + 30).toFixed(2).replace('.', ',') : plan.price}<span className="text-sm font-light">/mês</span>
                 </p>
 
@@ -151,7 +154,7 @@ const Plans = () => {
                   href={`https://www.predialnet.com.br/assineja?plano=${plan.id}${isPonto ? '&ponto-cabeado' : ''}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center py-2 rounded-sm text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity mb-3"
+                  className="block text-center py-3 rounded-sm text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity mb-3"
                   aria-label={`Assinar plano ${plan.title}`}
                   onClick={() => events.planClick(plan.title, `R$ ${plan.price}`, 'site', 'plans_section')}
                 >
@@ -226,6 +229,7 @@ const Plans = () => {
                   </div>
                 )}
               </div>
+              )}
             </div>
           );
         })}

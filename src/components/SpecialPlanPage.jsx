@@ -135,140 +135,146 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
   };
 
   const inputClass = (id) => `w-full border ${invalidFieldId === id ? 'border-red-500' : 'border-[#dcdcdc]'} px-2 py-1.5 text-xs rounded-sm focus:outline-none focus:border-[#9c0004]`;
-  const labelClass = 'block mb-0.5 text-[10px] font-normal text-[#6b6b6b]';
+  const labelClass = 'block mb-0.5 text-[12px] font-normal text-[#6b6b6b]';
 
   return (
     <div className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-white text-[#3d3838]">
       {success && <SuccessToast onClose={() => setSuccess(false)} />}
 
-      <h1 className="text-3xl mb-1 font-light tracking-[-0.01em]">
-        {title}
-      </h1>
-      <h2 className="text-lg font-light leading-6 mb-4">
-        {subtitle}
-      </h2>
-      
+      {/* Título */}
+      <h1 className="text-3xl mb-2 font-light tracking-[-0.01em]">{title}</h1>
 
-      {/* Cards em linha */}
-      <div className="flex flex-row gap-4 mb-6">
-        
+      {/* Subtítulos lado a lado, colados às caixas */}
+      <div className="flex flex-col md:flex-row gap-10 mb-4">
+        <div className="flex-1">
+          <h2 className="text-lg font-light leading-6">{subtitle}</h2>
+        </div>
+        <div className="flex-1">
+          <p className="text-lg font-light leading-6">Preencha o formulário que entraremos em contato</p>
+        </div>
+      </div>
+
+      {/* Linha de conteúdo: planos + formulário alinhados */}
+      <div className="flex flex-col md:flex-row gap-10 md:items-stretch">
+
+        {/* Coluna esquerda: planos */}
+        <div className="flex-1 flex flex-col gap-3">
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.value;
             const anySelected = selectedPlan !== '';
             return (
               <div
                 key={plan.value}
-                className={`flex-1 bg-white border rounded p-7 flex flex-col gap-2 transition-opacity ${
+                className={`flex-1 bg-white border rounded px-6 py-4 flex items-center justify-between gap-4 transition-opacity ${
                   isSelected ? 'border-[#8a0005]' : 'border-[#dcdcdc]'
                 } ${anySelected && !isSelected ? 'opacity-40' : ''}`}
               >
                 <div>
                   <p className="text-xs text-[#555]">Navegue com até</p>
-                  <h3 className="text-2xl font-light" style={{ color: '#3d3838' }}>{plan.label}</h3>
-                </div>
-                <div>
-                  <p className="text-xs text-[#555]">Por apenas</p>
-                  <p className="text-xl mt-auto mb-3">{plan.price}</p>
+                  <div className="flex items-baseline gap-3 mt-0.5">
+                    <h3 className="text-2xl font-light" style={{ color: '#3d3838' }}>{plan.label}</h3>
+                    <span className="text-[#bbb] text-lg font-light">|</span>
+                    <p className="text-2xl font-light">{plan.price}</p>
+                  </div>
                 </div>
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedPlan(plan.value);
-                    document.getElementById('special-plan-form')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                  }}
-                  className="block w-full text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm"
+                  onClick={() => setSelectedPlan(plan.value)}
+                  className="flex-shrink-0 px-6 py-2.5 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm"
                 >
-                  {isSelected ? 'Plano escolhido' : 'Aproveitar oferta'}
+                  {isSelected ? 'Selecionado' : 'Selecionar'}
                 </button>
               </div>
             );
           })}
+        </div>
+
+        {/* Coluna direita: formulário (mesma altura dos cards) */}
+        <div className="flex-1 flex flex-col">
+          <form id="special-plan-form" onSubmit={handleSubmit} noValidate className="flex flex-col flex-1">
+            {missingField !== 'none' && (
+              <p className="text-xs text-red-700 mb-3">Por favor, preencha corretamente: {missingField}</p>
+            )}
+
+            <div className={`border rounded p-6 flex flex-col gap-4 flex-1 transition-colors ${selectedPlan ? 'border-[#8a0005]' : 'border-[#dcdcdc]'}`}>
+              <div>
+                <label className={labelClass}>Nome</label>
+                <input id="nome" type="text" onChange={handleInputChange} value={formData.nome || ''} className={inputClass('nome')} />
+              </div>
+
+              <div>
+                <label className={labelClass}>Selecione o plano escolhido</label>
+                <select
+                  value={selectedPlan}
+                  onChange={(e) => setSelectedPlan(e.target.value)}
+                  className={inputClass('plan') + ' h-9 cursor-pointer'}
+                >
+                  <option value="">Selecione um plano</option>
+                  {plans.map((p) => (
+                    <option key={p.value} value={p.value}>{p.label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex gap-3">
+                <div className="flex-1">
+                  <label className={labelClass}>Endereço</label>
+                  <input id="address" type="text" onChange={handleInputChange} value={formData.address || ''} className={inputClass('address')} />
+                </div>
+                <div className="w-[15%]">
+                  <label className={labelClass}>Número</label>
+                  <input id="number" type="text" onChange={handleInputChange} value={formData.number || ''} className={inputClass('number')} />
+                </div>
+                <div className="w-[22%]">
+                  <label className={labelClass}>Complemento</label>
+                  <input id="complement" type="text" onChange={handleInputChange} value={formData.complement || ''} className={inputClass('complement')} />
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <div className="flex-1">
+                  <label className={labelClass}>Bairro</label>
+                  <input id="neighborhood" type="text" onChange={handleInputChange} value={formData.neighborhood || ''} className={inputClass('neighborhood')} />
+                </div>
+                <div className="w-1/3">
+                  <label className={labelClass}>CEP</label>
+                  <input id="cep" type="text" onChange={handleInputChange} value={formData.cep || ''} className={inputClass('cep')} />
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <div className="flex-1">
+                  <label className={labelClass}>E-mail</label>
+                  <input id="email" type="email" onChange={handleInputChange} value={formData.email || ''} className={inputClass('email')} />
+                </div>
+                <div className="w-1/3">
+                  <label className={labelClass}>Telefone</label>
+                  <input
+                    type="text"
+                    value={phone}
+                    onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
+                    className={inputClass('phone')}
+                    maxLength={15}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 text-sm text-white bg-[#8a0005] hover:opacity-80 transition-opacity disabled:opacity-60 rounded-sm mt-auto"
+              >
+                {loading ? 'Enviando...' : 'Enviar'}
+              </button>
+            </div>
+          </form>
+        </div>
+
       </div>
-        <div className="">
-          <p className="text-lg font-light leading-6 mb-5">Preencha o formulário que entraremos em contato para finalizar sua assinatura</p>
-        </div>
 
-      {/* Formulário em 2 cards lado a lado */}
-      <form id="special-plan-form" className="flex flex-col md:flex-row gap-4" onSubmit={handleSubmit} noValidate>
-        {missingField !== 'none' && (
-          <p className="text-xs text-red-700 w-full">Por favor, preencha corretamente: {missingField}</p>
-        )}
-
-        {/* Card esquerdo */}
-        <div className={`flex-1 border rounded p-6 flex flex-col gap-3 transition-colors ${selectedPlan ? 'border-[#8a0005]' : 'border-[#dcdcdc]'}`}>
-          <div>
-            <label className={labelClass}>Nome</label>
-            <input id="nome" type="text" onChange={handleInputChange} className={inputClass('nome')} />
-          </div>
-          <div>
-            <label className={labelClass}>Selecione o plano</label>
-            <select
-              value={selectedPlan}
-              onChange={(e) => setSelectedPlan(e.target.value)}
-              className={inputClass('plan') + ' h-9 cursor-pointer'}
-            >
-              <option value="">Selecione</option>
-              {plans.map((p) => (
-                <option key={p.value} value={p.value}>{p.label}</option>
-              ))}
-            </select>
-          </div>
-          <div className="flex gap-3">
-            <div className="flex-1">
-              <label className={labelClass}>E-mail</label>
-              <input id="email" type="email" onChange={handleInputChange} className={inputClass('email')} />
-            </div>
-            <div className="w-2/5">
-              <label className={labelClass}>Telefone</label>
-              <input
-                type="text"
-                value={phone}
-                onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
-                className={inputClass('phone')}
-                maxLength={15}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Card direito */}
-        <div className={`flex-1 border rounded p-6 flex flex-col gap-3 transition-colors ${selectedPlan ? 'border-[#8a0005]' : 'border-[#dcdcdc]'}`}>
-          <div className="flex gap-3">
-            <div className="flex-1">
-              <label className={labelClass}>Endereço</label>
-              <input id="address" type="text" onChange={handleInputChange} className={inputClass('address')} />
-            </div>
-            <div className="w-1/5">
-              <label className={labelClass}>Número</label>
-              <input id="number" type="text" onChange={handleInputChange} className={inputClass('number')} />
-            </div>
-            <div className="w-1/4">
-              <label className={labelClass}>Complemento</label>
-              <input id="complement" type="text" onChange={handleInputChange} className={inputClass('complement')} />
-            </div>
-          </div>
-          <div className="flex gap-3">
-            <div className="flex-1">
-              <label className={labelClass}>Bairro</label>
-              <input id="neighborhood" type="text" onChange={handleInputChange} className={inputClass('neighborhood')} />
-            </div>
-            <div className="w-1/3">
-              <label className={labelClass}>CEP</label>
-              <input id="cep" type="text" onChange={handleInputChange} className={inputClass('cep')} />
-            </div>
-          </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-2.5 text-sm text-white bg-[#8a0005] hover:opacity-80 transition-opacity disabled:opacity-60 rounded-sm mt-auto"
-          >
-            {loading ? 'Enviando...' : 'Enviar'}
-          </button>
-        </div>
-      </form>
-
+      {/* Disclaimer abaixo de tudo */}
       {disclaimer && (
-        <p className=" mt-6 text-[10px] w-full">{disclaimer}</p>
+        <p className="mt-6 text-[10px] text-[#6b6b6b]">{disclaimer}</p>
       )}
     </div>
   );

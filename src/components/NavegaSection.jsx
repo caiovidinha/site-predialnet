@@ -35,7 +35,7 @@ const NavegaSection = () => {
 
       <div className="flex flex-col md:flex-row gap-3 items-stretch">
         {cards.map((card, i) => (
-          <div key={i} className="flex-1 bg-white flex flex-col p-2 overflow-hidden">
+          <div key={i} className="flex-1 bg-white flex flex-col p-2 overflow-hidden rounded border border-[#dcdcdc]">
             <img
               src={card.img}
               alt={card.title}
