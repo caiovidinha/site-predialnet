@@ -42,7 +42,7 @@ const NavegaSection = () => {
         É muita internet para você navegar, jogar, maratonar, trabalhar...
       </p>
 
-      <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 items-stretch pb-2 scrollbar-hide">
+      <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 items-stretch pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
         {cards.map((card, i) => (
           <div key={i} className="snap-start shrink-0 md:shrink w-[85%] md:flex-1 bg-white flex flex-col p-2 overflow-hidden rounded border border-[#dcdcdc]">
             <img
@@ -62,7 +62,7 @@ const NavegaSection = () => {
         ))}
       </div>
       {/* Dots — mobile only */}
-      <div className="flex justify-center gap-2 mt-4 md:hidden">
+      <div className="flex justify-center gap-1.5 mt-2 md:hidden">
         {cards.map((_, i) => (
           <button
             key={i}
@@ -77,8 +77,8 @@ const NavegaSection = () => {
             }}
             style={{
               backgroundColor: i === activeDot ? '#f7adaf' : '#e6e7e8',
-              width: i === activeDot ? '2rem' : '0.75rem',
-              height: '0.75rem',
+              width: i === activeDot ? '1.5rem' : '0.55rem',
+              height: '0.35rem',
               borderRadius: '9999px',
               border: 'none',
               transition: 'all 0.3s',

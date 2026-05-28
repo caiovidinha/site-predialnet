@@ -1,99 +1,12 @@
 ---
 // SecNavBar Component
-import OptimizedImage from './OptimizedImage.astro';
 ---
 
-<!-- Versão Desktop -->
-<nav class="hidden">
-  <!-- Esquerda: itens de navegação -->
-  <div class="flex gap-8 items-center justify-start">
-    <a
-      class="text-[#707070] hover:text-[#9c0004] transition-colors ease-in duration-150"
-      href="/#Plans"
-    >
-      Internet
-    </a>
-    <a
-      class="text-[#707070] hover:text-[#9c0004] transition-colors ease-in duration-150"
-      href="/#Telefone"
-    >
-      Telefonia Fixa
-    </a>
-    <a
-      class="text-[#707070] hover:text-[#9c0004] transition-colors ease-in duration-150"
-      href="https://webmail.predialnet.com.br/index.php"
-      target="_blank"
-    >
-      Webmail
-    </a>
-  </div>
+<!-- Desktop (hidden) -->
+<nav class="hidden"></nav>
 
-  <!-- Centro: telefone -->
-  <div class="flex items-center justify-center">
-    <span class="text-[#707070] text-center">Assine também pelo telefone <strong class="font-bold text-[#707070]">21 3515-0555</strong></span>
-  </div>
+<!-- Mobile Banner -->
+<div class="sm:hidden">
+  <img src="/img/bannerMobile.avif" alt="Predialnet" class="w-full h-auto block" loading="eager" />
+</div>
 
-  <!-- Direita: botão App -->
-  <div class="flex items-center justify-end">
-    <a
-      href="/#App"
-      class="border border-[#707070] text-[#707070] px-3 py-1 rounded-full hover:border-[#9c0004] hover:text-[#9c0004] transition-colors ease-in duration-150"
-    >
-      Baixe o App Minha Predialnet
-    </a>
-  </div>
-</nav>
-
-<!-- Versão Mobile -->
-<nav class="sm:hidden pb-0 bg-white flex items-center justify-between flex-wrap gap-2">
-  <!-- Botões Assine e Contato -->
-  <div class="py-3 flex items-center space-x-2 w-full bg-[#f3f3f3] justify-between px-6 sm:px-[8%] md:px-[12%]">
-    <a
-      href="https://www.predialnet.com.br/assineja?plano=navbar"
-      target="_blank"
-      class="bg-[#f7adaf] text-xs px-4 py-1.5 rounded-full font-semibold whitespace-nowrap hover:scale-105 transition-transform"
-    >
-      Assinar pelo site
-    </a>
-    <a
-      href="tel:02135150555"
-      class="border border-black px-4 py-1.5 rounded-full font-semibold text-xs whitespace-nowrap"
-    >
-      ou pelo telefone 3515-0555
-    </a>
-    
-  </div>
-
-  <!-- Ícones em uma linha, com fundo branco e espaçamento uniforme -->
-  <div class="w-full bg-white pt-1 pb-2 flex justify-between px-6 sm:px-[8%] md:px-[12%]">
-    <a
-      href="/#Plans"
-      class="flex flex-col items-center hover:scale-105 transition-transform w-1/4"
-    >
-      <OptimizedImage src="/img/iconePlanos.png" alt="Planos Internet" width={40} height={40} class="w-10 h-10 mb-0" loading="lazy" />
-      <p class="text-xs text-center whitespace-pre-wrap leading-tight px-2">Planos<br />Internet</p>
-    </a>
-    <a
-      href="/#Telefone2"
-      class="flex flex-col items-center hover:scale-105 transition-transform w-1/4"
-    >
-      <OptimizedImage src="/img/iconeTelefonia.png" alt="Telefonia Fixa" width={40} height={40} class="w-10 h-10 mb-0" loading="lazy" />
-      <p class="text-xs text-center whitespace-pre-wrap leading-tight px-2">Telefonia<br />Fixa</p>
-    </a>
-    <a
-      href="/#Cliente2"
-      class="flex flex-col items-center hover:scale-105 transition-transform w-1/4"
-    >
-      <OptimizedImage src="/img/iconeAcesso.png" alt="Suporte rápido" width={40} height={40} class="w-10 h-10 mb-0" loading="lazy" />
-      <p class="text-xs text-center whitespace-pre-wrap leading-tight px-2">Suporte<br />rápido</p>
-    </a>
-    <a
-      href="https://webmail.predialnet.com.br/index.php"
-      target="_blank"
-      class="flex flex-col items-center hover:scale-105 transition-transform w-1/4"
-    >
-      <OptimizedImage src="/img/iconeMail.png" alt="Acessar Webmail" width={40} height={40} class="w-10 h-10 mb-0" loading="lazy" />
-      <p class="text-xs text-center whitespace-pre-wrap leading-tight px-2">Acessar Webmail</p>
-    </a>
-  </div>
-</nav>

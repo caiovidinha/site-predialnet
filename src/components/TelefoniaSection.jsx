@@ -172,7 +172,7 @@ const TelefoniaSection = () => {
       <div className="flex flex-col md:flex-row gap-6 items-stretch">
         {/* Coluna 1 — Cards */}
         <div className="flex flex-col md:w-[45%]">
-          <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-2 pb-2 scrollbar-hide md:flex-1">
+          <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-2 pb-2 scrollbar-hide md:flex-1" style={{ touchAction: 'pan-x' }}>
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.id;
             const anySelected = selectedPlan !== '';
@@ -208,7 +208,7 @@ const TelefoniaSection = () => {
           })}
           </div>
           {/* Dots — mobile only */}
-          <div className="flex justify-center gap-2 mt-4 md:hidden">
+          <div className="flex justify-center gap-1.5 mt-2 md:hidden">
             {plans.map((_, i) => (
               <button
                 key={i}
@@ -223,8 +223,8 @@ const TelefoniaSection = () => {
                 }}
                 style={{
                   backgroundColor: i === activeDot ? '#f7adaf' : '#e6e7e8',
-                  width: i === activeDot ? '2rem' : '0.75rem',
-                  height: '0.75rem',
+                  width: i === activeDot ? '1.5rem' : '0.55rem',
+                  height: '0.35rem',
                   borderRadius: '9999px',
                   border: 'none',
                   transition: 'all 0.3s',

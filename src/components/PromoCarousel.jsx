@@ -15,9 +15,28 @@ const PromoCarousel = ({
   const autoplayRef = useRef(null);
   const trackRef = useRef(null);
   const isHoveredRef = useRef(false);
+  const touchStartX = useRef(null);
 
   const goTo = (index) => {
     setCurrent(index);
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      } else {
+        setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+      }
+      startAutoplay();
+    }
+    touchStartX.current = null;
   };
 
   const startAutoplay = () => {
@@ -50,42 +69,47 @@ const PromoCarousel = ({
       </h2>
 
       {/* Carousel */}
-      <div className="overflow-hidden">
+      <div className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{ touchAction: 'pan-y', userSelect: 'none' }}>
         <div
           ref={trackRef}
           className="flex transition-transform duration-500 ease-out"
           style={{ transform: `translateX(-${current * 100}%)` }}
         >
-          {slides.map((slide, i) =>
-            slide.link ? (
-              <a
-                key={i}
-                href={slide.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex-shrink-0 block"
-              >
-                <img
-                  src={slide.src}
-                  alt={slide.alt}
-                  className="w-full block"
-                />
-              </a>
+          {slides.map((slide, i) => {
+            const imgEl = slide.mobileSrc ? (
+              <picture>
+                <source media="(max-width: 639px)" srcSet={slide.mobileSrc} />
+                <img src={slide.src} alt={slide.alt} className="w-full block" />
+              </picture>
             ) : (
+              <img src={slide.src} alt={slide.alt} className="w-full block" />
+            );
+
+            if (slide.link) {
+              return (
+                <a key={i} href={slide.link} target="_blank" rel="noopener noreferrer" className="w-full flex-shrink-0 block">
+                  {imgEl}
+                </a>
+              );
+            }
+            if (slide.mobileLink) {
+              return (
+                <a key={i} href={slide.mobileLink} className="w-full flex-shrink-0 block sm:pointer-events-none sm:cursor-default">
+                  {imgEl}
+                </a>
+              );
+            }
+            return (
               <div key={i} className="w-full flex-shrink-0 block">
-                <img
-                  src={slide.src}
-                  alt={slide.alt}
-                  className="w-full block"
-                />
+                {imgEl}
               </div>
-            )
-          )}
+            );
+          })}
         </div>
       </div>
 
       {/* Dots */}
-      {slides.length > 1 ? <div className="flex justify-center gap-2 mt-4">
+      {slides.length > 1 ? <div className="flex justify-center gap-1.5 mt-2">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -94,8 +118,8 @@ const PromoCarousel = ({
             aria-label={`Ir para slide ${i + 1}`}
             style={{
               backgroundColor: i === current ? '#f7adaf' : '#e6e7e8',
-              width: i === current ? '2rem' : '0.75rem',
-              height: '0.75rem',
+              width: i === current ? '1.5rem' : '0.55rem',
+              height: '0.35rem',
               borderRadius: '9999px',
               border: 'none',
               transition: 'all 0.3s',

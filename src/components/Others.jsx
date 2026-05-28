@@ -22,7 +22,7 @@ function Others() {
         {/* Esquerda — Via Rádio + Porto Maravilha */}
         <div className="md:w-[45%] flex flex-col">
           <h2 className="text-3xl mb-4">Internet Via Rádio e Porto Maravilha</h2>
-          <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-4 md:flex-1 pb-2 scrollbar-hide">
+          <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-4 md:flex-1 pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
             {residencialCards.map((item) => (
               <div key={item.href} className="snap-start shrink-0 md:shrink w-[85%] md:flex-1 border border-[#dcdcdc] rounded flex flex-col justify-between overflow-hidden pb-2">
                 <div className="px-4 pt-6 pb-1 flex flex-col gap-0.5">
@@ -44,7 +44,7 @@ function Others() {
             ))}
           </div>
           {/* Dots — mobile only */}
-          <div className="flex justify-center gap-2 mt-4 md:hidden">
+          <div className="flex justify-center gap-1.5 mt-2 md:hidden">
             {residencialCards.map((_, i) => (
               <button
                 key={i}
@@ -59,8 +59,8 @@ function Others() {
                 }}
                 style={{
                   backgroundColor: i === activeDot ? '#f7adaf' : '#e6e7e8',
-                  width: i === activeDot ? '2rem' : '0.75rem',
-                  height: '0.75rem',
+                  width: i === activeDot ? '1.5rem' : '0.55rem',
+                  height: '0.35rem',
                   borderRadius: '9999px',
                   border: 'none',
                   transition: 'all 0.3s',

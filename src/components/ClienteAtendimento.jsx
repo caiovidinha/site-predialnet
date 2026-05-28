@@ -50,7 +50,7 @@ function ClienteAtendimento() {
   ];
 
   return (
-    <div className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#ebebeb] text-[#3d3838]">
+    <div id="ClienteAtendimento" className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#ebebeb] text-[#3d3838]">
       <div className="flex flex-col md:flex-row items-stretch">
         {/* Coluna esquerda */}
           <div className="md:w-1/2 flex flex-col text-left justify-between pr-0 md:pr-40">

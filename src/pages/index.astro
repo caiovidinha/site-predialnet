@@ -22,7 +22,7 @@ import Footer from '../components/Footer.astro';
 <Layout title="Predialnet">
   <Navbar />
   <SecNavBar />
-  <a href="https://www.predialnet.com.br/assineja?plano=hero" target="_blank" rel="noopener noreferrer">
+  <a href="https://www.predialnet.com.br/assineja?plano=hero" target="_blank" rel="noopener noreferrer" class="hidden sm:block">
     <img src="/img/hero.webp" alt="Predialnet" class="w-full h-auto block" width="2560" height="722" loading="eager" />
   </a>
   <Plans client:load />
@@ -34,7 +34,8 @@ import Footer from '../components/Footer.astro';
     title="Facilite sua vida, baixe o App Minha Predialnet"
     subtitle="Gerenciamento completo do seu plano"
     slides={[
-      { src: '/img/carrossel-c.webp', alt: 'App Predialnet A', link: '' }
+      { src: '/img/carrossel-c.webp', mobileSrc: '/img/carrossel-c-mobile.webp', alt: 'App Predialnet A', link: '', mobileLink: '/redirect' },
+      { src: '/img/carrossel-d.webp', mobileSrc: '/img/carrossel-d-mobile.webp', alt: 'App Predialnet B', link: '' },
     ]}
   />
   <NavegaSection client:visible />
