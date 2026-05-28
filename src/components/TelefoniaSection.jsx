@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { sanitizeInput, sanitizeFormData, validateEmail, validatePhone } from '../utils/validation';
 import { events } from '../utils/analytics';
 import { SuccessToast } from './SpecialPlanPage';
@@ -37,6 +37,15 @@ const TelefoniaSection = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState('');
   const [cooldown, setCooldown] = useState(false);
+
+  const scrollRef = useRef(null);
+  const [activeDot, setActiveDot] = useState(0);
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.offsetWidth * 0.85 + 8;
+    setActiveDot(Math.min(Math.round(el.scrollLeft / cardWidth), plans.length - 1));
+  };
 
   const formatPhoneNumber = (value) => {
     if (!value) return value;
@@ -161,15 +170,16 @@ const TelefoniaSection = () => {
 
       {/* Cards + Formulário — mesma altura */}
       <div className="flex flex-col md:flex-row gap-6 items-stretch">
-        {/* Coluna 1 — Cards lado a lado */}
-        <div className="flex flex-row gap-2 md:w-[45%]">
+        {/* Coluna 1 — Cards */}
+        <div className="flex flex-col md:w-[45%]">
+          <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-2 pb-2 scrollbar-hide md:flex-1">
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.id;
             const anySelected = selectedPlan !== '';
             return (
-              <div key={plan.id} className={`flex-1 bg-white border rounded p-7 flex flex-col gap-3 transition-opacity ${
+              <div key={plan.id} className={`snap-start shrink-0 md:shrink w-[85%] md:flex-1 bg-white border rounded p-7 flex flex-col gap-3 transition-opacity ${
                 isSelected ? 'border-[#8a0005]' : 'border-[#dcdcdc]'
-              } ${anySelected && !isSelected ? 'opacity-40' : ''}`}>
+              } ${anySelected && !isSelected ? 'opacity-40' : ''}` }>
                 <p className="text-xs text-[#555]">Plano Telefonia Fixa</p>
                 <h3 className="text-2xl font-light" style={{ color: '#8a0005' }}>{plan.label}</h3>
                 <ul className="flex flex-col gap-2 w-full mt-5">
@@ -196,6 +206,33 @@ const TelefoniaSection = () => {
               </div>
             );
           })}
+          </div>
+          {/* Dots — mobile only */}
+          <div className="flex justify-center gap-2 mt-4 md:hidden">
+            {plans.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Ir para plano ${i + 1}`}
+                onClick={() => {
+                  const el = scrollRef.current;
+                  if (!el) return;
+                  const cardWidth = el.offsetWidth * 0.85 + 8;
+                  el.scrollTo({ left: cardWidth * i, behavior: 'smooth' });
+                  setActiveDot(i);
+                }}
+                style={{
+                  backgroundColor: i === activeDot ? '#f7adaf' : '#e6e7e8',
+                  width: i === activeDot ? '2rem' : '0.75rem',
+                  height: '0.75rem',
+                  borderRadius: '9999px',
+                  border: 'none',
+                  transition: 'all 0.3s',
+                  cursor: 'pointer',
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Coluna 2 — Formulário ocupa a mesma altura dos cards */}

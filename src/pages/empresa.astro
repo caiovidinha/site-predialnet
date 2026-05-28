@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
 import Footer from '../components/Footer.astro';
 import EmpresaPage from '../components/EmpresaPage';
 ---
@@ -10,6 +11,7 @@ import EmpresaPage from '../components/EmpresaPage';
   description="Planos de internet sob medida para a sua empresa. Preencha o formulário e entraremos em contato."
 >
   <Navbar />
+  <SecNavBar />
   <EmpresaPage client:load />
   <Footer />
 </Layout>

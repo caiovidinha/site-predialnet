@@ -16,8 +16,8 @@ const ext = src.match(/\.(jpg|jpeg|png)$/i)?.[1] || 'jpg';
 ---
 
 <picture>
-  <source srcset={`${cleanSrc}.avif`} type="image/avif" />
   <source srcset={`${cleanSrc}.webp`} type="image/webp" />
+  <source srcset={`${cleanSrc}.avif`} type="image/avif" />
   <img 
     src={`${cleanSrc}.${ext}`}
     alt={alt}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 const cards = [
   {
@@ -24,6 +24,15 @@ const cards = [
 ];
 
 const NavegaSection = () => {
+  const scrollRef = useRef(null);
+  const [activeDot, setActiveDot] = useState(0);
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.offsetWidth * 0.85 + 12;
+    setActiveDot(Math.min(Math.round(el.scrollLeft / cardWidth), cards.length - 1));
+  };
+
   return (
     <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#ebebeb] text-[#3d3838]">
       <h2 className="text-3xl mb-1 tracking-[-0.01em]">
@@ -33,9 +42,9 @@ const NavegaSection = () => {
         É muita internet para você navegar, jogar, maratonar, trabalhar...
       </p>
 
-      <div className="flex flex-col md:flex-row gap-3 items-stretch">
+      <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 items-stretch pb-2 scrollbar-hide">
         {cards.map((card, i) => (
-          <div key={i} className="flex-1 bg-white flex flex-col p-2 overflow-hidden rounded border border-[#dcdcdc]">
+          <div key={i} className="snap-start shrink-0 md:shrink w-[85%] md:flex-1 bg-white flex flex-col p-2 overflow-hidden rounded border border-[#dcdcdc]">
             <img
               src={card.img}
               alt={card.title}
@@ -50,6 +59,32 @@ const NavegaSection = () => {
               </p>
             </div>
           </div>
+        ))}
+      </div>
+      {/* Dots — mobile only */}
+      <div className="flex justify-center gap-2 mt-4 md:hidden">
+        {cards.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Ir para item ${i + 1}`}
+            onClick={() => {
+              const el = scrollRef.current;
+              if (!el) return;
+              const cardWidth = el.offsetWidth * 0.85 + 12;
+              el.scrollTo({ left: cardWidth * i, behavior: 'smooth' });
+              setActiveDot(i);
+            }}
+            style={{
+              backgroundColor: i === activeDot ? '#f7adaf' : '#e6e7e8',
+              width: i === activeDot ? '2rem' : '0.75rem',
+              height: '0.75rem',
+              borderRadius: '9999px',
+              border: 'none',
+              transition: 'all 0.3s',
+              cursor: 'pointer',
+            }}
+          />
         ))}
       </div>
     </section>

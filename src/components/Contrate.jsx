@@ -36,12 +36,12 @@ function Contrate() {
         src="/img/fundo-contrate.webp"
         alt=""
         aria-hidden="true"
-        className="w-full h-auto block"
+        className="w-full block h-[620px] md:h-auto object-cover"
       />
 
       <div className="absolute inset-0" />
 
-      <div className="absolute inset-0 z-10 px-6 sm:px-[8%] md:px-[12%] py-16 flex flex-col md:flex-row items-center gap-10">
+      <div className="absolute inset-0 z-10 px-6 sm:px-[8%] md:px-[12%] py-10 md:py-16 flex flex-col md:flex-row items-center gap-6 md:gap-10">
         {/* Esquerda — texto */}
         <div className="flex-1 flex flex-col justify-between h-full gap-6">
           <div>

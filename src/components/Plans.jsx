@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { events } from '../utils/analytics';
 
 // Paleta
@@ -47,6 +47,16 @@ const planData = [
 ];
 
 const Plans = () => {
+  const scrollRef = useRef(null);
+  const [activeDot, setActiveDot] = useState(0);
+  const visiblePlans = planData.filter(p => !p.imageCard);
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.offsetWidth * 0.85 + 12;
+    setActiveDot(Math.min(Math.round(el.scrollLeft / cardWidth), visiblePlans.length - 1));
+  };
+
   const [openDetails, setOpenDetails] = useState(null);
   const [pontoCabeado, setPontoCabeado] = useState({
     '600mega': false,
@@ -68,13 +78,13 @@ const Plans = () => {
       </h2>
 
       {/* Cards */}
-      <div className="mt-10 flex flex-col md:flex-row gap-3">
+      <div ref={scrollRef} onScroll={handleScroll} className="mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
         {planData.map((plan) => {
           const isOpen = openDetails === plan.id;
           const isPonto = pontoCabeado[plan.id];
 
           return (
-            <div key={plan.id} className="relative pt-4 w-full md:w-1/4 flex flex-col">
+            <div key={plan.id} className={`snap-start shrink-0 md:shrink w-[85%] md:w-1/4 relative pt-4 flex flex-col${plan.imageCard ? ' hidden md:flex' : ''}`}>
 
               {/* Selo */}
               {plan.seal && (
@@ -233,6 +243,33 @@ const Plans = () => {
             </div>
           );
         })}
+      </div>
+
+      {/* Dots — mobile only */}
+      <div className="flex justify-center gap-2 mt-4 md:hidden">
+        {visiblePlans.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Ir para plano ${i + 1}`}
+            onClick={() => {
+              const el = scrollRef.current;
+              if (!el) return;
+              const cardWidth = el.offsetWidth * 0.85 + 12;
+              el.scrollTo({ left: cardWidth * i, behavior: 'smooth' });
+              setActiveDot(i);
+            }}
+            style={{
+              backgroundColor: i === activeDot ? '#f7adaf' : '#e6e7e8',
+              width: i === activeDot ? '2rem' : '0.75rem',
+              height: '0.75rem',
+              borderRadius: '9999px',
+              border: 'none',
+              transition: 'all 0.3s',
+              cursor: 'pointer',
+            }}
+          />
+        ))}
       </div>
 
       {/* Rodapé — OBS */}

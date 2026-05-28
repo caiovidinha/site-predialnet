@@ -53,7 +53,7 @@ function ClienteAtendimento() {
     <div className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#ebebeb] text-[#3d3838]">
       <div className="flex flex-col md:flex-row items-stretch">
         {/* Coluna esquerda */}
-        <div className="md:w-1/2 flex flex-col text-left justify-between pr-40">
+          <div className="md:w-1/2 flex flex-col text-left justify-between pr-0 md:pr-40">
           <div>
             <p className="text-base sm:text-lg text-[#444] mb-2">Cliente Predialnet</p>
             <h1 className="text-3xl text-[#8a0005] font-light tracking-[-0.01em] mb-2">
@@ -75,7 +75,7 @@ function ClienteAtendimento() {
         </div>
 
         {/* Coluna direita — começa na metade — 4 linhas x 2 colunas */}
-        <div className="md:w-1/2 flex flex-col justify-between w-full pt-2">
+          <div className="md:w-1/2 flex flex-col justify-between w-full pt-2 mt-6 md:mt-0">
           {acessoCards.map((card, i) => (
             <div key={card.title} className="flex gap-2">
               <a

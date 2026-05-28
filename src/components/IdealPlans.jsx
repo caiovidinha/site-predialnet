@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const plans = [
   {
@@ -39,6 +39,16 @@ const plans = [
 ];
 
 const IdealPlans = () => {
+  const scrollRef = useRef(null);
+  const [activeDot, setActiveDot] = useState(0);
+  const visiblePlans = plans.filter(p => !p.imageCard);
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.offsetWidth * 0.85 + 12;
+    setActiveDot(Math.min(Math.round(el.scrollLeft / cardWidth), visiblePlans.length - 1));
+  };
+
   const [openDetails, setOpenDetails] = useState(null);
 
   const toggleDetails = (id) =>
@@ -53,11 +63,11 @@ const IdealPlans = () => {
         Veja qual opção combina melhor com o seu perfil
       </h2>
 
-      <div className="mt-12 flex flex-col md:flex-row gap-3">
+      <div ref={scrollRef} onScroll={handleScroll} className="mt-12 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
         {plans.map((plan) => {
           const isOpen = openDetails === plan.id;
           return (
-            <div key={plan.id} className="relative flex-1 mt-4 flex flex-col">
+            <div key={plan.id} className={`snap-start shrink-0 md:shrink w-[85%] md:flex-1 relative mt-4 flex flex-col${plan.imageCard ? ' hidden md:flex' : ''}`}>
               {/* Selo */}
               {plan.seal && (
                 <div className="absolute top-0 left-7 right-7 -translate-y-1/2 z-10 bg-[#dcdcdc] text-xs rounded-sm text-center whitespace-nowrap" style={{ padding: '6px 18px' }}>
@@ -163,6 +173,33 @@ const IdealPlans = () => {
             </div>
           );
         })}
+      </div>
+
+      {/* Dots — mobile only */}
+      <div className="flex justify-center gap-2 mt-4 md:hidden">
+        {visiblePlans.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Ir para plano ${i + 1}`}
+            onClick={() => {
+              const el = scrollRef.current;
+              if (!el) return;
+              const cardWidth = el.offsetWidth * 0.85 + 12;
+              el.scrollTo({ left: cardWidth * i, behavior: 'smooth' });
+              setActiveDot(i);
+            }}
+            style={{
+              backgroundColor: i === activeDot ? '#f7adaf' : '#e6e7e8',
+              width: i === activeDot ? '2rem' : '0.75rem',
+              height: '0.75rem',
+              borderRadius: '9999px',
+              border: 'none',
+              transition: 'all 0.3s',
+              cursor: 'pointer',
+            }}
+          />
+        ))}
       </div>
     </section>
   );

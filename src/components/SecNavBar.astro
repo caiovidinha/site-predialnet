@@ -4,7 +4,7 @@ import OptimizedImage from './OptimizedImage.astro';
 ---
 
 <!-- Versão Desktop -->
-<nav class="hidden sm:grid grid-cols-3 py-3 px-6 sm:px-[8%] md:px-[12%] font-sans font-medium text-sm duration-300 transition-all bg-[#f3f3f3] items-center">
+<nav class="hidden">
   <!-- Esquerda: itens de navegação -->
   <div class="flex gap-8 items-center justify-start">
     <a
@@ -47,7 +47,7 @@ import OptimizedImage from './OptimizedImage.astro';
 <!-- Versão Mobile -->
 <nav class="sm:hidden pb-0 bg-white flex items-center justify-between flex-wrap gap-2">
   <!-- Botões Assine e Contato -->
-  <div class="py-3 flex items-center space-x-2 w-full bg-[#f3f3f3] justify-between px-6">
+  <div class="py-3 flex items-center space-x-2 w-full bg-[#f3f3f3] justify-between px-6 sm:px-[8%] md:px-[12%]">
     <a
       href="https://www.predialnet.com.br/assineja?plano=navbar"
       target="_blank"
@@ -61,20 +61,11 @@ import OptimizedImage from './OptimizedImage.astro';
     >
       ou pelo telefone 3515-0555
     </a>
-    <a href="https://minhaconta.predialnet.com.br" target="_blank" rel="noopener noreferrer">
-      <OptimizedImage
-        src="/img/icone_profile.png"
-        alt="Perfil"
-        width={28}
-        height={32}
-        class="w-7 h-8 mt-1 object-contain"
-        loading="lazy"
-      />
-    </a>
+    
   </div>
 
   <!-- Ícones em uma linha, com fundo branco e espaçamento uniforme -->
-  <div class="w-full bg-white pt-1 pb-2 flex justify-between px-6">
+  <div class="w-full bg-white pt-1 pb-2 flex justify-between px-6 sm:px-[8%] md:px-[12%]">
     <a
       href="/#Plans"
       class="flex flex-col items-center hover:scale-105 transition-transform w-1/4"
@@ -101,7 +92,7 @@ import OptimizedImage from './OptimizedImage.astro';
       target="_blank"
       class="flex flex-col items-center hover:scale-105 transition-transform w-1/4"
     >
-      <OptimizedImage src="/img/iconeWebmail.png" alt="Acessar Webmail" width={40} height={40} class="w-10 h-10 mb-0" loading="lazy" />
+      <OptimizedImage src="/img/iconeMail.png" alt="Acessar Webmail" width={40} height={40} class="w-10 h-10 mb-0" loading="lazy" />
       <p class="text-xs text-center whitespace-pre-wrap leading-tight px-2">Acessar Webmail</p>
     </a>
   </div>

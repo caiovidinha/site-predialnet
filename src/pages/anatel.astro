@@ -1,12 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
 import AnatelPage from '../components/AnatelPage';
 import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Provedor Homologado pela Anatel - Predialnet">
   <Navbar />
+  <SecNavBar />
   <AnatelPage client:load />
   <Footer />
 </Layout>
