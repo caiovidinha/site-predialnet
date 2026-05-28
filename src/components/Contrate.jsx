@@ -64,9 +64,9 @@ function Contrate() {
               href={action.href}
               target={action.external ? '_blank' : '_self'}
               rel={action.external ? 'noopener noreferrer' : undefined}
-              className="flex items-center gap-4 bg-transparent border-2 border-white/70 hover:border-white transition-colors rounded-lg px-5 py-4"
+              className="flex items-center gap-4 bg-transparent border-2 border-white/70 hover:border-white transition-colors rounded-md px-5 py-4"
             >
-              <img src={action.icon} alt={action.label} className="w-8 h-8 object-contain shrink-0" />
+              <img src={action.icon} alt={action.label} className="w-6 h-6 object-contain shrink-0" />
               <span className="flex-1 text-white text-lg ">
                 {action.label}
                 <span className="text-white">&nbsp;-&nbsp;{action.sub}</span>

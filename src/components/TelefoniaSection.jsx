@@ -172,7 +172,7 @@ const TelefoniaSection = () => {
               } ${anySelected && !isSelected ? 'opacity-40' : ''}`}>
                 <p className="text-xs text-[#555]">Plano Telefonia Fixa</p>
                 <h3 className="text-2xl font-light" style={{ color: '#8a0005' }}>{plan.label}</h3>
-                <ul className="flex flex-col gap-2 w-full">
+                <ul className="flex flex-col gap-2 w-full mt-5">
                   {plan.features.map((f, i) => (
                     <li key={i} className="text-xs font-light flex items-center gap-1.5">
                       <svg width="11" height="9" viewBox="0 0 12 10" fill="none" className="flex-shrink-0 text-[#8a0005]" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -180,7 +180,7 @@ const TelefoniaSection = () => {
                     </li>
                   ))}
                 </ul>
-                <p className="text-2xl mt-auto">
+                <p className="text-2xl mt-auto mb-2">
                   R$ {plan.price}<span className="text-sm font-light">/mês</span>
                 </p>
                 <button
