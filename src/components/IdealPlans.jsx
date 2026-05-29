@@ -55,15 +55,15 @@ const IdealPlans = () => {
     setOpenDetails((prev) => (prev === id ? null : id));
 
   return (
-    <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#3d3838]">
-      <h1 className="text-3xl mb-1 font-light tracking-[-0.01em]">
+    <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#fafafa] text-[#3d3838]">
+      <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]">
         Saiba como escolher o plano ideal pra você
       </h1>
       <h2 className="text-lg font-light leading-6">
         Veja qual opção combina melhor com o seu perfil
       </h2>
 
-      <div ref={scrollRef} onScroll={handleScroll} className="mt-12 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
+      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
         {plans.map((plan) => {
           const isOpen = openDetails === plan.id;
           return (

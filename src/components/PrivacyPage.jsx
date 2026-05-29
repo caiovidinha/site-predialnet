@@ -6,7 +6,7 @@ const PrivacyPage = () => {
 
       <div className="mb-16">
         <p className="text-sm font-light text-[#6b6b6b] mb-1">Legal</p>
-        <h1 className="text-3xl font-light mb-1">Política de Privacidade</h1>
+        <h1 className="text-[1.65rem] md:text-3xl leading-8 font-light mb-1">Política de Privacidade</h1>
         <p className="text-lg font-light leading-6 mb-8">Como coletamos, usamos e protegemos suas informações</p>
 
         <div className="flex flex-col">

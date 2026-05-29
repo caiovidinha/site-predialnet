@@ -50,6 +50,9 @@ function Others() {
       <div className="hidden md:block w-[45%] flex-shrink-0">
         <img src="/img/foto_empresa.avif" alt="Internet Empresa" className="w-full h-full object-cover" />
       </div>
+      <div className="block md:hidden w-[45%] flex-shrink-0 -mr-10">
+        <img src="/img/foto_empresa.avif" alt="Internet Empresa" className="w-full h-full object-cover object-left -ml-10" />
+      </div>
     </div>
   );
 
@@ -62,7 +65,7 @@ function Others() {
         {/* Coluna esquerda — Via Rádio + Porto Maravilha */}
         <div className="md:w-[45%] flex flex-col">
           {/* min-h-[4.5rem] = exatamente 2 linhas de text-3xl, igualando com o heading direito */}
-          <h2 className="text-3xl mb-4">Internet Via Rádio e Porto Maravilha</h2>
+          <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-4">Internet Via Rádio e Porto Maravilha</h2>
           <div className="flex gap-4 flex-1">
             {/* Via Rádio */}
             <div className="flex-1 border border-[#dcdcdc] rounded flex flex-col justify-between overflow-hidden">
@@ -99,7 +102,7 @@ function Others() {
 
         {/* Coluna direita — Empresa */}
         <div className="flex-1 flex flex-col">
-          <h2 className="text-3xl mb-4">Internet Empresa</h2>
+          <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-4">Internet Empresa</h2>
           <div className="flex-1">
             <EmpresaCard />
           </div>
@@ -109,7 +112,7 @@ function Others() {
 
       {/* ── MOBILE: scroll horizontal + empresa abaixo ── */}
       <div className="md:hidden">
-        <h2 className="text-3xl mb-4">Internet Via Rádio e Porto Maravilha</h2>
+        <h2 className="text-[1.65rem] mb-4">Internet Via Rádio e Porto Maravilha</h2>
         <div
           ref={scrollRef}
           onScroll={handleScroll}
@@ -154,7 +157,7 @@ function Others() {
           ))}
         </div>
 
-        <h2 className="text-3xl mt-6 mb-4">Internet Empresa</h2>
+        <h2 className="text-[1.65rem] mt-6 mb-4">Internet Empresa</h2>
         <EmpresaCard />
       </div>
 

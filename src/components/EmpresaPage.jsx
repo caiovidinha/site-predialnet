@@ -139,7 +139,7 @@ function EmpresaPage() {
     <div className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-white text-[#3d3838]">
       {success && <SuccessToast onClose={() => setSuccess(false)} />}
 
-      <h1 className="text-3xl mb-2">Internet Empresa</h1>
+      <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-2">Internet Empresa</h1>
       <p className="text-lg font-light mb-8">Preencha o formulário e entraremos em contato para apresentar os planos disponíveis para o seu negócio.</p>
 
       <form onSubmit={handleSubmit} noValidate className="border border-[#dcdcdc] rounded p-6 flex flex-col gap-3 max-w-2xl">

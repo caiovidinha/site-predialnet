@@ -45,7 +45,7 @@ function Cliente() {
         <div className="flex flex-row justify-between pt-2">
           <div className="w-full lg:w-[32%]">
             <h3 className="text-[#f8abad] text-lg">Cliente Predialnet</h3>
-            <h2 className="text-3xl text-white">
+            <h2 className="text-[1.65rem] md:text-3xl leading-8 text-white">
               Acesso fácil às principais funções de atendimento
             </h2>
             {/* <p className="text-[#f8abad] mt-0.5 text-lg">
@@ -99,7 +99,7 @@ function Cliente() {
 
         <div className="flex flex-row justify-between mt-2">
           <div className="w-full lg:w-[32%] mt-10">
-            <h2 className="text-3xl text-white">Que tal um upgrade no seu plano?</h2>
+            <h2 className="text-[1.65rem] md:text-3xl leading-8 text-white">Que tal um upgrade no seu plano?</h2>
             <p className="text-[#f8abad] text-lg leading-5 mt-1.5">
               Planos com Wi-Fi 6 que vão mudar sua experiência de conexão.
             </p>
@@ -148,7 +148,7 @@ function Cliente() {
         <div className="flex flex-col">
           <div className="w-full mb-8">
             <h3 className="text-[#f8abad] text-base sm:text-lg">Cliente Predialnet</h3>
-            <h2 className="text-3xl sm:text-3xl text-white mt-2">
+            <h2 className="text-[1.65rem] md:text-3xl leading-8 sm:text-3xl text-white mt-2">
               Acesso fácil às principais funções de atendimento
             </h2>
             {/* <p className="text-[#f8abad] mt-0.5 text-lg">
@@ -202,7 +202,7 @@ function Cliente() {
           
           {/* Seção Upgrade de Plano */}
           <div className="w-full mt-8">
-            <h2 className="text-3xl sm:text-3xl text-white pr-20">Que tal um upgrade no seu plano?</h2>
+            <h2 className="text-[1.65rem] md:text-3xl leading-8 sm:text-3xl text-white pr-20">Que tal um upgrade no seu plano?</h2>
             <p className="text-[#f8abad] text-base sm:text-lg leading-6 mt-1.5">
               Planos com Wi-Fi 6 que vão mudar sua experiência de conexão.
             </p>

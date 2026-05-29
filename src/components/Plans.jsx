@@ -15,7 +15,7 @@ const planData = [
     title: '600 Mega',
     price: '99,90',
     wifi: 'Wi-Fi Gigabit',
-    seal: null,
+    seal: { text: 'MELHOR CUSTO', bg: '#dcdcdc', color: '#8a0005' },
     gamerPonto: false,
     regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf',
   },
@@ -68,9 +68,9 @@ const Plans = () => {
   const toggleDetails = (id) => setOpenDetails((prev) => (prev === id ? null : id));
 
   return (
-    <div id="Plans" className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#3d3838]">
+    <div id="Plans" className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#f4f5f5] text-[#3d3838]">
       {/* Cabeçalho */}
-      <h1 className="text-3xl mb-1 font-light tracking-[-0.01em]">
+      <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]">
         Planos Predialnet Fibra para sua casa
       </h1>
       <h2 className="text-lg font-light leading-6">
@@ -78,7 +78,7 @@ const Plans = () => {
       </h2>
 
       {/* Cards */}
-      <div ref={scrollRef} onScroll={handleScroll} className="mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
+      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
         {planData.map((plan) => {
           const isOpen = openDetails === plan.id;
           const isPonto = pontoCabeado[plan.id];
@@ -104,7 +104,7 @@ const Plans = () => {
               ) : (
               <div className="border border-[#dcdcdc] rounded bg-white flex flex-col justify-between px-6 pt-10 pb-7 flex-1">
 
-                {/* Tagline �?" f4 */}
+                {/* Tagline — f4 */}
                 <div>
                   <p className="text-sm font-light mb-1">{plan.tagline}</p>
 
@@ -273,8 +273,8 @@ const Plans = () => {
       </div>
 
       {/* Rodapé — OBS */}
-      <div className="mt-8 w-full flex items-start font-light text-xs flex-col gap-1">
-        <p className="text-[10px] w-full">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes. OBS: Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do Porto Maravilha, e locais com tecnologia Rádio ou FTTH. Consulte o Regulamento.
+      <div className="mt-5 w-full flex items-start font-light text-xs flex-col gap-1">
+        <p className="text-[8px] md:text-[10px] w-full leading-3">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes. OBS: Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do Porto Maravilha, e locais com tecnologia Rádio ou FTTH. Consulte o Regulamento.
         </p>
       </div>
     </div>

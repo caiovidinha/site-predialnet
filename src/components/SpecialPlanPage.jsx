@@ -142,7 +142,7 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
       {success && <SuccessToast onClose={() => setSuccess(false)} />}
 
       {/* Título */}
-      <h1 className="text-3xl mb-2 font-light tracking-[-0.01em]">{title}</h1>
+      <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-2 font-light tracking-[-0.01em]">{title}</h1>
 
       {/* Subtítulos lado a lado, colados às caixas */}
       <div className="flex flex-col md:flex-row gap-10 mb-4">

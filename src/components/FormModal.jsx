@@ -390,7 +390,7 @@ const sendEmail = async(to,subject,body) => {
       <button className="absolute top-1 md:top-4 right-3 md:right-8 text-gray-500 text-4xl font-thin" onClick={onClose}>
         &times;
       </button>
-      <h2 className="text-3xl md:text-3xl  text-[#9c0004] mb-4">Oba!</h2>
+      <h2 className="text-[1.65rem] md:text-3xl leading-8 md:text-3xl  text-[#9c0004] mb-4">Oba!</h2>
       <p className="text-xl text-center">Sua solicitação foi enviada com sucesso.</p>
       <button className='bg-[#9c0004] rounded-lg w-full h-10 text-white text-md mt-4'
       onClick={onClose}>Fechar</button>

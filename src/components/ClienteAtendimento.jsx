@@ -56,26 +56,26 @@ function ClienteAtendimento() {
           <div className="md:w-1/2 flex flex-col text-left justify-between pr-0 md:pr-40">
           <div>
             <p className="text-base sm:text-lg text-[#444] mb-2">Cliente Predialnet</p>
-            <h1 className="text-3xl text-[#8a0005] font-light tracking-[-0.01em] mb-2">
+            <h1 className="text-[1.65rem] md:text-3xl leading-8 text-[#8a0005] font-light tracking-[-0.01em] mb-2">
               Acesso rápido às principais funções de atendimento
             </h1>
           </div>
-          <div>
+          <div className="hidden md:flex">
             <p className="text-base sm:text-lg text-[#444]">Horário de Atendimento</p>
             <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 18h</p>
           </div>
-          <div>
+          <div className="hidden md:flex">
             <p className="text-base sm:text-lg text-[#444]">Setor Comercial</p>
             <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 20h | Sábado das 9h às 16h</p>
           </div>
-          <div>
+          <div className="hidden md:flex">
             <p className="text-base sm:text-lg text-[#444]">Suporte</p>
             <p className="text-sm text-[#444]">Todos os dias das 6h às 24h</p>
           </div>
         </div>
 
         {/* Coluna direita — começa na metade — 4 linhas x 2 colunas */}
-          <div className="md:w-1/2 flex flex-col justify-between w-full pt-2 mt-6 md:mt-0">
+          <div className="md:w-1/2 flex flex-col justify-between w-full pt-2">
           {acessoCards.map((card, i) => (
             <div key={card.title} className="flex gap-2">
               <a
@@ -116,6 +116,21 @@ function ClienteAtendimento() {
               </button>
             </div>
           ))}
+          
+        </div>
+        <div className="mt-5 md:hidden">
+        <div className="md:hidden block">
+            <p className="text-base sm:text-lg text-[#444]">Horário de Atendimento</p>
+            <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 18h</p>
+          </div>
+          <div className="md:hidden block">
+            <p className="text-base sm:text-lg text-[#444]">Setor Comercial</p>
+            <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 20h <br /> Sábado das 9h às 16h</p>
+          </div>
+          <div className="md:hidden block">
+            <p className="text-base sm:text-lg text-[#444]">Suporte</p>
+            <p className="text-sm text-[#444]">Todos os dias das 6h às 24h</p>
+          </div>
         </div>
       </div>
 

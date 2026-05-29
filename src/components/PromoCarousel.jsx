@@ -7,7 +7,7 @@ const defaultSlides = [
 
 const PromoCarousel = ({
   id,
-  title = 'Os melhores planos estão aqui',
+  title = 'Os melhores planos <br/> estão aqui',
   subtitle = 'A Predialnet tem um plano feito para você viver o melhor conectado',
   slides = defaultSlides,
 }) => {
@@ -87,15 +87,13 @@ const PromoCarousel = ({
       onMouseLeave={() => { isHoveredRef.current = false; }}
     >
 
-      <h1 className="text-3xl mb-1 font-light tracking-[-0.01em]">
-        {title}
-      </h1>
+      <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]" dangerouslySetInnerHTML={{ __html: title }} />
       <h2 className="text-lg font-light leading-6 mb-8">
         {subtitle}
-      </h2>
+      </h2>     
 
       {/* Carousel */}
-      <div ref={containerRef} className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{ touchAction: 'pan-y', userSelect: 'none' }}>
+      <div ref={containerRef} className="overflow-hid den" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{ touchAction: 'pan-y', userSelect: 'none' }}>
         <div
           ref={trackRef}
           className="flex transition-transform duration-500 ease-out"

@@ -46,7 +46,7 @@ function Contrate() {
         <div className="flex-1 flex flex-col gap-5">
           <div>
             <p className="text-white/70 text-sm mb-3">Contrate já!</p>
-            <h1 className="text-3xl mb-4 font-light tracking-[-0.01em] text-white">
+            <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-4 font-light tracking-[-0.01em] text-white">
               Assine do seu jeito e venha<br />para Predialnet agora!
             </h1>
             <h2 className="text-lg font-light leading-6 text-white/90">

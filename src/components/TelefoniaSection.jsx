@@ -151,17 +151,20 @@ const TelefoniaSection = () => {
   const labelClass = 'block mb-0.5 text-[12px] font-normal text-[#6b6b6b]';
 
   return (
-    <section id='Telefone' className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#3d3838]">
-      <h2 className="text-3xl mb-1">Telefonia fixa</h2>
+    <section id='Telefone' className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#fafafa] text-[#3d3838]">
+      <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-1">Telefonia fixa</h2>
 
       {/* Subtítulos */}
       <div className="flex flex-col md:flex-row gap-6 mb-4">
         <div className="md:w-[45%]">
-          <p className="text-lg font-light leading-6">
+          <p className="flex md:hidden text-lg font-light leading-6">
+            A melhor internet fibra também é <br /> telefonia fixa
+          </p>
+          <p className="hidden md:flex text-lg font-light leading-6">
             A melhor internet fibra também é telefonia fixa
           </p>
         </div>
-        <div className="md:flex-1">
+        <div className="hidden md:flex md:flex-1">
           <p className="text-lg font-light leading-6">
             Preencha o formulário que entraremos em contato
           </p>
@@ -180,9 +183,8 @@ const TelefoniaSection = () => {
               <div key={plan.id} className={`snap-start shrink-0 md:shrink w-[85%] md:flex-1 bg-white border rounded p-7 flex flex-col gap-3 transition-opacity ${
                 isSelected ? 'border-[#8a0005]' : 'border-[#dcdcdc]'
               } ${anySelected && !isSelected ? 'opacity-40' : ''}` }>
-                <p className="text-xs text-[#555]">Plano Telefonia Fixa</p>
                 <h3 className="text-2xl font-light" style={{ color: '#8a0005' }}>{plan.label}</h3>
-                <ul className="flex flex-col gap-2 w-full mt-5">
+                <ul className="flex flex-col gap-2 w-full mt-2 md:mt-5">
                   {plan.features.map((f, i) => (
                     <li key={i} className="text-xs font-light flex items-center gap-1.5">
                       <svg width="11" height="9" viewBox="0 0 12 10" fill="none" className="flex-shrink-0 text-[#8a0005]" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -236,7 +238,7 @@ const TelefoniaSection = () => {
         </div>
 
         {/* Coluna 2 — Formulário ocupa a mesma altura dos cards */}
-        <div id="telefonia-form" className={`bg-white border rounded p-7 md:flex-1 flex flex-col transition-colors ${selectedPlan ? 'border-[#8a0005]' : 'border-[#dcdcdc]'}`}>
+        <div id="telefonia-form" className={`bg-white border rounded p-7 md:flex-1 hidden md:flex flex-col transition-colors ${selectedPlan ? 'border-[#8a0005]' : 'border-[#dcdcdc]'}`}>
 
           {response === 'success' && <SuccessToast onClose={() => setResponse('')} />}
             <form className="flex-1 flex flex-col gap-1.5" onSubmit={handleSubmit} noValidate>
@@ -320,7 +322,7 @@ const TelefoniaSection = () => {
         </div>
       </div>
 
-      <p className="text-[10px] w-full text-[#555] mt-8">
+      <p className="text-[8px] md:text-[10px] w-full leading-3 mt-4 text-[#555]">
         Consulte sobre as tarifas excedentes Predialfone. Exceto para ligações Nextel SME (rádio).
         Os valores acima são promocionais e estão sujeitos a alteração.
       </p>

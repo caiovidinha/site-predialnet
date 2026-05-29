@@ -56,29 +56,31 @@ import OptimizedImage from './OptimizedImage.astro';
   </nav>
 
   <!-- Mobile Navbar -->
-  <nav class="sm:hidden px-6 pt-7 pb-3 font-sans bg-[#f3f3f3] border-b-2 border-gray-200 grid grid-cols-3 items-end">
+  <nav class="sm:hidden px-6 pt-7 pb-3 font-sans bg-[#f3f3f3] border-b-2 border-gray-200 flex items-end">
     <!-- Col 1: Logo -->
-    <a href="/">
-      <OptimizedImage
-        src="/img/logo.png"
-        width={90}
-        height={22}
-        alt="Predialnet Logo"
-        class="h-[22px] object-contain"
-        loading="eager"
-      />
-    </a>
+    <div class="w-2/3 flex items-end justify-start">
+      <a href="/">
+        <OptimizedImage
+          src="/img/logo.png"
+          width={114}
+          height={28}
+          alt="Predialnet Logo"
+          class="h-[28px] w-auto max-w-full object-contain"
+          loading="eager"
+        />
+      </a>
+    </div>
 
-    <!-- Col 2: App button — empurrado para direita -->
-    <div class="flex justify-end">
-      <a href="/redirect" class="text-[11px] text-[#575757] border -mr-10 border-[#aaaaaa] px-2.5 py-1 rounded-full whitespace-nowrap hover:border-[#9c0004] hover:text-[#9c0004] transition-colors -mb-1">
-        Baixe o App Minha Predialnet
+    <!-- Col 2: App button — centralizado -->
+    <div class="flex justify-center items-end w-full">
+      <a href="/redirect" class="text-[12px] text-[#575757] border border-[#aaaaaa] px-3.5 py-1 rounded-full whitespace-nowrap hover:border-[#9c0004] hover:text-[#9c0004] transition-colors -mb-1">
+        Baixar aplicativo
       </a>
     </div>
 
     <!-- Col 3: Minha conta + hamburger — right-aligned -->
-    <div class="flex justify-end items-end gap-2">
-      <a href="https://minhaconta.predialnet.com.br" target="_blank" rel="noopener noreferrer" aria-label="Minha conta" class="-mb-2">
+    <div class="w-2/5 flex justify-end items-end gap-2">
+      <a href="https://minhaconta.predialnet.com.br" target="_blank" rel="noopener noreferrer" aria-label="Minha conta" class="-mb-1.5">
         <OptimizedImage
           src="/img/icone_profile.png"
           alt="Perfil"
@@ -88,7 +90,7 @@ import OptimizedImage from './OptimizedImage.astro';
           loading="lazy"
         />
       </a>
-      <button onclick="openMobileMenu()" aria-label="Abrir menu" class="p-1 -mb-2">
+      <button onclick="openMobileMenu()" aria-label="Abrir menu" class="p-1 -mb-1.5">
         <svg class="w-6 h-6 text-[#575757]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>

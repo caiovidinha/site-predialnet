@@ -34,11 +34,11 @@ const NavegaSection = () => {
   };
 
   return (
-    <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#ebebeb] text-[#3d3838]">
-      <h2 className="text-3xl mb-1 tracking-[-0.01em]">
+    <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#ebebeb] text-[#3d3838]">
+      <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-1 tracking-[-0.01em]">
         Com Predialnet sua casa navega com você
       </h2>
-      <p className="text-lg font-light leading-6 mb-10">
+      <p className="text-lg font-light leading-6 mb-5 md:mb-10">
         É muita internet para você navegar, jogar, maratonar, trabalhar...
       </p>
 

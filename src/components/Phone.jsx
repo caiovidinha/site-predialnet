@@ -21,7 +21,7 @@ function Phone() {
     <>
       {/* Versão para Desktop */}
       <div id="Telefone" className="hidden md:block px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#f4f5f5] text-[#3d3838]">
-        <h1 className="text-3xl mb-1">Telefonia</h1>
+        <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1">Telefonia</h1>
         <h2 className="text-[#9e9e9e] text-xl">A melhor internet fibra também</h2>
         <h2 className="text-[#9e9e9e] text-xl -mt-1">é a melhor telefonia fixa</h2>
 
@@ -130,9 +130,9 @@ function Phone() {
             id="master"
             className="shadow-[0px_0px_7px_7px_rgba(80,80,80,0.07)] rounded-3xl p-5 flex flex-col justify-start"
           >
-            <h1 className="text-3xl sm:text-4xl">Ideal Master</h1>
+            <h1 className="text-[1.65rem] md:text-3xl leading-8 sm:text-4xl">Ideal Master</h1>
             <h2 className="text-base sm:text-lg">Com suporte para portabilidade</h2>
-            <p className="text-3xl sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
+            <p className="text-[1.65rem] md:text-3xl leading-8 sm:text-4xl font-medium text-[#9c0004] mt-2 mb-1">
               R$ 89,90<span className="text-xl sm:text-2xl font-semibold">/mês</span>
             </p>
             <button 
