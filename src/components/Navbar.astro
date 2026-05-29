@@ -61,23 +61,23 @@ import OptimizedImage from './OptimizedImage.astro';
     <a href="/">
       <OptimizedImage
         src="/img/logo.png"
-        width={110}
-        height={26}
+        width={90}
+        height={22}
         alt="Predialnet Logo"
-        class="h-6 object-contain"
+        class="h-[22px] object-contain"
         loading="eager"
       />
     </a>
 
-    <!-- Col 2: App button — truly centred between logo and icons -->
-    <div class="flex justify-center">
-      <a href="/redirect" class="text-[11px] text-[#575757] border border-[#aaaaaa] px-2.5 py-1 rounded-full whitespace-nowrap hover:border-[#9c0004] hover:text-[#9c0004] transition-colors -mb-2">
+    <!-- Col 2: App button — empurrado para direita -->
+    <div class="flex justify-end">
+      <a href="/redirect" class="text-[11px] text-[#575757] border -mr-10 border-[#aaaaaa] px-2.5 py-1 rounded-full whitespace-nowrap hover:border-[#9c0004] hover:text-[#9c0004] transition-colors -mb-1">
         Baixe o App Minha Predialnet
       </a>
     </div>
 
     <!-- Col 3: Minha conta + hamburger — right-aligned -->
-    <div class="flex justify-end items-end gap-4">
+    <div class="flex justify-end items-end gap-2">
       <a href="https://minhaconta.predialnet.com.br" target="_blank" rel="noopener noreferrer" aria-label="Minha conta" class="-mb-2">
         <OptimizedImage
           src="/img/icone_profile.png"

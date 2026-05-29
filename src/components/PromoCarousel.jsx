@@ -14,8 +14,11 @@ const PromoCarousel = ({
   const [current, setCurrent] = useState(0);
   const autoplayRef = useRef(null);
   const trackRef = useRef(null);
+  const containerRef = useRef(null);
   const isHoveredRef = useRef(false);
   const touchStartX = useRef(null);
+  const touchStartY = useRef(null);
+  const isSwiping = useRef(false);
 
   const goTo = (index) => {
     setCurrent(index);
@@ -23,6 +26,8 @@ const PromoCarousel = ({
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    isSwiping.current = false;
   };
 
   const handleTouchEnd = (e) => {
@@ -37,6 +42,9 @@ const PromoCarousel = ({
       startAutoplay();
     }
     touchStartX.current = null;
+    touchStartY.current = null;
+    // Reset isSwiping after a short delay so the onClick guard still fires
+    setTimeout(() => { isSwiping.current = false; }, 0);
   };
 
   const startAutoplay = () => {
@@ -52,6 +60,24 @@ const PromoCarousel = ({
     startAutoplay();
     return () => clearInterval(autoplayRef.current);
   }, [slides.length]);
+
+  // Non-passive touchmove: prevents browser from triggering link navigation
+  // when the user is doing a horizontal swipe over an <a> element.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const onTouchMove = (e) => {
+      if (touchStartX.current === null) return;
+      const dx = Math.abs(e.touches[0].clientX - touchStartX.current);
+      const dy = Math.abs(e.touches[0].clientY - (touchStartY.current ?? e.touches[0].clientY));
+      if (dx > 8 && dx > dy) {
+        isSwiping.current = true;
+        e.preventDefault(); // cancels link tap AND page scroll on horizontal drag
+      }
+    };
+    container.addEventListener('touchmove', onTouchMove, { passive: false });
+    return () => container.removeEventListener('touchmove', onTouchMove);
+  }, []);
 
   return (
     <section
@@ -69,7 +95,7 @@ const PromoCarousel = ({
       </h2>
 
       {/* Carousel */}
-      <div className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{ touchAction: 'pan-y', userSelect: 'none' }}>
+      <div ref={containerRef} className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{ touchAction: 'pan-y', userSelect: 'none' }}>
         <div
           ref={trackRef}
           className="flex transition-transform duration-500 ease-out"
@@ -85,16 +111,17 @@ const PromoCarousel = ({
               <img src={slide.src} alt={slide.alt} className="w-full block" />
             );
 
+            const preventIfSwiping = (e) => { if (isSwiping.current) e.preventDefault(); };
             if (slide.link) {
               return (
-                <a key={i} href={slide.link} target="_blank" rel="noopener noreferrer" className="w-full flex-shrink-0 block">
+                <a key={i} href={slide.link} target="_blank" rel="noopener noreferrer" className="w-full flex-shrink-0 block" onClick={preventIfSwiping}>
                   {imgEl}
                 </a>
               );
             }
             if (slide.mobileLink) {
               return (
-                <a key={i} href={slide.mobileLink} className="w-full flex-shrink-0 block sm:pointer-events-none sm:cursor-default">
+                <a key={i} href={slide.mobileLink} className="w-full flex-shrink-0 block sm:pointer-events-none sm:cursor-default" onClick={preventIfSwiping}>
                   {imgEl}
                 </a>
               );

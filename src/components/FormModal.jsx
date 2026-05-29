@@ -424,12 +424,32 @@ const sendEmail = async(to,subject,body) => {
           </div>
           {/* Campo Seleção de Plano */}
           <div>
-            <label htmlFor="plan" className="block mb-1 text-sm font-normal">Confirme o plano escolhido</label>
+            <label className="block mb-2 text-sm font-normal">Confirme o plano escolhido</label>
+
+            {/* Mobile: carrossel de pills */}
+            <div className="md:hidden flex gap-2 overflow-x-auto pb-1 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
+              {fields.find(field => field.id === "plan").options.map((option, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => setPlan1(option)}
+                  className={`shrink-0 px-4 py-2.5 rounded-full border text-sm transition-colors ${
+                    (plan1 || plan) === option
+                      ? 'bg-[#9c0004] text-white border-[#9c0004]'
+                      : 'bg-white text-[#444] border-gray-300'
+                  }`}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+
+            {/* Desktop: select */}
             <select
               id="plan"
               defaultValue={plan}
               onChange={(e) => setPlan1(e.target.value)}
-              className="w-full border border-gray-300 p-2 h-11 rounded focus:outline-none focus:border-[#9c0004]"
+              className="hidden md:block w-full border border-gray-300 p-2 h-11 rounded focus:outline-none focus:border-[#9c0004]"
             >
               <option value="">Selecione</option>
               {fields.find(field => field.id === "plan").options.map((option, index) => (

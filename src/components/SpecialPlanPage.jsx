@@ -158,29 +158,29 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
       <div className="flex flex-col md:flex-row gap-10 md:items-stretch">
 
         {/* Coluna esquerda: planos */}
-        <div className="flex-1 flex flex-col gap-3">
+        <div className="flex-1 grid grid-cols-2 md:grid-cols-1 gap-3">
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.value;
             const anySelected = selectedPlan !== '';
             return (
               <div
                 key={plan.value}
-                className={`flex-1 bg-white border rounded px-6 py-4 flex items-center justify-between gap-4 transition-opacity ${
+                className={`bg-white border rounded px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3 transition-opacity ${
                   isSelected ? 'border-[#8a0005]' : 'border-[#dcdcdc]'
                 } ${anySelected && !isSelected ? 'opacity-40' : ''}`}
               >
                 <div>
                   <p className="text-xs text-[#555]">Navegue com até</p>
-                  <div className="flex items-baseline gap-3 mt-0.5">
-                    <h3 className="text-2xl font-light" style={{ color: '#3d3838' }}>{plan.label}</h3>
-                    <span className="text-[#bbb] text-lg font-light">|</span>
-                    <p className="text-2xl font-light">{plan.price}</p>
+                  <div className="flex items-baseline gap-2 mt-0.5 flex-wrap">
+                    <h3 className="text-xl font-light" style={{ color: '#3d3838' }}>{plan.label}</h3>
+                    <span className="text-[#bbb] font-light hidden md:inline">|</span>
+                    <p className="text-xl font-light">{plan.price}</p>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => setSelectedPlan(plan.value)}
-                  className="flex-shrink-0 px-6 py-2.5 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm"
+                  className="w-full md:w-auto flex-shrink-0 px-4 py-2 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm"
                 >
                   {isSelected ? 'Selecionado' : 'Selecionar'}
                 </button>
@@ -202,7 +202,7 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
                 <input id="nome" type="text" onChange={handleInputChange} value={formData.nome || ''} className={inputClass('nome')} />
               </div>
 
-              <div>
+              <div className="hidden md:block">
                 <label className={labelClass}>Selecione o plano escolhido</label>
                 <select
                   value={selectedPlan}
@@ -216,18 +216,20 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
                 </select>
               </div>
 
-              <div className="flex gap-3">
-                <div className="flex-1">
+              <div className="flex flex-col gap-3">
+                <div>
                   <label className={labelClass}>Endereço</label>
                   <input id="address" type="text" onChange={handleInputChange} value={formData.address || ''} className={inputClass('address')} />
                 </div>
-                <div className="w-[15%]">
-                  <label className={labelClass}>Número</label>
-                  <input id="number" type="text" onChange={handleInputChange} value={formData.number || ''} className={inputClass('number')} />
-                </div>
-                <div className="w-[22%]">
-                  <label className={labelClass}>Complemento</label>
-                  <input id="complement" type="text" onChange={handleInputChange} value={formData.complement || ''} className={inputClass('complement')} />
+                <div className="flex gap-3">
+                  <div className="flex-1">
+                    <label className={labelClass}>Número</label>
+                    <input id="number" type="text" onChange={handleInputChange} value={formData.number || ''} className={inputClass('number')} />
+                  </div>
+                  <div className="flex-1">
+                    <label className={labelClass}>Complemento</label>
+                    <input id="complement" type="text" onChange={handleInputChange} value={formData.complement || ''} className={inputClass('complement')} />
+                  </div>
                 </div>
               </div>
 
