@@ -7,7 +7,7 @@
     <div class="flex flex-col md:flex-row items-start gap-8">
 
       <!-- Imagem lateral (metade da seção) -->
-      <div class="w-full h-44 md:w-1/2 md:h-auto shrink-0 md:self-stretch">
+      <div class="md:w-1/2 h-auto shrink-0 md:self-stretch">
         <img src="/img/rodape.webp" alt="Predialnet" class="w-full h-full object-cover grayscale rounded-md" loading="lazy" />
       </div>
 
@@ -16,19 +16,19 @@
 
         <!-- Links coluna 1 -->
         <div class="flex flex-col gap-4 text-sm text-left md:text-right">
-          <a href="https://minhaconta.predialnet.com.br" target="_blank" rel="noopener noreferrer" class="text-[#555] hover:text-[#9c0004]">Minha conta</a>
-          <a href="https://webmail.predialnet.com.br/index.php" target="_blank" rel="noopener noreferrer" class="text-[#555] hover:text-[#9c0004]">Webmail</a>
-          <a href="/#Plans" class="text-[#555] hover:text-[#9c0004]">Planos de internet</a>
-          <a href="/#Telefone" class="text-[#555] hover:text-[#9c0004]">Planos de telefonia</a>
-          <a href="/#App" class="text-[#555] hover:text-[#9c0004]">App Minha Predialnet</a>
+          <a href="https://minhaconta.predialnet.com.br" target="_blank" rel="noopener noreferrer" class="text-[#555] underline md:no-underline hover:text-[#9c0004]">Minha conta</a>
+          <a href="https://webmail.predialnet.com.br/index.php" target="_blank" rel="noopener noreferrer" class="text-[#555] underline md:no-underline hover:text-[#9c0004]">Webmail</a>
+          <a href="/#Plans" class="text-[#555] underline md:no-underline hover:text-[#9c0004]">Planos de internet</a>
+          <a href="/#Telefone" class="text-[#555] underline md:no-underline hover:text-[#9c0004]">Planos de telefonia</a>
+          <a href="/#App" class="text-[#555] underline md:no-underline hover:text-[#9c0004]">App Minha Predialnet</a>
         </div>
 
         <!-- Links coluna 2 -->
         <div class="flex flex-col gap-4 text-sm text-left md:text-right">
-          <a href="/politica-de-privacidade" class="text-[#555] hover:text-[#9c0004]">Política de Privacidade</a>
-          <a href="/relatorios" class="text-[#555] hover:text-[#9c0004]">Relatórios de Transparência<br />e Igualdade Salarial</a>
-          <a href="https://www.consumidor.gov.br/pages/conteudo/publico/102" target="_blank" rel="noopener noreferrer" class="text-[#555] hover:text-[#9c0004]">Código de defesa do consumidor</a>
-          <a href="/documentos" class="text-[#555] hover:text-[#9c0004]">Regulamentos e contratos</a>
+          <a href="/politica-de-privacidade" class="text-[#555] underline md:no-underline hover:text-[#9c0004]">Política de Privacidade</a>
+          <a href="/relatorios" class="text-[#555] underline md:no-underline hover:text-[#9c0004]">Relatórios de Transparência<br />e Igualdade Salarial</a>
+          <a href="https://www.consumidor.gov.br/pages/conteudo/publico/102" target="_blank" rel="noopener noreferrer" class="text-[#555] underline md:no-underline hover:text-[#9c0004]">Código de defesa do consumidor</a>
+          <a href="/documentos" class="text-[#555] underline md:no-underline hover:text-[#9c0004]">Regulamentos e contratos</a>
         </div>
 
       </div>
@@ -39,13 +39,20 @@
   <!-- Barra inferior -->
   <div class="bg-[#f0f0f0] px-6 sm:px-[8%] md:px-[12%]">
     <hr class="border-t border-[#b0b0b0]" />
-    <div class="py-10 flex flex-col md:flex-row items-center justify-between gap-3">
+    <div class="py-10 hidden md:flex flex-col md:flex-row items-center justify-between gap-3 ">
       <div class="text-xs text-[#555] leading-relaxed">
         <p>Predlink Rede de Telecomunicações Ltda. CNPJ: 05.990.171/0001-48</p>
         <p>Rua da Conceição, 188, sala 3108, Centro, Niterói - Rio de Janeiro - CEP: 24020-087</p>
         <p>Todos os direitos reservados. ©2026 &nbsp;·&nbsp; Site desenvolvido por Jump Marketing</p>
       </div>
       <img src="/img/logo-fibra.png" alt="Predialnet Fibra" class="h-8 object-contain" loading="lazy" />
+    </div>
+    <div class="py-5 flex md:hidden flex-col md:flex-row items-center justify-between gap-3 ">
+      <div class="text-[7px] md:text-xs text-[#555] leading-relaxed">
+        <p>Predlink Rede de Telecomunicações Ltda. CNPJ: 05.990.171/0001-48
+        - Rua da Conceição, 188, sala 3108, Centro, Niterói - Rio de Janeiro - CEP: 24020-087 -Todos os direitos reservados. ©2026 &nbsp;·&nbsp; Site desenvolvido por Jump Marketing</p>
+      </div>
+      <img src="/img/logo-fibra.png" alt="Predialnet Fibra" class="hidden md:block h-8 object-contain" loading="lazy" />
     </div>
   </div>
 </footer>

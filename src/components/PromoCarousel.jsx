@@ -93,7 +93,7 @@ const PromoCarousel = ({
       </h2>     
 
       {/* Carousel */}
-      <div ref={containerRef} className="overflow-hid den" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{ touchAction: 'pan-y', userSelect: 'none' }}>
+      <div ref={containerRef} className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{ touchAction: 'pan-y', userSelect: 'none' }}>
         <div
           ref={trackRef}
           className="flex transition-transform duration-500 ease-out"

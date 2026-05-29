@@ -50,7 +50,7 @@ function ClienteAtendimento() {
   ];
 
   return (
-    <div id="ClienteAtendimento" className="px-6 sm:px-[8%] md:px-[12%] py-10 font-sans bg-[#ebebeb] text-[#3d3838]">
+    <div id="ClienteAtendimento" className="px-6 sm:px-[8%] md:px-[12%] py-8 md:py-10 font-sans bg-[#ebebeb] text-[#3d3838]">
       <div className="flex flex-col md:flex-row items-stretch">
         {/* Coluna esquerda */}
           <div className="md:w-1/2 flex flex-col text-left justify-between pr-0 md:pr-40">
@@ -60,15 +60,15 @@ function ClienteAtendimento() {
               Acesso rápido às principais funções de atendimento
             </h1>
           </div>
-          <div className="hidden md:flex">
+          <div className="hidden md:block">
             <p className="text-base sm:text-lg text-[#444]">Horário de Atendimento</p>
             <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 18h</p>
           </div>
-          <div className="hidden md:flex">
+          <div className="hidden md:block">
             <p className="text-base sm:text-lg text-[#444]">Setor Comercial</p>
             <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 20h | Sábado das 9h às 16h</p>
           </div>
-          <div className="hidden md:flex">
+          <div className="hidden md:block">
             <p className="text-base sm:text-lg text-[#444]">Suporte</p>
             <p className="text-sm text-[#444]">Todos os dias das 6h às 24h</p>
           </div>
@@ -118,7 +118,7 @@ function ClienteAtendimento() {
           ))}
           
         </div>
-        <div className="mt-5 md:hidden">
+        <div className="mt-3 md:hidden">
         <div className="md:hidden block">
             <p className="text-base sm:text-lg text-[#444]">Horário de Atendimento</p>
             <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 18h</p>
