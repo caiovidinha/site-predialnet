@@ -427,7 +427,7 @@ const sendEmail = async(to,subject,body) => {
             <label className="block mb-2 text-sm font-normal">Confirme o plano escolhido</label>
 
             {/* Mobile: carrossel de pills */}
-            <div className="md:hidden flex gap-2 overflow-x-auto pb-1 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
+            <div className="md:hidden flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
               {fields.find(field => field.id === "plan").options.map((option, index) => (
                 <button
                   key={index}

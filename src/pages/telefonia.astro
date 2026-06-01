@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
+import Footer from '../components/Footer.astro';
+import TelefoniaPage from '../components/TelefoniaPage';
+---
+
+<Layout
+  title="Telefonia Fixa - Predialnet"
+  description="Planos de telefonia fixa Predialnet. Preencha o formulário e entraremos em contato."
+>
+  <Navbar />
+  <SecNavBar />
+  <TelefoniaPage client:load />
+  <Footer />
+</Layout>

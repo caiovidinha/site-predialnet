@@ -51,7 +51,7 @@ function Others() {
         <img src="/img/foto_empresa.avif" alt="Internet Empresa" className="w-full h-full object-cover" />
       </div>
       <div className="block md:hidden w-[45%] flex-shrink-0 -mr-10">
-        <img src="/img/foto_empresa.avif" alt="Internet Empresa" className="w-full h-full object-cover object-left -ml-10" />
+        <img src="/img/foto_empresa_mobile.avif" alt="Internet Empresa" className="w-full h-full object-cover object-left -ml-10" />
       </div>
     </div>
   );
@@ -117,7 +117,6 @@ function Others() {
           ref={scrollRef}
           onScroll={handleScroll}
           className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-2 scrollbar-hide"
-          style={{ touchAction: 'pan-x' }}
         >
           {residencialCards.map((item) => (
             <div key={item.href} className="snap-start shrink-0 w-[85%] border border-[#dcdcdc] rounded flex flex-col justify-between overflow-hidden pb-2">

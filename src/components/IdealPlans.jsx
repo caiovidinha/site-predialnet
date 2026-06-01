@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const plans = [
   {
@@ -50,6 +50,18 @@ const IdealPlans = () => {
   };
 
   const [openDetails, setOpenDetails] = useState(null);
+  const cardRefs = useRef({});
+  useEffect(() => {
+    if (!openDetails) return;
+    const el = cardRefs.current[openDetails];
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (!entry.isIntersecting) setOpenDetails(null); },
+      { threshold: 0, rootMargin: '600px 0px 0px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [openDetails]);
 
   const toggleDetails = (id) =>
     setOpenDetails((prev) => (prev === id ? null : id));
@@ -63,11 +75,11 @@ const IdealPlans = () => {
         Veja qual opção combina melhor com o seu perfil
       </h2>
 
-      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
+      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
         {plans.map((plan) => {
           const isOpen = openDetails === plan.id;
           return (
-            <div key={plan.id} className={`snap-start shrink-0 md:shrink w-[85%] md:flex-1 relative mt-4 flex flex-col${plan.imageCard ? ' hidden md:flex' : ''}`}>
+            <div key={plan.id} ref={el => { cardRefs.current[plan.id] = el; }} className={`snap-start shrink-0 md:shrink w-[85%] md:flex-1 relative mt-4 flex flex-col${plan.imageCard ? ' hidden md:flex' : ''}`}>
               {/* Selo */}
               {plan.seal && (
                 <div className="absolute top-0 left-7 right-7 -translate-y-1/2 z-10 bg-[#dcdcdc] text-xs rounded-sm text-center whitespace-nowrap" style={{ padding: '6px 18px' }}>
@@ -81,6 +93,7 @@ const IdealPlans = () => {
                   <img src={plan.imageCard} alt={plan.title} className="w-full block" />
                 </div>
               ) : (
+              <>
               <div className="border border-[#dcdcdc] bg-white flex flex-col rounded flex-1">
                 <div className="px-7 pt-8 pb-7 flex flex-col justify-between flex-1">
                   {/* Título */}
@@ -125,9 +138,9 @@ const IdealPlans = () => {
                     </svg>
                   </button>
 
-                  {/* Accordion */}
+                  {/* Accordion inline — mobile only */}
                   {isOpen && (
-                    <div className="mt-4 pt-4 border-t border-[#e6e6e6] flex flex-col gap-3">
+                    <div className="md:hidden mt-4 pt-4 border-t border-[#e6e6e6] flex flex-col gap-3">
                       <p className="text-xl">Plano {plan.title}</p>
                       <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
                       <p className="text-sm">
@@ -169,6 +182,49 @@ const IdealPlans = () => {
                   )}
                 </div>
               </div>
+              {/* Accordion desktop — flap absoluto abaixo do card */}
+              {isOpen && (
+                <div className="hidden md:flex flex-col gap-3 absolute top-full left-0 right-0 z-20 border border-[#dcdcdc] border-t-0 rounded-b bg-white px-7 py-5">
+                  <p className="text-xl">Plano {plan.title}</p>
+                  <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
+                  <p className="text-sm">
+                    Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
+                    viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
+                    Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+                  </p>
+                  <div>
+                    <p className="text-base mb-2">*Serviços Inteligentes:</p>
+                    <div className="flex flex-col gap-2 text-sm font-light">
+                      <p>
+                        <span className="font-normal">· Controle Parental (1 licença)</span><br />
+                        Permite ao titular da conta controlar o horário de utilização da sua Internet.
+                      </p>
+                      <p>
+                        <span className="font-normal">· Navegação mais segura</span><br />
+                        Oferece tentativa de proteção contra conexões entrantes indesejadas.
+                        Auxilia o usuário na tentativa de identificar e bloquear sites fraudulentos.
+                      </p>
+                      <p>
+                        <span className="font-normal">· Predial Protect (1 Licença)</span><br />
+                        Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-sm">
+                    Baixe o App Minha Predialnet e gerencie seu plano.
+                  </p>
+                  <a
+                    href={plan.regulamento}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors"
+                  >
+                    <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" />
+                    Baixe o regulamento
+                  </a>
+                </div>
+              )}
+              </>
               )}
             </div>
           );

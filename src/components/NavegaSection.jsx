@@ -42,7 +42,7 @@ const NavegaSection = () => {
         É muita internet para você navegar, jogar, maratonar, trabalhar...
       </p>
 
-      <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 items-stretch pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
+      <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 items-stretch pb-2 scrollbar-hide">
         {cards.map((card, i) => (
           <div key={i} className="snap-start shrink-0 md:shrink w-[85%] md:flex-1 bg-white flex flex-col p-2 overflow-hidden rounded border border-[#dcdcdc]">
             <img

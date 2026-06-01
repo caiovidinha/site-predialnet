@@ -2,12 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const defaultSlides = [
   { src: '/img/carrossel-b.webp', alt: 'Promoção B', link: 'https://www.predialnet.com.br/assineja?plano=promo' },
-  { src: '/img/carrossel-d.webp', alt: 'Promoção A', link: '' },
 ];
 
 const PromoCarousel = ({
   id,
-  title = 'Os melhores planos <br/> estão aqui',
+  title = 'Os melhores planos estão aqui',
   subtitle = 'A Predialnet tem um plano feito para você viver o melhor conectado',
   slides = defaultSlides,
 }) => {
@@ -32,9 +31,10 @@ const PromoCarousel = ({
 
   const handleTouchEnd = (e) => {
     if (touchStartX.current === null) return;
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) {
+    const dx = touchStartX.current - e.changedTouches[0].clientX;
+    const dy = (touchStartY.current ?? e.changedTouches[0].clientY) - e.changedTouches[0].clientY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 0) {
         setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
       } else {
         setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -87,7 +87,10 @@ const PromoCarousel = ({
       onMouseLeave={() => { isHoveredRef.current = false; }}
     >
 
-      <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]" dangerouslySetInnerHTML={{ __html: title }} />
+      {title=="Os melhores planos estão aqui"
+      ? <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em] pr-[100px] md:pr-0" >{title}</h1>      
+      : <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]" dangerouslySetInnerHTML={{ __html: title }} />
+}
       <h2 className="text-lg font-light leading-6 mb-8">
         {subtitle}
       </h2>     

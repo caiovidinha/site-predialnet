@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { events } from '../utils/analytics';
 
 // Paleta
@@ -15,7 +15,7 @@ const planData = [
     title: '600 Mega',
     price: '99,90',
     wifi: 'Wi-Fi Gigabit',
-    seal: { text: 'MELHOR CUSTO', bg: '#dcdcdc', color: '#8a0005' },
+    seal: { text: 'MENOR CUSTO', bg: '#dcdcdc', color: '#8a0005' },
     gamerPonto: false,
     regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf',
   },
@@ -58,6 +58,19 @@ const Plans = () => {
   };
 
   const [openDetails, setOpenDetails] = useState(null);
+  const cardRefs = useRef({});
+  useEffect(() => {
+    if (!openDetails) return;
+    const el = cardRefs.current[openDetails];
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (!entry.isIntersecting) setOpenDetails(null); },
+      { threshold: 0, rootMargin: '600px 0px 0px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [openDetails]);
+
   const [pontoCabeado, setPontoCabeado] = useState({
     '600mega': false,
     '800mega': false,
@@ -78,13 +91,13 @@ const Plans = () => {
       </h2>
 
       {/* Cards */}
-      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide" style={{ touchAction: 'pan-x' }}>
+      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
         {planData.map((plan) => {
           const isOpen = openDetails === plan.id;
           const isPonto = pontoCabeado[plan.id];
 
           return (
-            <div key={plan.id} className={`snap-start shrink-0 md:shrink w-[85%] md:w-1/4 relative pt-4 flex flex-col${plan.imageCard ? ' hidden md:flex' : ''}`}>
+            <div key={plan.id} ref={el => { cardRefs.current[plan.id] = el; }} className={`snap-start shrink-0 md:shrink w-[85%] md:w-1/4 relative pt-4 flex flex-col${plan.imageCard ? ' hidden md:flex' : ''}`}>
 
               {/* Selo */}
               {plan.seal && (
@@ -102,18 +115,16 @@ const Plans = () => {
                   <img src={plan.imageCard} alt={plan.title} className="w-full block" />
                 </div>
               ) : (
-              <div className="border border-[#dcdcdc] rounded bg-white flex flex-col justify-between px-6 pt-10 pb-7 flex-1">
+              <>
+              <div className="border border-[#dcdcdc] rounded bg-white flex flex-col px-6 pt-10 pb-7 flex-1">
 
-                {/* Tagline — f4 */}
-                <div>
-                  <p className="text-sm font-light mb-1">{plan.tagline}</p>
+                {/* Tagline */}
+                <p className="text-sm font-light mb-1">{plan.tagline}</p>
+                {/* Nome do plano */}
+                <h2 className="text-[28px] font-light mb-5 tracking-[-0.01em]">{plan.title}</h2>
 
-                  {/* Nome do plano — f1 */}
-                  <h2 className="text-[28px] font-light mb-5 tracking-[-0.01em]">{plan.title}</h2>
-                </div>
-                {/* Features — f5 */}
-                <div>
-                <ul className="flex flex-col gap-2.5 mb-5">
+                {/* Features */}
+                <ul className="flex flex-col gap-2.5 mb-5 md:mt-5">
                   {[plan.wifi, 'Instalação Grátis', 'Sem fidelidade', 'Serviços Inteligentes'].map((feat) => (
                     <li key={feat} className="text-xs font-light flex items-center gap-1.5">
                       <svg width="12" height="10" viewBox="0 0 12 10" fill="none" className="flex-shrink-0 text-[#8a0005]" aria-hidden="true">
@@ -124,26 +135,17 @@ const Plans = () => {
                   ))}
                 </ul>
 
-                {/* Ponto cabeado �?" f4 */}
+                {/* Ponto cabeado */}
                 <div
-                  className={`rounded-sm flex items-center justify-between px-4 py-3 mb-5 bg-[#e6e6e6] transition-colors ${
-                    plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'
-                  } text-sm`}
-                  onClick={() =>
-                    !plan.gamerPonto &&
-                    setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))
-                  }
+                  className={`rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
+                  onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
                 >
                   <span className="text-[12px] font-light">
-                    {isPonto ? (plan.gamerPonto ?<><span>1 Ponto cabeado</span><br /><span>grátis</span></>: <><span>1 Ponto cabeado</span><br /><span>selecionado</span></>) : <><span>Adicionar ponto cabeado</span><br /><span>+R$ 30,00/mês</span></>}
+                    {isPonto ? (plan.gamerPonto ? <><span>1 Ponto cabeado</span><br /><span>grátis</span></> : <><span>1 Ponto cabeado</span><br /><span>selecionado</span></>) : <><span>Adicionar ponto cabeado</span><br /><span>+R$ 30,00/mês</span></>}
                   </span>
-                  {/* Checkbox à direita */}
                   <div
                     className="w-6 h-6 flex-shrink-0 rounded-sm border flex items-center justify-center transition-colors"
-                    style={{
-                      backgroundColor: isPonto ? '#00a650' : 'white',
-                      borderColor: isPonto ? '#00a650' : '#aaaaaa',
-                    }}
+                    style={{ backgroundColor: isPonto ? '#00a650' : 'white', borderColor: isPonto ? '#00a650' : '#aaaaaa' }}
                   >
                     {isPonto && (
                       <svg width="11" height="9" viewBox="0 0 11 9" fill="none" aria-hidden="true">
@@ -152,26 +154,25 @@ const Plans = () => {
                     )}
                   </div>
                 </div>
-                </div>
 
-                {/* Preço — f2 */}
-                <p className="text-2xl mb-5">
+                {/* Preço */}
+                <p className="text-2xl mt-auto pt-5">
                   R$ {isPonto ? (parseFloat(plan.price.replace(',', '.')) + 30).toFixed(2).replace('.', ',') : plan.price}<span className="text-sm font-light">/mês</span>
                 </p>
 
-                {/* Botão Assinar �?" v1, rounded mínimo */}
+                {/* Botão Assinar */}
                 <a
                   href={`https://www.predialnet.com.br/assineja?plano=${plan.id}${isPonto ? '&ponto-cabeado' : ''}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center py-3 rounded-sm text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity mb-3"
+                  className="block text-center py-3 rounded-sm text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity mt-3 md:mt-5 mb-3"
                   aria-label={`Assinar plano ${plan.title}`}
                   onClick={() => events.planClick(plan.title, `R$ ${plan.price}`, 'site', 'plans_section')}
                 >
                   Assinar
                 </a>
 
-                {/* Mais detalhes �?" f4 */}
+                {/* Mais detalhes */}
                 <button
                   type="button"
                   onClick={() => toggleDetails(plan.id)}
@@ -180,70 +181,71 @@ const Plans = () => {
                   Mais detalhes
                   <svg
                     className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
 
-                {/* Accordion de detalhes */}
+                {/* Accordion inline — mobile only */}
                 {isOpen && (
-                  <div className="mt-4 pt-4 border-t border-[#e6e6e6] flex flex-col gap-3">
-                    {/* f2 */}
+                  <div className="md:hidden mt-4 pt-4 border-t border-[#e6e6e6] flex flex-col gap-3">
                     <p className="text-xl">Plano {plan.title}</p>
-                    {/* f3 */}
                     <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
-                    {/* f4 */}
                     <p className="text-sm">
                       Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
                       viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
                       Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
                     </p>
                     <div>
-                      {/* f3 */}
                       <p className="text-base mb-2">*Serviços Inteligentes:</p>
-                      {/* f4 */}
                       <div className="flex flex-col gap-2 text-sm font-light">
-                        <p>
-                          <span className="font-normal">· Controle Parental (1 licença)</span><br />
-                          Permite ao titular da conta controlar o horário de utilização da sua Internet.
-                        </p>
-                        <p>
-                          <span className="font-normal">· Navegação mais segura</span><br />
-                          Oferece tentativa de proteção contra conexões entrantes indesejadas.
-                          Auxilia o usuário na tentativa de identificar e bloquear sites fraudulentos.
-                        </p>
-                        <p>
-                          <span className="font-normal">· Predial Protect (1 Licença)</span><br />
-                          Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.
-                        </p>
+                        <p><span className="font-normal">· Controle Parental (1 licença)</span><br />Permite ao titular da conta controlar o horário de utilização da sua Internet.</p>
+                        <p><span className="font-normal">· Navegação mais segura</span><br />Oferece tentativa de proteção contra conexões entrantes indesejadas. Auxilia o usuário na tentativa de identificar e bloquear sites fraudulentos.</p>
+                        <p><span className="font-normal">· Predial Protect (1 Licença)</span><br />Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.</p>
                       </div>
                     </div>
-                    {/* f4 */}
-                    <p className="text-sm">
-                      Baixe o App Minha Predialnet e gerencie seu plano.
-                    </p>
-                    {/* f3 */}
-                    <a
-                      href={plan.regulamento}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors"
-                    >
+                    <p className="text-sm">Baixe o App Minha Predialnet e gerencie seu plano.</p>
+                    <a href={plan.regulamento} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors">
                       <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" />
                       Baixe o regulamento
                     </a>
                   </div>
                 )}
               </div>
+              {/* Accordion desktop — flap absoluto abaixo do card */}
+              {isOpen && (
+                <div className="hidden md:flex flex-col gap-3 absolute top-full left-0 right-0 z-20 border border-[#dcdcdc] border-t-0 rounded-b bg-white px-6 py-5">
+                  <p className="text-xl">Plano {plan.title}</p>
+                  <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
+                  <p className="text-sm">
+                    Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
+                    viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
+                    Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+                  </p>
+                  <div>
+                    <p className="text-base mb-2">*Serviços Inteligentes:</p>
+                    <div className="flex flex-col gap-2 text-sm font-light">
+                      <p><span className="font-normal">· Controle Parental (1 licença)</span><br />Permite ao titular da conta controlar o horário de utilização da sua Internet.</p>
+                      <p><span className="font-normal">· Navegação mais segura</span><br />Oferece tentativa de proteção contra conexões entrantes indesejadas. Auxilia o usuário na tentativa de identificar e bloquear sites fraudulentos.</p>
+                      <p><span className="font-normal">· Predial Protect (1 Licença)</span><br />Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.</p>
+                    </div>
+                  </div>
+                  <p className="text-sm">Baixe o App Minha Predialnet e gerencie seu plano.</p>
+                  <a href={plan.regulamento} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors">
+                    <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" />
+                    Baixe o regulamento
+                  </a>
+                </div>
+              )}
+              </>
               )}
             </div>
           );
         })}
       </div>
+
+
 
       {/* Dots — mobile only */}
       <div className="flex justify-center gap-1.5 mt-2 md:hidden">

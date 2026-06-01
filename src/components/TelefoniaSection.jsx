@@ -175,7 +175,7 @@ const TelefoniaSection = () => {
       <div className="flex flex-col md:flex-row gap-6 items-stretch">
         {/* Coluna 1 — Cards */}
         <div className="flex flex-col md:w-[45%]">
-          <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-2 pb-2 scrollbar-hide md:flex-1" style={{ touchAction: 'pan-x' }}>
+          <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-2 pb-2 md:pb-0 scrollbar-hide md:flex-1">
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.id;
             const anySelected = selectedPlan !== '';
@@ -195,13 +195,21 @@ const TelefoniaSection = () => {
                 <p className="text-2xl mt-auto mb-2">
                   R$ {plan.price}<span className="text-sm font-light">/mês</span>
                 </p>
+                {/* Mobile: navega para página de formulário */}
+                <a
+                  href={`/telefonia?plano=${encodeURIComponent(plan.id)}`}
+                  className="md:hidden block w-full text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm"
+                >
+                  Aproveitar oferta
+                </a>
+                {/* Desktop: seleciona plano e rola até o formulário */}
                 <button
                   type="button"
                   onClick={() => {
                     setSelectedPlan(plan.id);
                     document.getElementById('telefonia-form')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                   }}
-                  className="block w-full text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm"
+                  className="hidden md:block w-full text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm"
                 >
                   {isSelected ? 'Plano escolhido' : 'Aproveitar oferta'}
                 </button>
