@@ -140,19 +140,19 @@ function EmpresaPage() {
       {success && <SuccessToast onClose={() => setSuccess(false)} />}
 
       <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-2">Internet Empresa</h1>
-      <p className="text-lg font-light mb-8">Preencha o formulário e entraremos em contato para apresentar os planos disponíveis para o seu negócio.</p>
+      <p className="text-lg font-light mb-8 leading-6">Preencha o formulário e entraremos em contato para apresentar os planos disponíveis para o seu negócio.</p>
 
       <form onSubmit={handleSubmit} noValidate className="border border-[#dcdcdc] rounded p-6 flex flex-col gap-3 max-w-2xl">
         {missingField !== 'none' && (
           <p className="text-xs text-red-700">Por favor, preencha corretamente: {missingField}</p>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           <div className="flex-1">
             <label className={labelClass}>Nome da empresa</label>
             <input id="companyName" type="text" onChange={handleInputChange} className={inputClass('companyName')} />
           </div>
-          <div className="w-2/5">
+          <div className="w-1/2">
             <label className={labelClass}>CNPJ</label>
             <input id="cnpj" type="text" value={formData.cnpj || ''} onChange={handleInputChange} className={inputClass('cnpj')} />
           </div>
@@ -163,7 +163,7 @@ function EmpresaPage() {
             <input id="yourName" type="text" onChange={handleInputChange} className={inputClass('yourName')} />
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           <div className="flex-1">
             <label className={labelClass}>Endereço</label>
               <input id="address" type="text" onChange={handleInputChange} className={inputClass('address')} />
@@ -178,7 +178,7 @@ function EmpresaPage() {
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           <div className="flex-1">
             <label className={labelClass}>Bairro</label>
               <input id="neighborhood" type="text" onChange={handleInputChange} className={inputClass('neighborhood')} />
@@ -189,7 +189,7 @@ function EmpresaPage() {
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           <div className="flex-1">
             <label className={labelClass}>E-mail</label>
             <input id="email" type="email" onChange={handleInputChange} className={inputClass('email')} />

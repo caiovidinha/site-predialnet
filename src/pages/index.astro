@@ -21,7 +21,7 @@ import Footer from '../components/Footer.astro';
 
 <Layout title="Predialnet">
   <Navbar />
-  <SecNavBar />
+  <SecNavBar showBanner />
   <a href="https://www.predialnet.com.br/assineja?plano=hero" target="_blank" rel="noopener noreferrer" class="hidden sm:block">
     <img src="/img/hero.webp" alt="Predialnet" class="w-full h-auto block" width="2560" height="722" loading="eager" />
   </a>
@@ -43,14 +43,14 @@ import Footer from '../components/Footer.astro';
     title="O maior provedor regional do Estado do Rio de Janeiro"
     subtitle="Agora sua internet vai ser gigante, venha para Predialnet."
     slides={[
-      { src: '/img/carrossel-e.webp', alt: 'Provedor RJ', link: '' },
-      { src: '/img/carrossel-d.webp', alt: 'Provedor RJ', link: '' },
+      { src: '/img/carrossel-e.webp', mobileSrc: '/img/carrossel-e-mobile.webp', alt: 'Provedor RJ', link: '' },
+      { src: '/img/carrossel-d.webp', mobileSrc: '/img/carrossel-d-mobile.webp', alt: 'Fluminense', link: '' },
     ]}
   />
   <TelefoniaSection client:visible />
   <Others client:visible />
   <ClienteAtendimento client:visible />
-  <Plans client:visible />
+  <Plans imageCard="/img/cardPlanosB.webp" client:visible />
   <Contrate client:visible />
   <Footer />
 </Layout>

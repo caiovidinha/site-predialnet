@@ -163,7 +163,7 @@ const documents = {
   <div class="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-14 font-sans bg-[#fafafa] text-[#3d3838]">
 
     <!-- Seção Banda Larga -->
-    <div class="mb-16">
+    <div class="mb-10 md:mb-16">
       <p class="text-sm font-light text-[#6b6b6b] mb-1">Documentos</p>
       <h2 class="text-[1.65rem] md:text-3xl leading-8 font-light mb-1">Internet</h2>
       <p class="text-lg font-light leading-6 mb-8">Contratos e regulamentos dos planos de internet</p>
@@ -173,12 +173,12 @@ const documents = {
           <div class="flex flex-row items-center gap-3">
             <p class="text-sm font-light leading-snug">
               {doc.title}
-             
+             <br class="md:hidden"/>
               <a
                 href={doc.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="ml-2 text-xs text-[#8a0005] hover:underline underline-offset-2 transition-opacity"
+                class="md:ml-2 text-xs text-[#8a0005] hover:underline underline-offset-2 transition-opacity"
               >
                 Download PDF
               </a>
@@ -189,7 +189,7 @@ const documents = {
     </div>
 
     <!-- Seção Telefonia -->
-    <div class="mb-10">
+    <div class="md:mb-10">
       <p class="text-sm font-light text-[#6b6b6b] mb-1">Documentos</p>
       <h2 class="text-[1.65rem] md:text-3xl leading-8 font-light mb-1">Telefonia</h2>
       <p class="text-lg font-light leading-6 mb-8">Contratos e regulamentos dos planos de telefonia</p>
@@ -199,12 +199,12 @@ const documents = {
           <div class="flex flex-row items-center gap-3">
             <p class="text-sm font-light leading-snug">
               {doc.title}
-             
+             <br class="md:hidden"/>
               <a
                 href={doc.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="ml-2 text-xs text-[#8a0005] hover:underline underline-offset-2 transition-opacity"
+                class="md:ml-2 text-xs text-[#8a0005] hover:underline underline-offset-2 transition-opacity"
               >
                 Download PDF
               </a>

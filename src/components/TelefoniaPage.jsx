@@ -127,7 +127,7 @@ function TelefoniaPage() {
       {response === 'success' && <SuccessToast onClose={() => setResponse('')} />}
 
       <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-2">Telefonia fixa</h1>
-      <p className="text-lg font-light mb-8">Preencha o formulário que entraremos em contato.</p>
+      <p className="text-lg font-light leading-6 mb-8">Preencha o formulário que entraremos em contato.</p>
 
       <form onSubmit={handleSubmit} noValidate className="border border-[#dcdcdc] rounded p-6 flex flex-col gap-3 max-w-2xl">
         {missingField !== 'none' && (
@@ -155,7 +155,7 @@ function TelefoniaPage() {
           </select>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <label className={labelClass}>Endereço</label>
             <input id="address" type="text" onChange={handleInputChange} className={inputClass('address')} />
@@ -170,7 +170,7 @@ function TelefoniaPage() {
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <label className={labelClass}>Bairro</label>
             <input id="neighborhood" type="text" onChange={handleInputChange} className={inputClass('neighborhood')} />
@@ -181,7 +181,7 @@ function TelefoniaPage() {
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <label className={labelClass}>E-mail</label>
             <input id="email" type="email" onChange={handleInputChange} className={inputClass('email')} />

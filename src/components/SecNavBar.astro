@@ -1,12 +1,15 @@
 ---
 // SecNavBar Component
+const { showBanner = false } = Astro.props;
 ---
 
 <!-- Desktop (hidden) -->
 <nav class="hidden"></nav>
 
 <!-- Mobile Banner -->
-<div class="sm:hidden">
-  <img src="/img/bannerMobile.avif" alt="Predialnet" class="w-full h-auto block" loading="eager" />
-</div>
+{showBanner && (
+  <div class="sm:hidden">
+    <img src="/img/bannerMobile.avif" alt="Predialnet" class="w-full h-auto block" loading="eager" />
+  </div>
+)}
 

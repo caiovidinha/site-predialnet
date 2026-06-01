@@ -75,7 +75,7 @@ const IdealPlans = () => {
         Veja qual opção combina melhor com o seu perfil
       </h2>
 
-      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
+      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex items-start md:items-stretch overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
         {plans.map((plan) => {
           const isOpen = openDetails === plan.id;
           return (

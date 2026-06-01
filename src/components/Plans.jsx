@@ -8,7 +8,7 @@ import { events } from '../utils/analytics';
 // g3:   #dcdcdc
 // vrd1: #00a650
 
-const planData = [
+const planDataBase = [
   {
     id: '600mega',
     tagline: 'Navegue sem limites',
@@ -46,7 +46,12 @@ const planData = [
   },
 ];
 
-const Plans = () => {
+const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
+  const planData = React.useMemo(() => {
+    const data = [...planDataBase];
+    data[data.length - 1] = { ...data[data.length - 1], imageCard };
+    return data;
+  }, [imageCard]);
   const scrollRef = useRef(null);
   const [activeDot, setActiveDot] = useState(0);
   const visiblePlans = planData.filter(p => !p.imageCard);
@@ -91,7 +96,7 @@ const Plans = () => {
       </h2>
 
       {/* Cards */}
-      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
+      <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex items-start md:items-stretch overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
         {planData.map((plan) => {
           const isOpen = openDetails === plan.id;
           const isPonto = pontoCabeado[plan.id];

@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 
 function Others() {
   const residencialCards = [
-    { label: 'Via Rádio', href: '/via-radio', img: '/img/via_radio.avif' },
-    { label: 'Porto Maravilha', href: '/porto-maravilha', img: '/img/porto_maravilha.avif' },
+    { label: 'Via Rádio', href: '/via-radio', img: '/img/via_radio.avif', mobileImg: '/img/via_radio_mobile.avif' },
+    { label: 'Porto Maravilha', href: '/porto-maravilha', img: '/img/porto_maravilha.avif', mobileImg: '/img/porto_maravilha_mobile.avif' },
   ];
 
   const scrollRef = useRef(null);
@@ -74,7 +74,7 @@ function Others() {
                 <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
               </div>
               <div className="px-4 py-2 flex-1 flex items-center">
-                <img src="/img/via_radio.avif" alt="Via Rádio" className="w-full object-cover" />
+                <img src="/img/via_radio.avif" alt="Via Rádio" className="w-full object-cover" style={{ transform: 'scaleX(-1)' }} />
               </div>
               <div className="p-4 mb-2">
                 <a href="/via-radio" className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">
@@ -110,49 +110,25 @@ function Others() {
 
       </div>
 
-      {/* ── MOBILE: scroll horizontal + empresa abaixo ── */}
+      {/* ── MOBILE: empilhado + empresa abaixo ── */}
       <div className="md:hidden">
         <h2 className="text-[1.65rem] mb-4">Internet Via Rádio e Porto Maravilha</h2>
-        <div
-          ref={scrollRef}
-          onScroll={handleScroll}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-2 scrollbar-hide"
-        >
+        <div className="flex flex-col gap-4">
           {residencialCards.map((item) => (
-            <div key={item.href} className="snap-start shrink-0 w-[85%] border border-[#dcdcdc] rounded flex flex-col justify-between overflow-hidden pb-2">
+            <div key={item.href} className="border border-[#dcdcdc] rounded flex flex-col justify-between overflow-hidden pb-2">
               <div className="px-4 pt-6 pb-1 flex flex-col gap-0.5">
                 <p className="text-xl text-[#3d3838] leading-tight">{item.label}</p>
                 <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
               </div>
-              <div className="px-4 py-2">
-                <img src={item.img} alt={item.label} className="w-full aspect-[16/9] object-cover" />
+              <div className="px-4 pt-2">
+                <img src={item.mobileImg} alt={item.label} className="w-full object-cover" style={item.href === '/via-radio' ? { transform: 'scaleX(-1)' } : undefined} />
               </div>
-              <div className="p-4">
+              <div className="p-4 -mt-1">
                 <a href={item.href} className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">
                   Conhecer planos
                 </a>
               </div>
             </div>
-          ))}
-        </div>
-        {/* Dots */}
-        <div className="flex justify-center gap-1.5 mt-2">
-          {residencialCards.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Ir para item ${i + 1}`}
-              onClick={() => dotsScroll(i)}
-              style={{
-                backgroundColor: i === activeDot ? '#f7adaf' : '#e6e7e8',
-                width: i === activeDot ? '1.5rem' : '0.55rem',
-                height: '0.35rem',
-                borderRadius: '9999px',
-                border: 'none',
-                transition: 'all 0.3s',
-                cursor: 'pointer',
-              }}
-            />
           ))}
         </div>
 

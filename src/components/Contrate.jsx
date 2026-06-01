@@ -29,7 +29,8 @@ function Contrate() {
   return (
     <div
       id="Contrate"
-      className="relative font-sans overflow-hidden bg-[#8c0005] md:bg-transparent"
+      className="relative font-sans overflow-hidden md:bg-transparent"
+      style={{ background: 'radial-gradient(circle at center, #d20606 0%, #510305 100%)' }}
     >
       {/* Imagem de fundo — desktop only */}
       <img

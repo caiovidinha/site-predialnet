@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const defaultSlides = [
-  { src: '/img/carrossel-b.webp', alt: 'Promoção B', link: 'https://www.predialnet.com.br/assineja?plano=promo' },
+  { src: '/img/carrossel-b.webp', mobileSrc: '/img/carrossel-b-mobile.webp', alt: 'Promoção B', link: 'https://www.predialnet.com.br/assineja?plano=800mega' },
+  { src: '/img/carrossel-f.webp', mobileSrc: '/img/carrossel-f-mobile.webp', alt: 'Promoção E', link: 'https://www.predialnet.com.br/assineja' },
 ];
 
 const PromoCarousel = ({
   id,
   title = 'Os melhores planos estão aqui',
-  subtitle = 'A Predialnet tem um plano feito para você viver o melhor conectado',
+  subtitle = 'A Predialnet tem um plano feito para você viver conectado',
   slides = defaultSlides,
 }) => {
   const [current, setCurrent] = useState(0);
