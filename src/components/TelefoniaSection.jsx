@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { sanitizeInput, sanitizeFormData, validateEmail, validatePhone } from '../utils/validation';
 import { events } from '../utils/analytics';
 import { SuccessToast } from './SpecialPlanPage';
