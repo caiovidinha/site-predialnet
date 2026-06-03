@@ -150,7 +150,7 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
           <h2 className="text-lg font-light leading-6">{subtitle}</h2>
         </div>
         <div className="flex-1 hidden md:flex">
-          <p className="text-lg font-light leading-6">Preencha o formulário que entraremos em contato</p>
+          <p className="text-lg font-light leading-6">Preencha o formulário e entraremos em contato para finalizar sua solicitação.</p>
         </div>
       </div>
 
@@ -205,7 +205,7 @@ const SpecialPlanPage = ({ title, subtitle, plans, type, emailTo, disclaimer }) 
         {/* Coluna direita: formulário (mesma altura dos cards) */}
         <div className="flex-1 flex flex-col">
           <div className="flex-1 md:hidden mb-3 mt-6">
-            <p className="text-lg font-light leading-6">Preencha o formulário que entraremos em contato</p>
+            <p className="text-lg font-light leading-6">Preencha o formulário e entraremos em contato para finalizar sua solicitação.</p>
           </div>
           <form id="special-plan-form" onSubmit={handleSubmit} noValidate className="flex flex-col flex-1">
             {missingField !== 'none' && (

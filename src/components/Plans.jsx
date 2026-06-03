@@ -100,9 +100,10 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
         {planData.map((plan) => {
           const isOpen = openDetails === plan.id;
           const isPonto = pontoCabeado[plan.id];
+          const mobileOrderClass = { '800mega': 'order-1 md:order-2', '600mega': 'order-3 md:order-1', '1giga': 'order-2', 'gamer1giga': 'order-4' }[plan.id] ?? '';
 
           return (
-            <div key={plan.id} ref={el => { cardRefs.current[plan.id] = el; }} className={`snap-start shrink-0 md:shrink w-[85%] md:w-1/4 relative pt-4 flex flex-col${plan.imageCard ? ' hidden md:flex' : ''}`}>
+            <div key={plan.id} ref={el => { cardRefs.current[plan.id] = el; }} className={`${mobileOrderClass} snap-start shrink-0 md:shrink w-[85%] md:w-1/4 relative pt-4 flex flex-col${plan.imageCard ? ' hidden md:flex' : ''}`}>
 
               {/* Selo */}
               {plan.seal && (

@@ -8,8 +8,8 @@ const cards = [
   },
   {
     img: '/img/navega-2.webp',
-    title: 'Vídeochamadas com muita qualidade e estabilidade',
-    text: 'Faça chamadas de vídeo sem travar com uma conexão estável e de qualidade.',
+    title: 'Faça videochamadas com muita qualidade e estabilidade',
+    text: 'Realize chamadas de vídeo sem travar com uma conexão estável, de alta qualidade e sem interrupções.',
   },
   {
     img: '/img/navega-3.webp',

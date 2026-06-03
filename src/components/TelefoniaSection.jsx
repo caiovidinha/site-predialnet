@@ -166,7 +166,7 @@ const TelefoniaSection = () => {
         </div>
         <div className="hidden md:flex md:flex-1">
           <p className="text-lg font-light leading-6">
-            Preencha o formulário que entraremos em contato
+            Preencha o formulário e entraremos em contato para finalizar sua solicitação.
           </p>
         </div>
       </div>

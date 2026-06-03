@@ -127,7 +127,7 @@ function TelefoniaPage() {
       {response === 'success' && <SuccessToast onClose={() => setResponse('')} />}
 
       <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-2">Telefonia fixa</h1>
-      <p className="text-lg font-light leading-6 mb-8">Preencha o formulário que entraremos em contato.</p>
+      <p className="text-lg font-light leading-6 mb-8">Preencha o formulário e entraremos em contato para finalizar sua solicitação.</p>
 
       <form onSubmit={handleSubmit} noValidate className="border border-[#dcdcdc] rounded p-6 flex flex-col gap-3 max-w-2xl">
         {missingField !== 'none' && (
