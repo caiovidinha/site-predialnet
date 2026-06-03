@@ -70,7 +70,7 @@ function Contrate() {
               <img src={action.icon} alt={action.label} className="w-6 h-6 object-contain shrink-0" />
               <span className="flex-1 text-white text-lg flex flex-col md:flex-row md:items-center">
                 <span>{action.label}</span>
-                <span className="text-white/80 text-sm  font-semibold md:text-lg">
+                <span className="text-white/80 text-sm  font-semibold md:font-normal md:text-lg">
                   <span className="hidden md:inline">&nbsp;-&nbsp;</span>
                   {action.sub}
                 </span>

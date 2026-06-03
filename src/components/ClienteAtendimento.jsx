@@ -89,7 +89,7 @@ function ClienteAtendimento() {
                   alt=""
                   className="w-5 h-5 object-contain flex-shrink-0 transition-all group-hover:[filter:brightness(0)_saturate(100%)_invert(8%)_sepia(97%)_saturate(4000%)_hue-rotate(352deg)_brightness(82%)]"
                 />
-                <span className="text-xs font-semibold md:text-sm text-[#444] flex-1 leading-tight">{card.title}</span>
+                <span className="text-xs font-semibold md:font-normal md:text-sm text-[#444] flex-1 leading-tight">{card.title}</span>
                 <svg className="w-4 h-4 flex-shrink-0 text-[#aaa]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                 </svg>
@@ -103,7 +103,7 @@ function ClienteAtendimento() {
                   alt=""
                   className="w-5 h-5 object-contain flex-shrink-0 transition-all group-hover:[filter:brightness(0)_saturate(100%)_invert(8%)_sepia(97%)_saturate(4000%)_hue-rotate(352deg)_brightness(82%)]"
                 />
-                <span className="text-xs font-semibold md:text-sm text-[#444] flex-1 leading-tight flex flex-col md:flex-row md:items-center">
+                <span className="text-xs font-semibold md:font-normal md:text-sm text-[#444] flex-1 leading-tight flex flex-col md:flex-row md:items-center">
                   <span>{atendimentoCards[i].title}</span>
                   <span className="text-[#888] text-xs md:text-sm">
                     <span className="hidden md:inline">&nbsp;</span>
