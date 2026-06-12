@@ -125,7 +125,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
               <div className="border border-[#dcdcdc] rounded bg-white flex flex-col px-6 pt-10 pb-7 flex-1">
 
                 {/* Tagline */}
-                <p className="text-sm font-light mb-1">{plan.tagline}</p>
+                <p className="text-sm font-light mb-1 md:mt-5">{plan.tagline}</p>
                 {/* Nome do plano */}
                 <h2 className="text-[28px] font-light mb-5 tracking-[-0.01em]">{plan.title}</h2>
 
@@ -143,7 +143,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
 
                 {/* Ponto cabeado */}
                 <div
-                  className={`rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
+                  className={`hidden rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
                   onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
                 >
                   <span className="text-[12px] font-light">
