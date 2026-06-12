@@ -15,6 +15,7 @@ const planDataBase = [
     title: '600 Mega',
     price: '99,90',
     wifi: 'Wi-Fi Gigabit',
+    wifiDesc: 'Conexão rápida e estável',
     seal: { text: 'MENOR CUSTO', bg: '#dcdcdc', color: '#8a0005' },
     gamerPonto: false,
     regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-600.pdf',
@@ -25,6 +26,7 @@ const planDataBase = [
     title: '800 Mega',
     price: '124,90',
     wifi: 'Wi-Fi 6',
+    wifiDesc: 'Mais alcance e estabilidade',
     seal: { text: 'MAIS VENDIDO', bg: '#dcdcdc', color: '#8a0005' },
     gamerPonto: false,
     regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf',
@@ -35,6 +37,7 @@ const planDataBase = [
     title: '1 Giga',
     price: '139,90',
     wifi: 'Wi-Fi 6',
+    wifiDesc: 'Mais alcance e estabilidade',
     seal: { text: 'MELHOR OFERTA', bg: '#8a0005', color: '#ffffff' },
     gamerPonto: false,
     regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
@@ -125,13 +128,13 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
               <div className="border border-[#dcdcdc] rounded bg-white flex flex-col px-6 pt-10 pb-7 flex-1">
 
                 {/* Tagline */}
-                <p className="text-sm font-light mb-1 md:mt-5">{plan.tagline}</p>
+                <p className="text-sm font-light mb-1">{plan.tagline}</p>
                 {/* Nome do plano */}
                 <h2 className="text-[28px] font-light mb-5 tracking-[-0.01em]">{plan.title}</h2>
 
                 {/* Features */}
                 <ul className="flex flex-col gap-2.5 mb-5 md:mt-5">
-                  {[plan.wifi, 'Instalação Grátis', 'Sem fidelidade', 'Serviços Inteligentes'].map((feat) => (
+                  {['Instalação Grátis', 'Sem fidelidade', 'Serviços Inteligentes'].map((feat) => (
                     <li key={feat} className="text-xs font-light flex items-center gap-1.5">
                       <svg width="12" height="10" viewBox="0 0 12 10" fill="none" className="flex-shrink-0 text-[#8a0005]" aria-hidden="true">
                         <path d="M1 5L4.5 8.5L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -140,8 +143,17 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                     </li>
                   ))}
                 </ul>
-
                 {/* Ponto cabeado */}
+                <div
+                  className={` rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
+                  onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
+                >
+                  <span className="text-[12px] font-light">
+                    <span>Super {plan.wifi}</span> <br />
+                    <span>{plan.wifiDesc}</span>
+                  </span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a0005" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="#8a0005" stroke="none"/></svg>
+           
                 <div
                   className={`hidden rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
                   onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
@@ -158,6 +170,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                         <path d="M1 4.5L4 7.5L10 1.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     )}
+                  </div>
                   </div>
                 </div>
 
