@@ -13,7 +13,7 @@ const actions = [
     icon: '/img/iconeWhatsapp.avif',
     label: 'Assine pelo WhatsApp',
     sub: 'conversar',
-    href: 'https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet.',
+    href: 'https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet.',
     external: true,
   },
   {

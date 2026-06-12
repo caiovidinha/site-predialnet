@@ -41,7 +41,7 @@ function Phone() {
               Assinar pelo site
             </button>
             <a 
-            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Plus!"
+            href="https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Plus!"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
@@ -67,7 +67,7 @@ function Phone() {
               Assinar pelo site
             </button>
             <a 
-            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Master!"
+            href="https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Master!"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
@@ -116,7 +116,7 @@ function Phone() {
               Aproveitar oferta
             </button>
             <a 
-            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Plus!"
+            href="https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Plus!"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
@@ -141,7 +141,7 @@ function Phone() {
               Aproveitar oferta
             </button>
             <a 
-            href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Master!"
+            href="https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20!%20Quero%20assinar%20o%20plano%20de%20telefonia%20Ideal%20Master!"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 py-2 bg-[#2db640] text-white w-full rounded-full text-lg sm:text-xl mt-2 font-light mb-4 hover:scale-105 transition-transform">
