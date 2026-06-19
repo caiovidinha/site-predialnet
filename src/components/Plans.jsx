@@ -41,7 +41,7 @@ const planDataBase = [
     wifiDesc: 'Mais alcance e estabilidade',
     seal: { text: 'MELHOR OFERTA', bg: '#8a0005', color: '#ffffff' },
     gamerPonto: false,
-    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
+    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga-torcida.pdf',
     assinarSlug: '1gigacopa',
   },
   {

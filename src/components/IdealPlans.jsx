@@ -29,7 +29,7 @@ const plans = [
     description:
       'Ideal para tarefas exigentes, como edição de áudio e vídeo e jogos em nuvem, além de conteúdos em 4K, HDR e 8K. Ideal também para ambientes com vários dispositivos conectados e alta velocidade de download e upload.',
     btnLabel: 'Assinar 1 Giga',
-    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
+    regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga-torcida.pdf',
   },
   {
     id: 'gamer1giga',
