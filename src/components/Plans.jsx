@@ -33,14 +33,16 @@ const planDataBase = [
   },
   {
     id: '1giga',
-    tagline: 'Muita internet pra casa toda',
+    tagline: 'Torcida Pro predialnet',
     title: '1 Giga',
+    subtitle: '+ Ponto cabeado',
     price: '139,90',
     wifi: 'Wi-Fi 6',
     wifiDesc: 'Mais alcance e estabilidade',
     seal: { text: 'MELHOR OFERTA', bg: '#8a0005', color: '#ffffff' },
     gamerPonto: false,
     regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-1giga.pdf',
+    assinarSlug: '1gigacopa',
   },
   {
     id: 'gamer1giga',
@@ -103,7 +105,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
         {planData.map((plan) => {
           const isOpen = openDetails === plan.id;
           const isPonto = pontoCabeado[plan.id];
-          const mobileOrderClass = { '800mega': 'order-1 md:order-2', '600mega': 'order-3 md:order-1', '1giga': 'order-2', 'gamer1giga': 'order-4' }[plan.id] ?? '';
+          const mobileOrderClass = { '800mega': 'order-2 md:order-2', '600mega': 'order-3 md:order-1', '1giga': 'order-1 md:order-3', 'gamer1giga': 'order-4' }[plan.id] ?? '';
 
           return (
             <div key={plan.id} ref={el => { cardRefs.current[plan.id] = el; }} className={`${mobileOrderClass} snap-start shrink-0 md:shrink w-[85%] md:w-1/4 relative pt-4 flex flex-col${plan.imageCard ? ' hidden md:flex' : ''}`}>
@@ -130,7 +132,13 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                 {/* Tagline */}
                 <p className="text-sm font-light mb-1">{plan.tagline}</p>
                 {/* Nome do plano */}
-                <h2 className="text-[28px] font-light mb-5 tracking-[-0.01em]">{plan.title}</h2>
+                <div className="min-h-[60px] mb-1">
+                  <h2 className="text-[28px] font-light leading-8 tracking-[-0.01em]">
+                    {plan.title}
+                    {plan.subtitle && <span className="block text-[18px] font-light leading-6">{plan.subtitle}</span>}
+                  </h2>
+                </div>
+
 
                 {/* Features */}
                 <ul className="flex flex-col gap-2.5 mb-5 md:mt-5">
@@ -144,8 +152,13 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                   ))}
                 </ul>
                 {/* Ponto cabeado */}
+                {plan.id === '1giga' ? (
+                <div className="rounded-sm overflow-hidden aspect-[18/5] mt-2">
+                  <img src="/img/bannercopa.webp" alt="Torcida Pro Predialnet" className="w-full h-full object-cover block" />
+                </div>
+                ) : (
                 <div
-                  className={` rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
+                  className={`rounded-sm flex items-center justify-between aspect-[18/5] px-4 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
                   onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
                 >
                   <span className="text-[12px] font-light">
@@ -153,7 +166,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                     <span>{plan.wifiDesc}</span>
                   </span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a0005" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="#8a0005" stroke="none"/></svg>
-           
+
                 <div
                   className={`hidden rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
                   onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
@@ -173,6 +186,8 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                   </div>
                   </div>
                 </div>
+                )}
+                
 
                 {/* Preço */}
                 <p className="text-2xl mt-auto pt-5">
@@ -181,7 +196,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
 
                 {/* Botão Assinar */}
                 <a
-                  href={`https://www.predialnet.com.br/assineja?plano=${plan.id}${isPonto ? '&ponto-cabeado' : ''}`}
+                  href={`https://www.predialnet.com.br/assineja?plano=${plan.assinarSlug || plan.id}${(isPonto || plan.id === '1giga') ? '&ponto-cabeado' : ''}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-center py-3 rounded-sm text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity mt-3 md:mt-5 mb-3"
@@ -209,8 +224,13 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                 {/* Accordion inline — mobile only */}
                 {isOpen && (
                   <div className="md:hidden mt-4 pt-4 border-t border-[#e6e6e6] flex flex-col gap-3">
-                    <p className="text-xl">Plano {plan.title}</p>
+                    <p className="text-xl">Plano {plan.title} {plan.id === '1giga' ? '+ ponto cabeado' : ''}</p>
                     <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
+                    {plan.id === '1giga' && (
+                      <p className="text-sm">
+                        Este plano já inclui 1 Ponto Cabeado grátis.
+                      </p>
+                    )}
                     <p className="text-sm">
                       Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
                       viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
@@ -235,8 +255,13 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
               {/* Accordion desktop — flap absoluto abaixo do card */}
               {isOpen && (
                 <div className="hidden md:flex flex-col gap-3 absolute top-full left-0 right-0 z-20 border border-[#dcdcdc] border-t-0 rounded-b bg-white px-6 py-5">
-                  <p className="text-xl">Plano {plan.title}</p>
+                  <p className="text-xl">Plano {plan.title} {plan.id === '1giga' ? '+ ponto cabeado' : ''}</p>
                   <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
+                  {plan.id === '1giga' && (
+                    <p className="text-sm">
+                      Este plano já inclui 1 Ponto Cabeado grátis.
+                    </p>
+                  )}
                   <p className="text-sm">
                     Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
                     viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
