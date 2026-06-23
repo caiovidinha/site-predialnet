@@ -142,7 +142,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
 
                 {/* Features */}
                 <ul className="flex flex-col gap-2.5 mb-5 md:mt-5">
-                  {['Instalação Grátis', 'Sem fidelidade', 'Serviços Inteligentes'].map((feat) => (
+                  {['Instalação Grátis', 'Sem fidelidade', 'Serviços Inteligentes', `Super ${plan.wifi}`].map((feat) => (
                     <li key={feat} className="text-xs font-light flex items-center gap-1.5">
                       <svg width="12" height="10" viewBox="0 0 12 10" fill="none" className="flex-shrink-0 text-[#8a0005]" aria-hidden="true">
                         <path d="M1 5L4.5 8.5L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
