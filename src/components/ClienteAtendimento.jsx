@@ -125,7 +125,7 @@ function ClienteAtendimento() {
           </div>
           <div className="md:hidden block">
             <p className="text-base sm:text-lg text-[#444]">Setor Comercial</p>
-            <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 20h <br /> Sábado das 9h às 16h</p>
+            <p className="text-sm text-[#444] mb-2">Segunda a sexta das 8h às 20h <br /> Sábado das 9h às 15h</p>
           </div>
           <div className="md:hidden block">
             <p className="text-base sm:text-lg text-[#444]">Suporte</p>
