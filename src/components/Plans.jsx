@@ -145,8 +145,8 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                 </ul>
                 {/* Ponto cabeado */}
                 <div
-                  className={` rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
-                  onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
+                  className={` rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors cursor-default text-sm mt-2`}
+                  // onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
                 >
                   <span className="text-[12px] font-light">
                     <span>Super {plan.wifi}</span> <br />
@@ -155,8 +155,8 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a0005" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="#8a0005" stroke="none"/></svg>
            
                 <div
-                  className={`hidden rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors ${plan.gamerPonto ? 'cursor-default' : 'cursor-pointer'} text-sm mt-2`}
-                  onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
+                  className={`hidden rounded-sm flex items-center justify-between px-4 py-3 bg-[#e6e6e6] transition-colors cursor-default text-sm mt-2`}
+                  // onClick={() => !plan.gamerPonto && setPontoCabeado((prev) => ({ ...prev, [plan.id]: !prev[plan.id] }))}
                 >
                   <span className="text-[12px] font-light">
                     {isPonto ? (plan.gamerPonto ? <><span>1 Ponto cabeado</span><br /><span>grátis</span></> : <><span>1 Ponto cabeado</span><br /><span>selecionado</span></>) : <><span>Adicionar ponto cabeado</span><br /><span>+R$ 30,00/mês</span></>}
