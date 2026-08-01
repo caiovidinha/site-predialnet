@@ -24,8 +24,8 @@ function Atendimento() {
           <h2 className="text-[1.65rem] md:text-3xl leading-8 sm:text-3xl text-[#9c0004]">Horário de Atendimento</h2>
           <p className="text-[#555] text-base sm:text-lg">Segunda a sexta das 9h às 18h</p>
           <h2 className="text-[1.65rem] md:text-3xl leading-8 sm:text-3xl text-[#9c0004] mt-4">Setor Comercial</h2>
-          <p className="text-[#555] text-base sm:text-lg">Segunda a sexta das 9h às 20h</p>
-          <p className="text-[#555] text-base sm:text-lg">Sábado de 9h às 16h</p>
+          <p className="text-[#555] text-base sm:text-lg">Segunda a sexta das 8h às 20h</p>
+          <p className="text-[#555] text-base sm:text-lg">Sábado de 9h às 15h</p>
           <h3 className="text-[1.65rem] md:text-3xl leading-8 sm:text-3xl text-[#9c0004] mt-4">Suporte</h3>
           <p className="text-[#555] text-base sm:text-lg mt-1">Todos os dias das 6h às 24h</p>
         </div>
