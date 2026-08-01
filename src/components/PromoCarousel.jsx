@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const defaultSlides = [
-  { src: '/img/carrossel-b.webp', mobileSrc: '/img/carrossel-b-mobile.webp', alt: 'Promoção B', link: 'https://www.predialnet.com.br/assineja?plano=1giga', mobileLink: '' },
-  { src: '/img/carrossel-f.webp', mobileSrc: '/img/carrossel-f-mobile.webp', alt: 'Promoção E', link: 'https://www.predialnet.com.br/assineja', mobileLink: '' },
+  { src: '/img/carrossel-b.webp', mobileSrc: '/img/carrossel-b-mobile.webp', alt: 'Promoção 800', link: 'https://www.predialnet.com.br/assineja?plano=800mega', mobileLink: '' },
+  { src: '/img/carrossel-f.webp', mobileSrc: '/img/carrossel-f-mobile.webp', alt: 'Promoção 600', link: 'https://www.predialnet.com.br/assineja?plano=600mega', mobileLink: '' },
 ];
 
 const PromoCarousel = ({
