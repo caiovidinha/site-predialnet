@@ -5,8 +5,13 @@ import SecNavBar from '../components/SecNavBar.astro';
 import ResetPassword from '../components/ResetPassword';
 ---
 
-<Layout title="Redefinir Senha - Predialnet">
+<Layout
+  title="Redefinir senha — Predialnet"
+  description="Defina uma nova senha para a sua conta Predialnet."
+  noindex
+>
   <Navbar />
   <SecNavBar />
+  <h1 class="sr-only">Redefinir senha da conta Predialnet</h1>
   <ResetPassword client:load />
 </Layout>

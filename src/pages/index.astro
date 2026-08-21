@@ -10,14 +10,24 @@ import Contrate from '../components/Contrate';
 import TelefoniaSection from '../components/TelefoniaSection';
 import Others from '../components/Others';
 import ClienteAtendimento from '../components/ClienteAtendimento';
+import SobreProvedor from '../components/SobreProvedor.astro';
+import Faq from '../components/Faq.astro';
 import Footer from '../components/Footer.astro';
+import { FAQ_HOME } from '../data/faq.js';
 ---
 
-<Layout title="Predialnet">
+<Layout
+  title="Predialnet — Internet fibra óptica em Niterói, São Gonçalo e Rio de Janeiro"
+  description="Internet por fibra óptica da Predialnet com planos de 600 Mega a 1 Giga, Wi-Fi 6, instalação grátis e sem fidelidade. Atende Niterói, São Gonçalo, Itaboraí e Rio de Janeiro."
+  faq={FAQ_HOME}
+>
   <Navbar />
   <SecNavBar showBanner />
+  <h1 class="sr-only">
+    Internet fibra óptica em Niterói, São Gonçalo e Rio de Janeiro
+  </h1>
   <a href="https://www.predialnet.com.br/assineja?plano=hero" target="_blank" rel="noopener noreferrer" class="hidden sm:block">
-    <img src="/img/hero.webp" alt="Predialnet" class="w-full h-auto block" width="2560" height="722" loading="eager" />
+    <img src="/img/hero.webp" alt="Planos de internet fibra óptica Predialnet de 600 Mega a 1 Giga" class="w-full h-auto block" width="2560" height="722" loading="eager" fetchpriority="high" decoding="async" />
   </a>
   <Plans client:load />
   <PromoCarousel client:visible />
@@ -28,7 +38,7 @@ import Footer from '../components/Footer.astro';
     title="Facilite sua vida, baixe o App Minha Predialnet"
     subtitle="Gerenciamento completo do seu plano"
     slides={[
-      { src: '/img/carrossel-c.webp', mobileSrc: '/img/carrossel-c-mobile.webp', alt: 'App Predialnet', link: '', mobileLink: '/redirect' },
+      { src: '/img/carrossel-c.webp', mobileSrc: '/img/carrossel-c-mobile.webp', alt: 'App Minha Predialnet para gerenciar seu plano', link: '', mobileLink: '/redirect', w: 1920, h: 470 },
     ]}
   />
   <NavegaSection client:visible />
@@ -37,14 +47,16 @@ import Footer from '../components/Footer.astro';
     title="O maior provedor regional do Estado do Rio de Janeiro"
     subtitle="Agora sua internet vai ser gigante, venha para Predialnet."
     slides={[
-      { src: '/img/carrossel-e.webp', mobileSrc: '/img/carrossel-e-mobile.webp', alt: 'Provedor RJ', link: '', mobileLink: '' },
-      { src: '/img/carrossel-d.webp', mobileSrc: '/img/carrossel-d-mobile.webp', alt: 'Fluminense', link: '', mobileLink: '' },
+      { src: '/img/carrossel-e.webp', mobileSrc: '/img/carrossel-e-mobile.webp', alt: 'Predialnet, provedor regional de internet no Estado do Rio de Janeiro', link: '', mobileLink: '', w: 2560, h: 626 },
+      { src: '/img/carrossel-d.webp', mobileSrc: '/img/carrossel-d-mobile.webp', alt: 'Predialnet, patrocinadora do Fluminense Football Club', link: '', mobileLink: '', w: 1920, h: 470 },
     ]}
   />
+  <SobreProvedor />
   <TelefoniaSection client:visible />
   <Others client:visible />
   <ClienteAtendimento client:visible />
   <Plans imageCard="/img/cardPlanosB.webp" client:visible />
+  <Faq />
   <Contrate client:visible />
   <Footer />
 </Layout>

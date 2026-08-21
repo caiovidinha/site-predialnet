@@ -1,19 +1,151 @@
 ---
 import '../styles/global.css';
+import { SITE, EMPRESA, HORARIOS, CIDADES, PLANOS, PRECO_MIN, PRECO_MAX } from '../data/site.js';
+
+interface FaqItem { pergunta: string; resposta: string; }
+interface Crumb { nome: string; url: string; }
 
 interface Props {
   title?: string;
   description?: string;
+  /** Imagem de compartilhamento (Open Graph). Caminho relativo à raiz. */
+  image?: string;
+  /** Páginas utilitárias (formulários, redirects) não devem ser indexadas. */
+  noindex?: boolean;
+  /** Perguntas e respostas desta página — vira FAQPage no Schema.org. */
+  faq?: FaqItem[];
+  /** Trilha de navegação real desta página. A home não passa nada. */
+  breadcrumbs?: Crumb[];
 }
 
-const { 
-  title = 'Predialnet - Sua nova internet',
-  description = 'Internet de alta velocidade com fibra óptica. Planos de 600 mega, 800 mega e 1 giga com Wi-Fi 6.'
+const {
+  title = 'Predialnet — Internet fibra óptica em Niterói, São Gonçalo e Rio de Janeiro',
+  description = 'Provedor de internet por fibra óptica com planos de 600 Mega a 1 Giga, Wi-Fi 6, instalação grátis e sem fidelidade. Atende Niterói, São Gonçalo, Itaboraí e Rio de Janeiro.',
+  image = '/img/og-predialnet.jpg',
+  noindex = false,
+  faq = [],
+  breadcrumbs = [],
 } = Astro.props;
+
+const base = Astro.site ?? new URL(SITE);
+// O Apache serve as páginas com barra final (/via-radio -> 301 -> /via-radio/).
+// O canonical aponta para a URL que responde 200, sem passar por redirect.
+const semBarra = Astro.url.pathname.replace(/[/]+$/, '');
+const pathname = semBarra === '' ? '/' : semBarra + '/';
+const canonical = new URL(pathname, base).href;
+const ogImage = new URL(image, base).href;
 
 const SHOW_CARNAVAL_POPUP = false;
 const SHOW_INSTABILITY_POPUP = false;
 const SHOW_FRAUD_POPUP = false;
+
+/* ─── Schema.org montado a partir de src/data/site.js ─── */
+
+const areaServed = CIDADES.map((nome) => ({
+  '@type': 'City',
+  name: nome,
+  containedInPlace: { '@type': 'State', name: 'Rio de Janeiro' },
+}));
+
+const organizacao = {
+  '@type': ['Organization', 'LocalBusiness', 'InternetServiceProvider'],
+  '@id': `${SITE}/#organization`,
+  name: EMPRESA.marca,
+  legalName: EMPRESA.razaoSocial,
+  taxID: EMPRESA.cnpj,
+  foundingDate: EMPRESA.fundacao,
+  description: `Provedor de internet por fibra óptica que atende ${CIDADES.join(', ')}. Planos de 600 Mega a 1 Giga com Wi-Fi 6, instalação grátis e sem fidelidade. No mercado desde ${EMPRESA.anoFundacao}.`,
+  url: SITE,
+  telephone: EMPRESA.telefones.comercial,
+  priceRange: `R$ ${PRECO_MIN.replace('.', ',')} - R$ ${PRECO_MAX.replace('.', ',')}`,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: EMPRESA.endereco.logradouro,
+    addressLocality: EMPRESA.endereco.cidade,
+    addressRegion: EMPRESA.endereco.uf,
+    postalCode: EMPRESA.endereco.cep,
+    addressCountry: 'BR',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: EMPRESA.geo.lat, longitude: EMPRESA.geo.lng },
+  logo: { '@type': 'ImageObject', url: `${SITE}/img/logo.png` },
+  image: `${SITE}/img/logo.png`,
+  areaServed,
+  sameAs: EMPRESA.perfis,
+  contactPoint: [
+    { '@type': 'ContactPoint', telephone: EMPRESA.telefones.comercial, contactType: 'sales', areaServed: 'BR', availableLanguage: 'Portuguese' },
+    { '@type': 'ContactPoint', telephone: EMPRESA.telefones.suporte, contactType: 'technical support', areaServed: 'BR', availableLanguage: 'Portuguese' },
+    { '@type': 'ContactPoint', telephone: EMPRESA.telefones.whatsapp, contactType: 'sales', contactOption: 'HearingImpairedSupported', areaServed: 'BR', availableLanguage: 'Portuguese' },
+  ],
+  openingHoursSpecification: HORARIOS.map((h) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.dias,
+    opens: h.abre,
+    closes: h.fecha,
+    description: h.setor,
+  })),
+};
+
+const servicos = PLANOS.map((p) => ({
+  '@type': 'Service',
+  '@id': `${SITE}/#service-${p.id}`,
+  serviceType: `Internet de Fibra Óptica ${p.nome}`,
+  provider: { '@id': `${SITE}/#organization` },
+  areaServed,
+  offers: {
+    '@type': 'Offer',
+    price: p.preco,
+    priceCurrency: 'BRL',
+    availability: 'https://schema.org/InStock',
+    url: `${SITE}/#Plans`,
+    priceValidUntil: '2026-12-31',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: p.preco,
+      priceCurrency: 'BRL',
+      unitText: 'mês',
+    },
+    description: p.descricao,
+  },
+}));
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${SITE}/#website`,
+  url: SITE,
+  name: EMPRESA.marca,
+  description: 'Internet de alta velocidade com fibra óptica',
+  inLanguage: 'pt-BR',
+  publisher: { '@id': `${SITE}/#organization` },
+};
+
+const grafo: any[] = [organizacao, ...servicos, website];
+
+if (breadcrumbs.length) {
+  grafo.push({
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical}#breadcrumb`,
+    itemListElement: breadcrumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.nome,
+      item: new URL(c.url, base).href,
+    })),
+  });
+}
+
+if (faq.length) {
+  grafo.push({
+    '@type': 'FAQPage',
+    '@id': `${canonical}#faq`,
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.pergunta,
+      acceptedAnswer: { '@type': 'Answer', text: f.resposta },
+    })),
+  });
+}
+
+const jsonLd = { '@context': 'https://schema.org', '@graph': grafo };
 ---
 
 <!doctype html>
@@ -23,42 +155,42 @@ const SHOW_FRAUD_POPUP = false;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    
+
     <!-- Preconnect para APIs externas -->
     <link rel="preconnect" href="https://appgw.predialnet.com.br" />
     <link rel="preconnect" href="https://api.ipify.org" />
-    
+
     <!-- Preload das fontes -->
-    <link rel="preload" href="/fonts/Swis721 Lt BT Light.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href="/fonts/Swis721 BT Roman.ttf" as="font" type="font/ttf" crossorigin />
-    
-    <!-- Preload de imagens hero (primeiro banner do carrossel) -->
-    <link rel="preload" href="/img/banner1.avif" as="image" type="image/avif" media="(min-width: 900px)" />
-    <link rel="preload" href="/img/banner1.webp" as="image" type="image/webp" media="(min-width: 900px)" />
-    <link rel="preload" href="/img/banner1Mobile.avif" as="image" type="image/avif" media="(max-width: 899px)" />
-    <link rel="preload" href="/img/banner1Mobile.webp" as="image" type="image/webp" media="(max-width: 899px)" />
-    
+    <link rel="preload" href="/fonts/Swis721 Lt BT Light.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Swis721 BT Roman.woff2" as="font" type="font/woff2" crossorigin />
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.predialnet.com.br" />
-    
-    <!-- SEO Meta Tags -->
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- Indexação -->
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
     <meta name="author" content="Predialnet" />
-    <meta name="keywords" content="internet fibra óptica, wi-fi 6, planos internet rio de janeiro, internet alta velocidade, internet niterói, provedor de internet" />
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Predialnet" />
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <!-- Google Tag Manager -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -66,216 +198,10 @@ const SHOW_FRAUD_POPUP = false;
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WH2TDC4S');</script>
     <!-- End Google Tag Manager -->
-    
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "LocalBusiness",
-          "@id": "https://www.predialnet.com.br/#organization",
-          "name": "Predialnet",
-          "description": "Provedor de internet de alta velocidade com fibra óptica no Rio de Janeiro. Planos de 600 mega, 800 mega e 1 giga com Wi-Fi 6.",
-          "url": "https://www.predialnet.com.br",
-          "telephone": "+55-21-3515-0555",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "R. da Conceição, 188",
-            "addressLocality": "Niterói",
-            "addressRegion": "RJ",
-            "postalCode": "24020-087",
-            "addressCountry": "BR"
-          },
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.predialnet.com.br/img/logo.png"
-          },
-          "image": "https://www.predialnet.com.br/img/logo.png",
-          "priceRange": "R$ 99,90 - R$ 139,90",
-          "areaServed": {
-            "@type": "City",
-            "name": "Rio de Janeiro",
-            "containedIn": {
-              "@type": "State",
-              "name": "Rio de Janeiro"
-            }
-          },
-          "sameAs": [
-            "https://instagram.com/predialnet"
-          ],
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "09:00",
-              "closes": "18:00",
-              "description": "Horário de Atendimento"
-            },
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "09:00",
-              "closes": "20:00",
-              "description": "Setor Comercial"
-            },
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": "Saturday",
-              "opens": "09:00",
-              "closes": "16:00",
-              "description": "Setor Comercial"
-            },
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-              "opens": "06:00",
-              "closes": "24:00",
-              "description": "Suporte Técnico"
-            }
-          ]
-        },
-        {
-          "@type": "Organization",
-          "@id": "https://www.predialnet.com.br/#organization",
-          "name": "Predialnet",
-          "url": "https://www.predialnet.com.br",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.predialnet.com.br/img/logo.png"
-          },
-          "contactPoint": [
-            {
-              "@type": "ContactPoint",
-              "telephone": "+55-21-3515-0555",
-              "contactType": "customer service",
-              "areaServed": "BR",
-              "availableLanguage": "Portuguese"
-            },
-            {
-              "@type": "ContactPoint",
-              "telephone": "+55-21-97728-7782",
-              "contactType": "sales",
-              "contactOption": "WhatsApp",
-              "areaServed": "BR",
-              "availableLanguage": "Portuguese"
-            }
-          ]
-        },
-        {
-          "@type": "Service",
-          "@id": "https://www.predialnet.com.br/#service-600mega",
-          "serviceType": "Internet de Fibra Óptica 600 Mega",
-          "provider": {
-            "@id": "https://www.predialnet.com.br/#organization"
-          },
-          "areaServed": {
-            "@type": "City",
-            "name": "Rio de Janeiro"
-          },
-          "offers": {
-            "@type": "Offer",
-            "price": "99.90",
-            "priceCurrency": "BRL",
-            "availability": "https://schema.org/InStock",
-            "url": "https://www.predialnet.com.br/#planos",
-            "priceValidUntil": "2026-12-31",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": "99.90",
-              "priceCurrency": "BRL",
-              "unitText": "mês"
-            },
-            "description": "Plano de internet 600 mega com Super Wi-Fi Gigabit, instalação grátis e sem fidelidade"
-          }
-        },
-        {
-          "@type": "Service",
-          "@id": "https://www.predialnet.com.br/#service-800mega",
-          "serviceType": "Internet de Fibra Óptica 800 Mega",
-          "provider": {
-            "@id": "https://www.predialnet.com.br/#organization"
-          },
-          "areaServed": {
-            "@type": "City",
-            "name": "Rio de Janeiro"
-          },
-          "offers": {
-            "@type": "Offer",
-            "price": "124.90",
-            "priceCurrency": "BRL",
-            "availability": "https://schema.org/InStock",
-            "url": "https://www.predialnet.com.br/#planos",
-            "priceValidUntil": "2026-12-31",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": "124.90",
-              "priceCurrency": "BRL",
-              "unitText": "mês"
-            },
-            "description": "Plano de internet 800 mega com Super Wi-Fi 6, instalação grátis e sem fidelidade"
-          }
-        },
-        {
-          "@type": "Service",
-          "@id": "https://www.predialnet.com.br/#service-1giga",
-          "serviceType": "Internet de Fibra Óptica 1 Giga",
-          "provider": {
-            "@id": "https://www.predialnet.com.br/#organization"
-          },
-          "areaServed": {
-            "@type": "City",
-            "name": "Rio de Janeiro"
-          },
-          "offers": {
-            "@type": "Offer",
-            "price": "139.90",
-            "priceCurrency": "BRL",
-            "availability": "https://schema.org/InStock",
-            "url": "https://www.predialnet.com.br/#planos",
-            "priceValidUntil": "2026-12-31",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": "139.90",
-              "priceCurrency": "BRL",
-              "unitText": "mês"
-            },
-            "description": "Plano de internet 1 giga com Super Wi-Fi 6, instalação grátis e sem fidelidade"
-          }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://www.predialnet.com.br/#website",
-          "url": "https://www.predialnet.com.br",
-          "name": "Predialnet",
-          "description": "Internet de alta velocidade com fibra óptica",
-          "publisher": {
-            "@id": "https://www.predialnet.com.br/#organization"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "@id": "https://www.predialnet.com.br/#breadcrumb",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "https://www.predialnet.com.br"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Planos",
-              "item": "https://www.predialnet.com.br/#planos"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-    <!-- End Schema.org JSON-LD -->
-    
+
+    <!-- Schema.org — gerado a partir de src/data/site.js -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+
     <title>{title}</title>
   </head>
   <body class="bg-white text-black">

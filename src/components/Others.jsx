@@ -47,11 +47,19 @@ function Others() {
           Preencher formulário
         </a>
       </div>
-      <div className="hidden md:block w-[45%] flex-shrink-0">
-        <img src="/img/foto_empresa.avif" alt="Internet Empresa" className="w-full h-full object-cover" />
-      </div>
-      <div className="block md:hidden w-[45%] flex-shrink-0 -mr-10">
-        <img src="/img/foto_empresa_mobile.avif" alt="Internet Empresa" className="w-full h-full object-cover object-left -ml-10" />
+      <div className="w-[45%] flex-shrink-0 -mr-10 md:mr-0">
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/img/foto_empresa.avif" />
+          <img
+            src="/img/foto_empresa_mobile.avif"
+            alt="Equipe usando internet corporativa Predialnet no escritório"
+            width={900}
+            height={976}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover object-left -ml-10 md:ml-0 md:object-center"
+          />
+        </picture>
       </div>
     </div>
   );
@@ -74,7 +82,7 @@ function Others() {
                 <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
               </div>
               <div className="px-4 py-2 flex-1 flex items-center">
-                <img src="/img/via_radio.avif" alt="Via Rádio" className="w-full object-cover" style={{ transform: 'scaleX(-1)' }} />
+                <img src="/img/via_radio.avif" alt="Via Rádio" className="w-full object-cover" style={{ transform: 'scaleX(-1)' }} width={600} height={334} loading="lazy" decoding="async" />
               </div>
               <div className="p-4 mb-2">
                 <a href="/via-radio" className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">
@@ -89,7 +97,7 @@ function Others() {
                 <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
               </div>
               <div className="px-4 py-2 flex-1 flex items-center">
-                <img src="/img/porto_maravilha.avif" alt="Porto Maravilha" className="w-full object-cover" />
+                <img src="/img/porto_maravilha.avif" alt="Porto Maravilha" className="w-full object-cover" width={600} height={334} loading="lazy" decoding="async" />
               </div>
               <div className="p-4  mb-2">
                 <a href="/porto-maravilha" className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">
@@ -121,7 +129,7 @@ function Others() {
                 <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
               </div>
               <div className="px-4 pt-2">
-                <img src={item.mobileImg} alt={item.label} className="w-full object-cover" style={item.href === '/via-radio' ? { transform: 'scaleX(-1)' } : undefined} />
+                <img src={item.mobileImg} alt={`Internet ${item.label} da Predialnet`} width={900} height={353} loading="lazy" decoding="async" className="w-full object-cover" style={item.href === '/via-radio' ? { transform: 'scaleX(-1)' } : undefined} />
               </div>
               <div className="p-4 -mt-1">
                 <a href={item.href} className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">

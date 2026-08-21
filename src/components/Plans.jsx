@@ -91,12 +91,12 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
   return (
     <div id="Plans" className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#f4f5f5] text-[#3d3838]">
       {/* Cabeçalho */}
-      <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]">
+      <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]">
         Planos Predialnet Fibra para sua casa
-      </h1>
-      <h2 className="text-lg font-light leading-6">
-        Conquiste um plano Predialnet e mude sua experiência de conexão
       </h2>
+      <p className="text-lg font-light leading-6">
+        Conquiste um plano Predialnet e mude sua experiência de conexão
+      </p>
 
       {/* Cards */}
       <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex items-start md:items-stretch overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
@@ -121,7 +121,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
               {/* Card */}
               {plan.imageCard ? (
                 <div className="border border-[#dcdcdc] rounded bg-white overflow-hidden flex-1">
-                  <img src={plan.imageCard} alt={plan.title} className="w-full block" />
+                  <img src={plan.imageCard} alt={`Plano ${plan.title} da Predialnet`} width={800} height={1554} loading="lazy" decoding="async" className="w-full block" />
                 </div>
               ) : (
               <>
@@ -130,7 +130,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                 {/* Tagline */}
                 <p className="text-sm font-light mb-1">{plan.tagline}</p>
                 {/* Nome do plano */}
-                <h2 className="text-[28px] font-light mb-5 tracking-[-0.01em]">{plan.title}</h2>
+                <h3 className="text-[28px] font-light mb-5 tracking-[-0.01em]">{plan.title}</h3>
 
                 {/* Features */}
                 <ul className="flex flex-col gap-2.5 mb-5 md:mt-5">
@@ -226,7 +226,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                     </div>
                     <p className="text-sm">Baixe o App Minha Predialnet e gerencie seu plano.</p>
                     <a href={plan.regulamento} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors">
-                      <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" />
+                      <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" loading="lazy" decoding="async" />
                       Baixe o regulamento
                     </a>
                   </div>
@@ -252,7 +252,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                   </div>
                   <p className="text-sm">Baixe o App Minha Predialnet e gerencie seu plano.</p>
                   <a href={plan.regulamento} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors">
-                    <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" />
+                    <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" loading="lazy" decoding="async" />
                     Baixe o regulamento
                   </a>
                 </div>

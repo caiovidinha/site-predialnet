@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import zxcvbn from "zxcvbn";
+import { useState, useEffect, useRef } from "react";
 import { sanitizeInput, validateEmail } from "../utils/validation";
 
 export default function ResetPassword() {
@@ -26,8 +25,28 @@ export default function ResetPassword() {
     setToken(urlParams.get("token") || "");
   }, []);
 
+  // zxcvbn traz ~800 KB de dicionários. Carregado sob demanda, no primeiro
+  // caractere digitado, para não pesar no carregamento inicial da página.
+  const zxcvbnRef = useRef(null);
+
   useEffect(() => {
-    setPasswordStrength(zxcvbn(password).score);
+    if (!password) {
+      setPasswordStrength(0);
+      return;
+    }
+
+    let cancelado = false;
+
+    const avaliar = async () => {
+      if (!zxcvbnRef.current) {
+        const mod = await import("zxcvbn");
+        zxcvbnRef.current = mod.default ?? mod;
+      }
+      if (!cancelado) setPasswordStrength(zxcvbnRef.current(password).score);
+    };
+
+    avaliar();
+    return () => { cancelado = true; };
   }, [password]);
 
   const handleSubmit = async (e) => {

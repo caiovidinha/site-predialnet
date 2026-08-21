@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Páginas utilitárias, sem valor de busca
+Disallow: /redirect
+Disallow: /redefinir-senha
+Disallow: /agendamentos
+Disallow: /ativacao/
+
+Sitemap: https://www.predialnet.com.br/sitemap-index.xml

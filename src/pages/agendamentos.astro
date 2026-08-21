@@ -5,8 +5,13 @@ import SecNavBar from '../components/SecNavBar.astro';
 import RegistrarAgendamentos from '../components/RegistrarAgendamentos';
 ---
 
-<Layout title="Registrar Agendamentos - Predialnet">
+<Layout
+  title="Registrar agendamentos — Predialnet"
+  description="Área interna para registro de agendamentos de instalação e visita técnica da Predialnet."
+  noindex
+>
   <Navbar />
   <SecNavBar />
+  <h1 class="sr-only">Registrar agendamentos</h1>
   <RegistrarAgendamentos client:load />
 </Layout>

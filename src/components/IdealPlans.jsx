@@ -68,12 +68,12 @@ const IdealPlans = () => {
 
   return (
     <section className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#fafafa] text-[#3d3838]">
-      <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]">
+      <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]">
         Saiba como escolher o plano ideal pra você
-      </h1>
-      <h2 className="text-lg font-light leading-6">
-        Veja qual opção combina melhor com o seu perfil
       </h2>
+      <p className="text-lg font-light leading-6">
+        Veja qual opção combina melhor com o seu perfil
+      </p>
 
       <div ref={scrollRef} onScroll={handleScroll} className="mt-5 md:mt-10 flex items-start md:items-stretch overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 pb-2 scrollbar-hide">
         {plans.map((plan) => {
@@ -90,7 +90,7 @@ const IdealPlans = () => {
               {/* Card */}
               {plan.imageCard ? (
                 <div className="border border-[#dcdcdc] bg-white overflow-hidden rounded-sm flex-1">
-                  <img src={plan.imageCard} alt={plan.title} className="w-full block" />
+                  <img src={plan.imageCard} alt={`Plano ${plan.title} da Predialnet`} width={800} height={1296} loading="lazy" decoding="async" className="w-full block" />
                 </div>
               ) : (
               <>
@@ -175,7 +175,7 @@ const IdealPlans = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors"
                       >
-                        <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" />
+                        <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" loading="lazy" decoding="async" />
                         Baixe o regulamento
                       </a>
                     </div>
@@ -219,7 +219,7 @@ const IdealPlans = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors"
                   >
-                    <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" />
+                    <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" loading="lazy" decoding="async" />
                     Baixe o regulamento
                   </a>
                 </div>

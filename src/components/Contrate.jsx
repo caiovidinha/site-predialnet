@@ -37,8 +37,7 @@ function Contrate() {
         src="/img/fundo-contrate.webp"
         alt=""
         aria-hidden="true"
-        className="hidden md:block w-full object-cover"
-      />
+        className="hidden md:block w-full object-cover" width={2560} height={680} loading="lazy" decoding="async" />
 
       {/* Conteúdo — fluxo normal no mobile, overlay no desktop */}
       <div className="md:absolute md:inset-0 z-10 px-6 sm:px-[8%] md:px-[12%] py-10 md:py-16 flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-10">
@@ -47,14 +46,14 @@ function Contrate() {
         <div className="flex-1 flex flex-col gap-5">
           <div>
             <p className="text-white/70 text-sm mb-3">Contrate já!</p>
-            <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-4 font-light tracking-[-0.01em] text-white">
+            <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-4 font-light tracking-[-0.01em] text-white">
               Assine do seu jeito e venha<br />para Predialnet agora!
-            </h1>
-            <h2 className="text-lg font-light leading-6 text-white/90">
-              A melhor internet fibra que vai<br className="hidden md:block" /> transformar sua casa
             </h2>
+            <p className="text-lg font-light leading-6 text-white/90">
+              A melhor internet fibra que vai<br className="hidden md:block" /> transformar sua casa
+            </p>
           </div>
-          <img src="/img/logo-fibra-branca.png" alt="Predialnet Fibra" className="w-32 hidden md:block" />
+          <img src="/img/logo-fibra-branca.png" alt="Predialnet Fibra" className="w-32 hidden md:block" width={1079} height={316} loading="lazy" decoding="async" />
         </div>
 
         {/* Direita — cards de ação */}
@@ -67,7 +66,7 @@ function Contrate() {
               rel={action.external ? 'noopener noreferrer' : undefined}
               className="flex items-center gap-4 bg-transparent border-[1px] md:border-2 hover:border-white transition-colors rounded-md px-5 py-4"
             >
-              <img src={action.icon} alt={action.label} className="w-6 h-6 object-contain shrink-0" />
+              <img src={action.icon} alt="" aria-hidden="true" width={24} height={24} loading="lazy" decoding="async" className="w-6 h-6 object-contain shrink-0" />
               <span className="flex-1 text-white text-lg flex flex-col md:flex-row md:items-center">
                 <span>{action.label}</span>
                 <span className="text-sm font-semibold md:font-normal md:text-md">

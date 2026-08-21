@@ -6,7 +6,11 @@ import PrivacyPage from '../components/PrivacyPage';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Política de Privacidade - Predialnet">
+<Layout
+  title="Política de privacidade — Predialnet"
+  description="Como a Predialnet coleta, usa, armazena e protege os dados pessoais de clientes e visitantes, em conformidade com a LGPD."
+  breadcrumbs={[{ nome: 'Início', url: '/' }, { nome: 'Política de privacidade', url: '/politica-de-privacidade' }]}
+>
   <Navbar />
   <SecNavBar />
   <PrivacyPage client:load />

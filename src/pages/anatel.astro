@@ -6,7 +6,11 @@ import AnatelPage from '../components/AnatelPage';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Provedor Homologado pela Anatel - Predialnet">
+<Layout
+  title="Provedor licenciado pela Anatel — Predialnet"
+  description="A Predialnet é licenciada pela Anatel para prestar Serviço de Comunicação Multimídia (SCM). Veja o que a licença significa e como isso protege o consumidor."
+  breadcrumbs={[{ nome: 'Início', url: '/' }, { nome: 'Provedor licenciado pela Anatel', url: '/anatel' }]}
+>
   <Navbar />
   <SecNavBar />
   <AnatelPage client:load />

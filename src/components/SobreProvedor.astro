@@ -1,0 +1,83 @@
+---
+/**
+ * Bloco institucional em texto.
+ *
+ * Existe por um motivo específico de SEO/AI SEO: até então a informação de
+ * cobertura da Predialnet só aparecia dentro de banners (imagens), que nem
+ * buscadores nem mecanismos de resposta conseguem ler. Este bloco afirma em
+ * texto a relação marca → serviço → região, que é o que permite associar a
+ * Predialnet às buscas por internet em Niterói, São Gonçalo e Rio.
+ *
+ * Ao editar, mantenha as cidades e o ano de fundação em src/data/site.js.
+ */
+import { EMPRESA, CIDADES } from '../data/site.js';
+
+const anos = new Date().getFullYear() - EMPRESA.anoFundacao;
+---
+
+<section
+  id="sobre"
+  class="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#fafafa] text-[#3d3838]"
+  aria-labelledby="sobre-titulo"
+>
+  <h2
+    id="sobre-titulo"
+    class="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]"
+  >
+    Provedor de internet fibra óptica em Niterói, São Gonçalo e Rio de Janeiro
+  </h2>
+  <p class="text-lg font-light leading-6 mb-5 md:mb-8">
+    Há {anos} anos conectando o Estado do Rio
+  </p>
+
+  <div class="flex flex-col md:flex-row gap-6 md:gap-10">
+    <div class="md:w-2/3 flex flex-col gap-4 text-sm md:text-base font-light leading-relaxed">
+      <p>
+        A <strong class="font-normal">Predialnet</strong> é um provedor de internet por fibra
+        óptica que atende {CIDADES.slice(0, -1).join(', ')} e {CIDADES[CIDADES.length - 1]},
+        com planos residenciais de 600 Mega a 1 Giga, Wi-Fi 6, instalação grátis e sem
+        fidelidade. Em endereços onde a fibra ainda não chegou, a empresa também oferece
+        <a href="/via-radio" class="underline hover:text-[#8a0005] transition-colors">internet via rádio</a>,
+        e a região do Porto Maravilha, no Centro do Rio, tem
+        <a href="/porto-maravilha" class="underline hover:text-[#8a0005] transition-colors">grade própria de planos</a>.
+      </p>
+      <p>
+        Além da internet residencial, a Predialnet oferece
+        <a href="/telefonia" class="underline hover:text-[#8a0005] transition-colors">telefonia fixa</a> e
+        <a href="/empresa" class="underline hover:text-[#8a0005] transition-colors">planos corporativos</a>
+        sob medida para empresas e condomínios. O suporte técnico atende todos os dias, das 6h às 24h.
+      </p>
+      <p>
+        Em operação desde {EMPRESA.anoFundacao} sob a razão social {EMPRESA.razaoSocial}
+        (CNPJ {EMPRESA.cnpj}), a empresa é
+        <a href="/anatel" class="underline hover:text-[#8a0005] transition-colors">licenciada pela Anatel</a>
+        para prestar Serviço de Comunicação Multimídia (SCM) e publica seus
+        <a href="/documentos" class="underline hover:text-[#8a0005] transition-colors">contratos e regulamentos</a>
+        e os <a href="/relatorios" class="underline hover:text-[#8a0005] transition-colors">relatórios de transparência salarial</a>
+        abertamente.
+      </p>
+    </div>
+
+    <div class="md:w-1/3">
+      <div class="border border-[#dcdcdc] rounded bg-white p-6 flex flex-col gap-4">
+        <p class="text-xs uppercase tracking-widest text-[#8a0005] font-semibold">
+          Onde atendemos
+        </p>
+        <ul class="flex flex-col gap-2 text-sm font-light">
+          {CIDADES.map((cidade) => (
+            <li class="flex items-center gap-2">
+              <svg width="12" height="10" viewBox="0 0 12 10" fill="none" class="flex-shrink-0 text-[#8a0005]" aria-hidden="true">
+                <path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {cidade}
+            </li>
+          ))}
+        </ul>
+        <p class="text-xs font-light leading-relaxed text-[#666] border-t border-[#e6e6e6] pt-3">
+          Cobertura sujeita a viabilidade técnica no endereço. Consulte a disponibilidade
+          para o seu imóvel pelo site ou pelo telefone (21) 3515-0555.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

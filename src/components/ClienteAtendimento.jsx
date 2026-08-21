@@ -56,9 +56,9 @@ function ClienteAtendimento() {
           <div className="md:w-1/2 flex flex-col text-left justify-between pr-0 md:pr-40">
           <div>
             <p className="text-base sm:text-lg text-[#444] mb-2">Cliente Predialnet</p>
-            <h1 className="text-[1.65rem] md:text-3xl leading-8 text-[#8a0005] font-light tracking-[-0.01em] mb-2">
+            <h2 className="text-[1.65rem] md:text-3xl leading-8 text-[#8a0005] font-light tracking-[-0.01em] mb-2">
               Acesso rápido às principais funções de atendimento
-            </h1>
+            </h2>
           </div>
           <div className="hidden md:block">
             <p className="text-base sm:text-lg text-[#444]">Horário de Atendimento</p>
@@ -77,33 +77,25 @@ function ClienteAtendimento() {
         {/* Coluna direita — começa na metade — 4 linhas x 2 colunas */}
           <div className="md:w-1/2 flex flex-col justify-between w-full pt-2">
           {acessoCards.map((card, i) => (
-            <div key={card.title} className="flex gap-2">
+            <div key={card.title} className="flex gap-2 min-w-0">
               <a
                 href={card.href}
                 target={card.external ? '_blank' : '_self'}
                 rel={card.external ? 'noopener noreferrer' : undefined}
-                className="flex-1 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-5 hover:shadow-md transition-shadow group mb-2 md:mb-0"
+                className="flex-1 min-w-0 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-5 hover:shadow-md transition-shadow group mb-2 md:mb-0"
               >
-                <img
-                  src={card.icon}
-                  alt=""
-                  className="w-5 h-5 object-contain flex-shrink-0 transition-all group-hover:[filter:brightness(0)_saturate(100%)_invert(8%)_sepia(97%)_saturate(4000%)_hue-rotate(352deg)_brightness(82%)]"
-                />
-                <span className="text-xs font-semibold md:font-normal md:text-sm text-[#444] flex-1 leading-tight">{card.title}</span>
+                <img src={card.icon} alt="" aria-hidden="true" width={20} height={20} loading="lazy" decoding="async" className="w-5 h-5 object-contain flex-shrink-0 transition-all group-hover:[filter:brightness(0)_saturate(100%)_invert(8%)_sepia(97%)_saturate(4000%)_hue-rotate(352deg)_brightness(82%)]" />
+                <span className="text-xs font-semibold md:font-normal md:text-sm text-[#444] flex-1 min-w-0 leading-tight break-words">{card.title}</span>
                 <svg className="w-4 h-4 flex-shrink-0 text-[#aaa]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                 </svg>
               </a>
               <button
                 onClick={() => openModal(atendimentoCards[i].type)}
-                className="flex-1 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-3 hover:shadow-md transition-shadow text-left group mb-2 md:mb-0"
+                className="flex-1 min-w-0 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-3 hover:shadow-md transition-shadow text-left group mb-2 md:mb-0"
               >
-                <img
-                  src={atendimentoCards[i].icon}
-                  alt=""
-                  className="w-5 h-5 object-contain flex-shrink-0 transition-all group-hover:[filter:brightness(0)_saturate(100%)_invert(8%)_sepia(97%)_saturate(4000%)_hue-rotate(352deg)_brightness(82%)]"
-                />
-                <span className="text-xs font-semibold md:font-normal md:text-sm text-[#444] flex-1 leading-tight flex flex-col md:flex-row md:items-center">
+                <img src={atendimentoCards[i].icon} alt="" aria-hidden="true" width={20} height={20} loading="lazy" decoding="async" className="w-5 h-5 object-contain flex-shrink-0 transition-all group-hover:[filter:brightness(0)_saturate(100%)_invert(8%)_sepia(97%)_saturate(4000%)_hue-rotate(352deg)_brightness(82%)]" />
+                <span className="text-xs font-semibold md:font-normal md:text-sm text-[#444] flex-1 min-w-0 leading-tight flex flex-col md:flex-row md:items-center break-words">
                   <span>{atendimentoCards[i].title}</span>
                   <span className="text-[#888] text-xs md:text-sm">
                     <span className="hidden md:inline">&nbsp;</span>

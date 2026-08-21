@@ -1,4 +1,8 @@
 ---
+import { EMPRESA } from '../data/site.js';
+
+const { razaoSocial, cnpj, endereco, anoFundacao } = EMPRESA;
+const enderecoCompleto = `${endereco.logradouro}, ${endereco.bairro}, ${endereco.cidade} - ${endereco.uf} - CEP: ${endereco.cep}`;
 ---
 
 <footer class="font-sans text-[#3d3838]">
@@ -8,8 +12,10 @@
 
       <!-- Imagem lateral (metade da seção) -->
       <div class="md:w-1/2 h-auto shrink-0 md:self-stretch">
-        <img src="/img/rodape.webp" alt="Predialnet" class="hidden md:block w-full h-full object-cover grayscale rounded-md" loading="lazy" />
-        <img src="/img/rodape_mobile_b.webp" alt="Predialnet" class="block md:hidden w-full h-full object-cover rounded-md" loading="lazy" />
+        <picture>
+          <source media="(min-width: 768px)" srcset="/img/rodape.webp" />
+          <img src="/img/rodape_mobile_b.webp" alt="Central de atendimento Predialnet" width="900" height="244" class="w-full h-full object-cover rounded-md md:grayscale" loading="lazy" decoding="async" />
+        </picture>
       </div>
 
       <!-- Links -->
@@ -42,18 +48,19 @@
     <hr class="border-t border-[#b0b0b0]" />
     <div class="py-10 hidden md:flex flex-col md:flex-row items-center justify-between gap-3 ">
       <div class="text-xs text-[#555] leading-relaxed">
-        <p>Predlink Rede de Telecomunicações Ltda. CNPJ: 05.990.171/0001-48</p>
-        <p>Rua da Conceição, 188, sala 3108, Centro, Niterói - Rio de Janeiro - CEP: 24020-087</p>
+        <p>{razaoSocial} CNPJ: {cnpj}</p>
+        <p>{enderecoCompleto}</p>
+        <p>Provedor de internet por fibra óptica em Niterói, São Gonçalo, Itaboraí e Rio de Janeiro desde {anoFundacao}.</p>
         <p>Todos os direitos reservados. ©2026 &nbsp;·&nbsp; Site desenvolvido por Jump Marketing</p>
       </div>
-      <img src="/img/logo-fibra.png" alt="Predialnet Fibra" class="h-8 object-contain" loading="lazy" />
+      <img src="/img/logo-fibra.png" alt="Predialnet Fibra" class="h-8 object-contain" loading="lazy" width="1079" height="316" decoding="async" />
     </div>
     <div class="pt-5 pb-10 flex md:hidden flex-col md:flex-row items-center justify-between gap-3 ">
       <div class="text-[7px] md:text-xs text-[#555] leading-relaxed">
-        <p>Predlink Rede de Telecomunicações Ltda. CNPJ: 05.990.171/0001-48
-        - Rua da Conceição, 188, sala 3108, Centro, Niterói - Rio de Janeiro - CEP: 24020-087 -Todos os direitos reservados. ©2026 &nbsp;·&nbsp; Site desenvolvido por Jump Marketing</p>
+        <p>{razaoSocial} CNPJ: {cnpj}
+        - {enderecoCompleto} - Provedor de internet por fibra óptica em Niterói, São Gonçalo, Itaboraí e Rio de Janeiro desde {anoFundacao}. Todos os direitos reservados. ©2026 &nbsp;·&nbsp; Site desenvolvido por Jump Marketing</p>
       </div>
-      <img src="/img/logo-fibra.png" alt="Predialnet Fibra" class="hidden md:block h-8 object-contain" loading="lazy" />
+      <img src="/img/logo-fibra.png" alt="Predialnet Fibra" class="hidden md:block h-8 object-contain" loading="lazy" width="1079" height="316" decoding="async" />
     </div>
   </div>
 </footer>

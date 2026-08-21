@@ -45,11 +45,7 @@ const NavegaSection = () => {
       <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto snap-x snap-mandatory md:overflow-visible gap-3 items-stretch pb-2 scrollbar-hide">
         {cards.map((card, i) => (
           <div key={i} className="snap-start shrink-0 md:shrink w-[85%] md:flex-1 bg-white flex flex-col p-2 overflow-hidden rounded border border-[#dcdcdc]">
-            <img
-              src={card.img}
-              alt={card.title}
-              className="w-full block mb-4"
-            />
+            <img src={card.img} alt={card.title} width={800} height={480} loading="lazy" decoding="async" className="w-full block mb-4" />
             <div className="px-6 pb-5">
               <h3 className="text-xl leading-tight mb-2 tracking-[-0.01em]" style={{ color: '#8a0005' }}>
                 {card.title}

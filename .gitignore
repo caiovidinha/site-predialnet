@@ -7,3 +7,6 @@ dist/
 .env
 .env.local
 .env.production
+
+# Backup dos arquivos de imagem antes da otimização de SEO
+img-originais/

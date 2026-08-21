@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const defaultSlides = [
-  { src: '/img/carrossel-b.webp', mobileSrc: '/img/carrossel-b-mobile.webp', alt: 'Promoção 800', link: 'https://www.predialnet.com.br/assineja?plano=800mega', mobileLink: '' },
-  { src: '/img/carrossel-f.webp', mobileSrc: '/img/carrossel-f-mobile.webp', alt: 'Promoção 600', link: 'https://www.predialnet.com.br/assineja?plano=600mega', mobileLink: '' },
+  { src: '/img/carrossel-b.webp', mobileSrc: '/img/carrossel-b-mobile.webp', alt: 'Plano 800 Mega da Predialnet com Wi-Fi 6', link: 'https://www.predialnet.com.br/assineja?plano=800mega', mobileLink: '', w: 1920, h: 470 },
+  { src: '/img/carrossel-f.webp', mobileSrc: '/img/carrossel-f-mobile.webp', alt: 'Plano 600 Mega da Predialnet com Super Wi-Fi Gigabit', link: 'https://www.predialnet.com.br/assineja?plano=600mega', mobileLink: '', w: 1800, h: 440 },
 ];
 
 const PromoCarousel = ({
@@ -89,12 +89,12 @@ const PromoCarousel = ({
     >
 
       {title=="Os melhores planos estão aqui"
-      ? <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em] pr-[100px] md:pr-0" >{title}</h1>      
-      : <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]" dangerouslySetInnerHTML={{ __html: title }} />
+      ? <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em] pr-[100px] md:pr-0" >{title}</h2>      
+      : <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]" dangerouslySetInnerHTML={{ __html: title }} />
 }
-      <h2 className="text-lg font-light leading-6 mb-8">
+      <p className="text-lg font-light leading-6 mb-8">
         {subtitle}
-      </h2>     
+      </p>     
 
       {/* Carousel */}
       <div ref={containerRef} className="overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{ touchAction: 'pan-y', userSelect: 'none' }}>
@@ -107,10 +107,10 @@ const PromoCarousel = ({
             const imgEl = slide.mobileSrc ? (
               <picture>
                 <source media="(max-width: 639px)" srcSet={slide.mobileSrc} />
-                <img src={slide.src} alt={slide.alt} className="w-full block" />
+                <img src={slide.src} alt={slide.alt} width={slide.w ?? 1920} height={slide.h ?? 470} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" className="w-full block" />
               </picture>
             ) : (
-              <img src={slide.src} alt={slide.alt} className="w-full block" />
+              <img src={slide.src} alt={slide.alt} width={slide.w ?? 1920} height={slide.h ?? 470} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" className="w-full block" />
             );
 
             const preventIfSwiping = (e) => { if (isSwiping.current) e.preventDefault(); };
