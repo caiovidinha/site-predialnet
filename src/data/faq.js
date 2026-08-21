@@ -43,7 +43,7 @@ export const FAQ_HOME = [
   {
     pergunta: 'A Predialnet é licenciada pela Anatel?',
     resposta:
-      'Sim. A Predialnet opera sob a razão social Predlink Rede de Telecomunicações Ltda. (CNPJ 05.980.171/0001-48) e é licenciada pela Anatel para prestar Serviço de Comunicação Multimídia (SCM). A empresa está em operação desde 2003.',
+      'Sim. A Predialnet opera sob a razão social Predlink Rede de Telecomunicações Ltda. (CNPJ 05.980.171/0001-48) e é licenciada pela Anatel para prestar Serviço de Comunicação Multimídia (SCM). A Predialnet está no mercado desde 1998.',
   },
   {
     pergunta: 'Qual a diferença entre internet por fibra óptica e via rádio?',

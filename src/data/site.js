@@ -16,7 +16,11 @@ export const EMPRESA = {
   marca: 'Predialnet',
   razaoSocial: 'Predlink Rede de Telecomunicações Ltda.',
   cnpj: '05.980.171/0001-48',
-  fundacao: '1998-11-04',
+  // A marca nasceu em 1998 (Predialnet Provedor de Internet Ltda,
+  // CNPJ 02.719.371/0001-53, hoje baixada). A Predlink, de 2003, é a
+  // pessoa jurídica que opera atualmente — por isso o CNPJ acima e a
+  // data de fundação abaixo se referem a coisas diferentes, de propósito.
+  fundacao: '1998-07-31',
   anoFundacao: 1998,
   endereco: {
     logradouro: 'Rua da Conceição, 188, sala 3108',

@@ -1,0 +1,37 @@
+---
+/**
+ * Página institucional + dúvidas frequentes.
+ *
+ * Reúne o bloco de cobertura (marca → serviço → região) e o FAQ. Os dois
+ * saíram da home para não competir com o fluxo comercial, mas precisam
+ * continuar visíveis: o Google exige que conteúdo marcado como FAQPage
+ * esteja visível na página, e texto escondido é descontado pelos buscadores
+ * e ignorado por mecanismos de resposta.
+ *
+ * Aqui eles rendem mais do que rendiam na home, porque ganham title,
+ * canonical e URL próprios.
+ */
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
+import SobreProvedor from '../components/SobreProvedor.astro';
+import Faq from '../components/Faq.astro';
+import Footer from '../components/Footer.astro';
+import { FAQ_HOME } from '../data/faq.js';
+---
+
+<Layout
+  title="Sobre a Predialnet"
+  description="Quem é a Predialnet, em quais cidades atende e as dúvidas mais frequentes sobre internet fibra óptica, Wi-Fi 6, velocidade e cobertura."
+  faq={FAQ_HOME}
+  breadcrumbs={[
+    { nome: 'Início', url: '/' },
+    { nome: 'Sobre a Predialnet', url: '/sobre' },
+  ]}
+>
+  <Navbar />
+  <SecNavBar />
+  <SobreProvedor comoH1 />
+  <Faq />
+  <Footer />
+</Layout>
