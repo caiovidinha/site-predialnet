@@ -1,0 +1,116 @@
+---
+/**
+ * Chamada do blog na home — penúltima seção, antes do bloco de contratação.
+ *
+ * O blog vive em blog.predialnet.com.br (projeto Next separado), então os
+ * links são absolutos. Eles importam mais do que parece: como o Google trata
+ * subdomínio como entidade parcialmente separada, são estes links que costuram
+ * o blog ao domínio principal e fazem a autoridade circular entre os dois.
+ *
+ * Os artigos são buscados no build. Se a API não responder, a seção
+ * simplesmente não é renderizada — melhor do que mostrar um bloco vazio.
+ */
+import { carregarBlogExterno, URL_BLOG } from '../data/blog.js';
+
+interface Props {
+  /** Quantos artigos mostrar. 3 cabe numa linha no desktop. */
+  quantidade?: number;
+}
+
+const { quantidade = 3 } = Astro.props;
+
+const artigos = await carregarBlogExterno();
+const destaques = artigos.slice(0, quantidade);
+
+const GRADIENTE: Record<string, [string, string]> = {
+  tecnologia: ['#8a0005', '#d20606'],
+  dicas: ['#5c0104', '#a8171c'],
+  planos: ['#7a0206', '#c23439'],
+  cobertura: ['#4a0103', '#96070c'],
+};
+---
+
+{destaques.length > 0 && (
+  <section
+    id="blog"
+    class="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#fafafa] text-[#3d3838]"
+    aria-labelledby="blog-titulo"
+  >
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-5 md:mb-8">
+      <div>
+        <p class="text-sm font-light text-[#6b6b6b] mb-1">Blog Predialnet</p>
+        <h2 id="blog-titulo" class="text-[1.65rem] md:text-3xl leading-8 font-light tracking-[-0.01em]">
+          Conteúdo pra você aproveitar melhor sua internet
+        </h2>
+        <p class="text-lg font-light leading-6 mt-1">
+          Dicas práticas, comparativos e explicações sem enrolação
+        </p>
+      </div>
+
+      <a
+        href={URL_BLOG}
+        class="shrink-0 self-start md:self-auto inline-flex items-center gap-2 text-sm text-[#8a0005] hover:opacity-75 transition-opacity whitespace-nowrap"
+      >
+        Ver todos os artigos
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14" />
+          <path d="M13 6l6 6-6 6" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {destaques.map((artigo) => {
+        const cores = GRADIENTE[artigo.categoriaSlug] ?? ['#8a0005', '#d20606'];
+        const gradId = `gh-${artigo.slug}`;
+        return (
+          <article class="group flex flex-col bg-white border border-[#dcdcdc] rounded overflow-hidden transition-shadow hover:shadow-md">
+            <a href={`${URL_BLOG}/${artigo.slug}`} tabindex="-1" aria-hidden="true" class="block bg-[#f4f5f5]">
+              {artigo.capa ? (
+                <img
+                  src={artigo.capa.url}
+                  alt=""
+                  width={artigo.capa.largura ?? 1200}
+                  height={artigo.capa.altura ?? 675}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover aspect-[16/9]"
+                />
+              ) : (
+                <svg viewBox="0 0 640 360" class="w-full h-full aspect-[16/9] block" aria-hidden="true">
+                  <defs>
+                    <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color={cores[0]} />
+                      <stop offset="100%" stop-color={cores[1]} />
+                    </linearGradient>
+                  </defs>
+                  <rect width="640" height="360" fill={`url(#${gradId})`} />
+                  <g fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="2">
+                    <circle cx="320" cy="300" r="60" />
+                    <circle cx="320" cy="300" r="110" />
+                    <circle cx="320" cy="300" r="160" />
+                    <circle cx="320" cy="300" r="210" />
+                  </g>
+                  <circle cx="320" cy="300" r="9" fill="#ffffff" fill-opacity="0.9" />
+                </svg>
+              )}
+            </a>
+
+            <div class="flex flex-col gap-2 p-5 flex-1">
+              <span class="self-start text-[10px] uppercase tracking-widest font-semibold text-[#8a0005] bg-[#f7e7e7] rounded-full px-3 py-1">
+                {artigo.categoria}
+              </span>
+              <h3 class="text-lg leading-snug tracking-[-0.01em]">
+                <a href={`${URL_BLOG}/${artigo.slug}`} class="hover:text-[#8a0005] transition-colors">
+                  {artigo.titulo}
+                </a>
+              </h3>
+              <p class="text-sm font-light text-[#666] leading-relaxed flex-1">{artigo.resumo}</p>
+              <p class="text-xs text-[#8b807b] mt-1">{artigo.tempoLeitura} min de leitura</p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+)}

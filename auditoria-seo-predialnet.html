@@ -1,0 +1,1975 @@
+<title>SEO, AI SEO e GEO — Predialnet</title>
+
+<style>
+/* ============================================================
+   TOKENS — light completo em :root; dark redefine só os tokens
+   Paleta validada com scripts/validate_palette.js
+   prioridade = rampa ordinal oxblood (marca) — PASS light+dark
+   magnitude  = azul único + cinza de contexto — contraste PASS
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --ground:      #faf7f5;
+  --surface:     #ffffff;
+  --surface-2:   #f3ece8;
+  --surface-3:   #ece3de;
+
+  --ink:         #171312;
+  --ink-2:       #5c5350;
+  --ink-3:       #8a807b;
+
+  --rule:        #e6ddd7;
+  --rule-2:      #d3c7c0;
+
+  --brand:       #8a0005;
+
+  /* magnitude */
+  --data:        #1c5cab;
+  --context:     #b3a9a3;
+
+  /* prioridade — rampa ordinal oxblood */
+  --sev-1:       #8a0005;
+  --sev-2:       #a83338;
+  --sev-3:       #c25a5e;
+  --sev-4:       #d4807f;
+  --sev-1-bg:    #f7e7e7;
+  --sev-2-bg:    #f8ebeb;
+  --sev-3-bg:    #faeeee;
+  --sev-4-bg:    #fbf1f0;
+
+  --ok:          #1a6b34;
+  --ok-bg:       #e6f1e9;
+
+  --mono: ui-monospace, "Cascadia Mono", "Cascadia Code", Consolas, "SF Mono", "Roboto Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+
+  --measure: 68ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground:     #121010;
+    --surface:    #1b1817;
+    --surface-2:  #231e1d;
+    --surface-3:  #2c2624;
+    --ink:        #f8f4f2;
+    --ink-2:      #b6aba6;
+    --ink-3:      #8a807b;
+    --rule:       #2e2624;
+    --rule-2:     #423936;
+    --brand:      #e0797a;
+    --data:       #7bb0f0;
+    --context:    #5f5551;
+    --sev-1:      #e0797a;
+    --sev-2:      #cf5a5c;
+    --sev-3:      #b34346;
+    --sev-4:      #8f3336;
+    --sev-1-bg:   #33191a;
+    --sev-2-bg:   #2e1718;
+    --sev-3-bg:   #2a1616;
+    --sev-4-bg:   #251414;
+    --ok:         #6fc98a;
+    --ok-bg:      #16271c;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground:     #121010;
+  --surface:    #1b1817;
+  --surface-2:  #231e1d;
+  --surface-3:  #2c2624;
+  --ink:        #f8f4f2;
+  --ink-2:      #b6aba6;
+  --ink-3:      #8a807b;
+  --rule:       #2e2624;
+  --rule-2:     #423936;
+  --brand:      #e0797a;
+  --data:       #7bb0f0;
+  --context:    #5f5551;
+  --sev-1:      #e0797a;
+  --sev-2:      #cf5a5c;
+  --sev-3:      #b34346;
+  --sev-4:      #8f3336;
+  --sev-1-bg:   #33191a;
+  --sev-2-bg:   #2e1718;
+  --sev-3-bg:   #2a1616;
+  --sev-4-bg:   #251414;
+  --ok:         #6fc98a;
+  --ok-bg:      #16271c;
+}
+
+/* ============================================================ BASE */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--data); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--data); outline-offset: 3px; border-radius: 2px; }
+
+h1, h2, h3, h4 { text-wrap: balance; margin: 0; line-height: 1.15; letter-spacing: -.022em; font-weight: 640; }
+p { margin: 0; }
+
+code, .m { font-family: var(--mono); font-size: .9em; }
+
+/* ============================================================ LAYOUT */
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px 96px;
+}
+@media (min-width: 1080px) {
+  .shell { grid-template-columns: 236px minmax(0, 1fr); gap: 56px; padding: 0 32px 120px; }
+}
+
+.rail { display: none; }
+@media (min-width: 1080px) {
+  .rail {
+    display: block;
+    position: sticky; top: 0; align-self: start;
+    max-height: 100vh; overflow-y: auto;
+    padding: 40px 0;
+    font-family: var(--mono);
+    font-size: 11.5px;
+  }
+  .rail-title {
+    text-transform: uppercase; letter-spacing: .14em; font-size: 10px;
+    color: var(--ink-3); padding-bottom: 12px; margin-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .rail a {
+    display: grid; grid-template-columns: 22px 1fr; gap: 6px;
+    padding: 6px 0; color: var(--ink-2); text-decoration: none;
+    border-left: 2px solid transparent; padding-left: 10px; margin-left: -12px;
+    transition: color .15s, border-color .15s;
+  }
+  .rail a span:first-child { color: var(--ink-3); }
+  .rail a:hover { color: var(--ink); }
+  .rail a.on { color: var(--ink); border-left-color: var(--brand); font-weight: 700; }
+  .rail a.on span:first-child { color: var(--brand); }
+}
+
+.body-col { min-width: 0; }
+
+/* ============================================================ MASTHEAD */
+.masthead { padding: 56px 0 40px; border-bottom: 2px solid var(--ink); }
+.masthead-top {
+  display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: .14em; color: var(--ink-3);
+  padding-bottom: 28px; margin-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.wordmark { color: var(--brand); font-weight: 700; letter-spacing: .18em; }
+.masthead h1 {
+  font-size: clamp(2.1rem, 5.6vw, 3.5rem);
+  letter-spacing: -.035em; font-weight: 700; margin-bottom: 20px;
+}
+.masthead .standfirst {
+  font-size: clamp(1.02rem, 1.9vw, 1.18rem);
+  color: var(--ink-2); max-width: 62ch; line-height: 1.55;
+}
+.masthead-meta {
+  display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 32px;
+  font-family: var(--mono); font-size: 11.5px; color: var(--ink-2);
+}
+.masthead-meta b { color: var(--ink); font-weight: 600; }
+
+/* ============================================================ SEÇÕES */
+section { padding-top: 68px; scroll-margin-top: 20px; }
+.sec-head { margin-bottom: 28px; }
+.sec-num {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ink-3); display: block; margin-bottom: 10px;
+}
+.sec-head h2 { font-size: clamp(1.45rem, 3.2vw, 1.95rem); letter-spacing: -.03em; }
+.sec-head .dek { margin-top: 12px; color: var(--ink-2); max-width: var(--measure); font-size: .97rem; }
+
+.prose { max-width: var(--measure); display: flex; flex-direction: column; gap: 16px; }
+.prose p { color: var(--ink-2); }
+.prose strong { color: var(--ink); font-weight: 640; }
+.prose ul { margin: 0; padding-left: 20px; color: var(--ink-2); display: flex; flex-direction: column; gap: 7px; }
+.prose li::marker { color: var(--ink-3); }
+
+.stack { display: flex; flex-direction: column; gap: 24px; }
+
+h3.sub {
+  font-size: 1.06rem; letter-spacing: -.015em; margin-top: 8px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--rule);
+}
+.eyebrow {
+  font-family: var(--mono); font-size: 10.5px; text-transform: uppercase;
+  letter-spacing: .15em; color: var(--ink-3);
+}
+
+/* ============================================================ KPI */
+.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.kpi { background: var(--surface); padding: 20px 18px 18px; display: flex; flex-direction: column; gap: 5px; }
+.kpi .k-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); }
+.kpi .k-val { font-size: 2rem; font-weight: 680; letter-spacing: -.04em; line-height: 1; margin-top: 3px; }
+.kpi .k-val.good { color: var(--ok); }
+.kpi .k-val.next { color: var(--sev-2); }
+.kpi .k-sub { font-size: 12px; color: var(--ink-2); line-height: 1.4; }
+
+.hero-figure {
+  display: grid; grid-template-columns: 1fr; gap: 22px; align-items: center;
+  background: var(--surface); border: 1px solid var(--rule); padding: 30px 26px;
+}
+@media (min-width: 720px) { .hero-figure { grid-template-columns: auto 1fr; gap: 38px; } }
+.hero-num { font-size: clamp(3.2rem, 9vw, 4.6rem); font-weight: 700; letter-spacing: -.055em; line-height: .88; color: var(--sev-2); }
+.hero-num small { font-size: .34em; letter-spacing: -.02em; font-weight: 620; }
+
+/* ============================================================ CHIPS */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: .1em; font-weight: 700;
+  padding: 3px 8px; border-radius: 2px; white-space: nowrap;
+}
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
+.chip.s1 { color: var(--sev-1); background: var(--sev-1-bg); }
+.chip.s2 { color: var(--sev-2); background: var(--sev-2-bg); }
+.chip.s3 { color: var(--sev-3); background: var(--sev-3-bg); }
+.chip.s4 { color: var(--sev-4); background: var(--sev-4-bg); }
+.chip.ok { color: var(--ok); background: var(--ok-bg); }
+.chip.ok::before { border-radius: 1px; }
+.chip.neutral { color: var(--ink-2); background: var(--surface-2); }
+
+/* ============================================================ CARDS */
+.finding {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-left: 3px solid var(--sev-1);
+  padding: 20px 22px; display: flex; flex-direction: column; gap: 11px;
+}
+.finding.s2 { border-left-color: var(--sev-2); }
+.finding.s3 { border-left-color: var(--sev-3); }
+.finding.s4 { border-left-color: var(--sev-4); }
+.finding.good { border-left-color: var(--ok); }
+.finding-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.finding-head h4 { font-size: 1rem; letter-spacing: -.015em; }
+.finding p { color: var(--ink-2); font-size: .93rem; }
+.finding .evidence {
+  font-family: var(--mono); font-size: 11.5px; line-height: 1.7;
+  background: var(--surface-2); padding: 11px 13px; color: var(--ink-2);
+  overflow-x: auto; white-space: pre; border-left: 2px solid var(--rule-2);
+}
+.finding .fix { font-size: .9rem; color: var(--ink); }
+.finding .fix b {
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--ink-3); display: block; margin-bottom: 3px; font-weight: 700;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 860px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+/* ============================================================ TABELAS */
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 9px 13px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+thead th {
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .11em;
+  color: var(--ink-3); font-weight: 700; background: var(--surface-2);
+  position: sticky; top: 0; z-index: 2; border-bottom: 1px solid var(--rule-2);
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--surface-2); }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+td.mono, th.mono { font-family: var(--mono); font-size: 12px; }
+caption { caption-side: bottom; text-align: left; padding: 10px 13px; font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule); }
+
+/* ============================================================ GRÁFICOS */
+.chart-card { background: var(--surface); border: 1px solid var(--rule); padding: 22px 22px 18px; }
+.chart-head { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.chart-head h4 { font-size: .98rem; letter-spacing: -.015em; }
+.chart-note { font-size: 12px; color: var(--ink-3); margin-bottom: 18px; max-width: 60ch; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-2); margin-bottom: 16px; }
+.legend i { display: inline-flex; align-items: center; gap: 6px; font-style: normal; }
+.legend i::before { content: ""; width: 10px; height: 10px; border-radius: 2px; background: var(--swatch, var(--data)); flex: none; }
+
+.bars { display: flex; flex-direction: column; gap: 3px; }
+.bar-row {
+  display: grid; grid-template-columns: minmax(96px, 168px) minmax(0, 1fr) auto;
+  align-items: center; gap: 12px; padding: 3px 0; position: relative;
+}
+.bar-label { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-track { position: relative; height: 17px; }
+.bar-fill { height: 100%; background: var(--context); border-radius: 0 3px 3px 0; transition: opacity .15s; }
+.bar-row.hi .bar-fill { background: var(--data); }
+.bar-val { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 11.5px; color: var(--ink-2); min-width: 54px; text-align: right; }
+.bar-row.hi .bar-val, .bar-row.hi .bar-label { color: var(--ink); font-weight: 700; }
+.bar-row:hover .bar-fill { opacity: .74; }
+
+.bar-ref { position: absolute; top: -5px; bottom: -5px; width: 1px; background: var(--sev-1); z-index: 1; }
+.ref-caption { font-family: var(--mono); font-size: 10.5px; color: var(--sev-1); margin-top: 12px; display: flex; align-items: center; gap: 7px; }
+.ref-caption::before { content: ""; width: 14px; height: 1px; background: var(--sev-1); flex: none; }
+
+.quad-wrap { position: relative; }
+.quad { width: 100%; height: auto; display: block; overflow: visible; }
+.quad-dot { cursor: pointer; transition: r .12s; }
+.quad-dot:hover { stroke-width: 3; }
+.tip {
+  position: absolute; pointer-events: none; opacity: 0;
+  background: var(--ink); color: var(--ground);
+  font-family: var(--mono); font-size: 11px; line-height: 1.5;
+  padding: 8px 10px; max-width: 250px; z-index: 10;
+  transition: opacity .12s; border-radius: 3px;
+}
+.tip.on { opacity: 1; }
+.tip b { display: block; font-size: 11.5px; margin-bottom: 3px; }
+
+/* ============================================================ CONTROLES */
+.controls {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  padding: 14px 0 18px; border-bottom: 1px solid var(--rule); margin-bottom: 18px;
+}
+.controls .ctl-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .13em; color: var(--ink-3); margin-right: 4px; }
+button.tgl {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .04em;
+  padding: 5px 11px; border: 1px solid var(--rule-2); background: var(--surface);
+  color: var(--ink-2); cursor: pointer; border-radius: 2px; transition: all .13s;
+}
+button.tgl:hover { border-color: var(--ink-3); color: var(--ink); }
+button.tgl[aria-pressed="true"] { background: var(--ink); color: var(--ground); border-color: var(--ink); font-weight: 700; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid var(--rule); margin-bottom: 20px; }
+button.tab {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: .03em;
+  padding: 9px 15px; border: none; background: none; color: var(--ink-3);
+  cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .13s;
+}
+button.tab:hover { color: var(--ink); }
+button.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--brand); font-weight: 700; }
+.tabpanel[hidden] { display: none; }
+
+/* ============================================================ CÓDIGO */
+.code { position: relative; background: var(--surface-2); border: 1px solid var(--rule); border-left: 3px solid var(--data); }
+.code pre { margin: 0; padding: 16px 18px; overflow-x: auto; font-family: var(--mono); font-size: 11.5px; line-height: 1.65; color: var(--ink); }
+.code-head {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 8px 12px 8px 18px; border-bottom: 1px solid var(--rule);
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--ink-3);
+}
+button.copy {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 4px 9px; border: 1px solid var(--rule-2); background: var(--surface);
+  color: var(--ink-2); cursor: pointer; border-radius: 2px;
+}
+button.copy:hover { color: var(--ink); border-color: var(--ink-3); }
+
+/* ============================================================ CHECKLIST */
+.check-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+@media (min-width: 700px) { .check-grid { grid-template-columns: 1fr 1fr; } }
+.check { background: var(--surface); padding: 12px 15px; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; }
+.check[hidden] { display: none; }
+.check .c-name { font-size: 13px; font-weight: 600; }
+.check .c-detail { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-top: 2px; display: block; line-height: 1.5; }
+
+/* ============================================================ CLUSTER */
+.cluster { border: 1px solid var(--rule); background: var(--surface); }
+.cluster-hub {
+  padding: 16px 18px; background: var(--surface-2); border-bottom: 1px solid var(--rule);
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline;
+}
+.cluster-hub h4 { font-size: .98rem; }
+.cluster-hub .hub-url { font-family: var(--mono); font-size: 11px; color: var(--data); }
+.cluster-list { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .cluster-list { grid-template-columns: 1fr 1fr; } }
+.cluster-item { padding: 11px 18px; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: 3px; }
+.cluster-item .ci-t { font-size: 13.5px; font-weight: 600; }
+.cluster-item .ci-u { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+
+/* ============================================================ CALLOUT */
+.callout {
+  border: 1px solid var(--rule); border-left: 3px solid var(--ink);
+  background: var(--surface-2); padding: 16px 20px;
+  display: flex; flex-direction: column; gap: 8px; max-width: var(--measure);
+}
+.callout .co-t { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-3); font-weight: 700; }
+.callout p { font-size: .92rem; color: var(--ink-2); }
+
+/* ============================================================ RODAPÉ */
+footer.doc-foot {
+  margin-top: 90px; padding-top: 28px; border-top: 2px solid var(--ink);
+  font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  display: flex; flex-wrap: wrap; gap: 10px 30px; justify-content: space-between;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+html { scroll-behavior: smooth; }
+</style>
+
+<div class="shell">
+
+<nav class="rail" aria-label="Índice do relatório">
+  <div class="rail-title">Índice</div>
+  <a href="#base"><span>00</span><span>O ponto de partida</span></a>
+  <a href="#alavancas"><span>01</span><span>As cinco alavancas</span></a>
+  <a href="#metodo"><span>—</span><span>Método</span></a>
+  <a href="#tecnico"><span>02</span><span>SEO técnico</span></a>
+  <a href="#performance"><span>03</span><span>Performance</span></a>
+  <a href="#conteudo"><span>04</span><span>Conteúdo</span></a>
+  <a href="#keywords"><span>05</span><span>Palavras-chave</span></a>
+  <a href="#local"><span>06</span><span>SEO local</span></a>
+  <a href="#geo"><span>07</span><span>AI SEO / GEO</span></a>
+  <a href="#entidade"><span>08</span><span>Entidade</span></a>
+  <a href="#reputacao"><span>09</span><span>Reputação</span></a>
+  <a href="#concorrencia"><span>10</span><span>Concorrência</span></a>
+  <a href="#plano"><span>11</span><span>Plano de ação</span></a>
+  <a href="#anexos"><span>A</span><span>Código pronto</span></a>
+</nav>
+
+<main class="body-col">
+
+<!-- ═══════════════════════ MASTHEAD ═══════════════════════ -->
+<header class="masthead">
+  <div class="masthead-top">
+    <span class="wordmark">Predialnet</span>
+    <span>Diagnóstico e plano · 10 ago 2026</span>
+  </div>
+  <h1>SEO, AI&nbsp;SEO e GEO: onde estamos e para onde ir</h1>
+  <p class="standfirst">
+    Varredura do repositório <span class="m">site-predialnet</span> (branch <span class="m">site-novo-2026</span>), do HTML gerado no build e do domínio em produção. A base técnica do site é boa — Astro estático, Schema.org implementado, acessibilidade cuidada, pipeline de imagens próprio. O que falta é menos "consertar" e mais <strong>ligar o que já está construído</strong> e estender para conteúdo local.
+  </p>
+  <div class="masthead-meta">
+    <span><b>13</b> páginas analisadas</span>
+    <span><b>49</b> arquivos-fonte</span>
+    <span><b>295</b> imagens medidas</span>
+    <span><b>28</b> ações priorizadas</span>
+  </div>
+</header>
+
+<!-- ═══════════════════════ 00 BASE ═══════════════════════ -->
+<section id="base">
+  <div class="sec-head">
+    <span class="sec-num">00 — O ponto de partida</span>
+    <h2>O que já está bem construído</h2>
+    <p class="dek">
+      Vale começar por aqui, porque muda a leitura do resto do documento. Boa parte do trabalho difícil de SEO técnico já foi feita — e várias correções das próximas seções são <em>estender um padrão que já existe no código</em>, não criar do zero.
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <span class="k-label">HTML pré-renderizado</span>
+        <span class="k-val good">13<small style="font-size:.5em;letter-spacing:0">/13</small></span>
+        <span class="k-sub">Conteúdo legível sem depender de JS</span>
+      </div>
+      <div class="kpi">
+        <span class="k-label">Imagens com alt</span>
+        <span class="k-val good">100%</span>
+        <span class="k-sub">Nenhuma imagem sem descrição</span>
+      </div>
+      <div class="kpi">
+        <span class="k-label">Blocos Schema.org</span>
+        <span class="k-val good">6</span>
+        <span class="k-sub">LocalBusiness, Organization, 3× Service, WebSite</span>
+      </div>
+      <div class="kpi">
+        <span class="k-label">Atributos ARIA</span>
+        <span class="k-val good">91</span>
+        <span class="k-sub">Só na home</span>
+      </div>
+      <div class="kpi">
+        <span class="k-label">Compressão do HTML</span>
+        <span class="k-val good">83%</span>
+        <span class="k-sub">93 KB → 15,9 KB com gzip</span>
+      </div>
+      <div class="kpi">
+        <span class="k-label">Hidratação parcial</span>
+        <span class="k-val good">10</span>
+        <span class="k-sub">componentes com client:visible</span>
+      </div>
+    </div>
+
+    <div class="grid-2">
+
+      <article class="finding good">
+        <div class="finding-head"><span class="chip ok">Bem resolvido</span><h4>A escolha de arquitetura foi certeira</h4></div>
+        <p>Astro em modo estático significa que <strong>todo o texto chega pronto no HTML</strong>. É a diferença entre ser lido e não ser lido — a maioria dos sites de provedor é SPA em React e sofre exatamente aqui. A hidratação parcial também está bem aplicada: 10 componentes com <span class="m">client:visible</span>, carregando só quando entram na tela.</p>
+        <div class="fix"><b>Por que importa</b>Nada do que vem a seguir depende de trocar a stack. O terreno está certo — é construção em cima, não reforma.</div>
+      </article>
+
+      <article class="finding good">
+        <div class="finding-head"><span class="chip ok">Bem resolvido</span><h4>Schema.org acima da média do setor</h4></div>
+        <p>O <span class="m">@graph</span> no <span class="m">Layout.astro</span> tem LocalBusiness com endereço completo, Organization com dois ContactPoint, três Service com Offer, preço, moeda e <span class="m">priceValidUntil</span>, WebSite e BreadcrumbList. Tem até <span class="m">openingHoursSpecification</span> separado por setor — comercial, suporte e atendimento com horários distintos.</p>
+        <div class="evidence">6 blocos JSON-LD · ~200 linhas
+Nível de detalhe raro em site de ISP regional.
+Ajustes das seções 07 e 08 são incrementos
+sobre essa estrutura, não reescrita.</div>
+      </article>
+
+      <article class="finding good">
+        <div class="finding-head"><span class="chip ok">Bem resolvido</span><h4>Acessibilidade tratada com cuidado real</h4></div>
+        <p>Só na home: 34 <span class="m">aria-label</span>, 57 <span class="m">aria-hidden</span> nos SVGs decorativos, <span class="m">role="dialog"</span> e <span class="m">aria-modal</span> nos popups, e um link "pular para o conteúdo principal". Os dots dos carrosséis têm rótulo individual. <strong>Zero imagens sem alt em 295 arquivos.</strong></p>
+        <div class="fix"><b>Por que importa</b>Acessibilidade e SEO puxam na mesma direção. Esse trabalho já está pago e não precisa ser refeito.</div>
+      </article>
+
+      <article class="finding good">
+        <div class="finding-head"><span class="chip ok">Bem resolvido</span><h4>O pipeline de imagens existe e está correto</h4></div>
+        <p><span class="m">optimize-images.mjs</span> converte para WebP (q85) e AVIF (q80) com Sharp, e o componente <span class="m">OptimizedImage.astro</span> monta um <span class="m">&lt;picture&gt;</span> com as duas fontes, fallback e lazy loading. <strong>A solução para o problema da seção 03 já está escrita no projeto</strong> — falta estendê-la aos componentes React mais novos e reprocessar as imagens de origem.</p>
+        <div class="evidence">src/components/OptimizedImage.astro
+&lt;picture&gt;
+  &lt;source srcset="…webp" type="image/webp" /&gt;
+  &lt;source srcset="…avif" type="image/avif" /&gt;
+  &lt;img loading="lazy" width height /&gt;
+&lt;/picture&gt;
+
+Usado hoje em: Navbar, App, Why</div>
+      </article>
+
+      <article class="finding good">
+        <div class="finding-head"><span class="chip ok">Bem resolvido</span><h4>Medição de conversão já instrumentada</h4></div>
+        <p><span class="m">analytics.js</span> tem eventos estruturados de GTM — <span class="m">plan_view</span>, <span class="m">plan_click</span> com nome, valor, método e localização, <span class="m">form_open</span>. Isso é o que permite ligar tráfego orgânico a conversão depois. Muita gente faz SEO por um ano sem conseguir provar resultado justamente por não ter isso.</p>
+        <div class="fix"><b>Aproveitar</b>Com o Search Console conectado, dá para medir o efeito de cada ação deste plano desde o primeiro mês.</div>
+      </article>
+
+      <article class="finding good">
+        <div class="finding-head"><span class="chip ok">Bem resolvido</span><h4>Sinais de confiança que poucos concorrentes têm</h4></div>
+        <p>Três páginas institucionais que contam ponto em E-E-A-T e quase nenhum provedor regional publica: <span class="m">/anatel</span> (provedor licenciado), <span class="m">/relatorios</span> (transparência e igualdade salarial) e <span class="m">/documentos</span> (contratos e regulamentos abertos). Somado a <span class="m">validation.js</span> com sanitização de input e rate limiting nos formulários.</p>
+        <div class="fix"><b>Aproveitar</b>Esses ativos estão subutilizados — hoje vivem no rodapé. A seção 09 sugere trazê-los para a superfície.</div>
+      </article>
+
+    </div>
+
+    <div class="callout" style="border-left-color:var(--ok)">
+      <span class="co-t">Também no lugar certo</span>
+      <p>URLs limpas e em português (<span class="m">/via-radio</span>, <span class="m">/porto-maravilha</span>) · redirect 301 de não-www para www · barra final consistente · 404 devolvendo 404 de verdade · HTTPS com upgrade automático · <span class="m">lang="pt-BR"</span> declarado · <span class="m">font-display: swap</span> nas duas famílias · preconnect para as APIs externas · <span class="m">OPTIMIZATIONS.md</span> e <span class="m">SECURITY-REPORT.md</span> documentando decisões · popups controlados por flag em vez de código comentado.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 01 ALAVANCAS ═══════════════════════ -->
+<section id="alavancas">
+  <div class="sec-head">
+    <span class="sec-num">01 — As cinco alavancas</span>
+    <h2>Onde está o maior retorno</h2>
+    <p class="dek">
+      Com a base pronta, o ganho se concentra em poucos pontos. As duas primeiras alavancas são de poucas linhas e destravam a indexação de tudo que vier depois — inclusive das páginas de cidade da seção 06.
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <div class="hero-figure">
+      <div class="hero-num">1<small> linha</small></div>
+      <div class="prose">
+        <p><strong>A tag canonical está fixa na home e é herdada pelas 13 páginas.</strong> O <span class="m">Layout.astro</span> já foi construído para receber props — <span class="m">title</span> e <span class="m">description</span> são parametrizados e cinco páginas já usam descrição própria. O canonical foi o único que ficou como valor literal.</p>
+        <p>Enquanto estiver assim, o Google entende <span class="m">/telefonia</span>, <span class="m">/via-radio</span> e as demais como duplicatas da home. <strong>É a ação de maior impacto do plano inteiro, e o padrão para resolvê-la já existe no arquivo</strong> — é aplicar ao canonical o que já vale para o título.</p>
+      </div>
+    </div>
+
+    <div class="stack" style="gap:12px">
+
+      <article class="finding">
+        <div class="finding-head">
+          <span class="chip s1">Prioridade máxima</span>
+          <h4>Canonical dinâmico por página</h4>
+        </div>
+        <p>Presente em 13 de 13 páginas do build. Provavelmente é o motivo de páginas internas não aparecerem na busca mesmo estando no ar e respondendo 200.</p>
+        <div class="evidence">src/layouts/Layout.astro
+
+linha 10  const { title = '…', description = '…' } = Astro.props;  ← já parametrizado
+linha 45  &lt;link rel="canonical" href="https://www.predialnet.com.br" /&gt;  ← literal</div>
+        <div class="fix"><b>Próximo passo</b>Definir <span class="m">site</span> no <span class="m">astro.config.mjs</span> e usar <span class="m">new URL(Astro.url.pathname, Astro.site)</span>. Código pronto no anexo A.</div>
+      </article>
+
+      <article class="finding">
+        <div class="finding-head">
+          <span class="chip s1">Prioridade máxima</span>
+          <h4>Publicar robots.txt e sitemap.xml</h4>
+        </div>
+        <p>Ainda não existem no domínio. Sem sitemap, a descoberta depende dos links internos — que hoje somam 11 destinos únicos. Com o Astro, o sitemap é uma integração oficial: instala e gera sozinho a cada build.</p>
+        <div class="evidence">GET /robots.txt   → 404
+GET /sitemap.xml  → 404
+GET /llms.txt     → 404   (resumo do domínio para mecanismos de IA)</div>
+        <div class="fix"><b>Próximo passo</b><span class="m">npm i @astrojs/sitemap</span> + um <span class="m">public/robots.txt</span> de sete linhas. Os três arquivos estão prontos no anexo A.</div>
+      </article>
+
+      <article class="finding s2">
+        <div class="finding-head">
+          <span class="chip s2">Prioridade alta</span>
+          <h4>Reprocessar as imagens de origem</h4>
+        </div>
+        <p>O pipeline está correto — o que pesa são os arquivos de entrada. <span class="m">foto_empresa.avif</span> tem 1920×2140 e 3,5 MB; mesmo comprimida a q80, uma imagem desse tamanho não desce de alguns megabytes. Somando o que a home referencia: <strong>31,72 MB em 48 imagens</strong>.</p>
+        <div class="evidence">foto_empresa.avif   1920×2140   3.563 KB   0,89 B/px
+navega-4.webp       1920×1152   2.450 KB   1,13 B/px
+cardPlanoIdeal.webp 1080×1750   2.175 KB   1,18 B/px
+
+referência de imagem bem comprimida: 0,05–0,15 B/px</div>
+        <div class="fix"><b>Próximo passo</b>Redimensionar as fontes para o tamanho de exibição real antes de rodar o <span class="m">optimize-images.mjs</span>, e estender o <span class="m">OptimizedImage.astro</span> aos componentes React. Detalhe na seção 03.</div>
+      </article>
+
+      <article class="finding s2">
+        <div class="finding-head">
+          <span class="chip s2">Prioridade alta</span>
+          <h4>Dizer em texto onde a Predialnet atende</h4>
+        </div>
+        <p>A informação de cobertura hoje vive dentro dos banners, que são imagens. Em 6.272 palavras do site, "Niterói" aparece uma vez — no endereço do rodapé. É a lacuna que liga as seções 06 e 07: sem essa frase, nem o Google nem o ChatGPT conseguem associar a marca à região.</p>
+        <div class="evidence">Schema atual:
+"areaServed": { "@type": "City", "name": "Rio de Janeiro" }
+
+Cobertura real: Niterói · São Gonçalo · Rio de Janeiro · Itaboraí</div>
+        <div class="fix"><b>Próximo passo</b>Um parágrafo na home e as quatro cidades no <span class="m">areaServed</span>. É a correção de menor esforço com maior efeito em busca local e em mecanismos de IA.</div>
+      </article>
+
+      <article class="finding s2">
+        <div class="finding-head">
+          <span class="chip s2">Prioridade alta</span>
+          <h4>Corrigir o CNPJ do rodapé</h4>
+        </div>
+        <p>Está publicado <span class="m">05.990.171/0001-48</span>; o correto é <span class="m">05.980.171/0001-48</span> — provavelmente um dígito trocado ao digitar. Vale corrigir com prioridade porque dados cadastrais consistentes pesam em busca local, e porque a consulta traz de brinde dois argumentos que o site não usa.</p>
+        <div class="evidence">Receita Federal · 05.980.171/0001-48
+PREDLINK REDE DE TELECOMUNICACOES LTDA
+fantasia PREDIALNET · ATIVA desde 04/11/2003   ← 22 anos de mercado
+CNAE 61.10-8-03 — Comunicação multimídia (SCM) ← licença Anatel</div>
+        <div class="fix"><b>Próximo passo</b><span class="m">Footer.astro:45</span> e <span class="m">:53</span>. E usar <span class="m">foundingDate: 2003-11-04</span> no schema — tempo de mercado é um dos sinais de confiança mais citados quando IAs comparam provedores.</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ MÉTODO ═══════════════════════ -->
+<section id="metodo">
+  <div class="sec-head">
+    <span class="sec-num">— Método</span>
+    <h2>O que foi medido e o que não foi</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="callout" style="border-left-color:var(--ok)">
+      <span class="co-t">Medido diretamente</span>
+      <p>Build rodado localmente e as 13 páginas HTML resultantes analisadas por script: títulos, meta tags, canonical, hierarquia de headings, contagem de palavras, imagens, atributos e links internos.</p>
+      <p>Dimensões e peso reais das 295 imagens lidas com <span class="m">sharp</span>. Cabeçalhos HTTP, redirects, compressão e cache verificados em produção. CNPJ conferido na base da Receita.</p>
+    </div>
+    <div class="callout" style="border-left-color:var(--sev-3)">
+      <span class="co-t">Não medido — precisa de acesso</span>
+      <p><strong>PageSpeed Insights e dados de campo (CrUX)</strong>: a API pública recusou as cinco tentativas por limite de cota (HTTP 429). Os números de performance vêm da medição direta dos assets, não de uma nota do Lighthouse.</p>
+      <p><strong>Volume de busca</strong>: exige Search Console ou Keyword Planner. Os termos da seção 05 estão priorizados por intenção e encaixe com o negócio — são hipóteses a validar, não metas fechadas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 02 TÉCNICO ═══════════════════════ -->
+<section id="tecnico">
+  <div class="sec-head">
+    <span class="sec-num">02 — SEO técnico</span>
+    <h2>Estrutura e rastreamento</h2>
+    <p class="dek">Checklist completo dos 28 itens avaliados. Onze já estão conformes; os demais estão ordenados por prioridade.</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="controls">
+      <span class="ctl-label">Filtrar</span>
+      <button class="tgl" data-cfilter="all" aria-pressed="true">Tudo (28)</button>
+      <button class="tgl" data-cfilter="ok" aria-pressed="false">Já conforme (11)</button>
+      <button class="tgl" data-cfilter="bad" aria-pressed="false">A evoluir (17)</button>
+    </div>
+
+    <div class="check-grid" id="checkGrid">
+      <div class="check" data-cstate="ok"><div><span class="c-name">HTML pré-renderizado</span><span class="c-detail">Astro estático — texto chega sem depender de JS</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">Texto alternativo</span><span class="c-detail">295 imagens, nenhuma sem alt</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">Dados estruturados</span><span class="c-detail">6 blocos JSON-LD com Offer, preço e horários por setor</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">Redirect não-www → www</span><span class="c-detail">301 correto</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">Barra final consistente</span><span class="c-detail">/via-radio → 301 → /via-radio/</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">Status 404 real</span><span class="c-detail">Página inexistente devolve 404, não 200</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">HTTPS</span><span class="c-detail">Ativo, com upgrade automático</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">Compressão do HTML</span><span class="c-detail">gzip ativo: 93 KB → 15,9 KB</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">URLs limpas</span><span class="c-detail">Sem parâmetros, legíveis, em português</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">lang="pt-BR"</span><span class="c-detail">Declarado no &lt;html&gt;</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="ok"><div><span class="c-name">font-display: swap</span><span class="c-detail">Nas duas famílias, com preload</span></div><span class="chip ok">Feito</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">Canonical por página</span><span class="c-detail">Valor literal no Layout — props já existem para title e description</span></div><span class="chip s1">Máxima</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">robots.txt</span><span class="c-detail">A publicar</span></div><span class="chip s1">Máxima</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">sitemap.xml</span><span class="c-detail">A gerar com @astrojs/sitemap</span></div><span class="chip s1">Máxima</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">Meta description única</span><span class="c-detail">5 de 13 já têm; falta preencher as outras 8</span></div><span class="chip s2">Alta</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">Title da home</span><span class="c-detail">"Predialnet" — cabe serviço e cidade</span></div><span class="chip s2">Alta</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">Um H1 por página</span><span class="c-detail">H1 usado como estilo visual — troca de tag, CSS não muda</span></div><span class="chip s2">Alta</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">og:image</span><span class="c-detail">Twitter card já declarado; falta a imagem</span></div><span class="chip s2">Alta</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">Cache-Control em estáticos</span><span class="c-detail">Regras existem no _headers, mas em formato Netlify</span></div><span class="chip s2">Alta</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">Headers de segurança em produção</span><span class="c-detail">CSP e HSTS escritos; falta traduzir para .htaccess</span></div><span class="chip s2">Alta</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">areaServed no Schema</span><span class="c-detail">Só "Rio de Janeiro"; somar Niterói, São Gonçalo, Itaboraí</span></div><span class="chip s2">Alta</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">FAQPage schema</span><span class="c-detail">A adicionar — formato mais citado por IA</span></div><span class="chip s2">Alta</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">og:url / og:locale</span><span class="c-detail">A adicionar junto com og:image</span></div><span class="chip s3">Média</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">JSON-LD por página</span><span class="c-detail">O mesmo @graph nas 13 — dá para variar por tipo de página</span></div><span class="chip s3">Média</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">sameAs</span><span class="c-detail">Instagram declarado; somar LinkedIn, Facebook, YouTube</span></div><span class="chip s3">Média</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">Codificação de caracteres</span><span class="c-detail">/conexao-com-a-folia: "Conex&#65533;o" no title</span></div><span class="chip s3">Média</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">Breadcrumb visível</span><span class="c-detail">BreadcrumbList existe; falta a navegação na página</span></div><span class="chip s4">Baixa</span></div>
+      <div class="check" data-cstate="bad"><div><span class="c-name">llms.txt</span><span class="c-detail">Resumo do domínio para mecanismos de IA</span></div><span class="chip s4">Baixa</span></div>
+    </div>
+
+    <h3 class="sub">Meta tags página a página</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Página</th><th>Title</th><th class="num">Car.</th><th>Description</th><th class="num">H1</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono">/</td><td>Predialnet</td><td class="num">10</td><td><span class="chip neutral">padrão</span></td><td class="num">8</td></tr>
+          <tr><td class="mono">/telefonia</td><td>Telefonia Fixa - Predialnet</td><td class="num">27</td><td><span class="chip ok">única</span></td><td class="num">1</td></tr>
+          <tr><td class="mono">/via-radio</td><td>Internet Via Rádio - Predialnet</td><td class="num">31</td><td><span class="chip ok">única</span></td><td class="num">1</td></tr>
+          <tr><td class="mono">/porto-maravilha</td><td>Internet Porto Maravilha - Predialnet</td><td class="num">37</td><td><span class="chip ok">única</span></td><td class="num">1</td></tr>
+          <tr><td class="mono">/empresa</td><td>Internet Empresa - Predialnet</td><td class="num">29</td><td><span class="chip ok">única</span></td><td class="num">1</td></tr>
+          <tr><td class="mono">/conexao-com-a-folia</td><td>Conex&#65533;o com a Folia — Carnaval 2026</td><td class="num">48</td><td><span class="chip ok">única</span></td><td class="num">0</td></tr>
+          <tr><td class="mono">/anatel</td><td>Provedor Homologado pela Anatel - Predialnet</td><td class="num">44</td><td><span class="chip neutral">padrão</span></td><td class="num">1</td></tr>
+          <tr><td class="mono">/politica-de-privacidade</td><td>Política de Privacidade - Predialnet</td><td class="num">36</td><td><span class="chip neutral">padrão</span></td><td class="num">1</td></tr>
+          <tr><td class="mono">/redirect</td><td>Redirecionando - Predialnet</td><td class="num">27</td><td><span class="chip neutral">padrão</span></td><td class="num">1</td></tr>
+          <tr><td class="mono">/documentos</td><td>Documentos - Predialnet</td><td class="num">23</td><td><span class="chip neutral">padrão</span></td><td class="num">0</td></tr>
+          <tr><td class="mono">/relatorios</td><td>Relatórios de Transparência - Predialnet</td><td class="num">40</td><td><span class="chip neutral">padrão</span></td><td class="num">0</td></tr>
+          <tr><td class="mono">/agendamentos</td><td>Registrar Agendamentos - Predialnet</td><td class="num">35</td><td><span class="chip neutral">padrão</span></td><td class="num">0</td></tr>
+          <tr><td class="mono">/redefinir-senha</td><td>Redefinir Senha - Predialnet</td><td class="num">28</td><td><span class="chip neutral">padrão</span></td><td class="num">0</td></tr>
+        </tbody>
+        <caption>Ordenado pelo que já está resolvido. "padrão" = usa a description definida no Layout. As três últimas são páginas utilitárias — o ideal é marcá-las como noindex, não escrever description para elas.</caption>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <article class="finding s2">
+        <div class="finding-head"><span class="chip s2">Prioridade alta</span><h4>O _headers está certo, só no formato de outra hospedagem</h4></div>
+        <p>O arquivo tem CSP com whitelist, HSTS com preload, <span class="m">X-Frame-Options</span> e cache imutável de um ano — é um trabalho de segurança bem feito. O detalhe é que <span class="m">_headers</span> é convenção da Netlify e o site é servido por Apache, então nada disso está sendo aplicado hoje.</p>
+        <div class="evidence">$ curl -I /img/logo.png
+HTTP/1.1 200 OK
+Content-Type: image/png
+                     ← Cache-Control não chega ao navegador</div>
+        <div class="fix"><b>Próximo passo</b>Traduzir as mesmas regras para <span class="m">.htaccess</span> — o conteúdo já está definido, é só mudar a sintaxe. Arquivo pronto no anexo A.</div>
+      </article>
+
+      <article class="finding s3">
+        <div class="finding-head"><span class="chip s3">Prioridade média</span><h4>A página de Carnaval mostra que a capacidade de conteúdo existe</h4></div>
+        <p><span class="m">/conexao-com-a-folia</span> tem <strong>3.239 palavras</strong> — mais que o triplo da home e a maior página do domínio. É conteúdo editorial de verdade, com programação, horários e locais. O ponto é que ela é de fevereiro e continua indexável em agosto, com um caractere corrompido no título.</p>
+        <div class="fix"><b>Próximo passo</b>Corrigir a codificação e decidir o destino da página (arquivar ou marcar como edição 2026). E, principalmente: <strong>esse mesmo fôlego aplicado aos temas da seção 05 rende o ano inteiro</strong>, não só cinco dias.</div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 03 PERFORMANCE ═══════════════════════ -->
+<section id="performance">
+  <div class="sec-head">
+    <span class="sec-num">03 — Performance</span>
+    <h2>Peso de página e Core Web Vitals</h2>
+    <p class="dek">
+      Os números são a soma real dos bytes de cada asset referenciado no HTML, medidos no build. É a área com maior distância entre o que está construído e o que está entregue — e também a de correção mais mecânica, porque a ferramenta certa já existe no projeto.
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <div class="chart-card">
+      <div class="chart-head">
+        <h4>Peso total por página</h4>
+        <button class="tgl" data-table="tblPeso" aria-pressed="false">Ver tabela</button>
+      </div>
+      <p class="chart-note">HTML + imagens + CSS + JS + fontes. A linha marca 3 MB, um teto confortável para página comercial com muita imagem. Onze das treze páginas já estão bem abaixo dele.</p>
+      <div class="legend">
+        <i style="--swatch:var(--data)">Home</i>
+        <i style="--swatch:var(--context)">Demais páginas</i>
+      </div>
+      <div class="bars" id="chartPeso"></div>
+      <div class="ref-caption">Teto de referência: 3 MB</div>
+      <div class="table-wrap" id="tblPeso" hidden style="margin-top:18px">
+        <table>
+          <thead><tr><th>Página</th><th class="num">Total</th><th class="num">Imagens</th><th class="num">Nº imagens</th><th class="num">HTML</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">/</td><td class="num">31,99 MB</td><td class="num">31,72 MB</td><td class="num">48</td><td class="num">93 KB</td></tr>
+            <tr><td class="mono">/conexao-com-a-folia</td><td class="num">7,19 MB</td><td class="num">6,89 MB</td><td class="num">17</td><td class="num">126 KB</td></tr>
+            <tr><td class="mono">/documentos</td><td class="num">0,91 MB</td><td class="num">0,69 MB</td><td class="num">12</td><td class="num">39 KB</td></tr>
+            <tr><td class="mono">/porto-maravilha</td><td class="num">0,90 MB</td><td class="num">0,69 MB</td><td class="num">12</td><td class="num">36 KB</td></tr>
+            <tr><td class="mono">/via-radio</td><td class="num">0,90 MB</td><td class="num">0,69 MB</td><td class="num">12</td><td class="num">35 KB</td></tr>
+            <tr><td class="mono">/empresa</td><td class="num">0,90 MB</td><td class="num">0,69 MB</td><td class="num">12</td><td class="num">30 KB</td></tr>
+            <tr><td class="mono">/telefonia</td><td class="num">0,90 MB</td><td class="num">0,69 MB</td><td class="num">12</td><td class="num">30 KB</td></tr>
+            <tr><td class="mono">/politica-de-privacidade</td><td class="num">0,90 MB</td><td class="num">0,69 MB</td><td class="num">12</td><td class="num">29 KB</td></tr>
+            <tr><td class="mono">/anatel</td><td class="num">0,90 MB</td><td class="num">0,69 MB</td><td class="num">12</td><td class="num">29 KB</td></tr>
+            <tr><td class="mono">/relatorios</td><td class="num">0,89 MB</td><td class="num">0,69 MB</td><td class="num">12</td><td class="num">26 KB</td></tr>
+            <tr><td class="mono">/redefinir-senha</td><td class="num">0,56 MB</td><td class="num">0,36 MB</td><td class="num">9</td><td class="num">27 KB</td></tr>
+            <tr><td class="mono">/agendamentos</td><td class="num">0,56 MB</td><td class="num">0,36 MB</td><td class="num">9</td><td class="num">26 KB</td></tr>
+            <tr><td class="mono">/redirect</td><td class="num">0,56 MB</td><td class="num">0,36 MB</td><td class="num">9</td><td class="num">24 KB</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-head">
+        <h4>As dez imagens mais pesadas</h4>
+        <button class="tgl" data-table="tblImg" aria-pressed="false">Ver tabela</button>
+      </div>
+      <p class="chart-note">Todas foram geradas pelo pipeline com compressão correta — o que pesa é a resolução de origem. A coluna "alvo" estima o resultado depois de redimensionar para o tamanho de exibição real.</p>
+      <div class="bars" id="chartImg"></div>
+      <div class="table-wrap" id="tblImg" hidden style="margin-top:18px">
+        <table>
+          <thead><tr><th>Arquivo</th><th class="num">Hoje</th><th class="num">Dimensões</th><th class="num">B/px</th><th class="num">Alvo</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">foto_empresa.avif</td><td class="num">3.563 KB</td><td class="num">1920×2140</td><td class="num">0,89</td><td class="num">~250 KB</td></tr>
+            <tr><td class="mono">foto_empresa_mobile.avif</td><td class="num">3.128 KB</td><td class="num">1920×2082</td><td class="num">0,80</td><td class="num">~140 KB</td></tr>
+            <tr><td class="mono">bannerConexaoFoliaMobile.webp</td><td class="num">2.489 KB</td><td class="num">1920×2127</td><td class="num">0,62</td><td class="num">~150 KB</td></tr>
+            <tr><td class="mono">navega-4.webp</td><td class="num">2.450 KB</td><td class="num">1920×1152</td><td class="num">1,13</td><td class="num">~120 KB</td></tr>
+            <tr><td class="mono">navega-2.webp</td><td class="num">2.214 KB</td><td class="num">1920×1152</td><td class="num">1,03</td><td class="num">~120 KB</td></tr>
+            <tr><td class="mono">cardPlanoIdeal.webp</td><td class="num">2.175 KB</td><td class="num">1080×1750</td><td class="num">1,18</td><td class="num">~110 KB</td></tr>
+            <tr><td class="mono">navega-3.webp</td><td class="num">2.153 KB</td><td class="num">1920×1152</td><td class="num">1,00</td><td class="num">~120 KB</td></tr>
+            <tr><td class="mono">navega-1.webp</td><td class="num">2.142 KB</td><td class="num">1920×1152</td><td class="num">0,99</td><td class="num">~120 KB</td></tr>
+            <tr><td class="mono">cardPlanosB.webp</td><td class="num">1.946 KB</td><td class="num">1080×2098</td><td class="num">0,88</td><td class="num">~110 KB</td></tr>
+            <tr><td class="mono">cardPlanos.webp</td><td class="num">1.897 KB</td><td class="num">1080×2098</td><td class="num">0,86</td><td class="num">~110 KB</td></tr>
+          </tbody>
+          <caption>Dimensões lidas com sharp. Só estas dez somam 24,2 MB; reprocessadas, ficariam perto de 1,3 MB.</caption>
+        </table>
+      </div>
+    </div>
+
+    <h3 class="sub">Quatro ajustes de alto retorno</h3>
+
+    <div class="grid-2">
+      <article class="finding s2">
+        <div class="finding-head"><span class="chip s2">Prioridade alta</span><h4>Usar o &lt;picture&gt; que já existe no lugar do par oculto por CSS</h4></div>
+        <p>Nos componentes React o padrão é colocar as duas versões no HTML e esconder uma com <span class="m">hidden md:block</span>. O navegador baixa as duas — CSS não impede download. O <span class="m">OptimizedImage.astro</span> resolve isso com <span class="m">&lt;source media&gt;</span>, e já está pronto.</p>
+        <div class="evidence">foto_empresa + _mobile     3.128 KB
+porto_maravilha_mobile     1.414 KB
+via_radio_mobile             852 KB
+rodape + rodape_mobile_b     301 KB
+                          ──────────
+recuperável só aqui:        3,23 MB</div>
+        <div class="fix"><b>Próximo passo</b>Estender o componente a Others, Footer, IdealPlans e NavegaSection.</div>
+      </article>
+
+      <article class="finding s2">
+        <div class="finding-head"><span class="chip s2">Prioridade alta</span><h4>Apontar o preload para o herói que está na tela</h4></div>
+        <p>O <span class="m">Layout.astro</span> pré-carrega quatro variantes de <span class="m">banner1</span>, mas a home renderiza <span class="m">hero.webp</span> e <span class="m">bannerMobile.avif</span> — o banner1 deve ter ficado de uma versão anterior. São 275 KB de alta prioridade competindo com o LCP real.</p>
+        <div class="evidence">preload banner1.avif        58 KB
+preload banner1.webp        72 KB
+preload banner1Mobile.avif  67 KB
+preload banner1Mobile.webp  83 KB
+
+Nota: AVIF e WebP no mesmo breakpoint —
+preload não negocia formato, baixa os dois.</div>
+        <div class="fix"><b>Próximo passo</b>Trocar os quatro por dois, apontando para o herói atual: um formato por breakpoint.</div>
+      </article>
+
+      <article class="finding s2">
+        <div class="finding-head"><span class="chip s2">Prioridade alta</span><h4>Declarar dimensões para estabilizar o layout</h4></div>
+        <p>44 das 48 imagens da home estão sem <span class="m">width</span>/<span class="m">height</span>, e 36 sem <span class="m">loading</span>. O <span class="m">OptimizedImage.astro</span> já aceita os dois atributos — é mais um caso de estender o componente. As dimensões reais estão na tabela acima.</p>
+        <div class="fix"><b>Próximo passo</b>Melhora CLS diretamente e é a mudança de menor risco desta seção.</div>
+      </article>
+
+      <article class="finding s3">
+        <div class="finding-head"><span class="chip s3">Prioridade média</span><h4>Carregar o zxcvbn sob demanda</h4></div>
+        <p><span class="m">ResetPassword.js</span> tem 822 KB — 74% de todo o JS do site — por causa dos dicionários do zxcvbn, com <span class="m">client:load</span>. Afeta só uma página, mas é a maior anomalia do bundle. O resto está enxuto: os outros 22 arquivos somam 282 KB.</p>
+        <div class="evidence">ResetPassword.js       822,6 KB
+client.js (React)      134,6 KB
+outros 21 arquivos     147,4 KB
+                      ──────────
+total                 1.104,6 KB</div>
+        <div class="fix"><b>Próximo passo</b><span class="m">import()</span> dinâmico no primeiro foco do campo, ou uma regra de força mais simples.</div>
+      </article>
+    </div>
+
+    <div class="callout">
+      <span class="co-t">Sobre a nota do PageSpeed</span>
+      <p>Não há nota do Lighthouse aqui — a API recusou as cinco tentativas por cota. Vale registrar que <strong>o servidor não é o gargalo</strong>: responde rápido e entrega a home comprimida em 15,9 KB. O trabalho está concentrado nas imagens, e é bem delimitado — as dez maiores respondem por 24 dos 32 MB.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 04 CONTEÚDO ═══════════════════════ -->
+<section id="conteudo">
+  <div class="sec-head">
+    <span class="sec-num">04 — Conteúdo</span>
+    <h2>A base existe e está pronta para escalar</h2>
+    <p class="dek">
+      O site tem 6.272 palavras em 13 páginas. Não é pouco para um site institucional-comercial — mas é a base de um site que ainda não disputa buscas informacionais. E o texto que existe já está na linguagem certa.
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <div class="chart-card">
+      <div class="chart-head">
+        <h4>Palavras de texto por página</h4>
+        <button class="tgl" data-table="tblPal" aria-pressed="false">Ver tabela</button>
+      </div>
+      <p class="chart-note">Texto visível, extraído do HTML gerado — scripts, estilos e comentários removidos.</p>
+      <div class="legend">
+        <i style="--swatch:var(--data)">Páginas comerciais</i>
+        <i style="--swatch:var(--context)">Institucionais e utilitárias</i>
+      </div>
+      <div class="bars" id="chartPal"></div>
+      <div class="table-wrap" id="tblPal" hidden style="margin-top:18px">
+        <table>
+          <thead><tr><th>Página</th><th class="num">Palavras</th><th>Tipo</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">/conexao-com-a-folia</td><td class="num">3.239</td><td>Sazonal</td></tr>
+            <tr><td class="mono">/</td><td class="num">983</td><td>Comercial</td></tr>
+            <tr><td class="mono">/documentos</td><td class="num">432</td><td>Institucional</td></tr>
+            <tr><td class="mono">/porto-maravilha</td><td class="num">260</td><td>Comercial</td></tr>
+            <tr><td class="mono">/politica-de-privacidade</td><td class="num">252</td><td>Institucional</td></tr>
+            <tr><td class="mono">/anatel</td><td class="num">244</td><td>Institucional</td></tr>
+            <tr><td class="mono">/via-radio</td><td class="num">243</td><td>Comercial</td></tr>
+            <tr><td class="mono">/relatorios</td><td class="num">172</td><td>Institucional</td></tr>
+            <tr><td class="mono">/telefonia</td><td class="num">162</td><td>Comercial</td></tr>
+            <tr><td class="mono">/empresa</td><td class="num">144</td><td>Comercial</td></tr>
+            <tr><td class="mono">/redefinir-senha</td><td class="num">51</td><td>Utilitária</td></tr>
+            <tr><td class="mono">/agendamentos</td><td class="num">49</td><td>Utilitária</td></tr>
+            <tr><td class="mono">/redirect</td><td class="num">41</td><td>Utilitária</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout" style="border-left-color:var(--ok)">
+      <span class="co-t">O texto certo já está escrito</span>
+      <p>As descrições do <span class="m">IdealPlans</span> já falam por perfil de uso, que é exatamente a linguagem que responde às buscas da seção 05: <em>"ideal para tarefas exigentes, como edição de áudio e vídeo e jogos em nuvem"</em>, <em>"proporcionando conexões estáveis e agilidade no envio e recebimento de arquivos"</em>. O <span class="m">NavegaSection</span> vai na mesma linha, com ping baixo, videochamada e streaming.</p>
+      <p><strong>O material está pronto — falta ele existir como página que possa ranquear</strong>, e não só como card dentro da home. Boa parte do trabalho da seção 05 é reaproveitamento, não redação do zero.</p>
+    </div>
+
+    <div class="grid-2">
+      <article class="finding s2">
+        <div class="finding-head"><span class="chip s2">Prioridade alta</span><h4>Reservar o H1 para a estrutura</h4></div>
+        <p>Cada seção da home usa <span class="m">&lt;h1&gt;</span> como tamanho de fonte. Como o CSS controla a aparência por classe, dá para trocar as tags sem mexer no visual. Um detalhe a olhar junto: o componente <span class="m">Plans</span> é renderizado duas vezes, então o mesmo H1 e os H2 de 600/800/1 Giga aparecem duplicados.</p>
+        <div class="evidence">H1  Planos Predialnet Fibra para sua casa
+H1  Os melhores planos estão aqui
+H1  Saiba como escolher o plano ideal pra você
+H1  Facilite sua vida, baixe o App Minha Predialnet
+H1  O maior provedor regional do Estado do RJ
+H1  Acesso rápido às principais funções…
+H1  Planos Predialnet Fibra para sua casa   ← 2ª renderização
+H1  Assine do seu jeito e venha para…</div>
+        <div class="fix"><b>Sugestão de H1</b><em>Internet fibra óptica em Niterói, São Gonçalo e Rio de Janeiro</em> — resolve a hierarquia e a lacuna de região de uma vez.</div>
+      </article>
+
+      <article class="finding s3">
+        <div class="finding-head"><span class="chip s3">Prioridade média</span><h4>Aprofundar a malha de links internos</h4></div>
+        <p>São 11 destinos internos únicos, e boa parte dos links do rodapé são âncoras da própria home. É coerente para um site de 13 páginas — vira limitação quando as páginas de cidade e os artigos entrarem, porque é o link interno que distribui autoridade entre eles.</p>
+        <div class="fix"><b>Próximo passo</b>Os clusters da seção 05 já preveem essa malha: cada página de cidade linka para planos e para os artigos de dúvida; cada artigo linka de volta para a cidade e para o plano recomendado.</div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 05 KEYWORDS ═══════════════════════ -->
+<section id="keywords">
+  <div class="sec-head">
+    <span class="sec-num">05 — Palavras-chave e intenção</span>
+    <h2>Mapa de termos por etapa da decisão</h2>
+    <p class="dek">
+      Hoje o site responde bem a quem já digita "Predialnet". Este mapa cobre as etapas anteriores: quem está com um problema, quem está escolhendo e quem já decidiu contratar. <strong>Sem dados de volume</strong> — a ordem é por intenção comercial e encaixe com o negócio, para validar no Search Console e no Keyword Planner.
+    </p>
+  </div>
+
+  <div class="stack">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-tab="k-local">Local / transacional</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="k-escolha">Escolha e comparação</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="k-problema">Problema e suporte</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="k-tech">Técnico e conceitual</button>
+    </div>
+
+    <div class="tabpanel" id="k-local">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Termo</th><th>Intenção</th><th>Página que responde</th><th>Situação</th><th>Prioridade</th></tr></thead>
+          <tbody>
+            <tr><td>internet fibra Niterói</td><td>Transacional</td><td class="mono">/internet-niteroi</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>melhor internet em Niterói</td><td>Comercial</td><td class="mono">/internet-niteroi</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>internet fibra São Gonçalo</td><td>Transacional</td><td class="mono">/internet-sao-goncalo</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>melhor internet São Gonçalo</td><td>Comercial</td><td class="mono">/internet-sao-goncalo</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>provedor de internet perto de mim</td><td>Local imediata</td><td>Google Business + página de cidade</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>internet Zona Norte RJ</td><td>Transacional</td><td class="mono">/internet-zona-norte-rj</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>internet Centro RJ</td><td>Transacional</td><td class="mono">/internet-centro-rio</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>internet para empresa Niterói</td><td>Comercial B2B</td><td class="mono">/empresa</td><td><span class="chip s3">ampliar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>internet em Icaraí</td><td>Transacional</td><td class="mono">/internet-niteroi/icarai</td><td><span class="chip s1">a criar</span></td><td><span class="chip s3">3</span></td></tr>
+            <tr><td>internet em Santa Rosa</td><td>Transacional</td><td class="mono">/internet-niteroi/santa-rosa</td><td><span class="chip s1">a criar</span></td><td><span class="chip s3">3</span></td></tr>
+            <tr><td>internet no Méier</td><td>Transacional</td><td class="mono">/internet-zona-norte-rj/meier</td><td><span class="chip s1">a criar</span></td><td><span class="chip s3">3</span></td></tr>
+            <tr><td>internet na Tijuca</td><td>Transacional</td><td class="mono">/internet-zona-norte-rj/tijuca</td><td><span class="chip s1">a criar</span></td><td><span class="chip s3">3</span></td></tr>
+            <tr><td>internet via rádio Rio de Janeiro</td><td>Transacional</td><td class="mono">/via-radio</td><td><span class="chip ok">existe</span></td><td><span class="chip s4">4</span></td></tr>
+            <tr><td>internet Porto Maravilha</td><td>Transacional</td><td class="mono">/porto-maravilha</td><td><span class="chip ok">existe</span></td><td><span class="chip s4">4</span></td></tr>
+          </tbody>
+          <caption>"Ampliar" = a página existe e está bem estruturada; falta mencionar a região em texto e ganhar corpo.</caption>
+        </table>
+      </div>
+    </div>
+
+    <div class="tabpanel" id="k-escolha" hidden>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Termo</th><th>Intenção</th><th>Formato ideal</th><th>Situação</th><th>Prioridade</th></tr></thead>
+          <tbody>
+            <tr><td>quantos mega de internet eu preciso</td><td>Informacional pré-compra</td><td>Guia + tabela por perfil</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>melhor internet para home office</td><td>Comercial por perfil</td><td>Página de uso + plano recomendado</td><td><span class="chip s3">texto pronto</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>melhor internet para jogos</td><td>Comercial por perfil</td><td>Página de uso + ping e latência</td><td><span class="chip s3">texto pronto</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>500 mega ou 1 giga</td><td>Comparação</td><td>Comparativo com tabela</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>melhor internet para streaming</td><td>Comercial por perfil</td><td>Página de uso + tabela 4K/8K</td><td><span class="chip s3">texto pronto</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>como escolher um provedor de internet</td><td>Informacional</td><td>Guia com checklist</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>provedor regional ou grande operadora</td><td>Comparação</td><td>Artigo comparativo honesto</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>internet para condomínio</td><td>Comercial B2B</td><td>Página dedicada</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>internet sem fidelidade</td><td>Comercial — diferencial</td><td>Seção na página de planos</td><td><span class="chip s3">ampliar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>internet com instalação grátis</td><td>Comercial — diferencial</td><td>Seção na página de planos</td><td><span class="chip s3">ampliar</span></td><td><span class="chip s3">3</span></td></tr>
+          </tbody>
+          <caption>"Texto pronto" = a descrição já existe no IdealPlans ou no NavegaSection e pode ser a base do artigo.</caption>
+        </table>
+      </div>
+    </div>
+
+    <div class="tabpanel" id="k-problema" hidden>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Termo</th><th>Intenção</th><th>Formato ideal</th><th>Situação</th><th>Prioridade</th></tr></thead>
+          <tbody>
+            <tr><td>por que minha internet está lenta</td><td>Problema</td><td>Diagnóstico passo a passo</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>wi-fi não chega no quarto</td><td>Problema</td><td>Guia de posicionamento + mesh</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>como fazer teste de velocidade corretamente</td><td>Problema</td><td>Guia + medidor próprio da Predialnet</td><td><span class="chip s3">ativo pronto</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>problema é do wi-fi ou da internet</td><td>Problema</td><td>Árvore de decisão</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>como melhorar o sinal do wi-fi</td><td>Problema</td><td>Lista prática</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>telefone Predialnet / suporte</td><td>Navegacional — cliente</td><td>Página de contato indexável</td><td><span class="chip s3">ampliar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>2ª via de conta Predialnet</td><td>Navegacional — cliente</td><td>Página própria além do link externo</td><td><span class="chip s3">ampliar</span></td><td><span class="chip s3">3</span></td></tr>
+            <tr><td>como cancelar internet</td><td>Retenção</td><td>Página de processo transparente</td><td><span class="chip s1">a criar</span></td><td><span class="chip s3">3</span></td></tr>
+          </tbody>
+          <caption>A Predialnet já tem speedtest próprio em speedtest.predialnet.com.br — é um ativo forte para o artigo de teste de velocidade.</caption>
+        </table>
+      </div>
+    </div>
+
+    <div class="tabpanel" id="k-tech" hidden>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Termo</th><th>Intenção</th><th>Formato ideal</th><th>Situação</th><th>Prioridade</th></tr></thead>
+          <tbody>
+            <tr><td>wi-fi 6 vale a pena</td><td>Informacional</td><td>Comparativo Wi-Fi 5 × Wi-Fi 6</td><td><span class="chip s1">a criar</span></td><td><span class="chip s1">1</span></td></tr>
+            <tr><td>o que é internet mesh</td><td>Definição</td><td>Definição + quando faz sentido</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>o que é latência / o que é ping</td><td>Definição</td><td>Definição + números de referência</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>o que é fibra óptica</td><td>Definição</td><td>Explicação + comparação com rádio</td><td><span class="chip s1">a criar</span></td><td><span class="chip s2">2</span></td></tr>
+            <tr><td>diferença entre mega e megabyte</td><td>Definição</td><td>Explicação + tabela de conversão</td><td><span class="chip s1">a criar</span></td><td><span class="chip s3">3</span></td></tr>
+            <tr><td>upload e download: qual a diferença</td><td>Definição</td><td>Explicação + por que importa em fibra</td><td><span class="chip s1">a criar</span></td><td><span class="chip s3">3</span></td></tr>
+            <tr><td>provedor licenciado Anatel / SCM</td><td>Confiança</td><td class="mono">/anatel</td><td><span class="chip ok">existe</span></td><td><span class="chip s4">4</span></td></tr>
+          </tbody>
+          <caption>Definições são o formato mais citado por mecanismos de resposta de IA — pergunta no título, resposta objetiva no primeiro parágrafo.</caption>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 06 LOCAL ═══════════════════════ -->
+<section id="local">
+  <div class="sec-head">
+    <span class="sec-num">06 — SEO local</span>
+    <h2>Cidade → bairro → necessidade</h2>
+    <p class="dek">
+      É o maior espaço aberto do plano. A Predialnet atende quatro cidades e ainda não tem página de cidade — e é justamente por aí que os concorrentes ocupam a busca local.
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <div class="callout" style="border-left-color:var(--sev-2)">
+      <span class="co-t">O padrão que já está estabelecido no setor</span>
+      <p>Claro publica <span class="m">/internet/banda-larga/rj/niteroi</span>. TIM publica <span class="m">/internet/tim-ultrafibra/niteroi</span>. Os agregadores — MelhorPlano, Melhor Escolha, Minha Conexão — publicam ranking por cidade e ocupam o topo. Numa busca por "melhor internet em Niterói" a Predialnet aparece <em>citada dentro da página dos outros</em>; em São Gonçalo, ainda não aparece nos rankings.</p>
+      <p><strong>A boa notícia é que isso é vantagem de conteúdo, não de rede.</strong> Os agregadores não têm infraestrutura, nem clientes, nem 22 anos na região — têm estrutura de página. É inteiramente replicável.</p>
+    </div>
+
+    <h3 class="sub">Arquitetura proposta</h3>
+
+    <div class="stack" style="gap:14px">
+      <div class="cluster">
+        <div class="cluster-hub">
+          <h4>Nível 1 — Cidade</h4>
+          <span class="hub-url">4 páginas · começar por aqui</span>
+        </div>
+        <div class="cluster-list">
+          <div class="cluster-item"><span class="ci-t">Internet fibra em Niterói</span><span class="ci-u">/internet-niteroi</span></div>
+          <div class="cluster-item"><span class="ci-t">Internet fibra em São Gonçalo</span><span class="ci-u">/internet-sao-goncalo</span></div>
+          <div class="cluster-item"><span class="ci-t">Internet fibra na Zona Norte do Rio</span><span class="ci-u">/internet-zona-norte-rj</span></div>
+          <div class="cluster-item"><span class="ci-t">Internet fibra no Centro do Rio</span><span class="ci-u">/internet-centro-rio</span></div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-hub">
+          <h4>Nível 2 — Bairro</h4>
+          <span class="hub-url">depois que as páginas de cidade estiverem indexando</span>
+        </div>
+        <div class="cluster-list">
+          <div class="cluster-item"><span class="ci-t">Icaraí</span><span class="ci-u">/internet-niteroi/icarai</span></div>
+          <div class="cluster-item"><span class="ci-t">Santa Rosa</span><span class="ci-u">/internet-niteroi/santa-rosa</span></div>
+          <div class="cluster-item"><span class="ci-t">Centro de Niterói</span><span class="ci-u">/internet-niteroi/centro</span></div>
+          <div class="cluster-item"><span class="ci-t">Alcântara</span><span class="ci-u">/internet-sao-goncalo/alcantara</span></div>
+          <div class="cluster-item"><span class="ci-t">Méier</span><span class="ci-u">/internet-zona-norte-rj/meier</span></div>
+          <div class="cluster-item"><span class="ci-t">Tijuca</span><span class="ci-u">/internet-zona-norte-rj/tijuca</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="border-left-color:var(--sev-1)">
+      <span class="co-t">A regra que decide se funciona</span>
+      <p><strong>Página de bairro não pode ser o mesmo texto com o nome trocado.</strong> Vinte páginas iguais com "Icaraí", "Santa Rosa" e "Méier" substituídos configuram doorway page, e o Google desindexa o conjunto. Se não houver informação real de um bairro, é melhor listá-lo dentro da página da cidade e não criar página própria. Vale mais quatro páginas de cidade excelentes do que vinte de bairro genéricas.</p>
+    </div>
+
+    <h3 class="sub">O que precisa ser único em cada página de cidade</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bloco</th><th>Conteúdo específico</th><th>Fonte do dado</th></tr></thead>
+        <tbody>
+          <tr><td><b>Cobertura</b></td><td>Bairros atendidos por nome; o que é fibra e o que é rádio</td><td>Base de viabilidade técnica</td></tr>
+          <tr><td><b>Planos disponíveis</b></td><td>A grade real daquela região — Porto Maravilha, por exemplo, já tem grade própria de 25 a 60 Mega</td><td>Grade comercial por região</td></tr>
+          <tr><td><b>Prazo e processo</b></td><td>Prazo médio real de instalação naquela cidade</td><td>Operação / CRM</td></tr>
+          <tr><td><b>Presença local</b></td><td>Loja, ponto de atendimento, tempo de operação na cidade</td><td>Comercial</td></tr>
+          <tr><td><b>FAQ da região</b></td><td>5 a 8 perguntas que aquela cidade realmente faz, com marcação FAQPage</td><td>Call center, WhatsApp, CRM</td></tr>
+          <tr><td><b>Prova social local</b></td><td>Depoimentos de clientes daquela cidade, identificados por bairro</td><td>Pesquisa de satisfação</td></tr>
+          <tr><td><b>Ângulo editorial</b></td><td>Niterói: qualidade, estabilidade, atendimento. São Gonçalo: custo-benefício e transparência. Zona Norte e Centro: estabilidade e home office</td><td><span class="chip s3">hipótese</span> validar com dados</td></tr>
+        </tbody>
+        <caption>A última linha é hipótese de posicionamento, não fato — deve orientar teste de conteúdo e campanha, e ser confirmada com Search Console, Analytics, mídia paga e CRM antes de virar regra.</caption>
+      </table>
+    </div>
+
+    <article class="finding s2">
+      <div class="finding-head"><span class="chip s2">Prioridade alta</span><h4>Google Business Profile é metade do jogo local</h4></div>
+      <p>Para "internet perto de mim" e para o pacote de mapas, quem decide é o perfil do Google Business, não o site. Não deu para auditar o perfil sem acesso à conta, mas os sinais externos sugerem espaço de padronização: os diretórios listam a empresa ora como "Predialnet", ora "Predial Net", ora "Predialnet Provedor de Internet LTDA" com outro CNPJ, ora "Predlink".</p>
+      <div class="fix"><b>Próximo passo</b>Um perfil por unidade física, com nome, telefone e endereço idênticos aos do site e o CNPJ correto. Categoria primária "Provedor de serviços de Internet", com fotos, horários e posts atualizados.</div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 07 GEO ═══════════════════════ -->
+<section id="geo">
+  <div class="sec-head">
+    <span class="sec-num">07 — AI SEO / GEO</span>
+    <h2>Ser compreendida por mecanismos de resposta</h2>
+    <p class="dek">
+      ChatGPT, Gemini, Perplexity e o AI Overview extraem afirmações em texto — não leem carrossel nem banner. O site já tem a vantagem estrutural que importa aqui (HTML pré-renderizado e Schema.org rico). Falta a camada de afirmações explícitas.
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <div class="callout" style="border-left-color:var(--ok)">
+      <span class="co-t">Meio caminho já andado</span>
+      <p>Boa parte dos sites falha em GEO porque o conteúdo depende de JavaScript ou porque não há dado estruturado nenhum. <strong>Aqui os dois já estão resolvidos</strong> — Astro estático entrega texto puro, e o <span class="m">@graph</span> descreve organização, serviços, preços e horários. O que falta é dizer em português corrido o que o schema já diz em JSON.</p>
+    </div>
+
+    <div class="grid-2">
+      <article class="finding s2">
+        <div class="finding-head"><span class="chip s2">Prioridade alta</span><h4>Faltam frases que liguem marca, serviço e região</h4></div>
+        <p>Uma IA precisa extrair a tripla <strong>Predialnet → internet fibra → região atendida</strong>. O schema tem a marca e o serviço; a região está só como "Rio de Janeiro", e no texto não aparece.</p>
+        <div class="evidence">Ocorrências no texto das 13 páginas:
+  Niterói       1   (endereço do rodapé)
+  São Gonçalo   0
+  Itaboraí      0
+  Zona Norte    0
+  Icaraí/Méier  0</div>
+        <div class="fix"><b>Próximo passo</b>Um parágrafo no alto da home: <em>"A Predialnet é um provedor de internet por fibra óptica que atende Niterói, São Gonçalo, Itaboraí e regiões do Rio de Janeiro, com planos de 600 Mega a 1 Giga."</em> Resolve a maior lacuna de GEO do site.</div>
+      </article>
+
+      <article class="finding s2">
+        <div class="finding-head"><span class="chip s2">Prioridade alta</span><h4>Terceiros estão citando oferta antiga</h4></div>
+        <p>Como o site não afirma isso em texto, os mecanismos se apoiam em comparadores — e eles estão desatualizados. Há também um PDF de oferta antiga ainda acessível no próprio domínio.</p>
+        <div class="evidence">Terceiros:  "planos de até 700 Mega"
+            "500 Mega por R$ 99,90"
+Domínio:    /download/sumario-oferta-plano-giga-ate-500.pdf
+
+Oferta atual:  600 Mega  R$  99,90
+               800 Mega  R$ 124,90
+               1 Giga    R$ 139,90</div>
+        <div class="fix"><b>Próximo passo</b>Publicar os dados atuais em texto, arquivar PDFs de oferta expirada e pedir atualização aos principais comparadores — eles costumam aceitar.</div>
+      </article>
+    </div>
+
+    <h3 class="sub">Os cinco blocos que um mecanismo de IA procura</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Pergunta</th><th>Onde deve estar</th><th>Situação</th></tr></thead>
+        <tbody>
+          <tr><td><b>Quem é a Predialnet?</b></td><td>Parágrafo na home + página <span class="m">/sobre</span> + <span class="m">foundingDate: 2003</span></td><td><span class="chip s2">a escrever</span></td></tr>
+          <tr><td><b>Onde ela atende?</b></td><td>Texto na home + páginas de cidade + <span class="m">areaServed</span> com as 4 cidades</td><td><span class="chip s2">a escrever</span></td></tr>
+          <tr><td><b>Quais serviços oferece?</b></td><td>Service schema já existe — falta a versão em texto corrido</td><td><span class="chip s3">metade feito</span></td></tr>
+          <tr><td><b>Quais são os diferenciais?</b></td><td>Sem fidelidade, instalação grátis, Wi-Fi 6, 22 anos, licença Anatel — em frases, não em ícones</td><td><span class="chip s3">metade feito</span></td></tr>
+          <tr><td><b>Para quem é indicada?</b></td><td>Páginas por perfil: home office, jogos, streaming, família, condomínio, empresa</td><td><span class="chip s3">texto pronto</span></td></tr>
+        </tbody>
+        <caption>Três dos cinco blocos já têm matéria-prima no site — é reorganização e complemento, não produção do zero.</caption>
+      </table>
+    </div>
+
+    <h3 class="sub">O formato que é extraível</h3>
+    <div class="prose">
+      <p>Conteúdo citável por IA tem forma reconhecível: <strong>a pergunta é o título e a resposta direta vem no primeiro parágrafo</strong>, antes de qualquer introdução. O aprofundamento vem depois.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="code">
+        <div class="code-head"><span>Difícil de extrair</span></div>
+        <pre>&lt;h2&gt;Velocidade ideal&lt;/h2&gt;
+&lt;p&gt;
+  A gente sabe que escolher um plano
+  não é fácil! São muitas opções no
+  mercado e a Predialnet está aqui
+  para te ajudar nessa jornada. Vem
+  com a gente descobrir…
+&lt;/p&gt;</pre>
+      </div>
+      <div class="code" style="border-left-color:var(--ok)">
+        <div class="code-head"><span>Fácil de extrair</span></div>
+        <pre>&lt;h2&gt;Quantos mega uma família
+    de quatro pessoas precisa?&lt;/h2&gt;
+&lt;p&gt;
+  Uma família de quatro pessoas usando
+  streaming, videochamadas e jogos ao
+  mesmo tempo navega com conforto em
+  planos de 600 a 800 Mega. Acima de
+  15 dispositivos conectados, 1 Giga
+  passa a fazer diferença.
+&lt;/p&gt;
+&lt;!-- tabela por perfil de uso abaixo --&gt;</pre>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:8px">
+      <p>Além do formato do parágrafo, o que mais aumenta a chance de citação:</p>
+      <ul>
+        <li><strong>FAQ com marcação FAQPage</strong> — o formato mais diretamente consumido por mecanismos de resposta, e o schema do site já tem estrutura para receber.</li>
+        <li><strong>Tabelas comparativas</strong> — plano × perfil de uso, Wi-Fi 5 × Wi-Fi 6, fibra × rádio (esta última a Predialnet pode fazer com autoridade, porque opera as duas).</li>
+        <li><strong>Definições objetivas</strong> — uma frase que define o termo, antes de explicá-lo.</li>
+        <li><strong>Números verificáveis com data</strong> — "atende quatro cidades desde 2003" vale mais que "líder regional".</li>
+        <li><strong>Data de atualização visível</strong> na página e <span class="m">dateModified</span> no schema.</li>
+        <li><strong>llms.txt</strong> — resumo do domínio em texto puro; custa dez minutos e está pronto no anexo A.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 08 ENTIDADE ═══════════════════════ -->
+<section id="entidade">
+  <div class="sec-head">
+    <span class="sec-num">08 — Entidade</span>
+    <h2>Consolidar "Predialnet" como entidade</h2>
+    <p class="dek">
+      Para o Google e para os modelos de linguagem, uma empresa é uma entidade descrita de forma consistente em muitas fontes. O site já é consistente; a divergência está fora dele.
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <article class="finding s2">
+      <div class="finding-head"><span class="chip s2">Prioridade alta</span><h4>Definir e replicar a forma canônica dos dados</h4></div>
+      <div class="evidence">Rodapé do site   Predlink Rede de Telecomunicações Ltda.
+                 CNPJ 05.990.171/0001-48   ← dígito trocado
+
+Receita Federal  PREDLINK REDE DE TELECOMUNICACOES LTDA
+                 CNPJ 05.980.171/0001-48   ← correto
+                 fantasia PREDIALNET · ATIVA desde 04/11/2003
+                 CNAE 61.10-8-03 (SCM)
+
+Diretórios       "Predial Net" · "PREDIALNET" · "Predlink"
+                 "Predialnet Provedor de Internet LTDA"
+                 CNPJ 02.719.371/0001-53   ← outra pessoa jurídica</div>
+      <div class="fix"><b>Próximo passo</b>Fixar o padrão — <em>Predialnet</em> como marca, <em>Predlink Rede de Telecomunicações Ltda.</em> como razão social, CNPJ 05.980.171/0001-48 — e replicar igual em site, Google Business, redes, diretórios e materiais. É trabalho de padronização, e o site é a fonte de verdade.</div>
+    </article>
+
+    <div class="grid-2">
+      <article class="finding s3">
+        <div class="finding-head"><span class="chip s3">Prioridade média</span><h4>Ampliar o sameAs</h4></div>
+        <p>O schema já declara o Instagram — a estrutura está certa, é só listar mais perfis. O <span class="m">sameAs</span> é como o Google reconcilia perfis espalhados numa entidade só.</p>
+        <div class="evidence">Hoje:
+"sameAs": [ "https://instagram.com/predialnet" ]
+
+Somar: LinkedIn · Facebook · YouTube
+       Google Business · Reclame Aqui</div>
+      </article>
+
+      <article class="finding s3">
+        <div class="finding-head"><span class="chip s3">Prioridade média</span><h4>Usar os 22 anos de mercado</h4></div>
+        <p>A empresa está ativa desde <strong>4 de novembro de 2003</strong>. Tempo de mercado é um dos sinais de confiança mais fáceis de verificar e dos mais citados quando IAs comparam provedores — e ainda não aparece no site. Junto com a licença SCM, que já tem página própria, são dois argumentos prontos e subutilizados.</p>
+        <div class="fix"><b>Próximo passo</b><span class="m">"foundingDate": "2003-11-04"</span> no Organization e a frase "no mercado desde 2003" no texto institucional.</div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 09 REPUTAÇÃO ═══════════════════════ -->
+<section id="reputacao">
+  <div class="sec-head">
+    <span class="sec-num">09 — Reputação</span>
+    <h2>Prova social</h2>
+    <p class="dek">
+      Quem busca "Predialnet" antes de contratar encontra o Reclame Aqui logo abaixo do site. O dado interessante é que a operação de atendimento tem indicadores melhores do que a nota sugere — e nenhum deles aparece na comunicação.
+    </p>
+  </div>
+
+  <div class="stack">
+    <div class="kpi-row">
+      <div class="kpi"><span class="k-label">Respondidas</span><span class="k-val good">100%</span><span class="k-sub">média de 2 dias e 9 horas</span></div>
+      <div class="kpi"><span class="k-label">Últimos 6 meses</span><span class="k-val good">6,8</span><span class="k-sub">acima da média histórica</span></div>
+      <div class="kpi"><span class="k-label">Nota geral</span><span class="k-val">6,6</span><span class="k-sub">de 10</span></div>
+      <div class="kpi"><span class="k-label">Voltariam a negociar</span><span class="k-val">58,4%</span><span class="k-sub">entre quem avaliou</span></div>
+      <div class="kpi"><span class="k-label">Reclamações</span><span class="k-val">184</span><span class="k-sub">no período avaliado</span></div>
+      <div class="kpi"><span class="k-label">Depoimentos no site</span><span class="k-val next">0</span><span class="k-sub">oportunidade em aberto</span></div>
+    </div>
+
+    <div class="prose">
+      <p><strong>Responder 100% das reclamações em média de dois dias é um número bom</strong>, e a tendência dos últimos seis meses é de alta. Isso é argumento de venda e sinal de confiança — hoje não está em lugar nenhum do site.</p>
+      <p>Os temas recorrentes — velocidade entregue abaixo da contratada, quedas e atendimento — são também os que o conteúdo pode endereçar de frente, com ganho duplo: ranqueia para buscas de problema e reduz atrito no suporte.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tema recorrente</th><th>Conteúdo que responde</th><th>Ganho adicional</th></tr></thead>
+        <tbody>
+          <tr><td>Velocidade abaixo da contratada</td><td>Guia de teste correto: cabo × Wi-Fi, regra dos 40% da Anatel, limites do roteador</td><td>Alinha expectativa antes da venda e reduz chamadas</td></tr>
+          <tr><td>Conexão caindo</td><td>Diagnóstico: é o Wi-Fi ou é o link? Árvore de decisão</td><td>Resolve parte dos casos sem visita técnica</td></tr>
+          <tr><td>Wi-Fi não alcança o quarto</td><td>Posicionamento, interferência, quando mesh resolve</td><td>Abre conversa de upgrade ou ponto adicional</td></tr>
+          <tr><td>Dúvida sobre condições da oferta</td><td>Condições em texto legível na página de planos, não em rodapé de 8px</td><td>Reduz cancelamento por expectativa frustrada</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <article class="finding s3">
+      <div class="finding-head"><span class="chip s3">Prioridade média</span><h4>Coletar avaliações antes de marcar AggregateRating</h4></div>
+      <p>Marcar avaliações estruturadas ajuda — <strong>desde que sejam reais, coletadas pela empresa e exibidas na página</strong>. O Google penaliza <span class="m">AggregateRating</span> importado de terceiros ou sem exibição. O caminho é implantar coleta pós-instalação e pós-atendimento, publicar e só então marcar. Também vale trazer <span class="m">/anatel</span> e <span class="m">/relatorios</span> para a superfície: são sinais de confiança que a maioria dos concorrentes não tem e hoje vivem no rodapé.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 10 CONCORRÊNCIA ═══════════════════════ -->
+<section id="concorrencia">
+  <div class="sec-head">
+    <span class="sec-num">10 — Concorrência</span>
+    <h2>Quem ocupa a busca local hoje</h2>
+    <p class="dek">Levantamento de SERP para os termos comerciais das regiões de atuação, em agosto de 2026.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Busca</th><th>Quem aparece</th><th>Posição da Predialnet</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Predialnet</b> (marca)</td>
+          <td>Site oficial em 1º, seguido de Reclame Aqui e comparadores</td>
+          <td><span class="chip ok">1º lugar</span></td>
+        </tr>
+        <tr>
+          <td><b>melhor internet Niterói</b></td>
+          <td>Agregadores (MelhorPlano, Melhor Escolha, Minha Conexão) + Leste Telecom, W Fibra, Claro, TIM — todos com página de cidade</td>
+          <td><span class="chip s2">citada</span> dentro da página de terceiros</td>
+        </tr>
+        <tr>
+          <td><b>internet fibra São Gonçalo</b></td>
+          <td>Agregadores + Vivalink, PW Network, Nio Fibra, Claro, TIM</td>
+          <td><span class="chip s1">fora</span> dos rankings</td>
+        </tr>
+      </tbody>
+      <caption>Levantamento por busca pública. Sem posição média — exige Search Console ou ferramenta de rastreamento.</caption>
+    </table>
+  </div>
+
+  <div class="callout" style="margin-top:24px">
+    <span class="co-t">Leitura estratégica</span>
+    <p>A marca já domina a própria busca, que é a base. O passo seguinte é disputar as buscas genéricas, e ali o que separa a Predialnet dos concorrentes é uma página por cidade com dado comparável e atualizado — não rede, nem investimento, nem tempo de casa.</p>
+    <p>Há também um caminho curto e barato: como esses sites <strong>já mencionam a Predialnet</strong>, garantir que publiquem a oferta correta melhora a conversão e a qualidade do que as IAs leem sobre a marca.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 11 PLANO ═══════════════════════ -->
+<section id="plano">
+  <div class="sec-head">
+    <span class="sec-num">11 — Plano de ação</span>
+    <h2>28 ações priorizadas por impacto e esforço</h2>
+    <p class="dek">
+      Impacto e esforço em escala de 1 a 10. Os pontos no canto superior esquerdo são os de maior retorno pelo menor custo — nove deles cabem na primeira semana.
+    </p>
+  </div>
+
+  <div class="stack">
+
+    <div class="chart-card">
+      <div class="chart-head">
+        <h4>Impacto × esforço</h4>
+        <span class="eyebrow">passe o cursor sobre os pontos</span>
+      </div>
+      <p class="chart-note">Cada ponto é uma ação; a cor indica prioridade e a posição indica o retorno esperado. A tabela abaixo traz os mesmos dados em texto.</p>
+      <div class="legend">
+        <i style="--swatch:var(--sev-1)">Máxima</i>
+        <i style="--swatch:var(--sev-2)">Alta</i>
+        <i style="--swatch:var(--sev-3)">Média</i>
+        <i style="--swatch:var(--sev-4)">Baixa</i>
+      </div>
+      <div class="quad-wrap">
+        <svg class="quad" id="quad" viewBox="0 0 720 460" role="img" aria-label="Dispersão de impacto por esforço das 28 ações. Os mesmos dados estão na tabela abaixo."></svg>
+        <div class="tip" id="quadTip" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <h3 class="sub">Backlog completo</h3>
+
+    <div class="controls">
+      <span class="ctl-label">Prioridade</span>
+      <button class="tgl" data-sev="all" aria-pressed="true">Todas</button>
+      <button class="tgl" data-sev="1" aria-pressed="false">Máxima</button>
+      <button class="tgl" data-sev="2" aria-pressed="false">Alta</button>
+      <button class="tgl" data-sev="3" aria-pressed="false">Média</button>
+      <button class="tgl" data-sev="4" aria-pressed="false">Baixa</button>
+    </div>
+
+    <div class="table-wrap">
+      <table id="planTable">
+        <thead>
+          <tr><th style="width:34px">#</th><th>Ação</th><th>Onde</th><th>Prioridade</th><th class="num">Impacto</th><th class="num">Esforço</th><th>Fase</th></tr>
+        </thead>
+        <tbody id="planBody"></tbody>
+        <caption>Fase 1: ligar o que já existe, dias. Fase 2: performance e conteúdo essencial, semanas. Fase 3: expansão e autoridade, meses.</caption>
+      </table>
+    </div>
+
+    <h3 class="sub">Sequência sugerida</h3>
+    <div class="grid-2">
+      <div class="callout" style="border-left-color:var(--sev-1)">
+        <span class="co-t">Fase 1 — primeira semana</span>
+        <p>Canonical dinâmico, robots.txt, sitemap, title da home, descriptions restantes, CNPJ, preloads. <strong>Nenhuma depende de conteúdo novo</strong> e todas destravam o que vem depois. É a semana de melhor retorno do plano inteiro.</p>
+      </div>
+      <div class="callout" style="border-left-color:var(--sev-2)">
+        <span class="co-t">Fase 2 — primeiro mês</span>
+        <p>Reprocessar imagens e estender o <span class="m">OptimizedImage</span>; cache via <span class="m">.htaccess</span>; hierarquia de headings; parágrafo institucional; schema com as quatro cidades; FAQ marcada; as quatro páginas de cidade.</p>
+      </div>
+      <div class="callout" style="border-left-color:var(--sev-3)">
+        <span class="co-t">Fase 3 — trimestre</span>
+        <p>Central de conteúdo com os três clusters; páginas por perfil de uso (aproveitando o texto do IdealPlans); coleta de avaliações; padronização de NAP; Google Business por cidade; bairros só onde houver informação real.</p>
+      </div>
+      <div class="callout" style="border-left-color:var(--ok)">
+        <span class="co-t">Medição — antes de tudo</span>
+        <p>O GTM e os eventos de conversão já estão prontos. Falta conectar o Search Console, enviar o sitemap e registrar a linha de base — impressões, cliques e posição por página — para que o efeito da fase 1 apareça já no primeiro mês.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ ANEXOS ═══════════════════════ -->
+<section id="anexos">
+  <div class="sec-head">
+    <span class="sec-num">A — Anexo</span>
+    <h2>Código pronto para a fase 1</h2>
+    <p class="dek">Os arquivos que resolvem as ações de prioridade máxima, escritos para o padrão que já está no projeto.</p>
+  </div>
+
+  <div class="stack">
+
+    <div class="code">
+      <div class="code-head"><span>1 · astro.config.mjs — habilita canonical e sitemap</span><button class="copy" data-copy="c1">Copiar</button></div>
+      <pre id="c1">// npm install @astrojs/sitemap
+
+import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+// … demais imports inalterados
+
+export default defineConfig({
+  site: 'https://www.predialnet.com.br',   // ← necessário para canonical e sitemap
+  integrations: [
+    react(),
+    tailwind({ applyBaseStyles: false }),
+    sitemap({
+      filter: (page) =>
+        !page.includes('/redirect') &&
+        !page.includes('/redefinir-senha') &&
+        !page.includes('/agendamentos'),
+    }),
+  ],
+  // … resto inalterado
+});</pre>
+    </div>
+
+    <div class="code">
+      <div class="code-head"><span>2 · Layout.astro — mesmo padrão de props já usado no title</span><button class="copy" data-copy="c2">Copiar</button></div>
+      <pre id="c2">---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = 'Predialnet',
+  description = 'Provedor de internet por fibra óptica com planos de 600 Mega a 1 Giga, Wi-Fi 6, instalação grátis e sem fidelidade. Maior provedor regional do estado Rio de Janeiro.',
+  image = '/img/og-predialnet.jpg',
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage   = new URL(image, Astro.site).href;
+---
+
+&lt;link rel="canonical" href={canonical} /&gt;
+&lt;meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} /&gt;
+
+&lt;meta property="og:type"        content="website" /&gt;
+&lt;meta property="og:title"       content={title} /&gt;
+&lt;meta property="og:description" content={description} /&gt;
+&lt;meta property="og:url"         content={canonical} /&gt;
+&lt;meta property="og:image"       content={ogImage} /&gt;
+&lt;meta property="og:locale"      content="pt_BR" /&gt;
+&lt;meta property="og:site_name"   content="Predialnet" /&gt;
+&lt;meta name="twitter:card"       content="summary_large_image" /&gt;
+&lt;meta name="twitter:image"      content={ogImage} /&gt;
+
+&lt;!-- nas páginas utilitárias: &lt;Layout noindex title="…"&gt; --&gt;</pre>
+    </div>
+
+    <div class="code">
+      <div class="code-head"><span>3 · public/robots.txt</span><button class="copy" data-copy="c3">Copiar</button></div>
+      <pre id="c3">User-agent: *
+Allow: /
+
+Disallow: /redirect
+Disallow: /redefinir-senha
+Disallow: /agendamentos
+Disallow: /ativacao/
+
+Sitemap: https://www.predialnet.com.br/sitemap-index.xml</pre>
+    </div>
+
+    <div class="code">
+      <div class="code-head"><span>4 · public/llms.txt — resumo do domínio para mecanismos de IA</span><button class="copy" data-copy="c4">Copiar</button></div>
+      <pre id="c4"># Predialnet
+
+&gt; Provedor de internet por fibra óptica que atende Niterói, São Gonçalo,
+&gt; Itaboraí e regiões do Rio de Janeiro. Razão social: Predlink Rede de
+&gt; Telecomunicações Ltda. (CNPJ 05.980.171/0001-48). Em operação desde 2003.
+&gt; Licenciada pela Anatel para Serviço de Comunicação Multimídia (SCM).
+
+## Planos residenciais de fibra óptica
+- 600 Mega — R$ 99,90/mês, Super Wi-Fi Gigabit
+- 800 Mega — R$ 124,90/mês, Super Wi-Fi 6
+- 1 Giga  — R$ 139,90/mês, Super Wi-Fi 6
+Todos com instalação grátis, sem fidelidade e serviços inteligentes inclusos.
+
+## Outros serviços
+- [Internet via rádio](https://www.predialnet.com.br/via-radio): 5 a 10 Mega
+- [Internet Porto Maravilha](https://www.predialnet.com.br/porto-maravilha): 25 a 60 Mega
+- [Telefonia fixa](https://www.predialnet.com.br/telefonia)
+- [Internet para empresas](https://www.predialnet.com.br/empresa)
+
+## Atendimento
+- Comercial: (21) 3515-0555 — seg. a sex. 8h às 20h, sáb. 9h às 15h
+- Suporte técnico: (21) 3515-0500 — todos os dias, 6h às 24h
+- SAC: 0800 878 7319
+- Endereço: Rua da Conceição, 188, sala 3108, Centro, Niterói/RJ, 24020-087</pre>
+    </div>
+
+    <div class="code">
+      <div class="code-head"><span>5 · .htaccess — as regras do _headers traduzidas para Apache</span><button class="copy" data-copy="c5">Copiar</button></div>
+      <pre id="c5">&lt;IfModule mod_expires.c&gt;
+  ExpiresActive On
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/avif              "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType font/ttf                "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType text/html               "access plus 1 hour"
+&lt;/IfModule&gt;
+
+&lt;IfModule mod_headers.c&gt;
+  &lt;FilesMatch "\.(webp|avif|png|jpe?g|svg|ttf|woff2|css|js)$"&gt;
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  &lt;/FilesMatch&gt;
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+&lt;/IfModule&gt;
+
+&lt;IfModule mod_deflate.c&gt;
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+&lt;/IfModule&gt;</pre>
+    </div>
+
+    <div class="code">
+      <div class="code-head"><span>6 · Schema.org — incrementos sobre o @graph existente</span><button class="copy" data-copy="c6">Copiar</button></div>
+      <pre id="c6">/* No bloco LocalBusiness que já existe, somar: */
+{
+  "legalName": "Predlink Rede de Telecomunicações Ltda.",
+  "taxID": "05.980.171/0001-48",
+  "foundingDate": "2003-11-04",
+  "description": "Provedor de internet por fibra óptica que atende Niterói, São Gonçalo, Itaboraí e regiões do Rio de Janeiro. Planos de 600 Mega a 1 Giga com Wi-Fi 6.",
+
+  "areaServed": [
+    { "@type": "City", "name": "Niterói",        "containedInPlace": { "@type": "State", "name": "Rio de Janeiro" } },
+    { "@type": "City", "name": "São Gonçalo",    "containedInPlace": { "@type": "State", "name": "Rio de Janeiro" } },
+    { "@type": "City", "name": "Rio de Janeiro", "containedInPlace": { "@type": "State", "name": "Rio de Janeiro" } },
+    { "@type": "City", "name": "Itaboraí",       "containedInPlace": { "@type": "State", "name": "Rio de Janeiro" } }
+  ],
+
+  "geo": { "@type": "GeoCoordinates", "latitude": -22.8958, "longitude": -43.1226 },
+
+  "sameAs": [
+    "https://instagram.com/predialnet",
+    "https://br.linkedin.com/company/predialnet",
+    "https://www.facebook.com/predialnet",
+    "https://www.reclameaqui.com.br/empresa/predialnet-www-predialnet-com-br/"
+  ]
+}
+
+/* Novo bloco, na home e nas páginas de cidade: */
+{
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "A Predialnet atende em Niterói?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim. A Predialnet atende Niterói com internet por fibra óptica em planos de 600 Mega a 1 Giga, com cobertura em Icaraí, Santa Rosa, Centro e demais bairros. A disponibilidade depende de viabilidade técnica no endereço."
+    }
+  }]
+}</pre>
+    </div>
+
+  </div>
+</section>
+
+<footer class="doc-foot">
+  <span>SEO · AI SEO · GEO — Predialnet</span>
+  <span>site-predialnet · branch site-novo-2026 · commit 0a71918</span>
+  <span>10 de agosto de 2026</span>
+</footer>
+
+</main>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ─────────────────────────── DADOS MEDIDOS ─────────────────────────── */
+
+  const peso = [
+    { l: "/",                        v: 31.99, hi: true },
+    { l: "/conexao-com-a-folia",     v: 7.19 },
+    { l: "/documentos",              v: 0.91 },
+    { l: "/porto-maravilha",         v: 0.90 },
+    { l: "/via-radio",               v: 0.90 },
+    { l: "/empresa",                 v: 0.90 },
+    { l: "/telefonia",               v: 0.90 },
+    { l: "/politica-de-privacidade", v: 0.90 },
+    { l: "/anatel",                  v: 0.90 },
+    { l: "/relatorios",              v: 0.89 },
+    { l: "/redefinir-senha",         v: 0.56 },
+    { l: "/agendamentos",            v: 0.56 },
+    { l: "/redirect",                v: 0.56 },
+  ];
+
+  const imgs = [
+    { l: "foto_empresa.avif",              v: 3563 },
+    { l: "foto_empresa_mobile.avif",       v: 3128 },
+    { l: "bannerConexaoFoliaMobile.webp",  v: 2489 },
+    { l: "navega-4.webp",                  v: 2450 },
+    { l: "navega-2.webp",                  v: 2214 },
+    { l: "cardPlanoIdeal.webp",            v: 2175 },
+    { l: "navega-3.webp",                  v: 2153 },
+    { l: "navega-1.webp",                  v: 2142 },
+    { l: "cardPlanosB.webp",               v: 1946 },
+    { l: "cardPlanos.webp",                v: 1897 },
+  ];
+
+  const palavras = [
+    { l: "/conexao-com-a-folia",     v: 3239 },
+    { l: "/",                        v: 983,  hi: true },
+    { l: "/documentos",              v: 432 },
+    { l: "/porto-maravilha",         v: 260,  hi: true },
+    { l: "/politica-de-privacidade", v: 252 },
+    { l: "/anatel",                  v: 244 },
+    { l: "/via-radio",               v: 243,  hi: true },
+    { l: "/relatorios",              v: 172 },
+    { l: "/telefonia",               v: 162,  hi: true },
+    { l: "/empresa",                 v: 144,  hi: true },
+    { l: "/redefinir-senha",         v: 51 },
+    { l: "/agendamentos",            v: 49 },
+    { l: "/redirect",                v: 41 },
+  ];
+
+  const acoes = [
+    { n: 1,  t: "Canonical dinâmico por página",                    w: "Layout.astro",        s: 1, i: 10, e: 1, f: 1 },
+    { n: 2,  t: "Publicar robots.txt",                              w: "public/",             s: 1, i: 8,  e: 1, f: 1 },
+    { n: 3,  t: "Gerar sitemap.xml (@astrojs/sitemap)",             w: "astro.config.mjs",    s: 1, i: 8,  e: 1, f: 1 },
+    { n: 4,  t: "Title da home com serviço + cidade",               w: "index.astro",         s: 1, i: 8,  e: 1, f: 1 },
+    { n: 5,  t: "Description nas 8 páginas restantes",              w: "páginas",             s: 1, i: 7,  e: 2, f: 1 },
+    { n: 6,  t: "Conectar Search Console e enviar sitemap",         w: "externo",             s: 1, i: 7,  e: 2, f: 1 },
+    { n: 7,  t: "Corrigir o CNPJ do rodapé",                        w: "Footer.astro",        s: 2, i: 6,  e: 1, f: 1 },
+    { n: 8,  t: "Apontar preload para o herói atual",               w: "Layout.astro",        s: 2, i: 4,  e: 1, f: 1 },
+    { n: 9,  t: "Corrigir codificação de /conexao-com-a-folia",     w: "página sazonal",      s: 3, i: 3,  e: 1, f: 1 },
+    { n: 10, t: "Reprocessar as 10 maiores imagens",                w: "public/img",          s: 2, i: 9,  e: 6, f: 2 },
+    { n: 11, t: "Estender OptimizedImage aos componentes React",    w: "Others, Footer…",     s: 2, i: 7,  e: 4, f: 2 },
+    { n: 12, t: "width, height e loading em todas as imagens",      w: "componentes",         s: 2, i: 5,  e: 3, f: 2 },
+    { n: 13, t: "Traduzir _headers para .htaccess",                 w: "servidor",            s: 2, i: 6,  e: 2, f: 2 },
+    { n: 14, t: "Um H1 por página e hierarquia correta",            w: "componentes",         s: 2, i: 6,  e: 3, f: 2 },
+    { n: 15, t: "og:image, og:url e og:locale",                     w: "Layout.astro",        s: 2, i: 5,  e: 2, f: 2 },
+    { n: 16, t: "Parágrafo institucional em texto na home",         w: "index.astro",         s: 2, i: 7,  e: 2, f: 2 },
+    { n: 17, t: "areaServed com as 4 cidades, geo e foundingDate",  w: "Layout.astro",        s: 2, i: 6,  e: 2, f: 2 },
+    { n: 18, t: "FAQ com marcação FAQPage",                         w: "home + cidades",      s: 2, i: 7,  e: 3, f: 2 },
+    { n: 19, t: "Quatro páginas de cidade",                         w: "novas páginas",       s: 2, i: 10, e: 7, f: 2 },
+    { n: 20, t: "Publicar llms.txt",                                w: "public/",             s: 4, i: 3,  e: 1, f: 2 },
+    { n: 21, t: "Google Business Profile por cidade",               w: "externo",             s: 2, i: 8,  e: 4, f: 3 },
+    { n: 22, t: "Central de conteúdo: 3 clusters",                  w: "novas páginas",       s: 3, i: 9,  e: 9, f: 3 },
+    { n: 23, t: "Páginas por perfil de uso",                        w: "novas páginas",       s: 3, i: 7,  e: 5, f: 3 },
+    { n: 24, t: "Coleta e publicação de avaliações",                w: "produto + site",      s: 3, i: 6,  e: 5, f: 3 },
+    { n: 25, t: "Padronizar NAP em diretórios externos",            w: "externo",             s: 3, i: 6,  e: 5, f: 3 },
+    { n: 26, t: "Páginas de bairro (só com dado real)",             w: "novas páginas",       s: 3, i: 7,  e: 8, f: 3 },
+    { n: 27, t: "Carregar zxcvbn sob demanda",                      w: "ResetPassword.jsx",   s: 3, i: 3,  e: 3, f: 3 },
+    { n: 28, t: "Converter fontes TTF para WOFF2",                  w: "public/fonts",        s: 4, i: 3,  e: 2, f: 3 },
+  ];
+
+  const SEV = { 1: "Máxima", 2: "Alta", 3: "Média", 4: "Baixa" };
+
+  /* ─────────────────────────── BARRAS ─────────────────────────── */
+
+  function barras(el, dados, fmt, ref) {
+    const host = document.getElementById(el);
+    if (!host) return;
+    const max = Math.max(...dados.map((d) => d.v));
+    host.innerHTML = dados
+      .map((d) => {
+        const pct = Math.max((d.v / max) * 100, 0.6);
+        return (
+          '<div class="bar-row' + (d.hi ? " hi" : "") + '">' +
+          '<span class="bar-label" title="' + d.l + '">' + d.l + "</span>" +
+          '<span class="bar-track">' +
+          (ref ? '<span class="bar-ref" style="left:' + (ref / max) * 100 + '%"></span>' : "") +
+          '<span class="bar-fill" style="width:' + pct + '%"></span>' +
+          "</span>" +
+          '<span class="bar-val">' + fmt(d.v) + "</span>" +
+          "</div>"
+        );
+      })
+      .join("");
+  }
+
+  barras("chartPeso", peso, (v) => v.toFixed(2).replace(".", ",") + " MB", 3);
+  barras("chartImg", imgs, (v) => v.toLocaleString("pt-BR") + " KB");
+  barras("chartPal", palavras, (v) => v.toLocaleString("pt-BR"));
+
+  /* ─────────────────────────── QUADRANTE ─────────────────────────── */
+
+  const svg = document.getElementById("quad");
+  const tip = document.getElementById("quadTip");
+
+  function drawQuad() {
+    if (!svg) return;
+    svg.innerHTML = "";
+    const W = 720, H = 460;
+    const M = { t: 22, r: 26, b: 52, l: 62 };
+    const pw = W - M.l - M.r, ph = H - M.t - M.b;
+    const X = (v) => M.l + (v / 10) * pw;
+    const Y = (v) => M.t + ph - (v / 10) * ph;
+    const NS = "http://www.w3.org/2000/svg";
+    const mk = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+
+    const css = getComputedStyle(document.documentElement);
+    const tok = (n) => css.getPropertyValue(n).trim();
+
+    const g = mk("g", {});
+
+    for (let i = 0; i <= 10; i += 2) {
+      g.appendChild(mk("line", { x1: X(i), y1: M.t, x2: X(i), y2: M.t + ph, stroke: tok("--rule"), "stroke-width": 1 }));
+      g.appendChild(mk("line", { x1: M.l, y1: Y(i), x2: M.l + pw, y2: Y(i), stroke: tok("--rule"), "stroke-width": 1 }));
+      const tx = mk("text", { x: X(i), y: M.t + ph + 20, "text-anchor": "middle", fill: tok("--ink-3"), "font-size": 11, "font-family": "ui-monospace, monospace" });
+      tx.textContent = i; g.appendChild(tx);
+      const ty = mk("text", { x: M.l - 12, y: Y(i) + 4, "text-anchor": "end", fill: tok("--ink-3"), "font-size": 11, "font-family": "ui-monospace, monospace" });
+      ty.textContent = i; g.appendChild(ty);
+    }
+
+    g.appendChild(mk("line", { x1: X(4.5), y1: M.t, x2: X(4.5), y2: M.t + ph, stroke: tok("--ink-3"), "stroke-width": 1, opacity: .55 }));
+    g.appendChild(mk("line", { x1: M.l, y1: Y(6.5), x2: M.l + pw, y2: Y(6.5), stroke: tok("--ink-3"), "stroke-width": 1, opacity: .55 }));
+
+    const zone = mk("text", { x: X(0.25), y: Y(9.8), fill: tok("--ink-3"), "font-size": 10.5, "font-family": "ui-monospace, monospace", "letter-spacing": "1.4" });
+    zone.textContent = "MELHOR RETORNO"; g.appendChild(zone);
+
+    g.appendChild(mk("line", { x1: M.l, y1: M.t + ph, x2: M.l + pw, y2: M.t + ph, stroke: tok("--rule-2"), "stroke-width": 1 }));
+    g.appendChild(mk("line", { x1: M.l, y1: M.t, x2: M.l, y2: M.t + ph, stroke: tok("--rule-2"), "stroke-width": 1 }));
+
+    const lx = mk("text", { x: M.l + pw / 2, y: H - 10, "text-anchor": "middle", fill: tok("--ink-2"), "font-size": 11.5, "font-family": "ui-monospace, monospace" });
+    lx.textContent = "esforço →"; g.appendChild(lx);
+    const ly = mk("text", { x: 16, y: M.t + ph / 2, "text-anchor": "middle", fill: tok("--ink-2"), "font-size": 11.5, "font-family": "ui-monospace, monospace", transform: "rotate(-90 16 " + (M.t + ph / 2) + ")" });
+    ly.textContent = "impacto →"; g.appendChild(ly);
+
+    const seen = {};
+    acoes.forEach((a) => {
+      const key = a.i + ":" + a.e;
+      const k = (seen[key] = (seen[key] || 0) + 1) - 1;
+      const ang = k * 2.4, rad = k === 0 ? 0 : 9 + k * 1.5;
+      const cx = X(a.e) + Math.cos(ang) * rad;
+      const cy = Y(a.i) + Math.sin(ang) * rad;
+
+      const dot = mk("circle", {
+        cx: cx, cy: cy, r: 8,
+        fill: tok("--sev-" + a.s),
+        stroke: tok("--surface"), "stroke-width": 2,
+        class: "quad-dot", tabindex: "0", role: "img",
+        "aria-label": a.t + ". Prioridade " + SEV[a.s] + ". Impacto " + a.i + ", esforço " + a.e + ".",
+      });
+
+      const num = mk("text", {
+        x: cx, y: cy + 3.4, "text-anchor": "middle",
+        fill: tok("--surface"), "font-size": 9, "font-weight": 700,
+        "font-family": "ui-monospace, monospace", "pointer-events": "none",
+      });
+      num.textContent = a.n;
+
+      const show = (ev) => {
+        tip.innerHTML = "<b>" + a.n + ". " + a.t + "</b>Prioridade " + SEV[a.s] + " · impacto " + a.i + " · esforço " + a.e + " · fase " + a.f;
+        tip.classList.add("on");
+        const box = svg.getBoundingClientRect();
+        const wrap = svg.parentElement.getBoundingClientRect();
+        const px = (ev && ev.clientX ? ev.clientX - wrap.left : (cx / W) * box.width) + 14;
+        const py = (ev && ev.clientY ? ev.clientY - wrap.top : (cy / H) * box.height) + 14;
+        tip.style.left = Math.min(px, Math.max(wrap.width - 258, 0)) + "px";
+        tip.style.top = py + "px";
+      };
+      const hide = () => tip.classList.remove("on");
+
+      dot.addEventListener("mousemove", show);
+      dot.addEventListener("mouseenter", show);
+      dot.addEventListener("mouseleave", hide);
+      dot.addEventListener("focus", show);
+      dot.addEventListener("blur", hide);
+
+      g.appendChild(dot);
+      g.appendChild(num);
+    });
+
+    svg.appendChild(g);
+  }
+
+  drawQuad();
+
+  // o SVG lê as cores dos tokens no momento do desenho — redesenha se o tema mudar
+  if (window.matchMedia) {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    (mq.addEventListener ? mq.addEventListener.bind(mq, "change") : mq.addListener.bind(mq))(drawQuad);
+  }
+  new MutationObserver(drawQuad).observe(document.documentElement, {
+    attributes: true, attributeFilter: ["data-theme"],
+  });
+
+  /* ─────────────────────────── TABELA DO PLANO ─────────────────────────── */
+
+  const body = document.getElementById("planBody");
+  if (body) {
+    body.innerHTML = acoes
+      .slice()
+      .sort((a, b) => a.f - b.f || b.i - a.i || a.e - b.e)
+      .map(
+        (a) =>
+          '<tr data-sev="' + a.s + '">' +
+          '<td class="num">' + a.n + "</td>" +
+          "<td>" + a.t.replace(/</g, "&lt;") + "</td>" +
+          '<td class="mono" style="color:var(--ink-3)">' + a.w + "</td>" +
+          '<td><span class="chip s' + a.s + '">' + SEV[a.s] + "</span></td>" +
+          '<td class="num">' + a.i + "</td>" +
+          '<td class="num">' + a.e + "</td>" +
+          '<td class="num">' + a.f + "</td>" +
+          "</tr>"
+      )
+      .join("");
+  }
+
+  document.querySelectorAll("button[data-sev]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const v = btn.dataset.sev;
+      document.querySelectorAll("button[data-sev]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      document.querySelectorAll("#planBody tr").forEach((tr) => {
+        tr.hidden = v !== "all" && tr.dataset.sev !== v;
+      });
+    });
+  });
+
+  /* ─────────────────────────── CHECKLIST ─────────────────────────── */
+
+  document.querySelectorAll("button[data-cfilter]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const v = btn.dataset.cfilter;
+      document.querySelectorAll("button[data-cfilter]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      document.querySelectorAll("#checkGrid .check").forEach((c) => {
+        c.hidden = v !== "all" && c.dataset.cstate !== v;
+      });
+    });
+  });
+
+  /* ─────────────────────────── TABS ─────────────────────────── */
+
+  document.querySelectorAll("button.tab").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.tab;
+      const group = btn.closest(".tabs");
+      group.querySelectorAll("button.tab").forEach((b) => b.setAttribute("aria-selected", String(b === btn)));
+      group.parentElement.querySelectorAll(".tabpanel").forEach((p) => { p.hidden = p.id !== id; });
+    });
+  });
+
+  /* ─────────────────────────── TABELA ↔ GRÁFICO ─────────────────────────── */
+
+  document.querySelectorAll("button[data-table]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const t = document.getElementById(btn.dataset.table);
+      const open = t.hidden;
+      t.hidden = !open;
+      btn.setAttribute("aria-pressed", String(open));
+      btn.textContent = open ? "Ocultar tabela" : "Ver tabela";
+    });
+  });
+
+  /* ─────────────────────────── COPIAR ─────────────────────────── */
+
+  document.querySelectorAll("button.copy").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const src = document.getElementById(btn.dataset.copy);
+      try {
+        await navigator.clipboard.writeText(src.textContent);
+        btn.textContent = "Copiado";
+      } catch (e) {
+        btn.textContent = "Selecione e copie";
+      }
+      setTimeout(() => { btn.textContent = "Copiar"; }, 2000);
+    });
+  });
+
+  /* ─────────────────────────── NAV ATIVA ─────────────────────────── */
+
+  const links = [...document.querySelectorAll(".rail a")];
+  const secs = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+  if (secs.length && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          links.forEach((a) => a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id));
+        });
+      },
+      { rootMargin: "-15% 0px -70% 0px" }
+    );
+    secs.forEach((s) => io.observe(s));
+  }
+})();
+</script>
