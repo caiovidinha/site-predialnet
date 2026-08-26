@@ -40,6 +40,25 @@ const slugify = (texto) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
+/** Converte um item da API (ou do exemplo) para o formato dos cards. */
+function paraCard(a) {
+  return {
+    slug: a.slug,
+    titulo: a.titulo,
+    resumo: a.resumo ?? '',
+    categoria: a.categoria ?? 'Geral',
+    categoriaSlug: slugify(a.categoria ?? 'Geral'),
+    capa: a.capa ?? null,
+    publicadoEm: a.publicado_em,
+    tempoLeitura: a.tempo_leitura ?? 3,
+  };
+}
+
+/** Artigos de exemplo — só existem em desenvolvimento. */
+function doExemplo() {
+  return exemplo.artigos.map(paraCard);
+}
+
 /** @type {ArtigoResumo[] | null} */
 let _memo = null;
 
@@ -70,34 +89,27 @@ export async function carregarBlogExterno() {
 
     const dados = await res.json();
 
-    _memo = (dados.artigos ?? []).map((a) => ({
-      slug: a.slug,
-      titulo: a.titulo,
-      resumo: a.resumo ?? '',
-      categoria: a.categoria ?? 'Geral',
-      categoriaSlug: slugify(a.categoria ?? 'Geral'),
-      capa: a.capa ?? null,
-      publicadoEm: a.publicado_em,
-      tempoLeitura: a.tempo_leitura ?? 3,
-    }));
+    _memo = (dados.artigos ?? []).map(paraCard);
 
-    console.log(`[blog] ${_memo.length} artigos carregados para a home`);
+    // A API pode responder 200 com a lista vazia — é o caso enquanto o blog
+    // ainda não tem conteúdo. Em dev, mostra os exemplos para a seção poder
+    // ser vista e ajustada; em produção, sem artigo não há seção.
+    if (_memo.length === 0 && import.meta.env.DEV) {
+      _memo = doExemplo();
+      console.warn(
+        `[blog] A API respondeu sem artigos. Usando ${_memo.length} exemplos — ` +
+          `só em dev. No build de produção a seção é omitida.`
+      );
+    } else {
+      console.log(`[blog] ${_memo.length} artigos carregados para a home`);
+    }
   } catch (erro) {
     // Em desenvolvimento, mostra artigos de exemplo para a seção ser visível
     // enquanto a API não existe. Em produção NUNCA: os cards linkariam para
     // páginas que não existem no blog, e uma queda da API ficaria escondida
     // atrás de conteúdo falso em vez de aparecer.
     if (import.meta.env.DEV) {
-      _memo = exemplo.artigos.map((a) => ({
-        slug: a.slug,
-        titulo: a.titulo,
-        resumo: a.resumo,
-        categoria: a.categoria,
-        categoriaSlug: slugify(a.categoria),
-        capa: a.capa ?? null,
-        publicadoEm: a.publicado_em,
-        tempoLeitura: a.tempo_leitura ?? 3,
-      }));
+      _memo = doExemplo();
       console.warn(
         `[blog] API indisponível (${erro.message}). Usando ${_memo.length} ` +
           `artigos de exemplo — só em dev. No build de produção a seção é omitida.`
