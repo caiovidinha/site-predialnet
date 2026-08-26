@@ -12,6 +12,8 @@
  * Contrato dos endpoints: ver API-BLOG.md no projeto blog-predialnet.
  */
 
+import exemplo from './blog-exemplo.json';
+
 export const API = 'https://appgw.predialnet.com.br';
 export const URL_BLOG = 'https://blog.predialnet.com.br';
 
@@ -81,11 +83,32 @@ export async function carregarBlogExterno() {
 
     console.log(`[blog] ${_memo.length} artigos carregados para a home`);
   } catch (erro) {
-    _memo = [];
-    console.warn(
-      `[blog] API indisponível (${erro.message}). A seção do blog não será ` +
-        `renderizada na home. O site é gerado normalmente.`
-    );
+    // Em desenvolvimento, mostra artigos de exemplo para a seção ser visível
+    // enquanto a API não existe. Em produção NUNCA: os cards linkariam para
+    // páginas que não existem no blog, e uma queda da API ficaria escondida
+    // atrás de conteúdo falso em vez de aparecer.
+    if (import.meta.env.DEV) {
+      _memo = exemplo.artigos.map((a) => ({
+        slug: a.slug,
+        titulo: a.titulo,
+        resumo: a.resumo,
+        categoria: a.categoria,
+        categoriaSlug: slugify(a.categoria),
+        capa: a.capa ?? null,
+        publicadoEm: a.publicado_em,
+        tempoLeitura: a.tempo_leitura ?? 3,
+      }));
+      console.warn(
+        `[blog] API indisponível (${erro.message}). Usando ${_memo.length} ` +
+          `artigos de exemplo — só em dev. No build de produção a seção é omitida.`
+      );
+    } else {
+      _memo = [];
+      console.warn(
+        `[blog] API indisponível (${erro.message}). A seção do blog não será ` +
+          `renderizada na home. O site é gerado normalmente.`
+      );
+    }
   } finally {
     clearTimeout(t);
   }

@@ -1,0 +1,32 @@
+{
+  "_comentario": "Usado APENAS em npm run dev, para a seção do blog ser visível enquanto a API não existe. O build de produção nunca lê este arquivo — ver src/data/blog.js.",
+  "artigos": [
+    {
+      "slug": "operadora-vs-provedor",
+      "titulo": "Operadora grande x provedor regional: qual escolher?",
+      "resumo": "Preço, atendimento e qualidade do sinal: onde o provedor regional leva vantagem — e o que observar antes de decidir.",
+      "categoria": "Planos",
+      "capa": null,
+      "publicado_em": "2026-08-12T09:00:00-03:00",
+      "tempo_leitura": 4
+    },
+    {
+      "slug": "fibra-tudo-igual",
+      "titulo": "Internet fibra é tudo igual? Nem sempre.",
+      "resumo": "Duas conexões de \"fibra\" podem entregar experiências bem diferentes. Entenda o que muda de verdade.",
+      "categoria": "Tecnologia",
+      "capa": null,
+      "publicado_em": "2026-08-09T09:00:00-03:00",
+      "tempo_leitura": 4
+    },
+    {
+      "slug": "wifi6-vale-a-pena",
+      "titulo": "Vale a pena pagar mais pelo Wi-Fi 6?",
+      "resumo": "Depende de quantos aparelhos você conecta. Veja quando o Wi-Fi 6 realmente faz diferença.",
+      "categoria": "Tecnologia",
+      "capa": null,
+      "publicado_em": "2026-08-06T09:00:00-03:00",
+      "tempo_leitura": 3
+    }
+  ]
+}
