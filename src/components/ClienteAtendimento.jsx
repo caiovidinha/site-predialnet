@@ -43,10 +43,10 @@ function ClienteAtendimento() {
   ];
 
   const atendimentoCards = [
-    { icon: '/img/suporte.svg', title: 'Suporte', phone: '213515-0500', type: 'suporte' },
-    { icon: '/img/financeiro.svg', title: 'Financeiro', phone: '213515-0555', type: 'financeiro' },
-    { icon: '/img/cancelameto.svg', title: 'Cancelamento', phone: '213515-0555', type: 'cancelamento' },
-    { icon: '/img/sac.svg', title: 'SAC', phone: '08008787319', type: 'contato' },
+    { icon: '/img/suporte.svg', title: 'Suporte', phone: 'Enviar mensagem', type: 'suporte' },
+    { icon: '/img/financeiro.svg', title: 'Financeiro', phone: 'Enviar mensagem', type: 'financeiro' },
+    { icon: '/img/cancelameto.svg', title: 'Cancelamento', phone: 'Enviar mensagem', type: 'cancelamento' },
+    { icon: '/img/sac.svg', title: 'SAC', phone: 'Enviar mensagem', type: 'contato' },
   ];
 
   return (
@@ -57,7 +57,7 @@ function ClienteAtendimento() {
           <div>
             <p className="text-base sm:text-lg text-[#444] mb-2">Cliente Predialnet</p>
             <h1 className="text-[1.65rem] md:text-3xl leading-8 text-[#8a0005] font-light tracking-[-0.01em] mb-2">
-              Acesso rápido às principais funções de atendimento
+              Funções de atendimento
             </h1>
           </div>
           <div className="hidden md:block">
@@ -70,19 +70,23 @@ function ClienteAtendimento() {
           </div>
           <div className="hidden md:block">
             <p className="text-base sm:text-lg text-[#444]">Suporte</p>
-            <p className="text-sm text-[#444]">Todos os dias das 6h às 24h</p>
+            <p className="text-sm text-[#444] mb-2">Todos os dias das 6h às 24h</p>
+          </div>
+          <div className="hidden md:block">
+            <p className="text-base sm:text-lg text-[#444]">Telefones para contato</p>
+            <p className="text-sm text-[#444]">Suporte: <a href="tel:2135150500" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0500</a> | Financeiro: <a href="tel:2135150555" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0555</a>&nbsp; Cancelamento: <a href="tel:2135150555" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0555</a> | SAC: <a href="tel:08008787319" className='text-[#9c0004] underline hover:brightness-50 transation-all'>08008787319</a> </p>
           </div>
         </div>
 
         {/* Coluna direita — começa na metade — 4 linhas x 2 colunas */}
-          <div className="md:w-1/2 flex flex-col justify-between w-full pt-2">
+          <div className="md:w-1/2 flex flex-col justify-between w-full pt-10">
           {acessoCards.map((card, i) => (
-            <div key={card.title} className="flex gap-2">
+            <div key={card.title} className="flex gap-3">
               <a
                 href={card.href}
                 target={card.external ? '_blank' : '_self'}
                 rel={card.external ? 'noopener noreferrer' : undefined}
-                className="flex-1 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-5 hover:shadow-md transition-shadow group mb-2 md:mb-0"
+                className="flex-1 min-h-[72px] md:min-h-[auto] bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-3 md:py-5 hover:shadow-md transition-shadow group mb-2 md:mb-0"
               >
                 <img
                   src={card.icon}
@@ -96,7 +100,7 @@ function ClienteAtendimento() {
               </a>
               <button
                 onClick={() => openModal(atendimentoCards[i].type)}
-                className="flex-1 bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-3 hover:shadow-md transition-shadow text-left group mb-2 md:mb-0"
+                className="flex-1 min-h-[72px] md:min-h-[auto] bg-white border border-[#dcdcdc] rounded-[4px] flex items-center gap-3 px-4 py-3 hover:shadow-md transition-shadow text-left group mb-2 md:mb-0"
               >
                 <img
                   src={atendimentoCards[i].icon}
@@ -105,12 +109,12 @@ function ClienteAtendimento() {
                 />
                 <span className="text-xs font-semibold md:font-normal md:text-sm text-[#444] flex-1 leading-tight flex flex-col md:flex-row md:items-center">
                   <span>{atendimentoCards[i].title}</span>
-                  <span className="text-[#888] text-xs md:text-sm">
+                  <span className="text-[#888] text-[9px] md:text-[8pt] w-full flex md:justify-end">
                     <span className="hidden md:inline">&nbsp;</span>
                     {atendimentoCards[i].phone}
                   </span>
                 </span>
-                <svg className="w-4 h-4 flex-shrink-0 text-[#aaa]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <svg className="w-4 h-4 flex-shrink-0 text-[#aaa] -ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
@@ -129,7 +133,11 @@ function ClienteAtendimento() {
           </div>
           <div className="md:hidden block">
             <p className="text-base sm:text-lg text-[#444]">Suporte</p>
-            <p className="text-sm text-[#444]">Todos os dias das 6h às 24h</p>
+            <p className="text-sm text-[#444] mb-2">Todos os dias das 6h às 24h</p>
+          </div>
+          <div className="md:hidden block">
+            <p className="text-base sm:text-lg text-[#444]">Telefones para contato</p>
+            <p className="text-sm text-[#444]">Suporte: <a href="tel:2135150500" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0500</a><br/> Financeiro: <a href="tel:2135150555" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0555</a><br/> Cancelamento: <a href="tel:2135150555" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0555</a><br/>SAC: <a href="tel:08008787319" className='text-[#9c0004] underline hover:brightness-50 transation-all'>08008787319</a> </p>
           </div>
         </div>
       </div>
