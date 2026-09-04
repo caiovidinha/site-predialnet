@@ -49,6 +49,51 @@ function ClienteAtendimento() {
     { icon: '/img/sac.svg', title: 'SAC', phone: 'Enviar mensagem', type: 'contato' },
   ];
 
+  const blocos = [
+    { titulo: 'Horário de Atendimento', detalhe: 'Segunda a sexta das 9h às 18h' },
+    { titulo: 'Comercial', detalhe: 'Segunda a sexta das 8h às 20h | Sábado das 9h às 15h' },
+    { titulo: 'Suporte', detalhe: 'Todos os dias das 6h às 24h', tel: '2135150500', telLabel: '3515-0500', email: 'suporte@predialnet.com.br' },
+    { titulo: 'Financeiro', tel: '2135150555', telLabel: '3515-0555', email: 'financeiro@predialnet.com.br' },
+    { titulo: 'Cancelamento', tel: '2135150555', telLabel: '3515-0555', email: 'cancelamento@predialnet.com.br' },
+    { titulo: 'SAC', tel: '08008787319', telLabel: '08008787319', email: 'sac@predialnet.com.br' },
+  ];
+
+  const Contato = ({ b }) => (
+    <>
+      <a href={`tel:${b.tel}`} className="text-[#9c0004] hover:underline transition-all">{b.telLabel}</a>
+      <span className="text-[#bbb]">{' | '}</span>
+      <a href={`mailto:${b.email}`} className="hover:text-[#9c0004] hover:underline transition-all">{b.email}</a>
+    </>
+  );
+
+  // Telefone e e-mail ficam na mesma linha do título só quando há largura para isso.
+  const Linha = ({ b }) => b.tel && (
+    <>
+      <span className="hidden xl:inline">{' - '}</span>
+      <span className="block xl:inline"><Contato b={b} /></span>
+    </>
+  );
+
+  const Blocos = ({ mobile }) => (
+    <>
+      {blocos.map((b) => (
+        <div key={b.titulo} className={mobile ? 'md:hidden block' : 'hidden md:block md:-mr-24 xl:-mr-32'}>
+          {b.detalhe ? (
+            <>
+              <p className="text-base sm:text-lg text-[#444]">{b.titulo}</p>
+              <p className="text-sm text-[#444] mb-2">{b.detalhe}<Linha b={b} /></p>
+            </>
+          ) : (
+            <p className="text-sm text-[#444] mb-2">
+              <span className="text-base sm:text-lg text-[#444]">{b.titulo}</span>
+              <Linha b={b} />
+            </p>
+          )}
+        </div>
+      ))}
+    </>
+  );
+
   return (
     <div id="ClienteAtendimento" className="px-6 sm:px-[8%] md:px-[12%] py-8 md:py-10 font-sans bg-[#ebebeb] text-[#3d3838]">
       <div className="flex flex-col md:flex-row items-stretch">
@@ -57,31 +102,16 @@ function ClienteAtendimento() {
           <div>
             <p className="text-base sm:text-lg text-[#444] mb-2">Cliente Predialnet</p>
             <h1 className="text-[1.65rem] md:text-3xl leading-8 text-[#8a0005] font-light tracking-[-0.01em] mb-2">
-              Funções de atendimento
+              Atendimento
             </h1>
           </div>
-          <div className="hidden md:block">
-            <p className="text-base sm:text-lg text-[#444]">Horário de Atendimento</p>
-            <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 18h</p>
-          </div>
-          <div className="hidden md:block">
-            <p className="text-base sm:text-lg text-[#444]">Setor Comercial</p>
-            <p className="text-sm text-[#444] mb-2">Segunda a sexta das 8h às 20h | Sábado das 9h às 15h</p>
-          </div>
-          <div className="hidden md:block">
-            <p className="text-base sm:text-lg text-[#444]">Suporte</p>
-            <p className="text-sm text-[#444] mb-2">Todos os dias das 6h às 24h</p>
-          </div>
-          <div className="hidden md:block">
-            <p className="text-base sm:text-lg text-[#444]">Telefones para contato</p>
-            <p className="text-sm text-[#444]">Suporte: <a href="tel:2135150500" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0500</a> | Financeiro: <a href="tel:2135150555" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0555</a>&nbsp; Cancelamento: <a href="tel:2135150555" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0555</a> | SAC: <a href="tel:08008787319" className='text-[#9c0004] underline hover:brightness-50 transation-all'>08008787319</a> </p>
-          </div>
+          <Blocos />
         </div>
 
         {/* Coluna direita — começa na metade — 4 linhas x 2 colunas */}
-          <div className="md:w-1/2 flex flex-col justify-between w-full pt-10">
+          <div className="md:w-1/2 flex flex-col justify-between w-full pt-10 mb-3">
           {acessoCards.map((card, i) => (
-            <div key={card.title} className="flex gap-3">
+            <div key={card.title} className="flex gap-4">
               <a
                 href={card.href}
                 target={card.external ? '_blank' : '_self'}
@@ -123,22 +153,7 @@ function ClienteAtendimento() {
           
         </div>
         <div className="mt-3 md:hidden">
-        <div className="md:hidden block">
-            <p className="text-base sm:text-lg text-[#444]">Horário de Atendimento</p>
-            <p className="text-sm text-[#444] mb-2">Segunda a sexta das 9h às 18h</p>
-          </div>
-          <div className="md:hidden block">
-            <p className="text-base sm:text-lg text-[#444]">Setor Comercial</p>
-            <p className="text-sm text-[#444] mb-2">Segunda a sexta das 8h às 20h <br /> Sábado das 9h às 15h</p>
-          </div>
-          <div className="md:hidden block">
-            <p className="text-base sm:text-lg text-[#444]">Suporte</p>
-            <p className="text-sm text-[#444] mb-2">Todos os dias das 6h às 24h</p>
-          </div>
-          <div className="md:hidden block">
-            <p className="text-base sm:text-lg text-[#444]">Telefones para contato</p>
-            <p className="text-sm text-[#444]">Suporte: <a href="tel:2135150500" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0500</a><br/> Financeiro: <a href="tel:2135150555" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0555</a><br/> Cancelamento: <a href="tel:2135150555" className='text-[#9c0004] underline hover:brightness-50 transation-all'>(21) 3515-0555</a><br/>SAC: <a href="tel:08008787319" className='text-[#9c0004] underline hover:brightness-50 transation-all'>08008787319</a> </p>
-          </div>
+          <Blocos mobile />
         </div>
       </div>
 
