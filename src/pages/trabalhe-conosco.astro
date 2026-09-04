@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SecNavBar from '../components/SecNavBar.astro';
+import Footer from '../components/Footer.astro';
+import TrabalheConoscoPage from '../components/TrabalheConoscoPage';
+---
+
+<Layout
+  title="Trabalhe conosco - Predialnet"
+  description="Vagas abertas na Predialnet, provedor de internet de fibra óptica em Niterói, São Gonçalo e Rio de Janeiro. Veja as oportunidades e envie sua candidatura."
+>
+  <Navbar />
+  <SecNavBar />
+  <TrabalheConoscoPage client:load />
+  <Footer />
+</Layout>
