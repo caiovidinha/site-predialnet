@@ -34,29 +34,6 @@ useEffect(() => {
     };
 }, [isOpen]);
 
-const portoMaravilhaPlans = [
-    {
-        "plan": "60 mega",
-        "price": "R$ 189,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2060%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
-    },
-    {
-        "plan": "40 mega",
-      "price": "R$ 129,90/mês",
-      "whatsapp": "https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2040%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
-    },
-    {
-        "plan": "30 mega",
-        "price": "R$ 99,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2030%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
-    },
-    {
-        "plan": "25 mega",
-        "price": "R$ 89,90/mês",
-        "whatsapp": "https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20residencial%20de%2025%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
-    }
-]
-
 const viaRadioPlans = [
     {
         "plan": "10 mega",
@@ -79,12 +56,10 @@ const viaRadioPlans = [
         "whatsapp": "https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20Quero%20assinar%20o%20plano%20via%20r%C3%A1dio%20de%205%20mega%20da%20Predialnet.%20Entrei%20em%20contato%20atrav%C3%A9s%20do%20site."
     }
 ]
-// Seleciona os planos com base no tipo
-const selectedPlans = type === "viaRadio" ? viaRadioPlans : portoMaravilhaPlans;
+// Único tipo suportado hoje é Via Rádio
+const selectedPlans = viaRadioPlans;
 const additionalInfo =
-  type === "viaRadio"
-    ? "Condições para contratação por pessoa física, sem franquia de consumo, instalação sujeito à viabilidade técnica. Oferta válida para locais com cobertura via rádio."
-    : "Condições para contratação por pessoa física, sem franquia de consumo. Para pessoa jurídica, consulte agente de vendas. Instalação sujeita a viabilidade técnica. Ofertas válidas para locais com cobertura via radio.";
+  "Condições para contratação por pessoa física, sem franquia de consumo, instalação sujeito à viabilidade técnica. Oferta válida para locais com cobertura via rádio.";
 return (
     <div className="fixed inset-0 bg-[#9c0004] md:bg-black md:bg-opacity-50 flex items-center justify-center z-[9999]" role="dialog" aria-modal="true" aria-labelledby="specialPlansTitle">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-5xl p-8 relative overflow-y-auto mx-4 max-h-[90%]">
@@ -102,10 +77,10 @@ return (
           Planos Residenciais
         </h2>
         <h2 className="block md:hidden text-2xl md:text-3xl text-[#505050] mb-4 text-left font-normal">
-          {type === "viaRadio" ? "VIA RÁDIO" : "PORTO MARAVILHA"}
+          VIA RÁDIO
         </h2>
         <h2 id="specialPlansTitle" className="hidden md:block text-2xl md:text-3xl text-[#505050] mb-4 text-left font-normal">
-          {type === "viaRadio" ? "Planos residenciais - VIA RÁDIO" : "Planos residenciais - PORTO MARAVILHA"}
+          Planos residenciais - VIA RÁDIO
         </h2>
 
         {/* Layout dos Planos e Informações Adicionais */}

@@ -3,7 +3,6 @@ import React, { useRef, useState } from 'react';
 function Others() {
   const residencialCards = [
     { label: 'Via Rádio', href: '/via-radio', img: '/img/via_radio.avif', mobileImg: '/img/via_radio_mobile.avif' },
-    { label: 'Porto Maravilha', href: '/porto-maravilha', img: '/img/porto_maravilha.avif', mobileImg: '/img/porto_maravilha_mobile.avif' },
   ];
 
   const scrollRef = useRef(null);
@@ -62,40 +61,21 @@ function Others() {
       {/* ── DESKTOP: 2 colunas — larguras originais, heading fixo para alturas iguais ── */}
       <div className="hidden md:flex md:flex-row gap-6 items-stretch">
 
-        {/* Coluna esquerda — Via Rádio + Porto Maravilha */}
+        {/* Coluna esquerda — Via Rádio */}
         <div className="md:w-[45%] flex flex-col">
-          {/* min-h-[4.5rem] = exatamente 2 linhas de text-3xl, igualando com o heading direito */}
-          <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-4">Internet Via Rádio e Porto Maravilha</h2>
-          <div className="flex gap-4 flex-1">
-            {/* Via Rádio */}
-            <div className="flex-1 border border-[#dcdcdc] rounded flex flex-col justify-between overflow-hidden">
-              <div className="px-4 pt-6 pb-1 flex flex-col gap-0.5">
-                <p className="text-xl text-[#3d3838] leading-tight">Via Rádio</p>
-                <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
-              </div>
-              <div className="px-4 py-2 flex-1 flex items-center">
-                <img src="/img/via_radio.avif" alt="Via Rádio" className="w-full object-cover" style={{ transform: 'scaleX(-1)' }} />
-              </div>
-              <div className="p-4 mb-2">
-                <a href="/via-radio" className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">
-                  Conhecer planos
-                </a>
-              </div>
+          <h2 className="text-[1.65rem] md:text-3xl leading-8 mb-4">Internet Via Rádio</h2>
+          <div className="flex-1 border border-[#dcdcdc] rounded flex flex-col justify-between overflow-hidden">
+            <div className="px-4 pt-6 pb-1 flex flex-col gap-0.5">
+              <p className="text-xl text-[#3d3838] leading-tight">Via Rádio</p>
+              <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
             </div>
-            {/* Porto Maravilha */}
-            <div className="flex-1 border border-[#dcdcdc] rounded flex flex-col justify-between overflow-hidden">
-              <div className="px-4 pt-6 pb-1 flex flex-col gap-0.5">
-                <p className="text-xl text-[#3d3838] leading-tight">Porto Maravilha</p>
-                <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
-              </div>
-              <div className="px-4 py-2 flex-1 flex items-center">
-                <img src="/img/porto_maravilha.avif" alt="Porto Maravilha" className="w-full object-cover" />
-              </div>
-              <div className="p-4  mb-2">
-                <a href="/porto-maravilha" className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">
-                  Conhecer planos
-                </a>
-              </div>
+            <div className="px-4 py-2 flex-1 flex items-center">
+              <img src="/img/via_radio.avif" alt="Via Rádio" className="w-full object-cover" style={{ transform: 'scaleX(-1)' }} />
+            </div>
+            <div className="p-4 mb-2">
+              <a href="/via-radio" className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">
+                Conhecer planos
+              </a>
             </div>
           </div>
         </div>
@@ -112,7 +92,7 @@ function Others() {
 
       {/* ── MOBILE: empilhado + empresa abaixo ── */}
       <div className="md:hidden">
-        <h2 className="text-[1.65rem] mb-4">Internet Via Rádio e Porto Maravilha</h2>
+        <h2 className="text-[1.65rem] mb-4">Internet Via Rádio</h2>
         <div className="flex flex-col gap-4">
           {residencialCards.map((item) => (
             <div key={item.href} className="border border-[#dcdcdc] rounded flex flex-col justify-between overflow-hidden pb-2">

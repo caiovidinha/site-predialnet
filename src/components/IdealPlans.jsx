@@ -145,8 +145,8 @@ const IdealPlans = () => {
                       <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
                       <p className="text-sm">
                         Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
-                        viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
-                        Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+                        viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto
+                        locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
                       </p>
                       <div>
                         <p className="text-base mb-2">*Serviços Inteligentes:</p>
@@ -189,8 +189,8 @@ const IdealPlans = () => {
                   <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
                   <p className="text-sm">
                     Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
-                    viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
-                    Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+                    viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto
+                    locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
                   </p>
                   <div>
                     <p className="text-base mb-2">*Serviços Inteligentes:</p>

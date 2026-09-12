@@ -117,22 +117,6 @@ const sendEmail = async(to,subject,body) => {
         { id: "email", label: "E-mail", type: "email" },
       ],
     },
-    portoMaravilha: {
-      title: "Planos Residenciais - PORTO MARAVILHA",
-      email: "comercial@predialnet.com.br",
-      subtitle: "Preencha o formulário e um de nossos consultores entrará em contato com você.",
-      fields: [
-        { id: "nome", label: "Nome", type: "text" },
-        { id: "plan", label: "Confirme o plano escolhido", type: "select", options: ["60 mega", "40 mega", "30 mega", "25 mega"] },
-        { id: "address", label: "Endereço", type: "text" },
-        { id: "number", label: "Número", type: "text" },
-        { id: "complement", label: "Complemento", type: "text" },
-        { id: "neighborhood", label: "Bairro", type: "text" },
-        { id: "cep", label: "CEP", type: "text" },
-        { id: "phone", label: "Telefone", type: "text" },
-        { id: "email", label: "E-mail", type: "email" },
-      ],
-    },
     viaRadio: {
       title: "Planos residenciais - VIA RÁDIO",
       email: "comercial@predialnet.com.br",
@@ -317,7 +301,7 @@ const sendEmail = async(to,subject,body) => {
     const finalFormData = sanitizedData;
     
     // Definir o assunto do e-mail com base no tipo
-    const subject = type === "telefonia" || type === "viaRadio" || type === "portoMaravilha"
+    const subject = type === "telefonia" || type === "viaRadio"
       ? `Solicitação de ${type}`
       : finalFormData.subject || title;
 
@@ -411,7 +395,7 @@ const sendEmail = async(to,subject,body) => {
         <hr className="border-gray-300 mt-4 mb-6" />
 
         {/* Formulário */}
-        {type=="telefonia" || type=="viaRadio" || type=="portoMaravilha"  ? <form className="space-y-4">
+        {type=="telefonia" || type=="viaRadio"  ? <form className="space-y-4">
           {/* Campo Seleção de Plano */}
           <div>
             <label htmlFor="nome" className="block mb-1 text-sm font-normal">Nome</label>

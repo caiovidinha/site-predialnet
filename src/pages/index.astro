@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import SecNavBar from '../components/SecNavBar.astro';
+import Hero from '../components/Hero';
 import Plans from '../components/Plans';
 import PromoCarousel from '../components/PromoCarousel';
 import IdealPlans from '../components/IdealPlans';
@@ -15,10 +16,8 @@ import Footer from '../components/Footer.astro';
 
 <Layout title="Predialnet">
   <Navbar />
-  <SecNavBar showBanner />
-  <a href="https://www.predialnet.com.br/assineja?plano=hero" target="_blank" rel="noopener noreferrer" class="hidden sm:block">
-    <img src="/img/hero.webp" alt="Predialnet" class="w-full h-auto block" width="2560" height="722" loading="eager" />
-  </a>
+  <SecNavBar />
+  <Hero client:load />
   <Plans client:load />
   <PromoCarousel client:visible />
   <IdealPlans client:visible />

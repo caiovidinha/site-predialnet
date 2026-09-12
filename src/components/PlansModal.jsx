@@ -95,7 +95,7 @@ const PlansModal = ({ isOpen, onClose, plan } ) => {
             <h2 className="font-bold text-sm">Oferta com velocidade de até {plan.title}</h2>
             <p className=" mb-4 leading-tight text-sm">
               Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com
-              cobertura fibra óptica, exceto: Região do Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+              cobertura fibra óptica, exceto locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
             </p>
             <h2 className="font-bold text-sm">*Serviços Inteligentes:</h2>
             <ul className="list-inside mb-2 text-sm">

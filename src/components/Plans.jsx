@@ -213,8 +213,8 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                     <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
                     <p className="text-sm">
                       Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
-                      viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
-                      Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+                      viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto
+                      locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
                     </p>
                     <div>
                       <p className="text-base mb-2">*Serviços Inteligentes:</p>
@@ -239,8 +239,8 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                   <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
                   <p className="text-sm">
                     Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
-                    viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do
-                    Porto Maravilha, e locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+                    viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto
+                    locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
                   </p>
                   <div>
                     <p className="text-base mb-2">*Serviços Inteligentes:</p>
@@ -295,7 +295,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
 
       {/* Rodapé — OBS */}
       <div className="mt-5 w-full flex items-start font-light text-xs flex-col gap-1">
-        <p className="text-[8px] md:text-[10px] w-full leading-3">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes. OBS: Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto: Região do Porto Maravilha, e locais com tecnologia Rádio ou FTTH. Consulte o Regulamento.
+        <p className="text-[8px] md:text-[10px] w-full leading-3">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes. OBS: Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto locais com tecnologia Rádio ou FTTH. Consulte o Regulamento.
         </p>
       </div>
     </div>

@@ -65,7 +65,7 @@ export const events = {
   // Planos especiais
   specialPlanView: (planType) => 
     trackEvent('special_plan_view', {
-      plan_type: planType, // 'viaRadio' ou 'portoMaravilha'
+      plan_type: planType, // 'viaRadio'
     }),
 
   specialPlanClick: (planType, planName, method = 'site') => 

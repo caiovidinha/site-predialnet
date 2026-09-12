@@ -32,11 +32,9 @@ const SHOW_FRAUD_POPUP = false;
     <link rel="preload" href="/fonts/Swis721 Lt BT Light.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="preload" href="/fonts/Swis721 BT Roman.ttf" as="font" type="font/ttf" crossorigin />
     
-    <!-- Preload de imagens hero (primeiro banner do carrossel) -->
-    <link rel="preload" href="/img/banner1.avif" as="image" type="image/avif" media="(min-width: 900px)" />
-    <link rel="preload" href="/img/banner1.webp" as="image" type="image/webp" media="(min-width: 900px)" />
-    <link rel="preload" href="/img/banner1Mobile.avif" as="image" type="image/avif" media="(max-width: 899px)" />
-    <link rel="preload" href="/img/banner1Mobile.webp" as="image" type="image/webp" media="(max-width: 899px)" />
+    <!-- Preload da imagem hero (primeiro slide do carrossel) -->
+    <link rel="preload" href="/img/hero.webp" as="image" type="image/webp" media="(min-width: 640px)" fetchpriority="high" />
+    <link rel="preload" href="/img/bannerMobile.avif" as="image" type="image/avif" media="(max-width: 639px)" fetchpriority="high" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
