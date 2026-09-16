@@ -110,12 +110,15 @@ const Hero = () => {
         {slides.map((slide, i) => {
           const imgEl = slide.mobileSrc ? (
             <picture>
-              <source media="(max-width: 639px)" srcSet={slide.mobileSrc} />
+              <source media="(max-width: 639px)" srcSet={slide.mobileSrc} width={1080} height={800} />
               <img
                 src={slide.src}
                 alt={slide.alt}
+                width={1920}
+                height={542}
                 className="w-full block"
                 loading={i === 0 ? 'eager' : 'lazy'}
+                decoding={i === 0 ? 'sync' : 'async'}
                 fetchpriority={i === 0 ? 'high' : undefined}
               />
             </picture>
@@ -123,8 +126,11 @@ const Hero = () => {
             <img
               src={slide.src}
               alt={slide.alt}
+              width={1920}
+              height={542}
               className="w-full block"
               loading={i === 0 ? 'eager' : 'lazy'}
+              decoding={i === 0 ? 'sync' : 'async'}
               fetchpriority={i === 0 ? 'high' : undefined}
             />
           );

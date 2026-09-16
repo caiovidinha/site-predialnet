@@ -106,11 +106,11 @@ const PromoCarousel = ({
           {slides.map((slide, i) => {
             const imgEl = slide.mobileSrc ? (
               <picture>
-                <source media="(max-width: 639px)" srcSet={slide.mobileSrc} />
-                <img src={slide.src} alt={slide.alt} className="w-full block" />
+                <source media="(max-width: 639px)" srcSet={slide.mobileSrc} width={1080} height={800} />
+                <img src={slide.src} alt={slide.alt} width={1920} height={470} loading="lazy" decoding="async" className="w-full block" />
               </picture>
             ) : (
-              <img src={slide.src} alt={slide.alt} className="w-full block" />
+              <img src={slide.src} alt={slide.alt} width={1920} height={470} loading="lazy" decoding="async" className="w-full block" />
             );
 
             const preventIfSwiping = (e) => { if (isSwiping.current) e.preventDefault(); };

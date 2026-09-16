@@ -29,8 +29,8 @@ const SHOW_FRAUD_POPUP = false;
     <link rel="preconnect" href="https://api.ipify.org" />
     
     <!-- Preload das fontes -->
-    <link rel="preload" href="/fonts/Swis721 Lt BT Light.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href="/fonts/Swis721 BT Roman.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Swis721 Lt BT Light.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Swis721 BT Roman.woff2" as="font" type="font/woff2" crossorigin />
     
     <!-- Preload da imagem hero (primeiro slide do carrossel) -->
     <link rel="preload" href="/img/hero.webp" as="image" type="image/webp" media="(min-width: 640px)" fetchpriority="high" />
@@ -57,11 +57,14 @@ const SHOW_FRAUD_POPUP = false;
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     
-    <!-- Google Tag Manager -->
-    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <!-- Google Tag Manager (carregado após o load da página para não atrasar a renderização) -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];
+    function loadGtm(){w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}
+    function schedule(){setTimeout(loadGtm,1500);}
+    if(d.readyState==='complete'){schedule();}else{w.addEventListener('load',schedule);}
     })(window,document,'script','dataLayer','GTM-WH2TDC4S');</script>
     <!-- End Google Tag Manager -->
     

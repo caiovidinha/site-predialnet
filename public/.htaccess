@@ -1,0 +1,29 @@
+# Cache no navegador (requer mod_expires e mod_headers)
+
+# Tipos que o Apache deste servidor não conhece
+AddType image/webp .webp
+AddType image/avif .avif
+AddType font/woff2 .woff2
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Imagens e fontes: 30 dias.
+  # ATENÇÃO: ao trocar um banner mantendo o mesmo nome de arquivo, quem já
+  # visitou o site pode ver o antigo por até 30 dias. Prefira um nome novo.
+  <FilesMatch "\.(webp|avif|png|jpe?g|gif|svg|ico|woff2?|ttf)$">
+    ExpiresDefault "access plus 30 days"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+  # HTML: sempre revalida, para publicações aparecerem na hora
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  # JS e CSS gerados pelo Astro têm hash no nome (muda a cada build): 1 ano
+  <If "%{REQUEST_URI} =~ m#^/_astro/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>

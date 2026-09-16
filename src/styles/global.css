@@ -4,7 +4,8 @@
 
 @font-face {
   font-family: 'Swis721';
-  src: url('/fonts/Swis721 Lt BT Light.ttf') format('truetype');
+  src: url('/fonts/Swis721 Lt BT Light.woff2') format('woff2'),
+       url('/fonts/Swis721 Lt BT Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -12,7 +13,8 @@
 
 @font-face {
   font-family: 'Swis721';
-  src: url('/fonts/Swis721 BT Roman.ttf') format('truetype');
+  src: url('/fonts/Swis721 BT Roman.woff2') format('woff2'),
+       url('/fonts/Swis721 BT Roman.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
