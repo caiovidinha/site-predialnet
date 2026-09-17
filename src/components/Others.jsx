@@ -47,10 +47,10 @@ function Others() {
         </a>
       </div>
       <div className="hidden md:block w-[45%] flex-shrink-0">
-        <img src="/img/foto_empresa.avif" alt="Internet Empresa" className="w-full h-full object-cover" />
+        <img src="/img/foto_empresa.avif" alt="Internet Empresa" loading="lazy" decoding="async" className="w-full h-full object-cover" />
       </div>
       <div className="block md:hidden w-[45%] flex-shrink-0 -mr-10">
-        <img src="/img/foto_empresa_mobile.avif" alt="Internet Empresa" className="w-full h-full object-cover object-left -ml-10" />
+        <img src="/img/foto_empresa_mobile.avif" alt="Internet Empresa" loading="lazy" decoding="async" className="w-full h-full object-cover object-left -ml-10" />
       </div>
     </div>
   );
@@ -73,7 +73,7 @@ function Others() {
                 <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
               </div>
               <div className="px-4 py-2 flex-1 flex items-center">
-                <img src="/img/via_radio.avif" alt="Via Rádio" className="w-full object-cover" style={{ transform: 'scaleX(-1)' }} />
+                <img src="/img/via_radio.avif" alt="Via Rádio" width={600} height={334} loading="lazy" decoding="async" className="w-full object-cover" style={{ transform: 'scaleX(-1)' }} />
               </div>
               <div className="p-4 mb-2">
                 <a href="/via-radio" className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">
@@ -83,7 +83,7 @@ function Others() {
             </div>
             {/* Banner promocional — ocupa o card inteiro, sem link dedicado */}
             <div className="flex-1 border border-[#dcdcdc] rounded overflow-hidden">
-              <img src="/img/banner_via_radio.webp" alt="Os melhores planos de internet estão aqui" className="w-full h-full object-cover" />
+              <img src="/img/banner_via_radio.webp" alt="Os melhores planos de internet estão aqui" loading="lazy" decoding="async" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ function Others() {
               <p className="text-sm text-[#3d3838] leading-tight">Planos residenciais</p>
             </div>
             <div className="px-4 pt-2">
-              <img src="/img/via_radio_mobile.avif" alt="Via Rádio" className="w-full object-cover" style={{ transform: 'scaleX(-1)' }} />
+              <img src="/img/via_radio_mobile.avif" alt="Via Rádio" width={1080} height={423} loading="lazy" decoding="async" className="w-full object-cover" style={{ transform: 'scaleX(-1)' }} />
             </div>
             <div className="p-4 -mt-1">
               <a href="/via-radio" className="w-full block text-center py-3 text-xs text-white bg-[#8a0005] hover:opacity-80 transition-opacity rounded-sm">
@@ -120,7 +120,7 @@ function Others() {
 
           {/* Banner promocional — ocupa o card inteiro, sem link dedicado */}
           <div className="border border-[#dcdcdc] rounded overflow-hidden">
-            <img src="/img/banner_via_radio.webp" alt="Os melhores planos de internet estão aqui" className="w-full h-64 object-cover" />
+            <img src="/img/banner_via_radio.webp" alt="Os melhores planos de internet estão aqui" loading="lazy" decoding="async" className="w-full h-64 object-cover" />
           </div>
         </div>
 

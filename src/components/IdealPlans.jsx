@@ -90,7 +90,7 @@ const IdealPlans = () => {
               {/* Card */}
               {plan.imageCard ? (
                 <div className="border border-[#dcdcdc] bg-white overflow-hidden rounded-sm flex-1">
-                  <img src={plan.imageCard} alt={plan.title} className="w-full block" />
+                  <img src={plan.imageCard} alt={plan.title} width={720} height={1167} loading="lazy" decoding="async" className="w-full block" />
                 </div>
               ) : (
               <>
@@ -103,6 +103,10 @@ const IdealPlans = () => {
                   <img
                     src={plan.img}
                     alt={plan.title}
+                    width={900}
+                    height={296}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full block rounded-sm mb-5"
                   />
 

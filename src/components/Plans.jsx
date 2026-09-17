@@ -121,7 +121,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
               {/* Card */}
               {plan.imageCard ? (
                 <div className="border border-[#dcdcdc] rounded bg-white overflow-hidden flex-1">
-                  <img src={plan.imageCard} alt={plan.title} className="w-full block" />
+                  <img src={plan.imageCard} alt={plan.title} width={720} height={1399} loading="lazy" decoding="async" className="w-full block" />
                 </div>
               ) : (
               <>

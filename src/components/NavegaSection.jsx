@@ -48,6 +48,10 @@ const NavegaSection = () => {
             <img
               src={card.img}
               alt={card.title}
+              width={900}
+              height={540}
+              loading="lazy"
+              decoding="async"
               className="w-full block mb-4"
             />
             <div className="px-6 pb-5">

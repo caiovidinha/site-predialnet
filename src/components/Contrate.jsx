@@ -36,6 +36,8 @@ function Contrate() {
       <img
         src="/img/fundo-contrate.webp"
         alt=""
+        loading="lazy"
+        decoding="async"
         aria-hidden="true"
         className="hidden md:block w-full object-cover"
       />
