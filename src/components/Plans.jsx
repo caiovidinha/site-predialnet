@@ -27,7 +27,7 @@ const planDataBase = [
     price: '124,90',
     wifi: 'Wi-Fi 6',
     wifiDesc: 'Mais alcance e estabilidade',
-    seal: { text: 'MELHOR OFERTA', bg: '#8a0005', color: '#ffffff' },
+    seal: { text: 'MELHOR OFERTA', bg: '#de2846', color: '#ffffff' },
     gamerPonto: false,
     regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf',
   },
@@ -89,12 +89,12 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
   const toggleDetails = (id) => setOpenDetails((prev) => (prev === id ? null : id));
 
   return (
-    <div id="Plans" className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#f4f5f5] text-[#3d3838]">
+    <div id="Plans" className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#8a0005] text-[#3d3838]">
       {/* Cabeçalho */}
-      <h1 className="text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]">
+      <h1 className="text-white text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]">
         Planos Predialnet Fibra para sua casa
       </h1>
-      <h2 className="text-lg font-light leading-6">
+      <h2 className="text-white text-lg font-light leading-6">
         Conquiste um plano Predialnet e mude sua experiência de conexão
       </h2>
 
@@ -120,7 +120,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
 
               {/* Card */}
               {plan.imageCard ? (
-                <div className="border border-[#dcdcdc] rounded bg-white overflow-hidden flex-1">
+                <div className=" rounded bg-white overflow-hidden flex-1">
                   <img src={plan.imageCard} alt={plan.title} width={720} height={1399} loading="lazy" decoding="async" className="w-full block" />
                 </div>
               ) : (
@@ -295,7 +295,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
 
       {/* Rodapé — OBS */}
       <div className="mt-5 w-full flex items-start font-light text-xs flex-col gap-1">
-        <p className="text-[8px] md:text-[10px] w-full leading-3">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes. OBS: Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto locais com tecnologia Rádio ou FTTH. Consulte o Regulamento.
+        <p className="text-white text-[8px] md:text-[10px] w-full leading-3">Consulte o Regulamento para gerenciamento dos Serviços Inteligentes. OBS: Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto locais com tecnologia Rádio ou FTTH. Consulte o Regulamento.
         </p>
       </div>
     </div>
