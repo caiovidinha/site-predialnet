@@ -82,7 +82,7 @@ function Others() {
               </div>
             </div>
             {/* Banner promocional — ocupa o card inteiro, sem link dedicado */}
-            <div className="flex-1 border border-[#dcdcdc] rounded overflow-hidden">
+            <div className="hidden md:block flex-1 border border-[#dcdcdc] rounded overflow-hidden">
               <img src="/img/banner_via_radio.webp" alt="Os melhores planos de internet estão aqui" loading="lazy" decoding="async" className="w-full h-full object-cover" />
             </div>
           </div>
