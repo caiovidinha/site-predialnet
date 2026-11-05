@@ -25,9 +25,11 @@ const planDataBase = [
     tagline: 'Pra conectar todo mundo',
     title: '800 Mega',
     price: '124,90',
+    price_black: '99,90',
+    regulamento_black: 'https://www.predialnet.com.br/download/2026.11.05_a_2026.11.30_Regulamento_Oferta_Black_800.pdf',
     wifi: 'Wi-Fi 6',
     wifiDesc: 'Mais alcance e estabilidade',
-    seal: { text: 'MELHOR OFERTA', bg: '#de2846', color: '#ffffff' },
+    seal: { text: 'OFERTA BLACK FRIDAY', bg: '#e30613', color: '#ffffff' },
     gamerPonto: false,
     regulamento: 'https://www.predialnet.com.br/download/sumario-oferta-plano-fibra-800.pdf',
   },
@@ -48,6 +50,34 @@ const planDataBase = [
     title: 'Gamer Pro 1 Giga',
   },
 ];
+
+// Conteúdo do "Mais detalhes" (compartilhado entre accordion mobile e flap desktop)
+const DetailsBody = ({ plan }) => (
+  <>
+    <p className="text-xl">Plano {plan.title}</p>
+    <p className="text-base">Oferta com velocidade de até {plan.title}.</p>
+    <p className="text-sm">
+      Condições para contratação por pessoa física, sem franquia de consumo. Instalação sujeito a
+      viabilidade técnica. Ofertas válidas para locais com cobertura fibra óptica, exceto
+      locais com tecnologia HPNA, Rádio ou FTTH. Consulte o Regulamento.
+    </p>
+    <div>
+      <p className="text-base mb-2">*Serviços Inteligentes:</p>
+      <div className="flex flex-col gap-2 text-sm font-light">
+        <p><span className="font-normal">· Controle Parental (1 licença)</span><br />Permite ao titular da conta controlar o horário de utilização da sua Internet.</p>
+        <p><span className="font-normal">· Navegação mais segura</span><br />Oferece tentativa de proteção contra conexões entrantes indesejadas. Auxilia o usuário na tentativa de identificar e bloquear sites fraudulentos.</p>
+        <p><span className="font-normal">· Predial Protect (1 Licença)</span><br />Consulte o Regulamento para gerenciamento dos Serviços Inteligentes.</p>
+      </div>
+    </div>
+    <p className="text-sm">Baixe o App Minha Predialnet e gerencie seu plano.</p>
+    <a href={plan.regulamento_black || plan.regulamento} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-base hover:text-[#8a0005] transition-colors">
+      <img src="/img/regulamento.png" alt="" width="14" height="14" aria-hidden="true" />
+      Baixe o regulamento
+    </a>
+  </>
+);
+
+const FEATURES = ['Instalação Grátis', 'Sem fidelidade', 'Serviços Inteligentes'];
 
 const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
   const planData = React.useMemo(() => {
@@ -123,6 +153,97 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
                 <div className=" rounded bg-white overflow-hidden flex-1">
                   <img src={plan.imageCard} alt={plan.title} width={720} height={1399} loading="lazy" decoding="async" className="w-full block" />
                 </div>
+              ) : plan.price_black ? (
+              <>
+              <div
+                className="relative border border-[#e30613] rounded overflow-hidden text-white flex flex-col flex-1"
+                style={{ background: 'linear-gradient(160deg, #000000 0%, #000000 45%, #9c0005 150%)' }}
+              >
+
+                <div className="relative flex flex-col px-6 pt-8 md:pt-10 pb-7 flex-1">
+                  {/* Título */}
+                  {/* Mesma altura do bloco tagline + nome dos outros cards (20 + 4 + 42 = 66px) */}
+                  <p className="text-[28px] leading-[30px] tracking-[-0.01em] font-medium">
+                    BLACK <span className="text-[#e30613]">FRIDAY</span>
+                  </p>
+                  <h2 className="text-[32px] leading-[36px] font-medium uppercase tracking-[-0.01em] mb-5">{plan.title}</h2>
+
+                  {/* Features */}
+                  <ul className="flex flex-col gap-2.5 mb-5 md:mt-5">
+                    {FEATURES.map((feat) => (
+                      <li key={feat} className="text-xs font-light flex items-center gap-1.5">
+                        <svg width="12" height="10" viewBox="0 0 12 10" fill="none" className="flex-shrink-0 text-[#e30613]" aria-hidden="true">
+                          <path d="M1 5L4.5 8.5L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Wi-Fi */}
+                  <div className="rounded-sm flex items-center justify-between px-4 py-3 ring-1 ring-inset ring-white/40 bg-white/5 backdrop-blur-sm text-sm mt-2">
+                    <span className="text-[12px] font-light">
+                      <span>Super {plan.wifi} AX3000</span> <br />
+                      <span>{plan.wifiDesc}</span>
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="#ffffff" stroke="none"/></svg>
+                  </div>
+
+                  {/* Preço */}
+                  {/* Mobile: compacto pra manter a mesma altura dos outros cards (mobile não estica os cards) */}
+                  <div className="mt-auto pt-2 md:pt-5">
+                    <p className="text-xs leading-4 md:text-base font-light">
+                      De <span className="line-through">R$ {plan.price}</span> por
+                    </p>
+                    <p className="flex items-baseline leading-none md:mt-1">
+                      <span className="text-base leading-none md:text-xl mr-1">R$</span>
+                      <span className="text-[36px] md:text-[44px] tracking-[-0.03em]">{plan.price_black}</span>
+                      <span className="text-sm leading-none md:text-base font-light ml-1">/mês</span>
+                    </p>
+                  </div>
+
+                  {/* Botão Assinar */}
+                  <a
+                    href={`https://www.predialnet.com.br/assineja?plano=black800`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center py-3 rounded-sm text-xs text-white bg-[#e30613] hover:opacity-85 transition-opacity mt-3 md:mt-5 mb-3"
+                    aria-label={`Assinar plano ${plan.title}`}
+                    onClick={() => events.planClick(plan.title, `R$ ${plan.price_black}`, 'site', 'plans_section')}
+                  >
+                    Assinar agora
+                  </a>
+
+                  {/* Mais detalhes */}
+                  <button
+                    type="button"
+                    onClick={() => toggleDetails(plan.id)}
+                    className="flex items-center justify-center gap-1 text-xs font-light hover:text-[#e30613] transition-colors"
+                  >
+                    Mais detalhes
+                    <svg
+                      className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                      fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Accordion inline — mobile only */}
+                  {isOpen && (
+                    <div className="md:hidden mt-4 pt-4 border-t border-white/20 flex flex-col gap-3">
+                      <DetailsBody plan={plan} />
+                    </div>
+                  )}
+                </div>
+              </div>
+              {/* Accordion desktop — flap absoluto abaixo do card */}
+              {isOpen && (
+                <div className="hidden md:flex flex-col gap-3 absolute top-full left-0 right-0 z-20 border border-[#dcdcdc] border-t-0 rounded-b bg-white px-6 py-5">
+                  <DetailsBody plan={plan} />
+                </div>
+              )}
+              </>
               ) : (
               <>
               <div className="border border-[#dcdcdc] rounded bg-white flex flex-col px-6 pt-10 pb-7 flex-1">

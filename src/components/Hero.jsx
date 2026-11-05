@@ -5,7 +5,7 @@ const slides = [
     src: '/img/hero.webp',
     mobileSrc: '/img/bannerMobile.avif',
     alt: 'Predialnet - internet de fibra óptica',
-    link: 'https://www.predialnet.com.br/assineja?plano=hero',
+    link: 'https://www.predialnet.com.br/assineja?plano=black800',
   },
   {
     src: '/img/carrossel-hero-b.webp',
