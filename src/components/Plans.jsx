@@ -157,7 +157,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
               <>
               <div
                 className="relative border border-[#e30613] rounded overflow-hidden text-white flex flex-col flex-1"
-                style={{ background: 'linear-gradient(160deg, #000000 0%, #000000 45%, #9c0005 150%)' }}
+                style={{ background: "#000 url('/img/fundo-black.webp') right center / cover no-repeat" }}
               >
 
                 <div className="relative flex flex-col px-6 pt-8 md:pt-10 pb-7 flex-1">
