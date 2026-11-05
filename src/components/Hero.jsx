@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-/* CARROSSEL DO HERO — desligado na Black Friday: só o 1º slide (hero.webp /
-   bannerMobile.avif), fixo. Para voltar o carrossel, troque para true. */
-const CARROSSEL_ATIVO = false;
+/* CARROSSEL DO HERO
+   CARROSSEL_ATIVO = false → só o 1º slide (hero.webp / bannerMobile.avif), fixo.
+   SLIDES_ATIVOS = quais slides de ALL_SLIDES entram (índices). Black Friday:
+   hero Black (0) + 1 Giga (2). Para voltar todos: [0, 1, 2, 3]. */
+const CARROSSEL_ATIVO = true;
+  const SLIDES_ATIVOS = [0, 2];
 
 const ALL_SLIDES = [
   {
@@ -31,7 +34,9 @@ const ALL_SLIDES = [
   },
 ];
 
-const slides = CARROSSEL_ATIVO ? ALL_SLIDES : ALL_SLIDES.slice(0, 1);
+const slides = CARROSSEL_ATIVO
+  ? SLIDES_ATIVOS.map((i) => ALL_SLIDES[i]).filter(Boolean)
+  : ALL_SLIDES.slice(0, 1);
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
