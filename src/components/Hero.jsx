@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const slides = [
+/* CARROSSEL DO HERO — desligado na Black Friday: só o 1º slide (hero.webp /
+   bannerMobile.avif), fixo. Para voltar o carrossel, troque para true. */
+const CARROSSEL_ATIVO = false;
+
+const ALL_SLIDES = [
   {
     src: '/img/hero.webp',
     mobileSrc: '/img/bannerMobile.avif',
@@ -26,6 +30,8 @@ const slides = [
     link: 'https://www.predialnet.com.br/assineja?plano=600mega',
   },
 ];
+
+const slides = CARROSSEL_ATIVO ? ALL_SLIDES : ALL_SLIDES.slice(0, 1);
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
@@ -63,6 +69,7 @@ const Hero = () => {
 
   const startAutoplay = () => {
     if (autoplayRef.current) clearInterval(autoplayRef.current);
+    if (slides.length < 2) return;
     autoplayRef.current = setInterval(() => {
       if (!isHoveredRef.current) {
         setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -152,6 +159,7 @@ const Hero = () => {
         })}
       </div>
 
+      {slides.length > 1 && (
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {slides.map((_, i) => (
           <button
@@ -164,6 +172,7 @@ const Hero = () => {
           />
         ))}
       </div>
+      )}
     </div>
   );
 };
