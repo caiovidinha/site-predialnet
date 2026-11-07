@@ -18,7 +18,7 @@ import Footer from '../components/Footer.astro';
   <Navbar />
   <SecNavBar />
   <Hero client:load />
-  <Plans client:load />
+  <Plans client:load afterHeroBar />
   <PromoCarousel client:visible />
   <IdealPlans client:visible />
   <div id="App"></div>

@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
+import HeroContato from './HeroContato';
 
 /* CARROSSEL DO HERO
    CARROSSEL_ATIVO = false → só o 1º slide (hero.webp / bannerMobile.avif), fixo.
    SLIDES_ATIVOS = quais slides de ALL_SLIDES entram (índices). Black Friday:
    hero Black (0) + 1 Giga (2). Para voltar todos: [0, 1, 2, 3]. */
 const CARROSSEL_ATIVO = true;
+// Barra de CEP + WhatsApp sobre o rodapé do hero (HeroContato.jsx)
+const MOSTRAR_BARRA_CEP = true;
   const SLIDES_ATIVOS = [0, 2];
 
 const ALL_SLIDES = [
@@ -106,6 +109,7 @@ const Hero = () => {
   }, []);
 
   return (
+    <>
     <div
       ref={containerRef}
       className="relative w-full overflow-hidden"
@@ -165,7 +169,7 @@ const Hero = () => {
       </div>
 
       {slides.length > 1 && (
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      <div className={`absolute ${MOSTRAR_BARRA_CEP ? 'bottom-10' : 'bottom-4'} left-1/2 -translate-x-1/2 flex gap-2 z-10`}>
         {slides.map((_, i) => (
           <button
             key={i}
@@ -179,6 +183,8 @@ const Hero = () => {
       </div>
       )}
     </div>
+    {MOSTRAR_BARRA_CEP && <HeroContato />}
+    </>
   );
 };
 

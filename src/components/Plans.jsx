@@ -79,7 +79,7 @@ const DetailsBody = ({ plan }) => (
 
 const FEATURES = ['Instalação Grátis', 'Sem fidelidade', 'Serviços Inteligentes'];
 
-const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
+const Plans = ({ imageCard = '/img/cardPlanos.webp', afterHeroBar = false }) => {
   const planData = React.useMemo(() => {
     const data = [...planDataBase];
     data[data.length - 1] = { ...data[data.length - 1], imageCard };
@@ -119,7 +119,7 @@ const Plans = ({ imageCard = '/img/cardPlanos.webp' }) => {
   const toggleDetails = (id) => setOpenDetails((prev) => (prev === id ? null : id));
 
   return (
-    <div id="Plans" className="px-6 sm:px-[8%] md:px-[12%] pt-10 pb-8 md:pb-14 font-sans bg-[#8a0005] text-[#3d3838]">
+    <div id="Plans" className={`px-6 sm:px-[8%] md:px-[12%] ${afterHeroBar ? 'pt-[68px]' : 'pt-10'} pb-8 md:pb-14 font-sans bg-[#8a0005] text-[#3d3838]`}>
       {/* Cabeçalho */}
       <h1 className="text-white text-[1.65rem] md:text-3xl leading-8 mb-1 font-light tracking-[-0.01em]">
         Planos Predialnet Fibra para sua casa
