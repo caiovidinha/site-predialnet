@@ -323,7 +323,7 @@ Adicionar navbar, footer e botão flutuante do WhatsApp na página `assineja` (H
 
 ```html
 <a
-  href="https://api.whatsapp.com/send?phone=5521977287782&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
+  href="https://api.whatsapp.com/send?phone=552135150555&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet."
   target="_blank"
   rel="noopener noreferrer"
   class="pn-whatsapp"

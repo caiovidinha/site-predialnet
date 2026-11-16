@@ -10,7 +10,7 @@ import React, { useState } from 'react';
    Em desenvolvimento, PUBLIC_ASSINEJA_URL (em .env.development.local) aponta
    para o assineja local; em produção vale o endereço público. */
 const ASSINEJA_URL = import.meta.env.PUBLIC_ASSINEJA_URL || 'https://www.predialnet.com.br/assineja';
-const WHATSAPP_URL = 'https://api.whatsapp.com/send?phone=2135150555&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet.';
+const WHATSAPP_URL = 'https://api.whatsapp.com/send?phone=552135150555&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet.';
 
 function maskCep(value) {
   const d = value.replace(/\D/g, '').slice(0, 8);
