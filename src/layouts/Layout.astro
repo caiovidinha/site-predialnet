@@ -67,6 +67,19 @@ const SHOW_FRAUD_POPUP = false;
     if(d.readyState==='complete'){schedule();}else{w.addEventListener('load',schedule);}
     })(window,document,'script','dataLayer','GTM-WH2TDC4S');</script>
     <!-- End Google Tag Manager -->
+    <!-- Evento whatsapp_click: qualquer link de WhatsApp da página envia o evento ao dataLayer,
+         com o local do botão (data-track-location) e o tipo de número (data-track-phone-type) -->
+    <script is:inline>(function(){
+    document.addEventListener('click',function(e){
+      var a=e.target&&e.target.closest&&e.target.closest('a[href*="whatsapp.com"],a[href*="wa.me"]');
+      if(!a||e.defaultPrevented)return;
+      window.dataLayer=window.dataLayer||[];
+      window.dataLayer.push({event:'whatsapp_click',
+        link_location:a.getAttribute('data-track-location')||'nao_marcado',
+        phone_type:a.getAttribute('data-track-phone-type')||'nao_informado',
+        link_url:(a.href||'').split(/[?&]text=/)[0]});
+    });
+    })();</script>
     
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" is:inline>
