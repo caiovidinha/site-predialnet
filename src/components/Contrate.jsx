@@ -13,6 +13,7 @@ const actions = [
     icon: '/img/iconeWhatsapp.avif',
     label: 'Assine pelo WhatsApp',
     sub: 'conversar',
+    phoneType: 'vendas',
     href: 'https://api.whatsapp.com/send?phone=552135150555&text=Ol%C3%A1!%20Estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20site%20da%20Predialnet.',
     external: true,
   },
@@ -20,7 +21,8 @@ const actions = [
     icon: '/img/iconeTel.avif',
     label: 'Assine pelo telefone',
     sub: '21 3515-0555',
-    href: 'tel:02135150555',
+    href: 'tel:+552135150555',
+    phoneType: 'vendas',
     external: false,
   },
 ];
@@ -67,6 +69,8 @@ function Contrate() {
               href={action.href}
               target={action.external ? '_blank' : '_self'}
               rel={action.external ? 'noopener noreferrer' : undefined}
+              data-track-location={action.phoneType ? 'contrate' : undefined}
+              data-track-phone-type={action.phoneType}
               className="flex items-center gap-4 bg-transparent border-[1px] md:border-2 hover:border-white transition-colors rounded-md px-5 py-4"
             >
               <img src={action.icon} alt={action.label} className="w-6 h-6 object-contain shrink-0" />

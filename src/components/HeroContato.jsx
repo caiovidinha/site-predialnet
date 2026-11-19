@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 /* Barra sobre o rodapé do hero: consulta de CEP (leva para o assineja com o
    CEP já preenchido) e WhatsApp (mesmo link e ícone do botão flutuante).
@@ -28,9 +28,24 @@ const WhatsIcon = () => (
 
 const sombra = 'shadow-[0_2px_10px_rgba(0,0,0,0.12)]';
 
+/* O formulário é GET: o navegador troca a query da action pelos campos do
+   form. Sem estes campos, origin e UTMs da página (anúncio da Meta/Google)
+   não chegavam ao assineja, e o lead ia ao Trello sem a etiqueta de origem.
+   O referrer também não ajuda: entre lp. e www. ele chega só com a origem. */
+const PARAMS_REPASSADOS = ['origin', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'];
+
 const HeroContato = () => {
   const [cep, setCep] = useState('');
   const [erro, setErro] = useState('');
+  const [repassar, setRepassar] = useState([]);
+
+  // lido no navegador (no build não há URL de visita)
+  useEffect(() => {
+    try {
+      const q = new URLSearchParams(window.location.search);
+      setRepassar(PARAMS_REPASSADOS.filter((k) => q.get(k)).map((k) => [k, q.get(k)]));
+    } catch (e) { /* sem parâmetros */ }
+  }, []);
 
   const onSubmit = (e) => {
     if (cep.replace(/\D/g, '').length !== 8) {
@@ -51,6 +66,8 @@ const HeroContato = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contrate pelo WhatsApp"
+          data-track-location="hero"
+          data-track-phone-type="vendas"
           className={`hidden md:flex items-center gap-3 h-14 pl-1.5 pr-5 rounded-full bg-white border border-[#dcdcdc] ${sombra} hover:shadow-[0_4px_14px_rgba(0,0,0,0.18)] transition-shadow`}
         >
           <WhatsIcon />
@@ -66,6 +83,9 @@ const HeroContato = () => {
           noValidate
           className={`relative w-full md:w-[440px] flex items-center gap-2 h-14 pl-5 pr-1.5 rounded-full bg-white border border-[#dcdcdc] ${sombra} transition-[border-color,box-shadow] focus-within:border-[#bdbdbd] focus-within:shadow-[0_4px_16px_rgba(0,0,0,0.18)]`}
         >
+          {/* o assineja usa para marcar o cep_check como vindo do hero */}
+          <input type="hidden" name="cep_origem" value="hero" />
+          {repassar.map(([k, v]) => <input key={k} type="hidden" name={k} value={v} />)}
           <label htmlFor="hero-cep" className="sr-only">CEP</label>
           <input
             id="hero-cep"

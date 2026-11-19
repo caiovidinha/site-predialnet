@@ -52,15 +52,15 @@ function ClienteAtendimento() {
   const blocos = [
     { titulo: 'Horário de Atendimento', detalhe: 'Segunda a sexta das 9h às 18h' },
     { titulo: 'Comercial', detalhe: 'Segunda a sexta das 8h às 20h | Sábado das 9h às 15h' },
-    { titulo: 'Suporte', detalhe: 'Todos os dias das 6h às 24h', tel: '2135150500', telLabel: '3515-0500', email: 'suporte@predialnet.com.br' },
-    { titulo: 'Financeiro', tel: '2135150555', telLabel: '3515-0555', email: 'financeiro@predialnet.com.br' },
-    { titulo: 'Cancelamento', tel: '2135150555', telLabel: '3515-0555', email: 'cancelamento@predialnet.com.br' },
-    { titulo: 'SAC', tel: '08008787319', telLabel: '08008787319', email: 'sac@predialnet.com.br' },
+    { titulo: 'Suporte', detalhe: 'Todos os dias das 6h às 24h', tel: '+552135150500', telLabel: '3515-0500', tipo: 'suporte', email: 'suporte@predialnet.com.br' },
+    { titulo: 'Financeiro', tel: '+552135150555', telLabel: '3515-0555', tipo: 'financeiro', email: 'financeiro@predialnet.com.br' },
+    { titulo: 'Cancelamento', tel: '+552135150555', telLabel: '3515-0555', tipo: 'cancelamento', email: 'cancelamento@predialnet.com.br' },
+    { titulo: 'SAC', tel: '08008787319', telLabel: '08008787319', tipo: 'sac', email: 'sac@predialnet.com.br' },
   ];
 
   const Contato = ({ b }) => (
     <>
-      <a href={`tel:${b.tel}`} className="text-[#9c0004] hover:underline transition-all">{b.telLabel}</a>
+      <a href={`tel:${b.tel}`} data-track-location="atendimento" data-track-phone-type={b.tipo} className="text-[#9c0004] hover:underline transition-all">{b.telLabel}</a>
       <span className="text-[#bbb]">{' | '}</span>
       <a href={`mailto:${b.email}`} className="hover:text-[#9c0004] hover:underline transition-all">{b.email}</a>
     </>

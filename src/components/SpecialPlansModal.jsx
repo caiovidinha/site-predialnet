@@ -108,6 +108,8 @@ return (
                   </button>
                   <a 
                   href={plan.whatsapp}
+                  data-track-location="planos_especiais"
+                  data-track-phone-type="vendas"
                   target='_blank'
                   className="bg-[#2db640] text-white py-2 px-4 rounded-full text-sm w-full font-normal flex items-center justify-center gap-2 hover:bg-[#249c33] transition"
                   onClick={() => events.specialPlanClick(type, plan.plan, 'whatsapp')}>
@@ -145,6 +147,8 @@ return (
                 </button>
                 <a
                   href={plan.whatsapp}
+                  data-track-location="planos_especiais"
+                  data-track-phone-type="vendas"
                   target="_blank"
                   className="bg-[#2db640] text-white py-2 px-4 rounded-full text-sm w-full flex items-center justify-center gap-2 hover:bg-[#249c33] transition"
                   onClick={() => events.specialPlanClick(type, plan.plan, 'whatsapp')}
